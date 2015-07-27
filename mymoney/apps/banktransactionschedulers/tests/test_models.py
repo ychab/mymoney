@@ -184,7 +184,7 @@ class ModelTestCase(unittest.TestCase):
 
         with patch.object(BankTransactionScheduler, 'save', side_effect=Exception('Click-click Booom!')):
             with self.assertLogs(logger='mymoney.apps.banktransactionschedulers.models',
-                             level='ERROR'):
+                                 level='ERROR'):
                 bts.clone()
 
         bts.refresh_from_db()
