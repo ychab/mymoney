@@ -12,6 +12,7 @@
    :target: https://readthedocs.org/projects/mymoney/?badge=latest
    :alt: Documentation Status
 
+
 MyMoney is a personal finance Web application build with the `Django`_
 framework.
 
