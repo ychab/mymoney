@@ -5,6 +5,10 @@
 .. image:: https://coveralls.io/repos/ychab/mymoney/badge.svg?branch=master&service=github
   :target: https://coveralls.io/github/ychab/mymoney?branch=master
 
+.. image:: https://readthedocs.org/projects/mymoney/badge/?version=latest
+   :target: https://readthedocs.org/projects/mymoney/?badge=latest
+   :alt: Documentation Status
+
 MyMoney is a personal finance Web application build with the `Django`_
 framework.
 
