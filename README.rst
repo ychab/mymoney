@@ -3,6 +3,9 @@ framework.
 
 .. _`Django`: https://www.djangoproject.com/
 
+.. image:: https://coveralls.io/repos/ychab/mymoney/badge.svg?branch=master&service=github
+  :target: https://coveralls.io/github/ychab/mymoney?branch=master
+
 The main goals of this project are to:
 
 * follow and anticipate your bank account balance anywhere
