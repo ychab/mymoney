@@ -12,19 +12,24 @@
    :target: https://readthedocs.org/projects/mymoney/?badge=latest
    :alt: Documentation Status
 
+MyMoney
+=======
 
 MyMoney is a personal finance Web application build with the `Django`_
 framework.
 
 .. _`Django`: https://www.djangoproject.com/
 
-The main goals of this project are to:
+Goals
+-----
 
 * follow and anticipate your bank account balance anywhere
 * tag and analyse your expenses
 * summarize your recurring expenses/wages
+* being as simple as possible
 
-Features:
+Features
+--------
 
 * manage bank accounts (balance, currency, owners, etc)
 * manage bank transactions (debit/credit, amount, label, date, reconciled or
@@ -39,9 +44,15 @@ Features:
 .. _`Chart.js`: http://www.chartjs.org/
 .. _`Bootstrap`: http://getbootstrap.com/
 
+Documentation
+-------------
+
+For documentation, see http://mymoney.readthedocs.org/en/latest/
+
+Contribute
+----------
+
 This is my first Django/Python project so:
 
 * any technical advices/feedbacks would be *really* appreciated
 * some *useless* features have been done mainly for learning and fun ;-)
-
-For documentation, see http://mymoney.readthedocs.org/en/latest/
