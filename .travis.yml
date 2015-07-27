@@ -1,0 +1,23 @@
+language: python
+python:
+    - "3.4"
+addons:
+    postgresql: "9.3"
+env:
+    - TOXENV=py34
+    - TOXENV=flake8
+    - TOXENV=docs
+install:
+    - pip install coveralls tox
+before_script:
+    - createuser -U postgres -d mymoney
+    - createdb -U postgres -O mymoney mymoney
+    - cp mymoney/settings/l10n.dist mymoney/settings/l10n.py
+    - sed -i 's/<LANGUAGE_CODE>/en-us/g' mymoney/settings/l10n.py
+    - cp mymoney/settings/test.dist mymoney/settings/test.py
+    - sed -i 's/<DB_NAME>/mymoney/g' mymoney/settings/test.py
+    - sed -i 's/<DB_USER>/mymoney/g' mymoney/settings/test.py
+script:
+    - tox
+after_success:
+    - coveralls

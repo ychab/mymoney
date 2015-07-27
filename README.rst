@@ -1,9 +1,12 @@
-.. image:: https://requires.io/github/ychab/mymoney/requirements.svg?branch=master
-   :target: https://requires.io/github/ychab/mymoney/requirements/?branch=master
-   :alt: Requirements Status
+.. image:: https://travis-ci.org/ychab/mymoney.svg
+    :target: https://travis-ci.org/ychab/mymoney
 
 .. image:: https://coveralls.io/repos/ychab/mymoney/badge.svg?branch=master&service=github
   :target: https://coveralls.io/github/ychab/mymoney?branch=master
+
+.. image:: https://requires.io/github/ychab/mymoney/requirements.svg?branch=master
+   :target: https://requires.io/github/ychab/mymoney/requirements/?branch=master
+   :alt: Requirements Status
 
 .. image:: https://readthedocs.org/projects/mymoney/badge/?version=latest
    :target: https://readthedocs.org/projects/mymoney/?badge=latest
