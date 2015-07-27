@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load i18n floppyforms %}
+
+{% block title %}{% trans "Log in" %}{% endblock %}
+{% block content_title %}{% trans "Log in" %}{% endblock %}
+
+{% block content %}
+<form action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
+
+    <div class="form-group{% if form.username.errors %} has-error{% endif %}">
+        <label class="control-label sr-only" for="{{ form.username.id_for_label}}">{{ form.username.label }}</label>
+        {% include "floppyforms/errors.html" with errors=form.username.errors %}
+        <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+            {% formfield form.username %}
+        </div>
+    </div>
+
+    <div class="form-group{% if form.password.errors %} has-error{% endif %}">
+        <label class="control-label sr-only" for="{{ form.password.id_for_label}}">{{ form.password.label }}</label>
+        {% include "floppyforms/errors.html" with errors=form.password.errors %}
+        <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+            {% formfield form.password %}
+        </div>
+    </div>
+
+    <input type="hidden" name="next" value="{{ next }}" />
+    <input class="btn btn-primary" type="submit" value="{% trans 'Log in' %}" />
+</form>
+{% endblock %}

@@ -1,0 +1,85 @@
+{% load i18n floppyforms core_tags %}
+<div  class="panel panel-default">
+    <div class="panel-heading" role="tab">
+        <h4 class="panel-title">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#accordion-filters">
+                <span class="collapse-indicator glyphicon glyphicon-collapse-down"></span>
+                <span class="glyphicon glyphicon-filter"></span> {% trans "Filters" %}
+            </a>
+        </h4>
+    </div>
+    <div id="accordion-filters" class="panel-collapse collapse{% if has_filters %} in{% endif %}">
+        <div class="panel-body">
+
+            <div class="form-group{% if form.label.errors %} has-error{% endif %}">
+                <label class="control-label sr-only" for="{{ form.label.id_for_label}}">{{ form.label.label }}</label>
+                {% formfield form.label %}
+            </div>
+
+            <div class="form-group{% if form|form_errors_exists:'date_start_greater' %} has-error{% endif %}">
+                <div{% if form.date_end.errors %} class="has-error"{% endif %}>
+                    <label class="control-label sr-only" for="{{ form.date_start.id_for_label}}">{{ form.date_start.label }}</label>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                            <span class="required">*</span>
+                        </span>
+                        {% formfield form.date_start %}
+                    </div>
+                </div>
+
+                <div{% if form.date_end.errors %} class="has-error"{% endif %}>
+                    <label class="control-label sr-only" for="{{ form.date_end.id_for_label}}">{{ form.date_end.label }}</label>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                            <span class="required">*</span>
+                        </span>
+                        {% formfield form.date_end %}
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group{% if form|form_errors_exists:'amount_min_greater' %} has-error{% endif %}">
+                <div{% if form.amount_min.errors %} class="has-error"{% endif %}>
+                    <label class="control-label sr-only" for="{{ form.amount_min.id_for_label}}">{{ form.amount_min.label }}</label>
+                    <div class="input-group">
+                        {% formfield form.amount_min %}
+                        <span class="input-group-addon">.00</span>
+                    </div>
+                </div>
+
+                <div{% if form.amount_max.errors %} class="has-error"{% endif %}>
+                    <label class="control-label sr-only" for="{{ form.amount_max.id_for_label}}">{{ form.amount_max.label }}</label>
+                    <div class="input-group">
+                        {% formfield form.amount_max %}
+                        <span class="input-group-addon">.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group{% if form.status.errors %} has-error{% endif %}">
+                <label class="control-label sr-only" for="{{ form.status.id_for_label}}">{{ form.status.label }}</label>
+                {% formfield form.status %}
+            </div>
+
+            <div class="form-group{% if form.reconciled.errors %} has-error{% endif %}">
+                <label class="control-label sr-only" for="{{ form.reconciled.id_for_label}}">{{ form.reconciled.label }}</label>
+                {% formfield form.reconciled %}
+            </div>
+
+            <div class="form-group{% if form.tags.errors %} has-error{% endif %}">
+                <div class="bt-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="{% trans 'Tags' %}">
+                    <label class="control-label sr-only" for="{{ form.tags.id_for_label}}">{{ form.tags.label }}</label>
+                    {% formfield form.tags %}
+                </div>
+            </div>
+
+            <div class="btn-group" role="group">
+                <input class="btn btn-primary" type="submit" name="filter" value="{% trans "Filter" %}" />
+                <input class="btn btn-default" type="submit" name="reset" value="{% trans "Reset" %}" />
+            </div>
+        </div>
+    </div>
+</div>

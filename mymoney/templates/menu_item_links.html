@@ -1,0 +1,7 @@
+<ul class="nav nav-pills">
+{% for link in links %}
+    <li{% if link.is_active %} class="active" {% endif %}>
+        <a href="{{ link.href }}">{{ link.text }}</a>
+    </li>
+{% endfor %}
+</ul>

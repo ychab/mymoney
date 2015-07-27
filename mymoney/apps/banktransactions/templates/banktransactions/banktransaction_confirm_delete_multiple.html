@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Delete bank transactions" %}{% endblock %}
+{% block content_title %}{% trans "Delete bank transactions" %}{% endblock %}
+
+{% block content %}
+<form action="" method="post">{% csrf_token %}
+    <p>{% trans "Are you sure you want to delete the following bank transactions?" %}</p>
+
+    <ul>
+    {% for banktransaction in banktransactions %}
+        <li>{{ banktransaction }}</li>
+    {% endfor %}
+    </ul>
+
+    <div class="btn-group" role="group">
+        <input class="btn btn-danger" type="submit" value="{% trans "Confirm" %}" />
+        <a href="{% url 'banktransactions:list' bankaccount.pk %}" class="btn btn-default">{% trans "Cancel" %}</a>
+    </div>
+</form>
+{% endblock %}

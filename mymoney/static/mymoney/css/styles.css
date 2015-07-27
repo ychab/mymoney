@@ -1,0 +1,41 @@
+body {
+  padding-top: 70px;
+  padding-bottom: 30px;
+}
+
+h1.page-header {
+  margin: 0 0 20px 0;
+}
+
+.content-wrapper {
+    clear: both;
+}
+
+.action-links {
+    margin: 1%;
+}
+
+.balances-summary {
+    margin-bottom: 10px;
+}
+
+.nav-pills {
+    margin: 10px 0;
+}
+
+.nav-tabs {
+    margin-bottom: 10px;
+}
+
+canvas {
+    margin: 10px auto;
+    display: block;
+}
+
+.table-responsive {
+    overflow-x: visible;
+}
+
+.required {
+    color: red;
+}

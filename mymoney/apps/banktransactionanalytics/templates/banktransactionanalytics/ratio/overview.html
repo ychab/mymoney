@@ -1,0 +1,191 @@
+{% extends 'base.html' %}
+{% load i18n staticfiles floppyforms core_tags %}
+
+{% block title %}
+{% blocktrans %}{{ bankaccount }}'s ratio statistics{% endblocktrans %}
+{% endblock %}
+{% block content_title %}
+{% blocktrans %}{{ bankaccount }}'s ratio statistics{% endblocktrans %}
+{% endblock %}
+
+{% block menu_tab %}
+{% menu_tab_links request %}
+{% endblock %}
+
+{% block menu_item %}
+{% menu_item_links request %}
+{% endblock %}
+
+{% block messages %}
+{% display_messages messages %}
+{% include 'errors.html' with errors=form|merge_form_errors %}
+{% endblock messages %}
+
+{% block content %}
+{% include "modal.html" with id="modal-summary" title=_("Detail summary") body="" %}
+<fieldset class="panel-group" id="filter-wrapper">
+    <div  class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#filter-wrapper" href="#accordion-children">
+                    <span class="collapse-indicator glyphicon glyphicon-collapse-down"></span> <span class="glyphicon glyphicon-filter"></span> {% trans "Filters" %}
+                </a>
+            </h4>
+        </div>
+        <div  class="collapse panel-collapse in" id="accordion-children">
+            <div class="panel-body">
+                <form class="form-inline" action="" method="post">{% csrf_token %}
+                    <div class="form-group{% if form.type.errors %} has-error{% endif %}">
+                        <label class="control-label sr-only" for="{{ form.type.id_for_label}}">{{ form.type.label }}</label>
+                        {% formfield form.type %}
+                    </div>
+
+                    <div class="form-group{% if form.chart.errors %} has-error{% endif %}">
+                        <div class="bt-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="{% trans 'Chart type' %}">
+                            <label class="control-label sr-only" for="{{ form.chart.id_for_label}}">{{ form.chart.label }}</label>
+                            {% formfield form.chart %}
+                        </div>
+                    </div>
+
+                    <div class="form-group{% if form|form_errors_exists:'date_start_greater' %} has-error{% endif %}">
+                        <div{% if form.date_end.errors %} class="has-error"{% endif %}>
+                            <label class="control-label sr-only" for="{{ form.date_start.id_for_label}}">{{ form.date_start.label }}</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                    <span class="required">*</span>
+                                </span>
+                                {% formfield form.date_start %}
+                            </div>
+                        </div>
+
+                        <div{% if form.date_end.errors %} class="has-error"{% endif %}>
+                            <label class="control-label sr-only" for="{{ form.date_end.id_for_label}}">{{ form.date_end.label }}</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                    <span class="required">*</span>
+                                </span>
+                                {% formfield form.date_end %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group{% if form.reconciled.errors %} has-error{% endif %}">
+                        <label class="control-label sr-only" for="{{ form.reconciled.id_for_label}}">{{ form.reconciled.label }}</label>
+                        {% formfield form.reconciled %}
+                    </div>
+
+                    <div class="form-group{% if form.tags.errors %} has-error{% endif %}">
+                        <label class="control-label sr-only" for="{{ form.tags.id_for_label}}">{{ form.tags.label }}</label>
+                        {% formfield form.tags %}
+                    </div>
+
+                    <div class="form-group{% if form|form_errors_exists:'sum_min_greater' %} has-error{% endif %}">
+                        <div{% if form.sum_min.errors %} class="has-error"{% endif %}>
+                            <label class="control-label sr-only" for="{{ form.sum_min.id_for_label}}">{{ form.sum_min.label }}</label>
+                            <div class="input-group">
+                                {% formfield form.sum_min %}
+                                <span class="input-group-addon">.00</span>
+                            </div>
+                        </div>
+
+                        <div{% if form.sum_max.errors %} class="has-error"{% endif %}>
+                            <label class="control-label sr-only" for="{{ form.sum_max.id_for_label}}">{{ form.sum_max.label }}</label>
+                            <div class="input-group">
+                                {% formfield form.sum_max %}
+                                <span class="input-group-addon">.00</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="btn-group">
+                        <input class="btn btn-primary" type="submit" name="filter" value="{% trans "Filter" %}" />
+                        <input class="btn btn-default" type="submit" name="reset" value="{% trans "Reset" %}" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</fieldset>
+
+{% if has_filters %}
+{% if rows %}
+<canvas id="chart-area" width="300" height="300"></canvas>
+
+<div  class="panel panel-default">
+    <div class="panel-heading">{% trans "Summary" %}</div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table table-condensed table-hover">
+                <thead>
+                    <tr>
+                        <th>{% trans "Legend" %}</th>
+                        <th>{% trans "Tag" %}</th>
+                        <th>{% trans "Percentage" %}</th>
+                        <th>{% trans "Sum" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in rows %}
+                    <tr>
+                        <td>
+                            <div style="background-color:{{ row.color_rgba }};width:25px;height:20px;"></div>
+                        </td>
+                        <td>
+                            {% if row.tag_id %}
+                            <a class="modal-summary-link" href="{% url 'banktransactionanalytics:ratiosummary' bankaccount.pk row.tag_id %}">
+                            {{ row.tag_name }}
+                            </a>
+                            {% else %}
+                            <a class="modal-summary-link" href="{% url 'banktransactionanalytics:ratiosummary' bankaccount.pk 0 %}">
+                            {% trans "no tag" %}
+                            </a>
+                            {% endif %}
+                        </td>
+                        <td>{{ row.percentage }}%</td>
+                        <td>{{ row.sum|localize_positive }}</td>
+                    </tr>
+                    {% endfor %}
+
+                    {% if sub_total != total %}
+                    <tr>
+                        <strong>
+                            <td></td>
+                            <td><strong>{% trans "Sub-total" %}</strong></td>
+                            <td></td>
+                            <td><strong>{{ sub_total|localize_positive }}</strong></td>
+                        </strong>
+                    </tr>
+                    {% endif %}
+                    <tr>
+                        <strong>
+                            <td></td>
+                            <td><strong>{% trans "Total" %}</strong></td>
+                            <td></td>
+                            <td><strong>{{ total|localize_positive }}</strong></td>
+                        </strong>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% else %}
+{% trans "There is no result to your search." %}
+{% endif %}
+{% endif %}
+{% endblock %}
+
+{% block footer %}
+{{ block.super }}
+{% if chart_data %}
+<script src="{% static 'banktransactionanalytics/chartjs/Chart.min.js' %}"></script>
+
+<script type="text/javascript">
+    chart_data = {{ chart_data|safe }};
+</script>
+
+<script src="{% static 'banktransactionanalytics/banktransactionanalytics.js' %}"></script>
+{% endif %}
+{% endblock %}

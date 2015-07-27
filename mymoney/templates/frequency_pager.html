@@ -1,0 +1,35 @@
+{% load i18n %}
+
+<div class="text-center">
+    <nav>
+        <ul class="pagination">
+
+            {% if page_obj.has_previous %}
+            <li>
+                <a href="?date={{ page_obj.previous_date|date:"Y-m-d" }}" aria-label="{% trans 'Previous' %}">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            {% endif %}
+
+            <li class="active">
+                <span>
+                    {% if page_obj.paginator.granularity == 'week' %}
+                    {{ page_obj.date|date:"W" }}
+                    {% else %}
+                    {{ page_obj.date|date:"YEAR_MONTH_FORMAT" }}
+                    {% endif %}
+                    <span class="sr-only">({% trans "current" %})</span>
+                </span>
+            </li>
+
+            {% if page_obj.has_next %}
+            <li>
+                <a href="?date={{ page_obj.next_date|date:"Y-m-d" }}" aria-label="{% trans 'Next' %}">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>

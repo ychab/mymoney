@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+{% load i18n core_tags %}
+
+{% block title %}{% trans "My scheduled bank transactions" %}{% endblock %}
+{% block content_title %}{% trans "My scheduled bank transactions" %}{% endblock %}
+
+{% block menu_tab %}
+{% menu_tab_links request %}
+{% endblock %}
+
+{% block menu_action %}
+{% menu_action_links request %}
+{% endblock %}
+
+{% block content %}
+<fieldset class="panel-group" id="accordion" role="tablist">
+    <div  class="panel panel-default">
+
+        <div class="panel-heading" role="tab">
+            <h4 class="panel-title">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#accordion-children">
+                    <span class="collapse-indicator glyphicon glyphicon-collapse-down"></span> {% trans "Summary" %}
+                </a>
+            </h4>
+        </div>
+        <div id="accordion-children" class="panel-collapse collapse">
+            <div class="panel-body">
+
+                <div class="table-responsive">
+                    <table class="table table-condensed table-hover">
+                        <thead>
+                            <tr>
+                                <th>{% trans "Type" %}</th>
+                                <th>{% trans "Credit" %}</th>
+                                <th>{% trans "Debit" %}</th>
+                                <th>{% trans "Total" %}</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% if summary %}
+                            {% for type, row in summary.items %}
+                            <tr>
+                                <td>{{ row.type }}</td>
+                                <td>{{ row.credit|currency_positive:currency }}</td>
+                                <td>{{ row.debit|currency_positive:currency }}</td>
+                                <td>{{ row.total|currency_positive:currency }}</td>
+                            </tr>
+                            {% endfor %}
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>{{ total|currency_positive:currency }}</td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td>{% trans "No scheduled bank transaction yet." %}</tr>
+                            </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</fieldset>
+
+<div class="table-responsive">
+    <table class="table table-condensed table-hover">
+        <thead>
+            <tr>
+                <th>{% trans "Last action" %}</th>
+                <th>{% trans "Type" %}</th>
+                <th>{% trans "Remaining" %}</th>
+                <th>{% trans "State" %}</th>
+                <th>{% trans "Label" %}</th>
+                <th>{% trans "Amount" %}</th>
+                <th colspan="2">{% trans "Action" %}</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        {% for banktransactionscheduled in object_list %}
+            <tr>
+                <td>
+                    {% if banktransactionscheduled.last_action %}
+                        {{ banktransactionscheduled.last_action|date:"SHORT_DATE_FORMAT" }}
+                    {% else %}
+                        {% trans "No yet" %}
+                    {% endif %}
+                </td>
+                <td>{{ banktransactionscheduled.get_type_display }}</td>
+                <td>
+                    {% if banktransactionscheduled.recurrence != None %}
+                        {{ banktransactionscheduled.recurrence }}
+                    {% else %}
+                        {% trans "Infinity" %}
+                    {% endif %}
+                </td>
+                <td>{{ banktransactionscheduled.get_state_display }}</td>
+                <td>{{ banktransactionscheduled.label }}</td>
+                <td>{{ banktransactionscheduled.amount|localize_positive }}</td>
+                <td>
+                    {% if perms.banktransactionschedulers.change_banktransactionscheduler %}
+                    <a href="{% url 'banktransactionschedulers:update' banktransactionscheduled.pk %}">
+                    {% trans "Edit" %}
+                    </a>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if perms.banktransactionschedulers.change_banktransactionscheduler %}
+                    <a href="{% url 'banktransactionschedulers:delete' banktransactionscheduled.pk %}">
+                    {% trans "Delete" %}
+                    </a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="7">
+                {% trans "No scheduled bank transaction yet." %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% if is_paginated %}
+{% include 'pager.html' %}
+{% endif %}
+
+{% endblock %}

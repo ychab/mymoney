@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% blocktrans %}Delete scheduled bank transaction {{ object }}{% endblocktrans %}{% endblock %}
+{% block content_title %}{% blocktrans %}Delete scheduled bank transaction {{ object }}{% endblocktrans %}{% endblock %}
+
+{% block content %}
+<form action="" method="post">{% csrf_token %}
+    <p>{% trans "Are you sure you want to delete the scheduled bank transaction " %} {{ object }}?</p>
+    <div class="btn-group" role="group">
+        <input class="btn btn-danger" type="submit" value="{% trans 'Confirm' %}" />
+        <a href="{{ view.get_success_url }}" class="btn btn-default">{% trans "Cancel" %}</a>
+    </div>
+</form>
+{% endblock %}

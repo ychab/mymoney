@@ -1,0 +1,114 @@
+{% load i18n banktransactions_tags core_tags %}
+<div class="table-responsive">
+    <table class="table table-condensed table-hover check-all">
+        <thead>
+            <tr>
+                <th></th>
+                <th>{% trans "Date" %}</th>
+                <th>{% trans "Label" %}</th>
+                <th>{% trans "Reconciled" %}</th>
+                <th>{% trans "Debit" %}</th>
+                <th>{% trans "Credit" %}</th>
+                <th>{% trans "Total balance" %}</th>
+                <th>{% trans "Reconciled balance" %}</th>
+                <th>{% trans "Payment method" %}</th>
+                <th>{% trans "Status" %}</th>
+                <th>{% trans "Scheduled" %}</th>
+                <th>{% trans "Tags" %}</th>
+                <th>{% trans "Memo" %}</th>
+                <th>{% trans "Actions" %}</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {% for banktransaction in object_list %}
+            {% with form|banktransactionfield:banktransaction.pk as field %}
+            {% if field %}
+            <tr>
+                <td>{{ field }}</td>
+                <td>{{ banktransaction.date|date:"SHORT_DATE_FORMAT" }}</td>
+
+                <td>
+                    {% if banktransaction.label|length > 15 %}
+                    <span class="bt-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="{{ banktransaction.label }}">
+                    {{ banktransaction.label|truncatechars:15 }}
+                    </span>
+                    {% else %}
+                    {{ banktransaction.label }}
+                    {% endif %}
+                </td>
+
+                <td>
+                    {% if banktransaction.reconciled %}
+                    <span class="glyphicon glyphicon-ok"></span>
+                    {% endif %}
+                </td>
+
+                {% if banktransaction.amount > 0 %}
+                <td></td>
+                {% endif %}
+                <td>{{ banktransaction.amount|localize_positive }}</td>
+                {% if banktransaction.amount < 0 %}
+                <td></td>
+                {% endif %}
+
+                <td>{{ banktransaction.total_balance|localize_positive }}</td>
+                {% if banktransaction.reconciled_balance != none %}
+                <td>{{ banktransaction.reconciled_balance|localize_positive }}</td>
+                {% else %}
+                <td></td>
+                {% endif %}
+
+                <td>{% payment_method banktransaction.payment_method %}</td>
+                <td>{{ banktransaction.get_status_display }}</td>
+
+                <td>
+                    {% if banktransaction.scheduled %}
+                    <span class="glyphicon glyphicon-time"></span>
+                    {% endif %}
+                </td>
+
+                <td>
+                {% if banktransaction.tag %}
+                {{ banktransaction.tag.name }}
+                {% endif %}
+                </td>
+
+                <td>
+                    {% if banktransaction.memo %}
+                    <span class="bt-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="{{ banktransaction.memo }}">
+                        <span class="glyphicon glyphicon-info-sign"></span>
+                    </span>
+                    {% endif %}
+                </td>
+
+                <td>
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-plus-sign"></span> <b class="caret"></b>
+                        </a>
+                        {% if perms.banktransactions.change_banktransaction or perms.banktransactions.delete_banktransaction %}
+                        <ul class="dropdown-menu">
+                            {% if perms.banktransactions.change_banktransaction %}
+                            <li><a href="{% url 'banktransactions:update' banktransaction.pk %}">{% trans "Edit" %}</a></li>
+                            {% endif %}
+
+                            {% if perms.banktransactions.delete_banktransaction %}
+                            <li><a href="{% url 'banktransactions:delete' banktransaction.pk %}">{% trans "Delete" %}</a></li>
+                            {% endif %}
+                        </ul>
+                        {% endif %}
+                    </div>
+                </td>
+            </tr>
+            {% endif %}
+            {% endwith %}
+
+            {% empty %}
+            <tr><th colspan="14">{% trans "No bank transaction" %}</th></tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+</div>

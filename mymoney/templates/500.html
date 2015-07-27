@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans 'Server error (500)' %}{% endblock %}
+{% block content_title %}{% trans 'Server error (500)' %}{% endblock %}
+
+{% block menu_primary %}{% endblock %}
+{% block menu_user %}{% endblock %}
+{% block messages %}{% endblock messages %}
+
+{% block content %}
+<p>{% trans "There's been an error. It's been reported to the site administrators via email and should be fixed shortly. Thanks for your patience." %}</p>
+{% endblock %}

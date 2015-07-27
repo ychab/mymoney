@@ -1,0 +1,7 @@
+.idea
+__pycache__
+.coverage
+mymoney/settings/*.py
+!mymoney/settings/base.py
+.tox
+docs/_build/

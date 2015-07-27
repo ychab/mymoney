@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load i18n core_tags %}
+
+{% block title %}{% trans "My bank accounts" %}{% endblock %}
+{% block content_title %}{% trans "My bank accounts" %}{% endblock %}
+
+{% block menu_action %}
+{% menu_action_links request %}
+{% endblock %}
+
+{% block content %}
+    <div class="list-group">
+    {% for bankaccount in object_list %}
+        <a href="{% url 'banktransactions:list' bankaccount.pk %}" class="list-group-item">
+            {{ bankaccount }} : {{ bankaccount.balance|currency_positive:bankaccount.currency }}
+        </a>
+    {% empty %}
+        {% trans "No bank account yet." %}
+    {% endfor %}
+    </div>
+{% endblock %}

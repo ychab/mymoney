@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load i18n core_tags %}
+
+{% block title %}{% trans "My bank transaction tags" %}{% endblock %}
+{% block content_title %}{% trans "My bank transaction tags" %}{% endblock %}
+
+{% block menu_action %}
+{% menu_action_links request %}
+{% endblock %}
+
+{% block content %}
+<div class="table-responsive">
+    <table class="table table-condensed table-hover">
+        <thead>
+            <tr>
+                <th>{% trans "Tag" %}</th>
+                <th>{% trans "Owner" %}</th>
+                <th colspan="2">{% trans "Action" %}</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for banktransactiontag in object_list %}
+                <tr>
+                    <td>{{ banktransactiontag.name }}</td>
+                    <td>{{ banktransactiontag.owner.username }}</td>
+
+                    <td>
+                    {% if perms.banktransactiontags.change_banktransactiontag %}
+                        <a href="{% url 'banktransactiontags:update' banktransactiontag.pk %}">
+                        {% trans "Edit" %}
+                        </a>
+                    {% endif %}
+                    </td>
+                    <td>
+                    {% if perms.banktransactiontags.delete_banktransactiontag %}
+                        <a href="{% url 'banktransactiontags:delete' banktransactiontag.pk %}">
+                        {% trans "Delete" %}
+                        </a>
+                    {% endif %}
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td>{% trans "No bank transaction tag yet." %}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% if is_paginated %}
+{% include 'pager.html' %}
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load i18n core_tags %}
+
+{% block title %}
+{% blocktrans %}{{ bankaccount }}'s trendtime statistics summary{% endblocktrans %}
+{% endblock %}
+{% block content_title %}
+{% blocktrans %}{{ bankaccount }}'s trendtime statistics summary {% endblocktrans %}
+{% endblock %}
+
+{% block menu_tab %}
+{% menu_tab_links request %}
+{% endblock %}
+
+{% block menu_item %}
+{% menu_item_links request %}
+{% endblock %}
+
+{% block content %}
+{% include "banktransactionanalytics/trendtime/summary/body.html" %}
+{% endblock %}

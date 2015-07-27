@@ -1,0 +1,64 @@
+{% load staticfiles core_tags %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE|default:"en-us" }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{{ title | default:"MyMoney" }}{% endblock %}</title>
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'mymoney/css/styles.css' %}" rel="stylesheet" />
+    {% block extrastyle %}{{ form.media.css }}{% endblock %}
+    {% block extrahead %}{% endblock %}
+    {% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE" />{% endblock %}
+</head>
+{% load i18n %}
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            {% block navbar_header %}
+            {% include 'navbar_header.html' %}
+            {% endblock %}
+            <div id="navbar" class="navbar-collapse collapse">
+            {% block menu_primary %}
+            {% include 'menu_primary.html' %}
+            {% endblock %}
+
+            {% block menu_user %}
+            {% include 'menu_user.html' %}
+            {% endblock %}
+            </div>
+        </div>
+    </nav>
+
+    <div class="container" role="main">
+        <section>
+            <h1 class="page-header">{% block content_title %}{{ title | default:"MyMoney" }}{% endblock %}</h1>
+
+            {% block menu_tab %}{% endblock %}
+            {% block menu_action %}{% endblock %}
+            {% block menu_item %}{% endblock %}
+
+            <div class="content-wrapper">
+            {% block messages %}
+            {% display_messages messages %}
+            {% if form %}
+            {% include 'errors.html' with errors=form.non_field_errors %}
+            {% endif %}
+            {% endblock messages %}
+
+            {% block content %}{% endblock %}
+            </div>
+        </section>
+    </div>
+
+    {% block footer %}
+    <script src="{% static 'core/js/jquery.min.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'core/js/core.js' %}"></script>
+    {{ form.media.js }}
+    {% endblock %}
+
+    </body>
+</html>

@@ -1,0 +1,18 @@
+{# This is why template is not always the best solution...! #}
+{% for name, value in attrs.items %}
+ {{ name }}
+{% if value|stringformat:"s" != "True" or value != 1 %}
+="{{ value }}"
+{% endif %}
+{% endfor %}
+
+{% for name, value in attrs.items %}
+ {{ name }}
+{% if value|stringformat:"s" != "True" or value != 1 %}
+="{{ value }}{% if name == 'class' and type != 'file' and type != 'checkbox' and type != 'radio' %} form-control{% endif %}"
+{% endif %}
+{% endfor %}
+
+{% if 'class' not in attrs and type != 'file' and type != 'checkbox' and type != 'radio' %} class="form-control"{% endif %}
+
+{% if type == 'number' and 'step' not in attrs %} step="0.01"{% endif %}

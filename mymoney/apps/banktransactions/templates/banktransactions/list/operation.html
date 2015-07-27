@@ -1,0 +1,23 @@
+{% load i18n floppyforms %}
+{% if form.operation.field.choices %}
+<div  class="panel panel-default">
+    <div class="panel-heading" role="tab">
+        <h4 class="panel-title">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#accordion-operations">
+                <span class="collapse-indicator glyphicon glyphicon-collapse-down"></span> {% trans "Actions" %}
+            </a>
+        </h4>
+    </div>
+    <div id="accordion-operations" class="panel-collapse collapse">
+        <div class="panel-body">
+            <div class="form-group{% if form.operation.errors %} has-error{% endif %}">
+                <div class="bt-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="{% trans 'Operations' %}">
+                    <label class="control-label sr-only" for="{{ form.operation.id_for_label}}">{{ form.operation.label }}</label>
+                    {% formfield form.operation %}
+                </div>
+            </div>
+            <input class="btn btn-primary" type="submit" name="action" value="{% trans "Apply" %}" />
+        </div>
+    </div>
+</div>
+{% endif %}

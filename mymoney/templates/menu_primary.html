@@ -1,0 +1,30 @@
+{% load i18n %}
+{% if user.is_authenticated %}
+<ul class="nav navbar-nav">
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <span class="glyphicon glyphicon-home"></span> {% trans "My bank accounts" %}<b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+                <a href="{% url 'bankaccounts:list' %}">{% trans "All bank accounts" %}</a>
+            </li>
+            {% for bankaccount in user_bankaccounts %}
+            <li>
+                <a href="{% url 'banktransactions:list' bankaccount.pk %}" class="active">-- {{ bankaccount.label }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </li>
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <span class="glyphicon glyphicon-tag"></span> {% trans "Tags" %} <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+                <a href="{% url 'banktransactiontags:list' %}">{% trans "My tags" %}</a>
+            </li>
+        </ul>
+    </li>
+</ul>
+{% endif %}

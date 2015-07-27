@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% blocktrans %}Delete bank account {{ object }}{% endblocktrans %}{% endblock %}
+{% block content_title %}{% blocktrans %}Delete bank account {{ object }}{% endblocktrans %}{% endblock %}
+
+{% block content %}
+<form action="" method="post">{% csrf_token %}
+    <p>{% blocktrans %}Are you sure you want to delete {{ object }}?{% endblocktrans %}</p>
+    <div class="btn-group" role="group">
+        <input class="btn btn-danger" type="submit" value="{% trans 'Confirm' %}" />
+        <a class="btn btn-default" href="{% url 'banktransactions:list' object.pk %}">{% trans "Cancel" %}</a>
+    </div>
+</form>
+{% endblock %}

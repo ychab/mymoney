@@ -1,0 +1,226 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-07-25 13:56+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: mymoney/apps/banktransactionanalytics/forms.py:22
+msgid "Income"
+msgstr "Revenus"
+
+#: mymoney/apps/banktransactionanalytics/forms.py:23
+msgid "Expenses"
+msgstr "Dépenses"
+
+#: mymoney/apps/banktransactionanalytics/forms.py:31
+msgid "Doughnut"
+msgstr "Donut"
+
+#: mymoney/apps/banktransactionanalytics/forms.py:32
+msgid "Pie"
+msgstr "Camembert"
+
+#: mymoney/apps/banktransactionanalytics/forms.py:33
+msgid "Polar area"
+msgstr "Cible"
+
+#: mymoney/apps/banktransactionanalytics/forms.py:43
+msgid "Date start"
+msgstr "Date de début"
+
+#: mymoney/apps/banktransactionanalytics/forms.py:48
+msgid "Date end"
+msgstr "Date de fin"
+
+#: mymoney/apps/banktransactionanalytics/forms.py:65
+msgid "Minimum sum"
+msgstr "Somme minimale"
+
+#: mymoney/apps/banktransactionanalytics/forms.py:74
+msgid "Maximum sum"
+msgstr "Somme maximale"
+
+#: mymoney/apps/banktransactionanalytics/forms.py:84
+#: mymoney/apps/banktransactionanalytics/forms.py:137
+msgid "Reconciled?"
+msgstr "Pointé ?"
+
+#: mymoney/apps/banktransactionanalytics/forms.py:93
+msgid "Date start could not be greater than date end."
+msgstr "La date de début ne doit pas être supérieure à la date de fin."
+
+#: mymoney/apps/banktransactionanalytics/forms.py:101
+msgid "Minimum sum could not be greater than maximum sum."
+msgstr "La somme minimale ne doit pas être supérieure à la somme maximale."
+
+#: mymoney/apps/banktransactionanalytics/forms.py:116
+msgid "Line"
+msgstr "Ligne"
+
+#: mymoney/apps/banktransactionanalytics/forms.py:117
+msgid "Bar"
+msgstr "Barre"
+
+#: mymoney/apps/banktransactionanalytics/forms.py:118
+msgid "Radar"
+msgstr "Radar"
+
+#: mymoney/apps/banktransactionanalytics/forms.py:123
+msgid "Week"
+msgstr "Semaine"
+
+#: mymoney/apps/banktransactionanalytics/forms.py:124
+msgid "Month"
+msgstr "Mois"
+
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/ratio/overview.html:5
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/ratio/overview.html:8
+#, python-format
+msgid "%(bankaccount)s's ratio statistics"
+msgstr "Statistique proportionnelle de %(bankaccount)s"
+
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/ratio/overview.html:25
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/trendtime/overview.html:25
+msgid "Detail summary"
+msgstr "Résumé détaillé"
+
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/ratio/overview.html:31
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/trendtime/overview.html:31
+msgid "Filters"
+msgstr "Filtres"
+
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/ratio/overview.html:44
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/trendtime/overview.html:40
+msgid "Chart type"
+msgstr "Type de graphique"
+
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/ratio/overview.html:103
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/trendtime/overview.html:72
+msgid "Filter"
+msgstr "Filtrer"
+
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/ratio/overview.html:104
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/trendtime/overview.html:73
+msgid "Reset"
+msgstr "Réinitialiser"
+
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/ratio/overview.html:117
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/trendtime/overview.html:91
+msgid "Summary"
+msgstr "Résumé"
+
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/ratio/overview.html:123
+msgid "Legend"
+msgstr "Légende"
+
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/ratio/overview.html:124
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/trendtime/summary/body.html:10
+msgid "Tag"
+msgstr "Étiquette"
+
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/ratio/overview.html:125
+msgid "Percentage"
+msgstr "Pourcentage"
+
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/ratio/overview.html:126
+msgid "Sum"
+msgstr "Somme"
+
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/ratio/overview.html:142
+#: mymoney/apps/banktransactionanalytics/views.py:136
+msgid "no tag"
+msgstr "Pas d'étiquette"
+
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/ratio/overview.html:155
+msgid "Sub-total"
+msgstr "Sous-total"
+
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/ratio/overview.html:164
+msgid "Total"
+msgstr "Total"
+
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/ratio/overview.html:175
+msgid "There is no result to your search."
+msgstr "Il n'y a aucun résultat à votre recherche."
+
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/ratio/summary/body.html:6
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/trendtime/overview.html:54
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/trendtime/overview.html:101
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/trendtime/summary/body.html:6
+msgid "Date"
+msgstr "Date"
+
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/ratio/summary/body.html:7
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/trendtime/summary/body.html:7
+msgid "Label"
+msgstr "Libellé"
+
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/ratio/summary/body.html:8
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/trendtime/summary/body.html:8
+msgid "Amount"
+msgstr "Montant"
+
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/ratio/summary/body.html:9
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/trendtime/summary/body.html:9
+msgid "Reconciled"
+msgstr "Pointé"
+
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/ratio/summary/body.html:20
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/trendtime/summary/body.html:21
+msgid "Yes"
+msgstr "Oui"
+
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/ratio/summary/index.html:5
+#, python-format
+msgid "%(bankaccount)s's ratio statistics summary"
+msgstr "Résumé des statistiques proportionelles de %(bankaccount)s"
+
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/ratio/summary/index.html:8
+#, python-format
+msgid "%(bankaccount)s's ratio statistics summary "
+msgstr "Résumé des statistiques proportionelles de %(bankaccount)s"
+
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/trendtime/overview.html:5
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/trendtime/overview.html:8
+#, python-format
+msgid "%(bankaccount)s's trendtime statistics"
+msgstr "Statistique chronologique de %(bankaccount)s"
+
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/trendtime/overview.html:47
+msgid "Granularity"
+msgstr "Granularité"
+
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/trendtime/overview.html:102
+msgid "Balance"
+msgstr "Solde"
+
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/trendtime/overview.html:103
+msgid "Delta"
+msgstr "Intervalle"
+
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/trendtime/overview.html:137
+msgid "There is no result corresponding to your search."
+msgstr "Il n'y a aucun résultat à votre recherche."
+
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/trendtime/summary/index.html:5
+#, python-format
+msgid "%(bankaccount)s's trendtime statistics summary"
+msgstr "Résumé statistique chronologique de %(bankaccount)s"
+
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/trendtime/summary/index.html:8
+#, python-format
+msgid "%(bankaccount)s's trendtime statistics summary "
+msgstr "Résumé statistique chronologique de %(bankaccount)s"

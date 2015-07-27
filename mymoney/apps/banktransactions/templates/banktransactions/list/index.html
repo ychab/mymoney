@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load i18n core_tags %}
+
+{% block title %}{{ bankaccount }}{% endblock %}
+{% block content_title %}{{ bankaccount }}{% endblock %}
+
+{% block menu_tab %}
+{% menu_tab_links request %}
+{% endblock %}
+
+{% block menu_action %}
+{% menu_action_links request %}
+{% endblock %}
+
+{% block content %}
+{% include 'banktransactions/list/summary.html' %}
+<form class="form-inline" action="" method="post">{% csrf_token %}
+
+    {% for hidden in form.hidden_fields %}
+    {{ hidden }}
+    {% endfor %}
+
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    {% include 'banktransactions/list/filter.html' %}
+    {% include 'banktransactions/list/operation.html' %}
+    </div>
+
+    {% include 'banktransactions/list/table_result.html' %}
+</form>
+
+{% if is_paginated %}
+{% include 'pager.html' %}
+{% endif %}
+
+{% endblock %}

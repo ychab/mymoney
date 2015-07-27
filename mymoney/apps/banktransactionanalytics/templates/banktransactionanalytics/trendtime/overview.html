@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+{% load i18n staticfiles floppyforms core_tags %}
+
+{% block title %}
+{% blocktrans %}{{ bankaccount }}'s trendtime statistics{% endblocktrans %}
+{% endblock %}
+{% block content_title %}
+{% blocktrans %}{{ bankaccount }}'s trendtime statistics{% endblocktrans %}
+{% endblock %}
+
+{% block menu_tab %}
+{% menu_tab_links request %}
+{% endblock %}
+
+{% block menu_item %}
+{% menu_item_links request %}
+{% endblock %}
+
+{% block messages %}
+{% display_messages messages %}
+{% include 'errors.html' with errors=form|merge_form_errors %}
+{% endblock messages %}
+
+{% block content %}
+{% include "modal.html" with id="modal-summary" title=_("Detail summary") body="" %}
+<fieldset class="panel-group" id="filter-wrapper">
+    <div  class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#filter-wrapper" href="#accordion-children">
+                    <span class="collapse-indicator glyphicon glyphicon-collapse-down"></span> <span class="glyphicon glyphicon-filter"></span> {% trans "Filters" %}
+                </a>
+            </h4>
+        </div>
+        <div  class="collapse panel-collapse in" id="accordion-children">
+            <div class="panel-body">
+                <form class="form-inline" action="" method="post">{% csrf_token %}
+
+                    <div class="form-group{% if form.chart.errors %} has-error{% endif %}">
+                        <div class="bt-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="{% trans 'Chart type' %}">
+                            <label class="control-label sr-only" for="{{ form.chart.id_for_label}}">{{ form.chart.label }}</label>
+                            {% formfield form.chart %}
+                        </div>
+                    </div>
+
+                    <div class="form-group{% if form.granularity.errors %} has-error{% endif %}">
+                        <div class="bt-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="{% trans 'Granularity' %}">
+                            <label class="control-label sr-only" for="{{ form.granularity.id_for_label}}">{{ form.granularity.label }}</label>
+                            {% formfield form.granularity %}
+                        </div>
+                    </div>
+
+                    <div class="form-group{% if form.date.errors %} has-error{% endif %}">
+                        <div class="bt-tooltip" data-toggle="tooltip" data-placement="top" data-original-title="{% trans 'Date' %}">
+                            <label class="control-label sr-only" for="{{ form.date.id_for_label}}">{{ form.date.label }}</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                    <span class="required">*</span>
+                                </span>
+                                {% formfield form.date %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group{% if form.reconciled.errors %} has-error{% endif %}">
+                        <label class="control-label sr-only" for="{{ form.reconciled.id_for_label}}">{{ form.reconciled.label }}</label>
+                        {% formfield form.reconciled %}
+                    </div>
+
+                    <div class="btn-group">
+                        <input class="btn btn-primary" type="submit" name="filter" value="{% trans "Filter" %}" />
+                        <input class="btn btn-default" type="submit" name="reset" value="{% trans "Reset" %}" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</fieldset>
+
+{% if has_filters %}
+{% if rows %}
+<canvas id="chart-area" style="width:100%;height:300px;"></canvas>
+
+<fieldset class="panel-group" id="summary-wrapper">
+    <div  class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#summary-wrapper" href="#summary-children">
+                    <span class="collapse-indicator glyphicon glyphicon-collapse-down"></span> <span class="glyphicon glyphicon-filter"></span>
+                    {% trans "Summary" %}
+                </a>
+            </h4>
+        </div>
+        <div  class="collapse panel-collapse" id="summary-children">
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-condensed table-hover">
+                        <thead>
+                            <tr>
+                                <th>{% trans "Date" %}</th>
+                                <th>{% trans "Balance" %}</th>
+                                <th>{% trans "Delta" %}</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for row in rows %}
+                            <tr>
+                                <td>
+                                    {% if row.delta %}
+                                    <a class="modal-summary-link" href="{% url 'banktransactionanalytics:trendtimesummary' bankaccount.pk row.date.year row.date.month row.date.day %}">
+                                    {{ row.date|date:"SHORT_DATE_FORMAT"  }}
+                                    </a>
+                                    {% else %}
+                                    {{ row.date|date:"SHORT_DATE_FORMAT"  }}
+                                    {% endif %}
+                                </td>
+                                <td>{{ row.balance|localize_positive }}</td>
+                                <td>
+                                {% if row.delta %}
+                                {% if row.delta > 0 %}+{% endif %}{{ row.delta }}
+                                {% if row.percentage %} ({{ row.percentage }}%){% endif %}
+                                {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</fieldset>
+{% include 'frequency_pager.html' %}
+{% else %}
+{% trans "There is no result corresponding to your search." %}
+{% endif %}
+{% endif %}
+{% endblock %}
+
+{% block footer %}
+{{ block.super }}
+{% if chart_data %}
+<script src="{% static 'banktransactionanalytics/chartjs/Chart.min.js' %}"></script>
+
+<script type="text/javascript">
+    chart_data = {{ chart_data|safe }};
+</script>
+
+<script src="{% static 'banktransactionanalytics/banktransactionanalytics.js' %}"></script>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,26 @@
+from .base import *
+
+SECRET_KEY = ''
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': '',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',
+        'PORT': '',
+    }
+}
+
+DEBUG = True
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+INSTALLED_APPS += (
+    'debug_toolbar',
+)
+
+DEFAULT_FROM_EMAIL = ''
+
+INTERNAL_IPS = ('127.0.0.1',)

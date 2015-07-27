@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Create a new bank account" %}{% endblock %}
+{% block content_title %}{% trans "Create a new bank account" %}{% endblock %}
+
+{% block content %}
+<form action="" method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input class="btn btn-success" type="submit" value="{% trans "Create" %}" />
+</form>
+{% endblock %}

@@ -1,0 +1,61 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-07-25 13:56+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: mymoney/templates/frequency_pager.html:9 mymoney/templates/pager.html:9
+msgid "Previous"
+msgstr "Précédent"
+
+#: mymoney/templates/frequency_pager.html:22 mymoney/templates/pager.html:16
+msgid "current"
+msgstr "Actuel"
+
+#: mymoney/templates/frequency_pager.html:28 mymoney/templates/pager.html:21
+msgid "Next"
+msgstr "Suivant"
+
+#: mymoney/templates/menu_action_links.html:4
+msgid "Actions"
+msgstr "Actions"
+
+#: mymoney/templates/menu_primary.html:6
+msgid "My bank accounts"
+msgstr "Mes comptes bancaires"
+
+#: mymoney/templates/menu_primary.html:10
+msgid "All bank accounts"
+msgstr "Tous les comptes bancaires"
+
+#: mymoney/templates/menu_primary.html:21
+msgid "Tags"
+msgstr "Étiquettes"
+
+#: mymoney/templates/menu_primary.html:25
+msgid "My tags"
+msgstr "Mes étiquettes"
+
+#: mymoney/templates/menu_user.html:11
+msgid "Log out"
+msgstr "Se déconnecter"
+
+#: mymoney/templates/registration/login.html:4
+#: mymoney/templates/registration/login.html:5
+#: mymoney/templates/registration/login.html:29
+msgid "Log in"
+msgstr "Se connecter"

@@ -1,0 +1,130 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-07-25 13:56+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: mymoney/core/forms.py:15
+msgid "Username"
+msgstr "Nom utilisateur"
+
+#: mymoney/core/forms.py:19
+msgid "Password"
+msgstr "Mot de passe"
+
+#: mymoney/core/management/commands/demo.py:76
+msgid "Current account"
+msgstr "Compte courant"
+
+#: mymoney/core/management/commands/demo.py:81
+#: mymoney/core/management/commands/demo.py:91
+msgid "Rent"
+msgstr "Loyer"
+
+#: mymoney/core/management/commands/demo.py:82
+msgid "Shopping"
+msgstr "Course"
+
+#: mymoney/core/management/commands/demo.py:83
+msgid "Car"
+msgstr "Voiture"
+
+#: mymoney/core/management/commands/demo.py:84
+msgid "Tax"
+msgstr "Impôt"
+
+#: mymoney/core/management/commands/demo.py:85
+msgid "Restaurant"
+msgstr "Restaurant"
+
+#: mymoney/core/management/commands/demo.py:102
+msgid "Council tax"
+msgstr "Taxe d'habitation"
+
+#: mymoney/core/management/commands/demo.py:113
+msgid "Wages"
+msgstr "Salaires"
+
+#: mymoney/core/management/commands/demo.py:124
+#: mymoney/core/templatetags/core_tags.py:188
+msgid "Internal transfer"
+msgstr "Virement interne"
+
+#: mymoney/core/management/commands/demo.py:136
+msgid "Scratch ticket"
+msgstr "Jeux à gratter"
+
+#: mymoney/core/management/commands/demo.py:147
+msgid "New tires"
+msgstr "Nouveaux pneus"
+
+#: mymoney/core/management/commands/demo.py:169
+msgid "Something"
+msgstr "Quelque chose"
+
+#: mymoney/core/templatetags/core_tags.py:48
+#: mymoney/core/templatetags/core_tags.py:54
+#: mymoney/core/templatetags/core_tags.py:73
+msgid "Add"
+msgstr "Ajouter"
+
+#: mymoney/core/templatetags/core_tags.py:60
+msgid "Add bank transaction"
+msgstr "Ajouter une transaction bancaire"
+
+#: mymoney/core/templatetags/core_tags.py:67
+msgid "Delete bank account"
+msgstr "Supprimer le compte bancaire"
+
+#: mymoney/core/templatetags/core_tags.py:93
+msgid "Stat report"
+msgstr "Rapport statistique"
+
+#: mymoney/core/templatetags/core_tags.py:102
+msgid "Trendtime report"
+msgstr "Rapport chronologique"
+
+#: mymoney/core/templatetags/core_tags.py:125
+msgid "See"
+msgstr "Voir"
+
+#: mymoney/core/templatetags/core_tags.py:135
+msgid "Edit"
+msgstr "Modifier"
+
+#: mymoney/core/templatetags/core_tags.py:144
+msgid "Scheduler"
+msgstr "Planifier"
+
+#: mymoney/core/templatetags/core_tags.py:153
+msgid "Statistics"
+msgstr "Statistiques"
+
+#: mymoney/core/templatetags/core_tags.py:176
+msgid "Credit card"
+msgstr "Carte de crédit"
+
+#: mymoney/core/templatetags/core_tags.py:180
+msgid "Cash"
+msgstr "Monnaie"
+
+#: mymoney/core/templatetags/core_tags.py:184
+msgid "Transfer"
+msgstr "Virement"
+
+#: mymoney/core/templatetags/core_tags.py:192
+msgid "Check"
+msgstr "Chèque"

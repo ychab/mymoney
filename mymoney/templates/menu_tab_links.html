@@ -1,0 +1,10 @@
+<ul class="nav nav-tabs">
+{% for link in links %}
+    <li{% if link.is_active %} class="active" {% endif %}>
+        <a href="{{ link.href }}">
+            {% if link.glyph %}<span class="glyphicon glyphicon-{{ link.glyph }}"></span> {% endif %}
+            {{ link.text }}
+        </a>
+    </li>
+{% endfor %}
+</ul>

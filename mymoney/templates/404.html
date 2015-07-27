@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans 'Page not found' %}{% endblock %}
+{% block content_title %}{% trans 'Page not found' %}{% endblock %}
+
+{% block menu_primary %}{% endblock %}
+{% block menu_user %}{% endblock %}
+{% block messages %}{% endblock messages %}
+
+{% block content %}
+<p>{% trans "We're sorry, but the requested page could not be found." %}</p>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% load floppyforms %}
+
+{% block row %}
+{% for field in fields %}
+<div class="form-group{% if field.errors %} has-error{% endif %}">
+    {% with classes=field.css_classes label=label|default:field.label help_text=help_text|default:field.help_text %}
+
+    {% block label %}
+    {% if field|id %}<label class="control-label" for="{{ field|id }}">{% endif %}
+    {{ label }}
+    {% if field.field.required %}<span class="required">*</span>{% endif %}
+    {% if field|id %}</label>{% endif %}
+    {% endblock label %}
+
+    {% block field %}
+    {% block widget %}{% formfield field %}{% endblock %}
+    {% block errors %}{% include "floppyforms/errors.html" with errors=field.errors %}{% endblock %}
+
+    {% block help_text %}
+    {% if field.help_text %}
+    <p class="help-block">{{ field.help_text }}</p>
+    {% endif %}
+    {% endblock help_text %}
+
+    {% block hidden_fields %}
+    {% for field in hidden_fields %}
+    {{ field.as_hidden }}
+    {% endfor %}
+    {% endblock hidden_fields %}
+
+    {% endblock field %}
+    {% endwith %}
+</div>
+{% endfor %}
+{% endblock %}

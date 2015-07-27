@@ -1,0 +1,14 @@
+[run]
+source = mymoney
+branch = True
+omit =
+    manage.py
+    mymoney/wsgi.py
+    mymoney/settings/local.py
+    mymoney/settings/production.py
+
+[report]
+exclude_lines =
+    pragma: no cover
+    raise AssertionError
+    raise NotImplementedError

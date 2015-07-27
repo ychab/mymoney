@@ -1,0 +1,12 @@
+{% load i18n %}
+<div class="action-links pull-right dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <span class="glyphicon glyphicon-plus"></span> {% trans "Actions" %} <b class="caret"></b>
+    </a>
+
+    <ul class="dropdown-menu">
+        {% for link in links %}
+        <li><a href="{{ link.href }}">{{ link.text }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
