@@ -47,7 +47,7 @@ Features
 Documentation
 -------------
 
-For documentation, see http://mymoney.readthedocs.org/en/latest/
+For documentation, see http://mymoney.readthedocs.org
 
 Contribute
 ----------
