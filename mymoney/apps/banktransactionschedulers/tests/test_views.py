@@ -1,7 +1,7 @@
 import datetime
 
 from django.core.urlresolvers import reverse
-from django.test import TestCase
+from django.test import TestCase, modify_settings
 from django.utils import timezone
 
 from django_webtest import WebTest
@@ -12,6 +12,9 @@ from mymoney.core.factories import UserFactory
 from ..factories import BankTransactionSchedulerFactory
 
 
+@modify_settings(MIDDLEWARE_CLASSES={
+    'remove': ['mymoney.core.middleware.AnonymousRedirectMiddleware'],
+})
 class AccessTestCase(TestCase):
 
     @classmethod

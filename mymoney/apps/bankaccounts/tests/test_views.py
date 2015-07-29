@@ -1,12 +1,15 @@
 from django.conf import settings
 from django.core.urlresolvers import reverse
-from django.test import TestCase
+from django.test import TestCase, modify_settings
 
 from mymoney.core.factories import UserFactory
 
 from ..factories import BankAccountFactory
 
 
+@modify_settings(MIDDLEWARE_CLASSES={
+    'remove': ['mymoney.core.middleware.AnonymousRedirectMiddleware'],
+})
 class AccessTestCase(TestCase):
 
     @classmethod

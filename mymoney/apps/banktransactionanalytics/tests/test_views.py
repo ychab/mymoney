@@ -3,7 +3,7 @@ import json
 from decimal import Decimal
 
 from django.core.urlresolvers import reverse
-from django.test import TestCase, override_settings
+from django.test import TestCase, modify_settings, override_settings
 
 from django_webtest import WebTest
 
@@ -17,6 +17,9 @@ from mymoney.core.utils.dates import GRANULARITY_MONTH, GRANULARITY_WEEK
 from ..forms import RatioForm, TrendtimeForm
 
 
+@modify_settings(MIDDLEWARE_CLASSES={
+    'remove': ['mymoney.core.middleware.AnonymousRedirectMiddleware'],
+})
 class AccessTestCase(TestCase):
 
     @classmethod

@@ -3,7 +3,7 @@ from decimal import Decimal
 
 from django.contrib import messages
 from django.core.urlresolvers import reverse
-from django.test import TestCase, override_settings
+from django.test import TestCase, modify_settings, override_settings
 from django.utils.translation import ugettext as _
 
 from django_webtest import WebTest
@@ -17,6 +17,9 @@ from ..models import BankTransaction
 from ..views import BankTransactionListView
 
 
+@modify_settings(MIDDLEWARE_CLASSES={
+    'remove': ['mymoney.core.middleware.AnonymousRedirectMiddleware'],
+})
 class AccessTestCase(TestCase):
 
     @classmethod
