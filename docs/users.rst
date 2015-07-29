@@ -29,3 +29,10 @@ Each permissions are derived from the default Django model (add, change,
 delete). However, here is additionals permissions:
 
 * administer owners: allow user to manager owners of a bank account
+
+Anonymous user
+``````````````
+
+Because being authenticated is required, an anonymous user could **only**
+access the ``/login`` url (``LOGIN_URL``). Any attempt as an anonymous user to
+access an another url would redirect on the login page.

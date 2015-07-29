@@ -29,8 +29,9 @@ msgstr ""
 "Afin de ne pas mélanger les permissions utilisateur d'un compte basique et "
 "d'un compte super utilisateur, vous devez créer et utiliser **uniquement** "
 "un compte utilisateur *basique*. Sinon, si vous utilisez un compte super "
-"utilisateur en front-office et que vous essayez de créer un compte bancaire, "
-"vous ne pourrez pas voir votre propre compte dans la liste des propriétaires."
+"utilisateur en front-office et que vous essayez de créer un compte bancaire,"
+" vous ne pourrez pas voir votre propre compte dans la liste des "
+"propriétaires."
 
 #: ../../users.rst:12
 msgid ""
@@ -51,7 +52,6 @@ msgid ""
 msgstr ""
 "2. se connecter au back-office de Django à ``/admin`` afin de créer un "
 "utilisateur basique."
-"account."
 
 #: ../../users.rst:22
 msgid ""
@@ -77,3 +77,18 @@ msgid "administer owners: allow user to manager owners of a bank account"
 msgstr ""
 "administer owners: autorise un utilisateur à administrer les propriétaires "
 "de ces compte bancaires"
+
+#: ../../users.rst:34
+msgid "Anonymous user"
+msgstr "Utilisateur anonyme"
+
+#: ../../users.rst:36
+msgid ""
+"Because being authenticated is required, an anonymous user could **only** "
+"access the ``/login`` url (``LOGIN_URL``). Any attempt as an anonymous user "
+"to access an another url would redirect on the login page."
+msgstr ""
+"Parce que l'authentification est requise, un utilisateur anonyme ne peut "
+"accéder qu'à l'url ``/login`` (``LOGIN_URL``). Toutes tentatives d'accès à "
+"une autre url en tant qu'utilisateur anonyme seront redirigées sur la page "
+"d'authentification."
