@@ -1,0 +1,41 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: MyMoney 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-07-28 21:33+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../statistics.rst:2
+msgid "Statistics"
+msgstr "Statistiques"
+
+#: ../../statistics.rst:4
+msgid ""
+"You can check statistics for a given bank account. To do so, go on the bank "
+"account page and click on the menu tab item *Statistics*. You can then "
+"switch between two view modes:"
+msgstr "Vous pouvez visualiser les statistiques d'un compte bancaire. Pour "
+"cela, allez sur la page du compte bancaire et cliquez sur le lien du menu "
+"*Statistiques*. Vous pouvez ensuite basculer entre deux types de vues :"
+
+#: ../../statistics.rst:8
+msgid "ratio report: based on tags"
+msgstr "rapport proportionnel: basés sur les étiquettes"
+
+#: ../../statistics.rst:9
+msgid "trendtime report: based on dates"
+msgstr "rapport chronologique: basés sur les dates"
+
+#: ../../statistics.rst:11
+msgid ""
+"Each reports provide some basic filters and a quick summary. Each summary "
+"has more details when you click on a targeted item."
+msgstr ""
+"Chaques rapports fournissent des filtres et un résumé. Chaques résumés ont "
+"plus de détails quand vous cliquez sur l'un de ces éléments."

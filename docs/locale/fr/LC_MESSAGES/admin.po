@@ -1,0 +1,26 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: MyMoney 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-07-28 21:33+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../admin.rst:2
+msgid "Back-office"
+msgstr ""
+
+#: ../../admin.rst:4
+msgid ""
+"Anytime, remember that if you need to bypass the default UI, you could still"
+" use the default Django back-office, reachable at ``/admin`` with a staff or"
+" superuser account."
+msgstr ""
+"À tout moment, rappelez-vous que si vous devez outrepasser l'interface "
+"utilisateur, vous pouvez toujours utiliser le back-office de Django, "
+"joignable à ``/admin`` avec un membre de l'équipe ou super utilisateur."

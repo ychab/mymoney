@@ -1,0 +1,179 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: MyMoney 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-07-28 21:33+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../banktransactions.rst:2
+msgid "Bank transactions"
+msgstr "Transactions bancaires"
+
+#: ../../banktransactions.rst:4
+msgid ""
+"Once bank accounts, tags, and schedulers are created, you could now begins "
+"to create other bank transactions. You can manage bank transactions from the"
+" related bank account page overview:"
+msgstr ""
+"Une fois les comptes bancaires, étiquettes et planificateurs crées, vous "
+"pouvez désormais commencer à créer des transactions bancaires. Vous pouvez "
+"gérer les transactions bancaires à partir de la page d'aperçu du compte "
+"bancaire :"
+
+#: ../../banktransactions.rst:8
+msgid "add"
+msgstr "ajouter"
+
+#: ../../banktransactions.rst:9
+msgid "edit"
+msgstr "éditer"
+
+#: ../../banktransactions.rst:10 ../../banktransactions.rst:17
+msgid "delete"
+msgstr "supprimer"
+
+#: ../../banktransactions.rst:12
+msgid ""
+"On the bank account page, you can filter bank transactions. But also apply "
+"some actions in bulk by checking the corresponding boxes:"
+msgstr ""
+"Sur la page du compte bancaire, vous pouvez filtrer les transactions "
+"bancaires. Mais aussi appliquer certaines actions en masse en cochant les "
+"cases adéquates :"
+
+#: ../../banktransactions.rst:15
+msgid "reconciled selected bank transactions"
+msgstr "pointer les transactions bancaires sélectionnées"
+
+#: ../../banktransactions.rst:16
+msgid "unreconciled selected bank transactions"
+msgstr "dépointer les transactions bancaires sélectionnées"
+
+#: ../../banktransactions.rst:19
+msgid "Bank transactions alter the bank account balance when they are:"
+msgstr ""
+"Les transactions bancaires modifient le solde du compte bancaire quand elles "
+"sont : "
+
+#: ../../banktransactions.rst:21
+msgid "created"
+msgstr "crées"
+
+#: ../../banktransactions.rst:22
+msgid "updated"
+msgstr "modifiées"
+
+#: ../../banktransactions.rst:23
+msgid "deleted"
+msgstr "supprimées"
+
+#: ../../banktransactions.rst:25
+msgid ""
+"If you don't want to apply these alterations, you may set the bank "
+"transaction's status to *inactive*. See :ref:`banktransactions-fields-"
+"status`."
+msgstr ""
+"Si vous ne voulez pas appliquer ces modifications, vous pouvez mettre le "
+"statut de la transaction bancaire à *inactive*. Voir :ref:`banktransactions-"
+"fields-status`."
+
+#: ../../banktransactions.rst:29
+msgid "Fields"
+msgstr "Champs"
+
+#: ../../banktransactions.rst:31
+msgid "Some fields need more explanations:"
+msgstr "Certains champs nécessitent plus d'explications :"
+
+#: ../../banktransactions.rst:36 ../../banktransactions.rst:41
+msgid "Status"
+msgstr "Statut"
+
+#: ../../banktransactions.rst:38
+msgid "Each statuses may have the following actions:"
+msgstr "Chaques statuts peuvent appliquer les actions suivantes :"
+
+#: ../../banktransactions.rst:41
+msgid "Alter balance"
+msgstr "Modifier le solde"
+
+#: ../../banktransactions.rst:41
+msgid "Statistics"
+msgstr "Statistiques"
+
+#: ../../banktransactions.rst:43
+msgid "active"
+msgstr "actif"
+
+#: ../../banktransactions.rst:43 ../../banktransactions.rst:43
+#: ../../banktransactions.rst:45
+msgid "Yes"
+msgstr "Oui"
+
+#: ../../banktransactions.rst:45
+msgid "ignored"
+msgstr "ignoré"
+
+#: ../../banktransactions.rst:45 ../../banktransactions.rst:47
+#: ../../banktransactions.rst:47
+msgid "No"
+msgstr "Non"
+
+#: ../../banktransactions.rst:47
+msgid "inactive"
+msgstr "inactif"
+
+#: ../../banktransactions.rst:50
+msgid "Indeed, bank transactions could:"
+msgstr "En effet, les transactions bancaires peuvent :"
+
+#: ../../banktransactions.rst:52
+msgid ""
+"alter the bank account balance. Thus, they are used for the total of the "
+"balance (future, current, reconciled)"
+msgstr ""
+"modifier le solde du compte bancaire. Par conséquent, elles sont "
+"comptabilisées dans le total du solde (futur, courant, pointé)"
+
+#: ../../banktransactions.rst:54
+msgid "being used for statistics (ratio and trendtime)"
+msgstr "être utilisées pour les statistiques (proportionnelle ou "
+"chronologique)"
+
+#: ../../banktransactions.rst:56
+msgid ""
+"*Active* is the default status. *Ignored* could be used for internal "
+"transfer for example. You may need it if you want to alter the bank account "
+"balance but don't want to pollute your statistics with. *Inactive* exists "
+"just for purpose, I didn't find any use cases for it now. Maybe "
+"changed/removed in the future."
+msgstr ""
+"*Actif* est le statut par défaut. *Ignoré* peut être utilisé pour des "
+"virements internes par exemple. Vous pouvez en avoir besoin si vous voulez "
+"modifier le solde bancaire mais ne voulez pas polluer les statistiques. "
+"*Inactif* existe juste par principe, je n'ai pas trouvé de cas "
+"d'utilisation pour le moment. Cela peut changer à l'avenir (voir supprimer)."
+
+#: ../../banktransactions.rst:64
+msgid "Reconcile flag"
+msgstr "Drapeau pointé"
+
+#: ../../banktransactions.rst:66
+msgid ""
+"This is a marker which indicate whether it is synchronous with your real "
+"bank account. It is usefull to anticipate expenses for example. You can see "
+"a quick summary of the reconciled balance as well as the total reconciled "
+"balance. On the contrary, you can also see the balance from a given bank "
+"transaction or the future total balance."
+msgstr ""
+"C'est un pointeur qui indique si c'est synchronisé avec votre vrai compte "
+"bancaire. C'est utile par exemple pour anticiper vos dépenses. Vous pouvez "
+"voir un bref résumé du solde pointé tout comme le solde total pointé. Au "
+"contraire, vous  pouvez aussi voir le solde à partir d"une transaction "
+"bancaire ou le solde total futur."

@@ -1,0 +1,79 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: MyMoney 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-07-28 21:33+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../users.rst:2
+msgid "Users"
+msgstr "Utilisateurs"
+
+#: ../../users.rst:5
+msgid "Create a basic user"
+msgstr "Création d'un utilisateur basique"
+
+#: ../../users.rst:7
+msgid ""
+"To don't mix superuser and basic user permissions, you will need to create "
+"and use **only** a *basic* user. Otherwise, if you use the superuser account"
+" on front-office and try to create a bank account, you won't see your own "
+"account in the owner list."
+msgstr ""
+"Afin de ne pas mélanger les permissions utilisateur d'un compte basique et "
+"d'un compte super utilisateur, vous devez créer et utiliser **uniquement** "
+"un compte utilisateur *basique*. Sinon, si vous utilisez un compte super "
+"utilisateur en front-office et que vous essayez de créer un compte bancaire, "
+"vous ne pourrez pas voir votre propre compte dans la liste des propriétaires."
+
+#: ../../users.rst:12
+msgid ""
+"This is intentional : a basic user cannot add super user or staff user as an"
+" owner of a bank account."
+msgstr ""
+"C'est intentionnel: un utilisateur basique ne peut pas ajouter un super "
+"utilisateur ou un membre de l'équipe comme propriétaire du compte bancaire."
+
+#: ../../users.rst:15
+msgid "create the superuser if not already::"
+msgstr "créer un super utilisateur si ca n'est pas déjà fait::"
+
+#: ../../users.rst:19
+msgid ""
+"2. connect to the Django backoffice at ``/admin`` in order to create a user "
+"account."
+msgstr ""
+"2. se connecter au back-office de Django à ``/admin`` afin de créer un "
+"utilisateur basique."
+"account."
+
+#: ../../users.rst:22
+msgid ""
+"Don't forgot to assign any permissions required (i.e: beginning with "
+"*bank*)."
+msgstr ""
+"N'oubliez pas d'assigner les permissions requises (commençant par *bank*)."
+
+#: ../../users.rst:26
+msgid "Permissions"
+msgstr "Permissions"
+
+#: ../../users.rst:28
+msgid ""
+"Each permissions are derived from the default Django model (add, change, "
+"delete). However, here is additionals permissions:"
+msgstr ""
+"Chaque permissions sont hérités du modèle par défaut de Django (ajouter, "
+"changer, supprimer). Cependant, voici des permissions supplémentaires :"
+
+#: ../../users.rst:31
+msgid "administer owners: allow user to manager owners of a bank account"
+msgstr ""
+"administer owners: autorise un utilisateur à administrer les propriétaires "
+"de ces compte bancaires"

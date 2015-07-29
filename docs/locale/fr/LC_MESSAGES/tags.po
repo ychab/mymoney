@@ -1,0 +1,53 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: MyMoney 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-07-28 21:33+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../tags.rst:2
+msgid "Tags"
+msgstr "Étiquettes"
+
+#: ../../tags.rst:4
+msgid ""
+"The second step could be to create tags. In the navbar, in *tags* section, "
+"click on *My tags* (``/bank-transaction-tag/list/``). You are on the tags "
+"overview page. From this page, you could apply the following actions on "
+"tags:"
+msgstr ""
+"La seconde étape pourrait être de créer des étiquettes. Dans la barre de "
+"navigation, dans la section *étiquettes*, cliquez sur *Mes étiquettes* "
+"(``/bank-transaction-tag/list/``). Vous êtes sur la page d'aperçu des "
+"étiquettes. Sur cette page, vous pouvez appliquer les actions suivantes sur "
+"les étiquettes :"
+
+#: ../../tags.rst:8
+msgid "add"
+msgstr "ajouter"
+
+#: ../../tags.rst:9
+msgid "edit"
+msgstr "éditer"
+
+#: ../../tags.rst:10
+msgid "delete"
+msgstr "supprimer"
+
+#: ../../tags.rst:12
+msgid ""
+"Owners of the same bank account could also view/use your tags (so even if "
+"they are not the owner of the tag). However, user without relationship (i.e:"
+" not being owner of your bank accounts) can't view/use your tags."
+msgstr ""
+"Les propriétaires d'un même compte bancaire que le votre peuvent aussi "
+"voir/utiliser vos étiquettes (donc même si ils n'en sont pas les "
+"propriétaires directement). Cependant, les utilisateurs sans relation avec "
+"vous (c-a-d n'étant pas propriétaire commun) ne peuvent pas voir/utiliser "
+"vos étiquettes."

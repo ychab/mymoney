@@ -1,0 +1,37 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: MyMoney 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-07-28 21:33+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../index.rst:2
+msgid "MyMoney's user guide"
+msgstr "Guide utilisateur de MyMoney"
+
+#: ../../index.rst:16
+msgid ""
+"This is the documentation of the MyMoney project, a personal finance Web "
+"application build with the `Django`_ framework."
+msgstr ""
+"Ceci est la documentation du projet MyMoney, application web de gestion de "
+"finance personnelle, construite avec le framework `Django`_."
+
+#: ../../index.rst:19
+msgid ""
+"Of course, just like this project, this documentation isn't really usefull. "
+"This is mainly a good use case to learn Sphinx and ReadTheDoc :)"
+msgstr ""
+"Bien sûr, tout comme ce projet, cette documentation n'est pas vraiment "
+"utile. C'est surtout une bonne occasion pour apprendre Sphrinx et ReadTheDoc "
+":)"
+
+#: ../../index.rst:25
+msgid "Contents"
+msgstr "Contenu"

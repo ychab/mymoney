@@ -1,0 +1,75 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: MyMoney 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-07-28 21:33+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../bankaccounts.rst:2
+msgid "Bank accounts"
+msgstr "Compte bancaires"
+
+#: ../../bankaccounts.rst:4
+msgid ""
+"The first thing you should do for the first time is to create a new bank "
+"account. After being logged in, you should be on the page ``/bank-"
+"account/``. You could see *actions links* on the top right corner. Click on "
+"*Add*."
+msgstr ""
+"La première chose que vous devez faire est de créer un compte bancaire. "
+"Après s'être authentifié, vous devriez être sur la page ``/bank-"
+"account/``. Vous pouvez voir les *liens d'actions* en haut à droite. Cliquez "
+"sur *Ajouter*."
+
+#: ../../bankaccounts.rst:8
+msgid ""
+"Once created, you should see it in the list. Click on it. You should go to "
+"the bank account overview page. From this page, you could navigate to:"
+msgstr ""
+"Une fois crée, vous devriez le voir dans la liste. Cliquez dessus. Vous "
+"serez dirigé sur la page d'aperçu du compte bancaire. À partir de cette "
+"page, vous pouvez :"
+
+#: ../../bankaccounts.rst:11
+msgid "edit the bank account"
+msgstr "éditer le compte bancaire"
+
+#: ../../bankaccounts.rst:12
+msgid "delete the bank account (throught *action links*)"
+msgstr "supprimer le compte bancaire (via les *liens d'actions*)"
+
+#: ../../bankaccounts.rst:13
+msgid "schedule bank transactions of this bank account"
+msgstr "planifier des transactions bancaires pour ce compte bancaire"
+
+#: ../../bankaccounts.rst:14
+msgid "see statistics of this bank account"
+msgstr "voir les statistiques de ce compte bancaire"
+
+#: ../../bankaccounts.rst:15
+msgid "add bank transactions for that bank accounts"
+msgstr "ajouter des transactions bancaires pour ce compte bancaire"
+
+#: ../../bankaccounts.rst:16
+msgid "filter results with a form"
+msgstr "filtrer les résultats avec un formulaire"
+
+#: ../../bankaccounts.rst:17
+msgid "apply some actions on bank transactions"
+msgstr "appliquer certaines actions sur les transactions bancaires"
+
+#: ../../bankaccounts.rst:19
+msgid ""
+"If you have only **one** bank account, you will be redirect on its page "
+"after being logged in. Otherwise, you will be redirect on the bank accounts "
+"list page at ``/bank-account/``."
+msgstr ""
+"Si vous avez seulement *un* compte bancaire, vous serez redirigé sur sa page "
+"après vous être authentifié. Sinon, vous serez redirigé sur la page qui "
+"liste les comptes bancaires à ``/bank-account/``."

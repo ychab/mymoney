@@ -1,0 +1,264 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: MyMoney 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-07-28 21:33+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../installation.rst:2
+msgid "Installation"
+msgstr "Installation"
+
+#: ../../installation.rst:5
+msgid "Requirements"
+msgstr "Prérequis"
+
+#: ../../installation.rst:7
+msgid "Python 3.4 (no backward compatibility)"
+msgstr "Python 3.4 (pas de compabitilité descendante)"
+
+#: ../../installation.rst:8
+msgid "PostgreSQL **only** (no MySQL or SQLite support)"
+msgstr "PostgreSQL **uniquement** (pas de support MySQL ou SQLite)"
+
+#: ../../installation.rst:11
+msgid "Deployment"
+msgstr "Déploiement"
+
+#: ../../installation.rst:13
+msgid ""
+"The deployment is the same as any other Django projects. Here is a quick "
+"summary:"
+msgstr ""
+"Le déploiement est similaire à d'autres projets Django. Voici un bref résumé "
+":"
+
+#: ../../installation.rst:16
+msgid "install required system packages. For example on Debian::"
+msgstr "installer les paquets systèmes requis. Par exemple sur Debian::"
+
+#: ../../installation.rst:20
+msgid "create a PostgreSQL database in a cluster with role and owner"
+msgstr "créer un cluster de base de données pour PostgreSQL ainsi qu'un rôle "
+"et un propriétaire"
+
+#: ../../installation.rst:22
+msgid "create a virtualenv::"
+msgstr "créer un virtualenv::"
+
+#: ../../installation.rst:26
+msgid ""
+"install dependencies with pip (see :ref:`installation-deployment-production`"
+" or :ref:`installation-deployment-development`)"
+msgstr ""
+"installer les dépendances avec pip (voir "
+":ref:`installation-deployment-production` ou "
+":ref:`installation-deployment-development`)"
+
+#: ../../installation.rst:29
+msgid ""
+"configure the settings (see :ref:`installation-deployment-production` or "
+":ref:`installation-deployment-development`)"
+msgstr ""
+"configurer les paramètres ( voir "
+":ref:`installation-deployment-production` ou "
+":ref:`installation-deployment-development`)"
+
+#: ../../installation.rst:32
+msgid ""
+"export the ``DJANGO_SETTINGS_MODULE`` to easily use the ``manage.py`` with "
+"the proper production setting. For example::"
+msgstr ""
+"exporter la variable d'environnement ``DJANGO_SETTINGS_MODULE`` pour "
+"facilement utiliser ``manage.py`` avec les paramètres de production. Par "
+"exemple::"
+
+#: ../../installation.rst:37
+msgid "import the SQL schema::"
+msgstr "importer le schéma SQL::"
+
+#: ../../installation.rst:41
+msgid "create a super user::"
+msgstr "créer un super utilisateur::"
+
+#: ../../installation.rst:45
+msgid ""
+"WSGI will use the ``production.py`` settings, whereas ``manage.py`` will use"
+" the ``local.py`` by default."
+msgstr ""
+"WSGI utilisera les paramètres ``production.py`` alors que ``manage.py`` "
+"utilisera ``local.py`` par défaut."
+
+#: ../../installation.rst:51
+msgid "Production"
+msgstr "Production"
+
+#: ../../installation.rst:53
+msgid "Install dependencies (in virtualenv)::"
+msgstr "Installer les dépendances (dans un virtualenv)::"
+
+#: ../../installation.rst:57
+msgid ""
+"copy ``mymoney/settings/production.dist`` to "
+"``mymoney/settings/production.py`` and edit it."
+msgstr ""
+"copier ``mymoney/settings/production.dist`` à "
+"``mymoney/settings/production.py`` puis l'éditer."
+
+#: ../../installation.rst:60
+msgid "collect statics files::"
+msgstr "grouper les fichiers statiques"
+
+#: ../../installation.rst:64
+msgid "execute the Django check command and apply fixes if needed::"
+msgstr ""
+"exécuter la commande de vérification de Django puis appliquer des "
+"corrections si besoin::"
+
+#: ../../installation.rst:68
+msgid "Set up cron tasks on server to execute the following commands:"
+msgstr ""
+"Configurer des tâches cron sur le serveur pour exécuter les commandes "
+"suivantes:"
+
+#: ../../installation.rst:70
+msgid "cloning recurring bank transactions::"
+msgstr "dupliquer les transactions bancaires récurrentes"
+
+#: ../../installation.rst:74
+msgid "cleanup tasks (only usefull with further user accounts)::"
+msgstr ""
+"tâches de nettoyages (utile uniquement avec plusieurs comptes utilisateurs)::"
+
+#: ../../installation.rst:78
+msgid ""
+"At the project root directory, the ``scripts`` directory provide bash "
+"scripts wrappers to execute these commands. Thus, you could create cron "
+"rules similar to something like::"
+msgstr ""
+"À la racine du projet, le répertoire ``scripts`` fourni des scripts bash "
+"pour exécuter ces commandes. Par conséquent, vous pouvez les utiliser en "
+"créant des règles cron similaire à::"
+
+#: ../../installation.rst:85
+msgid ""
+"For example, create a file in ``/etc/cron.d/clonescheduled``, and edit::"
+msgstr ""
+"Par exemple, créez un fichier à ``/etc/cron.d/clonescheduled``, puis éditez::"
+
+#: ../../installation.rst:92
+msgid "Development"
+msgstr "Développement"
+
+#: ../../installation.rst:94
+msgid "Install dependencies::"
+msgstr "Installer les dépendances::"
+
+#: ../../installation.rst:98
+msgid ""
+"copy ``mymoney/settings/local.dist`` to ``mymoney/settings/local.py`` and "
+"edit it."
+msgstr ""
+"copiez ``mymoney/settings/local.dist`` à ``mymoney/settings/local.py`` et "
+"éditez le."
+
+#: ../../installation.rst:102
+msgid "Internationalization"
+msgstr "Internationalisation"
+
+#: ../../installation.rst:104
+msgid ""
+"copy ``mymoney/settings/l10n.dist`` to ``mymoney/settings/l10n.py`` and edit"
+" it."
+msgstr ""
+"copiez ``mymoney/settings/l10n.dist`` à ``mymoney/settings/l10n.py`` et "
+"éditez le."
+
+#: ../../installation.rst:107
+msgid "edit your final setting file to use the l10n configuration instead::"
+msgstr ""
+"éditez votre fichier de configuration finale pour utiliser le fichier de "
+"configuration l10n à la place::"
+
+#: ../../installation.rst:112
+msgid ""
+"Only *French* internationalisation/translations are supported for now. But "
+"any contributions are welcome!"
+msgstr ""
+"Les traductions en *français* sont uniquement supportées pour le moment. "
+"Mais toutes contributions sont les bienvenues !"
+
+#: ../../installation.rst:116
+msgid "Demo"
+msgstr "Démo"
+
+#: ../../installation.rst:118
+msgid ""
+"To have a quick look, you could generate some data with the following "
+"commands::"
+msgstr ""
+"Pour un aperçu rapide, vous pouvez générer des données avec la commande "
+"suivante::"
+
+#: ../../installation.rst:123
+msgid "You can also clear any data relatives to the project's models with::"
+msgstr ""
+"Vous pouvez aussi nettoyer les données relatives aux modèles du projet avec::"
+
+#: ../../installation.rst:128
+msgid "Tests"
+msgstr "Tests"
+
+#: ../../installation.rst:130
+msgid ""
+"Whichever method is used, you must create a setting file for testing. Copy "
+"``mymoney/settings/test.dist`` to ``mymoney/settings/test.py`` and edit it."
+msgstr ""
+"Qu'importe la méthode utilisée, vous devez créer un fichier de configuration "
+"de test. Copiez ``mymoney/settings/test.dist`` à "
+"``mymoney/settings/test.py`` et éditez le."
+
+#: ../../installation.rst:134
+msgid "Tox"
+msgstr "Tox"
+
+#: ../../installation.rst:136
+msgid ""
+"You can use `Tox`_. At the project root directory without virtualenv, just "
+"execute::"
+msgstr "Vous pouvez utiliser `Tox`_. À la racine du projet sans virtualenv, "
+"exécutez juste::"
+
+#: ../../installation.rst:143
+msgid "Behind the scene, it runs severals *testenv* for:"
+msgstr "Plusieurs *testenv* sont exécutés:"
+
+#: ../../installation.rst:145
+msgid "`flake8`_"
+msgstr "`flake8`_"
+
+#: ../../installation.rst:146
+msgid "`Sphinx`_"
+msgstr "`Sphinx`_"
+
+#: ../../installation.rst:147
+msgid "test suites with coverage and report"
+msgstr "suite de tests avec couverture et rapport"
+
+#: ../../installation.rst:153
+msgid "Manually"
+msgstr "Manuellement"
+
+#: ../../installation.rst:155
+msgid "install dependencies::"
+msgstr "installer les dépendances::"
+
+#: ../../installation.rst:159
+msgid "then execute tests::"
+msgstr "puis exécutez les tests::"
