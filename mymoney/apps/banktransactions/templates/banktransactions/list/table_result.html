@@ -45,11 +45,11 @@
                     {% endif %}
                 </td>
 
-                {% if banktransaction.amount > 0 %}
+                {% if banktransaction.amount >= 0 %}
                 <td></td>
-                {% endif %}
-                <td>{{ banktransaction.amount|localize_positive }}</td>
-                {% if banktransaction.amount < 0 %}
+                <td><p class="text-success">{{ banktransaction.amount|localize_positive }}</p></td>
+                {% else %}
+                <td><p class="text-danger">{{ banktransaction.amount|localize_positive }}</p></td>
                 <td></td>
                 {% endif %}
 
