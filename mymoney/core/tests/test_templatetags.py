@@ -4,6 +4,7 @@ from unittest import mock
 
 from django.core.urlresolvers import reverse
 from django.test import override_settings, SimpleTestCase
+from django.utils.safestring import SafeText
 
 from django_webtest import WebTest
 
@@ -13,7 +14,7 @@ from mymoney.apps.banktransactions.models import BankTransaction
 from ..factories import UserFactory
 from ..templatetags.core_tags import (
     currency_positive, display_messages, form_errors_exists, localize_positive,
-    merge_form_errors, payment_method
+    localize_positive_color, merge_form_errors, payment_method
 )
 
 
@@ -221,3 +222,23 @@ class TemplateFiltersTestCase(SimpleTestCase):
                 localize_positive(Decimal('15.23')),
                 '+15,23',
             )
+
+    def test_localize_positive_color(self):
+
+        with override_settings(LANGUAGE_CODE='en-us'):
+            s = localize_positive_color(Decimal('15.23'))
+            self.assertIsInstance(s, SafeText)
+            self.assertEqual(s, '<p class="text-success">+15.23</p>')
+
+            s = localize_positive_color(Decimal('-15.23'))
+            self.assertIsInstance(s, SafeText)
+            self.assertEqual(s, '<p class="text-danger">-15.23</p>')
+
+        with override_settings(LANGUAGE_CODE='fr-fr'):
+            s = localize_positive_color(Decimal('15.23'))
+            self.assertIsInstance(s, SafeText)
+            self.assertEqual(s, '<p class="text-success">+15,23</p>')
+
+            s = localize_positive_color(Decimal('-15.23'))
+            self.assertIsInstance(s, SafeText)
+            self.assertEqual(s, '<p class="text-danger">-15,23</p>')

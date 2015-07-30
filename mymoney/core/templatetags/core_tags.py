@@ -3,6 +3,7 @@ from decimal import Decimal
 from django import template
 from django.core.urlresolvers import resolve, reverse
 from django.templatetags.l10n import localize
+from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _
 
 from mymoney.apps.banktransactions.models import BankTransaction
@@ -237,3 +238,13 @@ def localize_positive(val):
     """
     prefix = '+' if Decimal(val) > 0 else ''
     return prefix + localize(val)
+
+
+@register.filter()
+def localize_positive_color(val):
+    """
+    Wrap a localize Decimal into a text with appropriate color.
+    """
+    localized = localize_positive(val)
+    type = 'success' if Decimal(val) >= 0 else 'danger'
+    return mark_safe('<p class="text-' + type + '">' + localized + '</p>')

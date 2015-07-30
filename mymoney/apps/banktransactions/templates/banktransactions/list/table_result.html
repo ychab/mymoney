@@ -47,9 +47,9 @@
 
                 {% if banktransaction.amount >= 0 %}
                 <td></td>
-                <td><p class="text-success">{{ banktransaction.amount|localize_positive }}</p></td>
-                {% else %}
-                <td><p class="text-danger">{{ banktransaction.amount|localize_positive }}</p></td>
+                {% endif %}
+                <td>{{ banktransaction.amount|localize_positive_color }}</td>
+                {% if banktransaction.amount < 0 %}
                 <td></td>
                 {% endif %}
 
