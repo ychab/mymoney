@@ -119,7 +119,7 @@ msgstr "Carte de crédit"
 
 #: mymoney/core/templatetags/core_tags.py:180
 msgid "Cash"
-msgstr "Monnaie"
+msgstr "Espèce"
 
 #: mymoney/core/templatetags/core_tags.py:184
 msgid "Transfer"
