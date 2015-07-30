@@ -3,25 +3,31 @@
     <table class="table table-condensed table-hover">
         <thead>
         <tr>
-            <th>{% trans "Date" %}</th>
             <th>{% trans "Label" %}</th>
-            <th>{% trans "Amount" %}</th>
+            <th>{% trans "Date" %}</th>
             <th>{% trans "Reconciled" %}</th>
+            <th>{% trans "Amount" %}</th>
         </tr>
         </thead>
         <tbody>
             {% for banktransaction in banktransactions %}
             <tr>
-                <td>{{ banktransaction.date|date:"SHORT_DATE_FORMAT" }}</td>
                 <td>{{ banktransaction.label }}</td>
-                <td>{{ banktransaction.amount|localize_positive }}</td>
+                <td>{{ banktransaction.date|date:"SHORT_DATE_FORMAT" }}</td>
                 <td>
                     {% if banktransaction.reconciled %}
                     <span class="glyphicon glyphicon-ok"><span class="sr-only">{% trans "Yes" %}</span></span>
                     {% endif %}
                 </td>
+                <td>{{ banktransaction.amount|localize_positive_color }}</td>
             </tr>
             {% endfor %}
+            <tr>
+                <td><strong>{% trans "Total" %}</strong></td>
+                <td></td>
+                <td></td>
+                <td><strong>{{ total|localize_positive }}</strong></td>
+            </tr>
         </tbody>
     </table>
 </div>

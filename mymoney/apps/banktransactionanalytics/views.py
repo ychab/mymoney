@@ -247,7 +247,14 @@ class RatioSummaryView(BankTransactionAccessMixin, RatioViewMixin,
             qs = qs.filter(tag__pk=tag_id)
         else:
             qs = qs.filter(tag__isnull=True)
-        context['banktransactions'] = qs.order_by('date')
+        banktransactions = qs.order_by('date')
+
+        total = 0
+        for banktransaction in banktransactions:
+            total += banktransaction.amount
+
+        context['banktransactions'] = banktransactions
+        context['total'] = total
 
         return context
 
@@ -464,6 +471,12 @@ class TrendTimeSummaryView(BankTransactionAccessMixin, TrendTimeViewMixin,
             banktransactions = (
                 self.base_queryset.filter(date=base_date).order_by('pk')
             )
+
+        total = 0
+        for banktransaction in banktransactions:
+            total += banktransaction.amount
+
         context['banktransactions'] = banktransactions
+        context['total'] = total
 
         return context
