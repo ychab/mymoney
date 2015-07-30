@@ -50,6 +50,7 @@ class Datepicker(forms.TextInput):
             'data-date-format': date_input_format_js,
             'data-date-language': get_language()[:2],
             'data-date-orientation': 'top auto',
+            'data-date-autoclose': 1,
         }
         attrs.update(
             super(Datepicker, self).build_attrs(extra_attrs=extra_attrs, **kwargs)
