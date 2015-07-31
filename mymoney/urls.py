@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.contrib.auth.views import login, logout_then_login
@@ -6,7 +7,7 @@ from mymoney.core.forms import MyMoneyAuthenticationForm
 from mymoney.core.views import HomePageRedirectView
 
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^{0}/'.format(settings.ADMIN_BASE_URL), include(admin.site.urls)),
     url(r'^bank-account/', include(
         'mymoney.apps.bankaccounts.urls', namespace='bankaccounts'
     )),
