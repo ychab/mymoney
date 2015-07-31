@@ -50,6 +50,7 @@ class FormTestCase(WebTest):
         edit = {
             'label': 'test_without_perm',
             'balance': '0.00',
+            'balance_initial': '15.00',
             'currency': 'EUR',
         }
         for name, value in edit.items():
@@ -58,6 +59,7 @@ class FormTestCase(WebTest):
 
         bankaccount = BankAccount.objects.get(label=edit['label'])
         self.assertEqual(bankaccount.balance, Decimal(edit['balance']))
+        self.assertEqual(bankaccount.balance_initial, Decimal(edit['balance_initial']))
         self.assertEqual(bankaccount.currency, edit['currency'])
         self.assertListEqual(
             [self.not_owner.pk],
@@ -68,7 +70,8 @@ class FormTestCase(WebTest):
         form = self.app.get(reverse('bankaccounts:create'), user='superowner').form
         edit = {
             'label': 'test_with_perm',
-            'balance': '0.00',
+            'balance': '10.00',
+            'balance_initial': '-15.00',
             'currency': 'EUR',
             'owners': (self.owner.pk, self.superowner.pk),
         }
@@ -78,6 +81,7 @@ class FormTestCase(WebTest):
 
         bankaccount = BankAccount.objects.get(label=edit['label'])
         self.assertEqual(bankaccount.balance, Decimal(edit['balance']))
+        self.assertEqual(bankaccount.balance_initial, Decimal(edit['balance_initial']))
         self.assertEqual(bankaccount.currency, edit['currency'])
         self.assertListEqual(
             sorted([self.owner.pk, self.superowner.pk]),
@@ -99,6 +103,8 @@ class FormTestCase(WebTest):
 
         # Without administer owners.
         bankaccount = BankAccountFactory(
+            balance=Decimal('-10'),
+            balance_initial=Decimal('10'),
             currency='EUR',
             owners=(self.not_owner, self.superowner),
         )
@@ -109,6 +115,7 @@ class FormTestCase(WebTest):
         edit = {
             'label': 'rename it',
             'balance': '-150.59',
+            'balance_initial': '0.00',
             'currency': 'USD',
         }
         for name, value in edit.items():
@@ -118,6 +125,7 @@ class FormTestCase(WebTest):
         bankaccount.refresh_from_db()
         self.assertEqual(bankaccount.label, edit['label'])
         self.assertEqual(bankaccount.balance, Decimal(edit['balance']))
+        self.assertEqual(bankaccount.balance_initial, Decimal(edit['balance_initial']))
         self.assertEqual(bankaccount.currency, edit['currency'])
         self.assertListEqual(
             sorted([self.not_owner.pk, self.superowner.pk]),
@@ -130,6 +138,7 @@ class FormTestCase(WebTest):
         edit = {
             'label': 'rename it again',
             'balance': '1750.23',
+            'balance_initial': '150',
             'currency': 'EUR',
             'owners': (self.owner.pk, self.superowner.pk),
         }
@@ -140,6 +149,7 @@ class FormTestCase(WebTest):
         bankaccount.refresh_from_db()
         self.assertEqual(bankaccount.label, edit['label'])
         self.assertEqual(bankaccount.balance, Decimal(edit['balance']))
+        self.assertEqual(bankaccount.balance_initial, Decimal(edit['balance_initial']))
         self.assertEqual(bankaccount.currency, edit['currency'])
         self.assertListEqual(
             sorted([self.owner.pk, self.superowner.pk]),

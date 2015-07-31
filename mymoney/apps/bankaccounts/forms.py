@@ -10,7 +10,7 @@ class BankAccountForm(forms.ModelForm):
 
     class Meta:
         model = BankAccount
-        fields = ['label', 'balance', 'currency', 'owners']
+        fields = ['label', 'balance', 'balance_initial', 'currency', 'owners']
 
 
 class BankAccountFormWithoutOwners(BankAccountForm):
@@ -20,4 +20,4 @@ class BankAccountFormWithoutOwners(BankAccountForm):
 
     class Meta:
         model = BankAccount
-        fields = ['label', 'balance', 'currency']
+        fields = ['label', 'balance', 'balance_initial', 'currency']

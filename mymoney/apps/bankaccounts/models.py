@@ -31,6 +31,12 @@ class BankAccount(models.Model):
         default=0,
         verbose_name=_('Balance'),
     )
+    balance_initial = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        default=0,
+        verbose_name=_('Initial balance'),
+    )
     currency = models.CharField(
         max_length=3,
         choices=get_currencies(),

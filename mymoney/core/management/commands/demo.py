@@ -70,8 +70,9 @@ class Command(BaseCommand):
         )
 
         bankaccount = BankAccountFactory(
-            balance=2000,
             label=_('Current account'),
+            balance=2000,
+            balance_initial=150,
             currency=options.get('currency'),
             owners=[user],
         )
