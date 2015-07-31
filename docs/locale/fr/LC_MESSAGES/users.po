@@ -43,28 +43,20 @@ msgstr ""
 
 #: ../../users.rst:15
 msgid "create the superuser if not already::"
-msgstr "créer un super utilisateur si ca n'est pas déjà fait::"
+msgstr "créez un super utilisateur si ca n'est pas déjà fait::"
 
-#: ../../users.rst:19
-msgid ""
-"2. connect to the Django backoffice at ``/admin`` in order to create a user "
-"account."
-msgstr ""
-"2. se connecter au back-office de Django à ``/admin`` afin de créer un "
-"utilisateur basique."
-
-#: ../../users.rst:22
+#: ../../users.rst:21
 msgid ""
 "Don't forgot to assign any permissions required (i.e: beginning with "
 "*bank*)."
 msgstr ""
 "N'oubliez pas d'assigner les permissions requises (commençant par *bank*)."
 
-#: ../../users.rst:26
+#: ../../users.rst:25
 msgid "Permissions"
 msgstr "Permissions"
 
-#: ../../users.rst:28
+#: ../../users.rst:27
 msgid ""
 "Each permissions are derived from the default Django model (add, change, "
 "delete). However, here is additionals permissions:"
@@ -72,23 +64,29 @@ msgstr ""
 "Chaque permissions sont hérités du modèle par défaut de Django (ajouter, "
 "changer, supprimer). Cependant, voici des permissions supplémentaires :"
 
-#: ../../users.rst:31
+#: ../../users.rst:30
 msgid "administer owners: allow user to manager owners of a bank account"
 msgstr ""
 "administer owners: autorise un utilisateur à administrer les propriétaires "
 "de ces compte bancaires"
 
-#: ../../users.rst:34
+#: ../../users.rst:33
 msgid "Anonymous user"
 msgstr "Utilisateur anonyme"
 
-#: ../../users.rst:36
+#: ../../users.rst:19
+msgid "connect to the Django backoffice in order to create a user account."
+msgstr ""
+"connectez-vous au back-office de Django afin de créer un compte utilisateur"
+
+#: ../../users.rst:35
 msgid ""
 "Because being authenticated is required, an anonymous user could **only** "
-"access the ``/login`` url (``LOGIN_URL``). Any attempt as an anonymous user "
-"to access an another url would redirect on the login page."
+"access the ``/login`` url (``LOGIN_URL``) or back-office "
+"(``ADMIN_BASE_URL``). Any attempt as an anonymous user to access an another "
+"url would redirect on the login page."
 msgstr ""
-"Parce que l'authentification est requise, un utilisateur anonyme ne peut "
-"accéder qu'à l'url ``/login`` (``LOGIN_URL``). Toutes tentatives d'accès à "
-"une autre url en tant qu'utilisateur anonyme seront redirigées sur la page "
-"d'authentification."
+"Parce que l'authentification est requise, un utilisateur anonyme peut "
+"**uniquement** accéder aux urls ``/login`` (``LOGIN_URL``) et au back-office "
+"(``ADMIN_BASE_URL``). Toutes tentatives d'accès à d'autres urls en tant "
+"qu'utilisateur anonyme seront redirigées sur la page de connexion."

@@ -16,8 +16,7 @@ in the owner list.
 
     ./manage.py createsuperuser
 
-2. connect to the Django backoffice at ``/admin`` in order to create a user
-account.
+2. connect to the Django backoffice in order to create a user account.
 
 .. warning:: Don't forgot to assign any permissions required (i.e: beginning
    with *bank*).
@@ -34,5 +33,6 @@ Anonymous user
 ``````````````
 
 Because being authenticated is required, an anonymous user could **only**
-access the ``/login`` url (``LOGIN_URL``). Any attempt as an anonymous user to
-access an another url would redirect on the login page.
+access the ``/login`` url (``LOGIN_URL``) or back-office (``ADMIN_BASE_URL``).
+Any attempt as an anonymous user to access an another url would redirect on the
+login page.
