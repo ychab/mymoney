@@ -11,7 +11,6 @@ class BankAccountFactory(factory.DjangoModelFactory):
 
     label = factory.Sequence(lambda n: 'test_%d' % n)
     balance = fuzzy.FuzzyDecimal(-10000, 10000, precision=2)
-    balance_initial = fuzzy.FuzzyDecimal(-100, 100, precision=2)
     currency = fuzzy.FuzzyChoice(['EUR', 'USD'])
 
     @factory.post_generation

@@ -36,6 +36,7 @@ class BankAccount(models.Model):
         decimal_places=2,
         default=0,
         verbose_name=_('Initial balance'),
+        help_text=_('Initial balance will automatically update the balance.'),
     )
     currency = models.CharField(
         max_length=3,
@@ -58,6 +59,18 @@ class BankAccount(models.Model):
 
     def __str__(self):
         return self.label
+
+    def save(self, *args, **kwargs):
+
+        # Init balance. Merge both just in case.
+        if self.pk is None:
+            self.balance += self.balance_initial
+        # Otherwise update it with the new delta.
+        else:
+            original = BankAccount.objects.get(pk=self.pk)
+            self.balance += self.balance_initial - original.balance_initial
+
+        super(BankAccount, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
         return reverse('bankaccounts:list')
