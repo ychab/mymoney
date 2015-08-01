@@ -1228,7 +1228,10 @@ class TrendtimeViewTestCase(WebTest):
     @override_settings(LANGUAGE_CODE='en-us')
     def test_queryset_balance(self):
 
-        bankaccount = BankAccountFactory(owners=[self.owner])
+        bankaccount = BankAccountFactory(
+            balance_initial=Decimal('150'),
+            owners=[self.owner],
+        )
         url = reverse('banktransactionanalytics:trendtime', kwargs={
             'bankaccount_pk': bankaccount.pk
         })
@@ -1255,7 +1258,7 @@ class TrendtimeViewTestCase(WebTest):
         response = form.submit('filter').maybe_follow()
         self.assertEqual(
             response.context['balance_initial'],
-            0,
+            bankaccount.balance_initial,
         )
 
         bt2 = BankTransactionFactory(
@@ -1315,7 +1318,7 @@ class TrendtimeViewTestCase(WebTest):
         response = form.submit('filter').maybe_follow()
         self.assertEqual(
             response.context['balance_initial'],
-            bt1.amount + bt2.amount + bt3.amount,
+            bankaccount.balance_initial + bt1.amount + bt2.amount + bt3.amount,
         )
 
         form = response.form
@@ -1325,7 +1328,7 @@ class TrendtimeViewTestCase(WebTest):
         response = form.submit('filter').maybe_follow()
         self.assertEqual(
             response.context['balance_initial'],
-            bt1.amount + bt2.amount,
+            bankaccount.balance_initial + bt1.amount + bt2.amount,
         )
 
         form = response.form
@@ -1335,7 +1338,7 @@ class TrendtimeViewTestCase(WebTest):
         response = form.submit('filter').maybe_follow()
         self.assertEqual(
             response.context['balance_initial'],
-            bt3.amount,
+            bankaccount.balance_initial + bt3.amount,
         )
 
     @override_settings(LANGUAGE_CODE='en-us')

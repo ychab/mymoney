@@ -354,6 +354,7 @@ class TrendTimeView(BankTransactionAccessMixin, TrendTimeViewMixin,
                     )
 
                     balance = self.get_queryset_balance(date_start)['sum'] or 0
+                    balance += self.bankaccount.balance_initial
                     context['balance_initial'] = balance
 
                     items_qs = self.get_queryset_items(date_start, date_end)
