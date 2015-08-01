@@ -73,4 +73,6 @@ class BankAccount(models.Model):
         super(BankAccount, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse('bankaccounts:list')
+        return reverse('banktransactions:list', kwargs={
+            'bankaccount_pk': self.pk,
+        })
