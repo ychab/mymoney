@@ -1,6 +1,6 @@
 from django.core.exceptions import PermissionDenied
 
-from .forms import BankAccountForm, BankAccountFormWithoutOwners
+import floppyforms.__future__.models as model_forms
 
 
 class BankAccountAccessMixin(object):
@@ -29,9 +29,10 @@ class BankAccountSaveFormMixin(object):
 
     def get_form_class(self):
         """
-        Return appropriate bank account model form to use depending on current
-        user permissions.
+        Add dynamic field owner to defined fields and use floppyform.
         """
+        fields = list(self.fields)
         if self.request.user.has_perm('bankaccounts.administer_owners'):
-            return BankAccountForm
-        return BankAccountFormWithoutOwners
+            fields.append('owners')
+
+        return model_forms.modelform_factory(self.model, fields=fields)

@@ -17,6 +17,7 @@ class BankAccountListView(generic.ListView):
 class BankAccountCreateView(BankAccountSaveFormMixin, SuccessMessageMixin,
                             generic.CreateView):
     model = BankAccount
+    fields = ['label', 'balance_initial', 'currency']
     template_name_suffix = '_create_form'
     success_message = _("Bank account %(label)s was created successfully")
 
@@ -35,6 +36,7 @@ class BankAccountCreateView(BankAccountSaveFormMixin, SuccessMessageMixin,
 class BankAccountUpdateView(BankAccountAccessMixin, BankAccountSaveFormMixin,
                             SuccessMessageMixin, generic.UpdateView):
     model = BankAccount
+    fields = ['label', 'balance', 'balance_initial', 'currency']
     template_name_suffix = '_update_form'
     success_message = _("Bank account %(label)s was updated successfully")
     permissions = ('bankaccounts.change_bankaccount',)

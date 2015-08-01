@@ -47,9 +47,11 @@ class FormTestCase(WebTest):
 
         # Without administer owners.
         form = self.app.get(reverse('bankaccounts:create'), user='not_owner').form
+        self.assertNotIn('balance', form.fields)
+        self.assertNotIn('owners', form.fields)
+
         edit = {
             'label': 'test_without_perm',
-            'balance': '0.00',
             'balance_initial': '15.00',
             'currency': 'EUR',
         }
@@ -58,7 +60,6 @@ class FormTestCase(WebTest):
         form.submit().maybe_follow()
 
         bankaccount = BankAccount.objects.get(label=edit['label'])
-        self.assertEqual(bankaccount.balance, Decimal(edit['balance']))
         self.assertEqual(bankaccount.balance_initial, Decimal(edit['balance_initial']))
         self.assertEqual(bankaccount.currency, edit['currency'])
         self.assertListEqual(
@@ -68,9 +69,10 @@ class FormTestCase(WebTest):
 
         # With administer owners.
         form = self.app.get(reverse('bankaccounts:create'), user='superowner').form
+        self.assertNotIn('balance', form.fields)
+
         edit = {
             'label': 'test_with_perm',
-            'balance': '10.00',
             'balance_initial': '-15.00',
             'currency': 'EUR',
             'owners': (self.owner.pk, self.superowner.pk),
@@ -80,7 +82,6 @@ class FormTestCase(WebTest):
         response = form.submit().maybe_follow()
 
         bankaccount = BankAccount.objects.get(label=edit['label'])
-        self.assertEqual(bankaccount.balance, Decimal(edit['balance']))
         self.assertEqual(bankaccount.balance_initial, Decimal(edit['balance_initial']))
         self.assertEqual(bankaccount.currency, edit['currency'])
         self.assertListEqual(
@@ -124,7 +125,7 @@ class FormTestCase(WebTest):
 
         bankaccount.refresh_from_db()
         self.assertEqual(bankaccount.label, edit['label'])
-        self.assertEqual(bankaccount.balance, Decimal(edit['balance']))
+        self.assertEqual(bankaccount.balance, Decimal(edit['balance']) - 10)
         self.assertEqual(bankaccount.balance_initial, Decimal(edit['balance_initial']))
         self.assertEqual(bankaccount.currency, edit['currency'])
         self.assertListEqual(
@@ -148,7 +149,7 @@ class FormTestCase(WebTest):
 
         bankaccount.refresh_from_db()
         self.assertEqual(bankaccount.label, edit['label'])
-        self.assertEqual(bankaccount.balance, Decimal(edit['balance']))
+        self.assertEqual(bankaccount.balance, Decimal(edit['balance']) + 150)
         self.assertEqual(bankaccount.balance_initial, Decimal(edit['balance_initial']))
         self.assertEqual(bankaccount.currency, edit['currency'])
         self.assertListEqual(
