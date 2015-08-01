@@ -7,6 +7,7 @@ from django.db.models import QuerySet
 from django.utils import timezone
 
 from mymoney.apps.bankaccounts.factories import BankAccountFactory
+from mymoney.apps.bankaccounts.models import BankAccount
 from mymoney.apps.banktransactions.factories import BankTransactionFactory
 from mymoney.apps.banktransactions.models import BankTransaction
 from mymoney.apps.banktransactiontags.factories import BankTransactionTagFactory
@@ -197,14 +198,22 @@ class ModelTestCase(unittest.TestCase):
 
 class ManagerTestCase(unittest.TestCase):
 
-    def test_awaiting_bank_transactions(self):
+    def setUp(self):
 
-        bankaccount = BankAccountFactory(balance=0)
+        for bankaccount in BankAccount.objects.all():
+            bankaccount.delete()
+
+        self.bankaccount = BankAccountFactory(balance=0)
+
+    def tearDown(self):
+        self.bankaccount.delete()
+
+    def test_awaiting_bank_transactions(self):
 
         # Waiting, should be good.
         bts1 = BankTransactionSchedulerFactory(
             amount=Decimal('0'),
-            bankaccount=bankaccount,
+            bankaccount=self.bankaccount,
             type=BankTransactionScheduler.TYPE_MONTHLY,
             state=BankTransactionScheduler.STATE_WAITING,
             last_action=None,
@@ -213,7 +222,7 @@ class ManagerTestCase(unittest.TestCase):
         # Finished, but need to be reroll.
         bts2 = BankTransactionSchedulerFactory(
             amount=Decimal('0'),
-            bankaccount=bankaccount,
+            bankaccount=self.bankaccount,
             type=BankTransactionScheduler.TYPE_MONTHLY,
             state=BankTransactionScheduler.STATE_FINISHED,
             last_action=timezone.make_aware(datetime.datetime(2015, 5, 19, 15)),
@@ -222,7 +231,7 @@ class ManagerTestCase(unittest.TestCase):
         # Finished, but need to be reroll.
         bts3 = BankTransactionSchedulerFactory(
             amount=Decimal('0'),
-            bankaccount=bankaccount,
+            bankaccount=self.bankaccount,
             type=BankTransactionScheduler.TYPE_WEEKLY,
             state=BankTransactionScheduler.STATE_FINISHED,
             last_action=timezone.make_aware(datetime.datetime(2015, 5, 19, 15)),
@@ -231,7 +240,7 @@ class ManagerTestCase(unittest.TestCase):
         # Failed, do nothing.
         bts4 = BankTransactionSchedulerFactory(  # noqa
             amount=Decimal('0'),
-            bankaccount=bankaccount,
+            bankaccount=self.bankaccount,
             type=BankTransactionScheduler.TYPE_MONTHLY,
             state=BankTransactionScheduler.STATE_FAILED,
             last_action=None,
@@ -275,38 +284,36 @@ class ManagerTestCase(unittest.TestCase):
 
     def test_total_debit(self):
 
-        bankaccount = BankAccountFactory(balance=0)
-
-        total = BankTransactionScheduler.objects.get_total_debit(bankaccount)
+        total = BankTransactionScheduler.objects.get_total_debit(self.bankaccount)
         self.assertFalse(total)
 
         BankTransactionSchedulerFactory(
             amount=Decimal('-15'),
-            bankaccount=bankaccount,
+            bankaccount=self.bankaccount,
             type=BankTransactionScheduler.TYPE_MONTHLY,
         )
         BankTransactionSchedulerFactory(
             amount=Decimal('35'),
-            bankaccount=bankaccount,
+            bankaccount=self.bankaccount,
             type=BankTransactionScheduler.TYPE_MONTHLY,
         )
         BankTransactionSchedulerFactory(
             amount=Decimal('-30'),
-            bankaccount=bankaccount,
+            bankaccount=self.bankaccount,
             type=BankTransactionScheduler.TYPE_MONTHLY,
         )
         BankTransactionSchedulerFactory(
             amount=Decimal('-5'),
-            bankaccount=bankaccount,
+            bankaccount=self.bankaccount,
             type=BankTransactionScheduler.TYPE_WEEKLY,
         )
         # Not a scheduler, don't count it.
         BankTransactionFactory(
             amount=Decimal('-10'),
-            bankaccount=bankaccount,
+            bankaccount=self.bankaccount,
         )
 
-        total = BankTransactionScheduler.objects.get_total_debit(bankaccount)
+        total = BankTransactionScheduler.objects.get_total_debit(self.bankaccount)
         self.assertDictEqual(total, {
             BankTransactionScheduler.TYPE_MONTHLY: Decimal(-45),
             BankTransactionScheduler.TYPE_WEEKLY: Decimal(-5),
@@ -314,38 +321,36 @@ class ManagerTestCase(unittest.TestCase):
 
     def test_total_credit(self):
 
-        bankaccount = BankAccountFactory(balance=0)
-
-        total = BankTransactionScheduler.objects.get_total_credit(bankaccount)
+        total = BankTransactionScheduler.objects.get_total_credit(self.bankaccount)
         self.assertFalse(total)
 
         BankTransactionSchedulerFactory(
             amount=Decimal('15'),
-            bankaccount=bankaccount,
+            bankaccount=self.bankaccount,
             type=BankTransactionScheduler.TYPE_MONTHLY,
         )
         BankTransactionSchedulerFactory(
             amount=Decimal('-35'),
-            bankaccount=bankaccount,
+            bankaccount=self.bankaccount,
             type=BankTransactionScheduler.TYPE_MONTHLY,
         )
         BankTransactionSchedulerFactory(
             amount=Decimal('30'),
-            bankaccount=bankaccount,
+            bankaccount=self.bankaccount,
             type=BankTransactionScheduler.TYPE_MONTHLY,
         )
         BankTransactionSchedulerFactory(
             amount=Decimal('5'),
-            bankaccount=bankaccount,
+            bankaccount=self.bankaccount,
             type=BankTransactionScheduler.TYPE_WEEKLY,
         )
         # Not a scheduler, don't count it.
         BankTransactionFactory(
             amount=Decimal('10'),
-            bankaccount=bankaccount,
+            bankaccount=self.bankaccount,
         )
 
-        total = BankTransactionScheduler.objects.get_total_credit(bankaccount)
+        total = BankTransactionScheduler.objects.get_total_credit(self.bankaccount)
         self.assertDictEqual(total, {
             BankTransactionScheduler.TYPE_MONTHLY: Decimal(45),
             BankTransactionScheduler.TYPE_WEEKLY: Decimal(5),
