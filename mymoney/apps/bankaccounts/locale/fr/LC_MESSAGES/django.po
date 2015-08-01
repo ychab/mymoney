@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-25 13:56+0000\n"
+"POT-Creation-Date: 2015-08-01 13:51+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,11 +25,19 @@ msgstr "Libellé"
 msgid "Balance"
 msgstr "Solde"
 
-#: mymoney/apps/bankaccounts/models.py:37
+#: mymoney/apps/bankaccounts/models.py:38
+msgid "Initial balance"
+msgstr "Solde initial"
+
+#: mymoney/apps/bankaccounts/models.py:39
+msgid "Initial balance will automatically update the balance."
+msgstr "Le solde initial va automatiquement mettre à jour le solde."
+
+#: mymoney/apps/bankaccounts/models.py:44
 msgid "Currency"
 msgstr "Devise"
 
-#: mymoney/apps/bankaccounts/models.py:42
+#: mymoney/apps/bankaccounts/models.py:49
 msgid "Owners"
 msgstr "Propriétaires"
 
@@ -49,7 +57,7 @@ msgid "Confirm"
 msgstr "Confirmer"
 
 #: mymoney/apps/bankaccounts/templates/bankaccounts/bankaccount_confirm_delete.html:12
-#: mymoney/apps/bankaccounts/tests/test_forms.py:163
+#: mymoney/apps/bankaccounts/tests/test_forms.py:174
 msgid "Cancel"
 msgstr "Annuler"
 
