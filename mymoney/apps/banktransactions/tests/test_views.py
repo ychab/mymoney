@@ -228,7 +228,10 @@ class ListTemplateTestCase(WebTest):
     def setUpTestData(cls):
         cls.owner = UserFactory(username='owner')
         cls.superowner = UserFactory(username='superowner', user_permissions='admin')
-        cls.bankaccount = BankAccountFactory(owners=[cls.owner, cls.superowner])
+        cls.bankaccount = BankAccountFactory(
+            owners=[cls.owner, cls.superowner],
+            balance_initial=Decimal('10.15'),
+        )
         cls.banktransaction = BankTransactionFactory(bankaccount=cls.bankaccount)
 
     def test_link(self):
@@ -256,6 +259,16 @@ class ListTemplateTestCase(WebTest):
         response = self.app.get(url, user='owner')
         with self.assertRaises(IndexError):
             response.click(href=delete_url)
+
+    @override_settings(LANGUAGE_CODE='en-us')
+    def test_no_previous_reconciled_total(self):
+
+        url = reverse('banktransactions:list', kwargs={
+            'bankaccount_pk': self.bankaccount.pk
+        })
+
+        response = self.app.get(url, user='superowner')
+        self.assertContains(response, '<td>+10.15</td>', html=True)
 
 
 class ListViewTestCase(WebTest):
@@ -837,11 +850,30 @@ class ListViewTestCase(WebTest):
         self.assertListEqual(
             [obj.reconciled_balance for obj in object_list],
             [
-                None,  # None
+                # None, which should be balance initial instead. But this is
+                # done in the template to prevent useless queryset loop just
+                # for this special use case.
+                None,
                 Decimal('-4.41'),  # First reconciled bank transaction.
                 Decimal('0.59'),  # -4.41 + 5
                 Decimal('0.59'),  # Not reconciled, so previous value: 0.59
                 Decimal('7.18'),  # 0.59 + 6.59
+            ],
+        )
+
+        bankaccount.balance_initial = Decimal('150')
+        bankaccount.save()
+
+        response = self.app.get(url, user='superowner')
+        object_list = list(reversed(response.context[0].get('object_list')))
+        self.assertListEqual(
+            [obj.reconciled_balance for obj in object_list],
+            [
+                None,
+                Decimal('150') + Decimal('-4.41'),
+                Decimal('150') + Decimal('0.59'),
+                Decimal('150') + Decimal('0.59'),
+                Decimal('150') + Decimal('7.18'),
             ],
         )
 
@@ -883,7 +915,6 @@ class ListViewTestCase(WebTest):
 
         response = self.app.get(url, user='superowner')
         object_list = list(reversed(response.context[0].get('object_list')))
-
         self.assertListEqual(
             [obj.total_balance for obj in object_list],
             [
@@ -892,5 +923,21 @@ class ListViewTestCase(WebTest):
                 Decimal('-15'),
                 Decimal('-9.41'),
                 Decimal('-2.82'),
+            ],
+        )
+
+        bankaccount.balance_initial = Decimal('150')
+        bankaccount.save()
+
+        response = self.app.get(url, user='superowner')
+        object_list = list(reversed(response.context[0].get('object_list')))
+        self.assertListEqual(
+            [obj.total_balance for obj in object_list],
+            [
+                Decimal('150') + Decimal('-15.59'),
+                Decimal('150') + Decimal('-20'),
+                Decimal('150') + Decimal('-15'),
+                Decimal('150') + Decimal('-9.41'),
+                Decimal('150') + Decimal('-2.82'),
             ],
         )

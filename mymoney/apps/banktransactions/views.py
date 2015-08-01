@@ -155,9 +155,11 @@ class BankTransactionListView(BankTransactionAccessMixin, generic.FormView):
 
         # Unfortunetly, we cannot get it by doing the opposite (i.e :
         # total balance - SUM(futur bt) because with postgreSQL at least,
-        # the last dated bt would give None : total balance - SUM(NULL)
+        # the last dated bt would give None : total balance - SUM(NULL).
+        # It could be usefull because most of the time, we are seeing the
+        # latest pages, not the first (past).
         total_balance_subquery = """
-            SELECT SUM(bt_sub.amount)
+            SELECT SUM(bt_sub.amount) + {balance_initial}
             FROM {table} AS bt_sub
             WHERE
                 bt_sub.bankaccount_id = %s
@@ -169,10 +171,13 @@ class BankTransactionListView(BankTransactionAccessMixin, generic.FormView):
                         bt_sub.id <= {table}.id
                     )
                 )
-            """.format(table=BankTransaction._meta.db_table)
+            """.format(
+            table=BankTransaction._meta.db_table,
+            balance_initial=self.bankaccount.balance_initial,
+        )
 
         reconciled_balance_subquery = """
-            SELECT SUM(bt_sub_r.amount)
+            SELECT SUM(bt_sub_r.amount) + {balance_initial}
             FROM {table} AS bt_sub_r
             WHERE
                 bt_sub_r.bankaccount_id = %s
@@ -185,7 +190,10 @@ class BankTransactionListView(BankTransactionAccessMixin, generic.FormView):
                         AND
                         bt_sub_r.id <= {table}.id
                     )
-                )""".format(table=BankTransaction._meta.db_table)
+                )""".format(
+            table=BankTransaction._meta.db_table,
+            balance_initial=self.bankaccount.balance_initial,
+        )
 
         qs = qs.extra(
             select=OrderedDict([

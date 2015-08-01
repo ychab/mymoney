@@ -1,5 +1,6 @@
 {% load i18n core_tags %}
 <div class="balances-summary">
+    <span><strong>{% trans "Initial balance: " %}</strong>{{ bankaccount.balance_initial|currency_positive:bankaccount.currency }}</span>
     <span><strong>{% trans "Futur balance: " %}</strong>{{ bankaccount.balance|currency_positive:bankaccount.currency }}</span>
     <span><strong>{% trans "Current balance: " %}</strong>{{ current_balance|currency_positive:bankaccount.currency }}</span>
     <span><strong>{% trans "Reconciled balance: " %}</strong>{{ reconciled_balance|currency_positive:bankaccount.currency }}</span>

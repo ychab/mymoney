@@ -11,7 +11,7 @@
                 <th>{% trans "Credit" %}</th>
                 <th>{% trans "Total balance" %}</th>
                 <th>{% trans "Reconciled balance" %}</th>
-                <th>{% trans "Payment method" %}</th>
+                <th>{% trans "Payment with" %}</th>
                 <th>{% trans "Status" %}</th>
                 <th>{% trans "Scheduled" %}</th>
                 <th>{% trans "Tags" %}</th>
@@ -57,7 +57,7 @@
                 {% if banktransaction.reconciled_balance != none %}
                 <td>{{ banktransaction.reconciled_balance|localize_positive }}</td>
                 {% else %}
-                <td></td>
+                <td>{{ bankaccount.balance_initial|localize_positive }}</td>
                 {% endif %}
 
                 <td>{% payment_method banktransaction.payment_method %}</td>
