@@ -15,7 +15,7 @@ source "$V_ENV_PATH"/bin/activate
 
 cd "$(dirname "$0")/.."
 
-python manage.py deleteorphansbankaccounts
+python manage.py deleteorphansbankaccounts --settings=mymoney.settings.production
 
 deactivate
 
