@@ -23,3 +23,4 @@ class BankTransactionSchedulerUpdateForm(BankTransactionUpdateForm):
 class BankTransactionSchedulerCreateForm(BankTransactionSchedulerUpdateForm):
 
     start_now = forms.BooleanField(label=_('Start it now?'), required=False)
+    redirect = forms.BooleanField(label=_('Stay on page?'), required=False)

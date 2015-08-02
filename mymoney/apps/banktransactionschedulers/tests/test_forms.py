@@ -202,3 +202,44 @@ class FormTestCase(WebTest):
         )
         with self.assertRaises(BankTransactionScheduler.DoesNotExist):
             banktransactionscheduler.refresh_from_db()
+
+    def test_redirect_form(self):
+
+        # Check on create form.
+        url = reverse('banktransactionschedulers:create', kwargs={
+            'bankaccount_pk': self.bankaccount.pk
+        })
+        form = self.app.get(url, user='superowner').form
+        self.assertFalse(form['redirect'].checked)
+        edit = {
+            'label': 'test redirect',
+            'amount': '-50',
+            'redirect': True,
+        }
+        for name, value in edit.items():
+            form[name] = value
+        response = form.submit()
+        self.assertRedirects(response, url + '?self-redirect=1')
+        response = response.maybe_follow()
+        form = response.form
+        self.assertTrue(form['redirect'].checked)
+
+        edit = {
+            'label': 'test redirect',
+            'amount': '-50',
+            'redirect': False,
+        }
+        for name, value in edit.items():
+            form[name] = value
+        response = form.submit()
+        self.assertRedirects(response, reverse('banktransactionschedulers:list', kwargs={
+            'bankaccount_pk': self.bankaccount.pk,
+        }))
+
+        # Not on update form.
+        scheduler = BankTransactionSchedulerFactory(bankaccount=self.bankaccount)
+        url = reverse('banktransactionschedulers:update', kwargs={
+            'pk': scheduler.pk
+        })
+        form = self.app.get(url, user='superowner').form
+        self.assertNotIn('redirect', form.fields)

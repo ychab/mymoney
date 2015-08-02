@@ -1,5 +1,6 @@
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.urlresolvers import reverse
+from django.http import HttpResponseRedirect
 from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 
@@ -64,6 +65,13 @@ class BankTransactionSchedulerCreateView(BankTransactionAccessMixin,
     )
     permissions = ('banktransactionschedulers.add_banktransactionscheduler',)
 
+    def get_initial(self):
+
+        initial = super(BankTransactionSchedulerCreateView, self).get_initial()
+        if self.request.GET.get('self-redirect', False):
+            initial['redirect'] = True
+        return initial
+
     def form_valid(self, form):
         response = (
             super(BankTransactionSchedulerCreateView, self).form_valid(form)
@@ -71,6 +79,12 @@ class BankTransactionSchedulerCreateView(BankTransactionAccessMixin,
 
         if form.cleaned_data['start_now']:
             self.object.clone()
+
+        if form.cleaned_data['redirect']:
+            url_redirect = reverse('banktransactionschedulers:create', kwargs={
+                'bankaccount_pk': self.object.bankaccount.pk,
+            }) + '?self-redirect=1'
+            return HttpResponseRedirect(url_redirect)
 
         return response
 
