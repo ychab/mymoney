@@ -20,6 +20,13 @@
 {% block content %}
 <form action="" method="post">{% csrf_token %}
     {{ form.as_p }}
+    {% if object.pk %}
+    <div class="btn-group" role="group">
+        <input class="btn btn-success" type="submit" value="{% trans "Save" %}" />
+        <a href="{% url 'banktransactiontags:delete' object.pk %}" class="btn btn-danger">{% trans "Delete" %}</a>
+    </div>
+    {% else %}
     <input class="btn btn-success" type="submit" value="{% trans "Save" %}" />
+    {% endif %}
 </form>
 {% endblock %}
