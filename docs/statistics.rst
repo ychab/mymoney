@@ -15,7 +15,7 @@ Ratio
 `````
 
 Filter type: sum or single
-+++++++++++++++++++++++++
+++++++++++++++++++++++++++
 
 Ratio statistics display results grouped by tags. To have relevant percentage,
 numbers compared must be of the same sign (positive or negative). That's why
