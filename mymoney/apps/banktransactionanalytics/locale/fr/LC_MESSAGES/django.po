@@ -34,7 +34,7 @@ msgstr "Revenus"
 
 #: mymoney/apps/banktransactionanalytics/forms.py:28
 msgid "Single"
-msgstr "Unique"
+msgstr "Unitaire"
 
 #: mymoney/apps/banktransactionanalytics/forms.py:39
 msgid "Doughnut"
