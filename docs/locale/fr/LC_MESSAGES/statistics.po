@@ -20,8 +20,9 @@ msgid ""
 "You can check statistics for a given bank account. To do so, go on the bank "
 "account page and click on the menu tab item *Statistics*. You can then "
 "switch between two view modes:"
-msgstr "Vous pouvez visualiser les statistiques d'un compte bancaire. Pour "
-"cela, allez sur la page du compte bancaire et cliquez sur le lien du menu "
+msgstr ""
+"Vous pouvez visualiser les statistiques d'un compte bancaire. Pour cela, "
+"allez sur la page du compte bancaire et cliquez sur le lien du menu "
 "*Statistiques*. Vous pouvez ensuite basculer entre deux types de vues :"
 
 #: ../../statistics.rst:8
@@ -39,3 +40,61 @@ msgid ""
 msgstr ""
 "Chaques rapports fournissent des filtres et un résumé. Chaques résumés ont "
 "plus de détails quand vous cliquez sur l'un de ces éléments."
+
+#: ../../statistics.rst:15
+msgid "Ratio"
+msgstr "Proportionnel"
+
+#: ../../statistics.rst:20
+msgid ""
+"Ratio statistics display results grouped by tags. To have relevant "
+"percentage, numbers compared must be of the same sign (positive or "
+"negative). That's why there is two *sub-types*:"
+msgstr ""
+"Les statistiques proportionnelles affichent des résultats groupés par "
+"étiquettes. Afin d'obtenir des pourcentages pertinents, les nombres comparés"
+" doivent être du même signe (positif ou négatif). C'est pourquoi il existe "
+"deux sous-types :"
+
+#: ../../statistics.rst:24
+msgid "expenses"
+msgstr "dépenses"
+
+#: ../../statistics.rst:25
+msgid "wages"
+msgstr "revenus"
+
+#: ../../statistics.rst:27
+msgid ""
+"For an expense search with *single* mode, **each negative bank "
+"transactions** are used. For an expenses search with *sum* mode, **each "
+"negative sum** of tags are used."
+msgstr ""
+"Pour une recherche de dépenses en mode unitaire, **chaques transactions "
+"bancaires négatives** sont utilisées. Pour une recherche de dépenses en mode"
+" *somme*, **chaques sommes négatives** d'étiquettes sont utilisées."
+
+#: ../../statistics.rst:31
+msgid ""
+"For example, imagine you do some shopping for $100. Unfortunetly, you "
+"discover that an item isn't good. You return it and get a refund of $25. "
+"With *single* type filter, the amount used would be -$100. Whereas with "
+"*sum* type filter, the amount used would be -100 + 25 = -$75."
+msgstr ""
+"Par exemple, imaginez que vous avez fait du shopping pour 100€. "
+"Malheureusement, vous découvrez qu'un bien n'est pas bon. Vous le retourné "
+"et vous êtes remboursé de 25€. Avec le filtre type *unitaire*, le montant "
+"utilisé sera 100€. Alors qu'avec le filtre type *somme*, le montant utilisé "
+"sera de -100 + 25 = 75€."
+
+#: ../../statistics.rst:36
+msgid ""
+"Most of the time, the desired mode should be *sum*, that's why this is the "
+"default mode."
+msgstr ""
+"La plupart du temps, le mode le plus désiré sera *somme*, c'est pourquoi "
+"c'est le mode par défaut."
+
+#: ../../statistics.rst:18
+msgid "Filter type: sum or single"
+msgstr "Filtre type: somme ou unitaire"
