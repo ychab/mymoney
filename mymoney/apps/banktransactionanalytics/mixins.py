@@ -33,7 +33,7 @@ class RatioViewMixin(SessionViewMixin):
 
     _session_key = 'banktransactionanalyticratioform'
 
-    @cached_property
+    @property
     def base_queryset(self):
 
         qs = BankTransaction.objects.filter(
@@ -46,10 +46,10 @@ class RatioViewMixin(SessionViewMixin):
             date__range=(filters['date_start'], filters['date_end']),
         )
 
-        if filters['type'] == RatioForm.CREDIT:
-            qs = qs.filter(amount__gt=0)
-        else:
+        if filters['type'] == RatioForm.SINGLE_DEBIT:
             qs = qs.filter(amount__lt=0)
+        elif filters['type'] == RatioForm.SINGLE_CREDIT:
+            qs = qs.filter(amount__gt=0)
 
         if 'reconciled' in filters:
             qs = qs.filter(reconciled=filters['reconciled'])

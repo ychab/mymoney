@@ -74,7 +74,7 @@ class AccessTestCase(TestCase):
             'filters': {
                 'date_start': '2015-06-22',
                 'date_end': '2015-06-22',
-                'type': RatioForm.DEBIT,
+                'type': RatioForm.SINGLE_DEBIT,
             },
         }
         session.save()
@@ -88,7 +88,7 @@ class AccessTestCase(TestCase):
             'filters': {
                 'date_start': '2015-06-22',
                 'date_end': '2015-06-22',
-                'type': RatioForm.DEBIT,
+                'type': RatioForm.SINGLE_DEBIT,
             },
         }
         session.save()
@@ -176,7 +176,7 @@ class RatioViewTestCase(WebTest):
 
         form = self.app.get(self.url, user='owner').form
 
-        self.assertEqual(form['type'].value, RatioForm.DEBIT)
+        self.assertEqual(form['type'].value, RatioForm.SUM_DEBIT)
         self.assertEqual(form['chart'].value, RatioForm.CHART_DOUGHNUT)
         self.assertEqual(form['date_start'].value, '')
         self.assertEqual(form['date_end'].value, '')
@@ -186,7 +186,7 @@ class RatioViewTestCase(WebTest):
         self.assertEqual(form['sum_max'].value, '')
 
         fields = {
-            'type': RatioForm.CREDIT,
+            'type': RatioForm.SINGLE_CREDIT,
             'chart': RatioForm.CHART_POLAR,
             'date_start': '2015-05-11',
             'date_end': '2015-05-11',
@@ -218,7 +218,7 @@ class RatioViewTestCase(WebTest):
         self.assertEqual(fields['sum_max'], form['sum_max'].value)
 
         # Test manual reset
-        form['type'] = RatioForm.DEBIT
+        form['type'] = RatioForm.SUM_DEBIT
         form['chart'] = RatioForm.CHART_DOUGHNUT
         form['date_start'] = ''
         form['date_end'] = ''
@@ -230,7 +230,7 @@ class RatioViewTestCase(WebTest):
         form = response.form
 
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(form['type'].value, RatioForm.DEBIT)
+        self.assertEqual(form['type'].value, RatioForm.SUM_DEBIT)
         self.assertEqual(form['chart'].value, RatioForm.CHART_DOUGHNUT)
         self.assertEqual(form['date_start'].value, '')
         self.assertEqual(form['date_end'].value, '')
@@ -285,7 +285,7 @@ class RatioViewTestCase(WebTest):
         form = form.submit('reset').maybe_follow().form
 
         fields = {
-            'type': RatioForm.CREDIT,
+            'type': RatioForm.SINGLE_CREDIT,
             'chart': RatioForm.CHART_POLAR,
             'date_start': '2015-05-11',
             'date_end': '2015-05-11',
@@ -303,7 +303,7 @@ class RatioViewTestCase(WebTest):
         form.submit('reset').maybe_follow()
 
         form = self.app.get(self.url, user='owner').form
-        self.assertEqual(form['type'].value, RatioForm.DEBIT)
+        self.assertEqual(form['type'].value, RatioForm.SUM_DEBIT)
         self.assertEqual(form['chart'].value, RatioForm.CHART_DOUGHNUT)
         self.assertFalse(form['date_start'].value)
         self.assertFalse(form['date_end'].value)
@@ -352,6 +352,7 @@ class RatioQuerysetTestCase(WebTest):
 
         # Test without bank transactions.
         form = self.app.get(url, user='owner').form
+        form['type'] = RatioForm.SINGLE_DEBIT
         form['date_start'] = '2012-06-10'
         form['date_end'] = '2018-06-20'
         response = form.submit('filter').maybe_follow()
@@ -416,6 +417,7 @@ class RatioQuerysetTestCase(WebTest):
             tag=self.banktransactiontags[0],
         )
 
+        # No tags
         bt8 = BankTransactionFactory(
             bankaccount=bankaccount,
             amount=Decimal('865.23'),
@@ -434,6 +436,7 @@ class RatioQuerysetTestCase(WebTest):
 
         # Default filter.
         form = form.submit('reset').maybe_follow().form
+        form['type'] = RatioForm.SINGLE_DEBIT
         form['date_start'] = '2015-06-10'
         form['date_end'] = '2015-06-20'
         response = form.submit('filter').maybe_follow()
@@ -477,7 +480,7 @@ class RatioQuerysetTestCase(WebTest):
 
         # Type filter.
         form = form.submit('reset').maybe_follow().form
-        form['type'] = RatioForm.CREDIT
+        form['type'] = RatioForm.SINGLE_CREDIT
         form['date_start'] = '2015-06-10'
         form['date_end'] = '2015-06-20'
         response = form.submit('filter').maybe_follow()
@@ -515,7 +518,7 @@ class RatioQuerysetTestCase(WebTest):
 
         # Date filter.
         form = form.submit('reset').maybe_follow().form
-        form['type'] = RatioForm.DEBIT
+        form['type'] = RatioForm.SINGLE_DEBIT
         form['date_start'] = '2016-06-10'
         form['date_end'] = '2016-06-20'
         response = form.submit('filter').maybe_follow()
@@ -524,7 +527,7 @@ class RatioQuerysetTestCase(WebTest):
         self.assertNotIn('rows', response.context)
 
         form = form.submit('reset').maybe_follow().form
-        form['type'] = RatioForm.DEBIT
+        form['type'] = RatioForm.SINGLE_DEBIT
         form['date_start'] = '2015-06-13'
         form['date_end'] = '2015-06-13'
         response = form.submit('filter').maybe_follow()
@@ -557,7 +560,7 @@ class RatioQuerysetTestCase(WebTest):
 
         # Reconciled filter
         form = form.submit('reset').maybe_follow().form
-        form['type'] = RatioForm.DEBIT
+        form['type'] = RatioForm.SINGLE_DEBIT
         form['date_start'] = '2015-06-13'
         form['date_end'] = '2015-06-18'
         form['reconciled'] = '2'
@@ -595,7 +598,7 @@ class RatioQuerysetTestCase(WebTest):
         )
 
         form = form.submit('reset').maybe_follow().form
-        form['type'] = RatioForm.DEBIT
+        form['type'] = RatioForm.SINGLE_DEBIT
         form['date_start'] = '2015-06-13'
         form['date_end'] = '2015-06-18'
         form['reconciled'] = '3'
@@ -634,7 +637,7 @@ class RatioQuerysetTestCase(WebTest):
 
         # Tags filter.
         form = form.submit('reset').maybe_follow().form
-        form['type'] = RatioForm.DEBIT
+        form['type'] = RatioForm.SINGLE_DEBIT
         form['date_start'] = '2015-06-13'
         form['date_end'] = '2015-06-18'
         form['tags'] = [self.banktransactiontags[0].pk]
@@ -667,7 +670,7 @@ class RatioQuerysetTestCase(WebTest):
         )
 
         form = form.submit('reset').maybe_follow().form
-        form['type'] = RatioForm.DEBIT
+        form['type'] = RatioForm.SINGLE_DEBIT
         form['date_start'] = '2015-06-13'
         form['date_end'] = '2015-06-18'
         form['tags'] = [
@@ -708,7 +711,7 @@ class RatioQuerysetTestCase(WebTest):
         )
 
         form = form.submit('reset').maybe_follow().form
-        form['type'] = RatioForm.DEBIT
+        form['type'] = RatioForm.SINGLE_DEBIT
         form['date_start'] = '2015-06-13'
         form['date_end'] = '2015-06-18'
         form['tags'] = [self.banktransactiontags[1].pk]
@@ -723,7 +726,7 @@ class RatioQuerysetTestCase(WebTest):
 
         # Sum filter
         form = form.submit('reset').maybe_follow().form
-        form['type'] = RatioForm.DEBIT
+        form['type'] = RatioForm.SINGLE_DEBIT
         form['date_start'] = '2015-06-13'
         form['date_end'] = '2015-06-18'
         form['sum_min'] = '-200'
@@ -761,7 +764,7 @@ class RatioQuerysetTestCase(WebTest):
         )
 
         form = form.submit('reset').maybe_follow().form
-        form['type'] = RatioForm.DEBIT
+        form['type'] = RatioForm.SINGLE_DEBIT
         form['date_start'] = '2015-06-13'
         form['date_end'] = '2015-06-18'
         form['sum_max'] = '-100'
@@ -799,7 +802,7 @@ class RatioQuerysetTestCase(WebTest):
         )
 
         form = form.submit('reset').maybe_follow().form
-        form['type'] = RatioForm.DEBIT
+        form['type'] = RatioForm.SINGLE_DEBIT
         form['date_start'] = '2015-06-13'
         form['date_end'] = '2015-06-18'
         form['sum_min'] = '-200'
@@ -830,6 +833,79 @@ class RatioQuerysetTestCase(WebTest):
         self.assertListEqual(
             [row['value'] for row in json.loads(response.context['chart_data'])['data']],
             [15.78],
+        )
+
+        # Sum debit type
+        form = form.submit('reset').maybe_follow().form
+        form['type'] = RatioForm.SUM_DEBIT
+        form['date_start'] = '2015-06-10'
+        form['date_end'] = '2015-06-20'
+        response = form.submit('filter').maybe_follow()
+        self.assertEqual(
+            response.context['total'],
+            (bt1.amount + bt2.amount + bt3.amount) + bt4.amount,
+        )
+        self.assertEqual(
+            response.context['sub_total'],
+            (bt1.amount + bt2.amount + bt3.amount) + bt4.amount,
+        )
+        self.assertListEqual(
+            [{
+                'tag_id': row['tag_id'],
+                'sum': row['sum'],
+                'percentage': row['percentage']
+            } for row in response.context['rows']],
+            [
+                {
+                    "tag_id": self.banktransactiontags[0].pk,
+                    "sum": bt1.amount + bt2.amount + bt3.amount,  # Decimal("-504.29")
+                    "percentage": Decimal("79.01"),
+                },
+                {
+                    "tag_id": self.banktransactiontags[2].pk,
+                    "sum": bt4.amount,  # Decimal("-134.00")
+                    "percentage": Decimal("20.99"),
+                },
+            ],
+        )
+        self.assertListEqual(
+            [row['value'] for row in json.loads(response.context['chart_data'])['data']],
+            [79.01, 20.99],
+        )
+
+        # Sum credit type and reconciled
+        form = form.submit('reset').maybe_follow().form
+        form['type'] = RatioForm.SUM_CREDIT
+        form['date_start'] = '2015-06-10'
+        form['date_end'] = '2015-06-20'
+        form['reconciled'] = '2'
+        response = form.submit('filter').maybe_follow()
+        self.assertEqual(
+            response.context['total'],
+            bt1.amount + bt2.amount
+        )
+        self.assertEqual(
+            response.context['sub_total'],
+            bt1.amount + bt2.amount
+        )
+
+        self.assertListEqual(
+            [{
+                'tag_id': row['tag_id'],
+                'sum': row['sum'],
+                'percentage': row['percentage']
+            } for row in response.context['rows']],
+            [
+                {
+                    "tag_id": self.banktransactiontags[0].pk,
+                    "sum": bt1.amount + bt2.amount,
+                    "percentage": Decimal("100.00"),
+                },
+            ],
+        )
+        self.assertListEqual(
+            [row['value'] for row in json.loads(response.context['chart_data'])['data']],
+            [100.00],
         )
 
 
@@ -930,6 +1006,7 @@ class RatioSummaryViewTestCase(WebTest):
 
         # Test without bank transactions and init filters.
         form = self.app.get(url_form, user='owner').form
+        form['type'] = RatioForm.SINGLE_DEBIT
         form['date_start'] = '2015-06-01'
         form['date_end'] = '2015-06-30'
         form.submit('filter').maybe_follow()
@@ -1030,6 +1107,7 @@ class RatioSummaryViewTestCase(WebTest):
 
         response = form.submit('reset').maybe_follow()
         form = response.form
+        form['type'] = RatioForm.SINGLE_DEBIT
         form['date_start'] = '2012-05-10'
         form['date_end'] = '2018-07-20'
         form['reconciled'] = '2'
@@ -1042,6 +1120,7 @@ class RatioSummaryViewTestCase(WebTest):
 
         response = form.submit('reset').maybe_follow()
         form = response.form
+        form['type'] = RatioForm.SINGLE_DEBIT
         form['date_start'] = '2012-05-10'
         form['date_end'] = '2018-07-20'
         form['reconciled'] = '3'
@@ -1050,6 +1129,18 @@ class RatioSummaryViewTestCase(WebTest):
         self.assertQuerysetEqual(
             response.context['banktransactions'],
             [repr(bt3)],
+        )
+
+        response = form.submit('reset').maybe_follow()
+        form = response.form
+        form['type'] = RatioForm.SUM_DEBIT
+        form['date_start'] = '2012-06-01'
+        form['date_end'] = '2018-06-30'
+        form.submit('filter').maybe_follow()
+        response = self.app.get(url_summary, user='owner')
+        self.assertQuerysetEqual(
+            response.context['banktransactions'],
+            [repr(bt3), repr(bt1), repr(bt2)],
         )
 
     @override_settings(LANGUAGE_CODE='en-us')

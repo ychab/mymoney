@@ -16,13 +16,21 @@ class RatioForm(forms.Form):
     Form to display bank transaction sums grouped by tags.
     """
 
-    CREDIT = 'credit'
-    DEBIT = 'debit'
+    SINGLE_CREDIT = 'single_credit'
+    SINGLE_DEBIT = 'single_debit'
+    SUM_CREDIT = 'sum_credit'
+    SUM_DEBIT = 'sum_debit'
     TYPES = (
-        (CREDIT, ugettext_lazy('Income')),
-        (DEBIT, ugettext_lazy('Expenses')),
+        (ugettext_lazy('Sum'), (
+            (SUM_DEBIT, ugettext_lazy('Expenses')),
+            (SUM_CREDIT, ugettext_lazy('Income')),
+        )),
+        (ugettext_lazy('Single'), (
+            (SINGLE_DEBIT, ugettext_lazy('Expenses')),
+            (SINGLE_CREDIT, ugettext_lazy('Income')),
+        )),
     )
-    type = forms.ChoiceField(choices=TYPES, initial=DEBIT)
+    type = forms.ChoiceField(choices=TYPES, initial=SUM_DEBIT)
 
     CHART_DOUGHNUT = 'doughtnut'
     CHART_PIE = 'pie'

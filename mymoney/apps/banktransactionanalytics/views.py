@@ -149,9 +149,34 @@ class RatioView(BankTransactionAccessMixin, RatioViewMixin, generic.FormView):
 
         return context
 
+    @cached_property
+    def base_queryset(self):
+
+        qs = super(RatioView, self).base_queryset
+
+        filters = self.session_data.get('filters', {})
+        if filters['type'] in (RatioForm.SUM_CREDIT, RatioForm.SUM_DEBIT):
+
+            qs = qs.values('tag', 'tag__name')
+            qs = qs.annotate(sum=Sum('amount'))
+
+            if filters['type'] == RatioForm.SUM_CREDIT:
+                qs = qs.filter(sum__gt=0)
+            else:
+                qs = qs.filter(sum__lt=0)
+
+        return qs
+
     @property
     def total_queryset(self):
-        return self.base_queryset.aggregate(total=Sum('amount'))['total']
+
+        filters = self.session_data.get('filters', {})
+        if filters['type'] in (RatioForm.SINGLE_CREDIT, RatioForm.SINGLE_DEBIT):
+            field = 'amount'
+        else:
+            field = 'sum'
+
+        return self.base_queryset.aggregate(total=Sum(field))['total']
 
     @property
     def tag_queryset(self):
@@ -162,13 +187,10 @@ class RatioView(BankTransactionAccessMixin, RatioViewMixin, generic.FormView):
         if 'tags' in filters:
             qs = qs.filter(tag__in=filters['tags'])
 
-        qs = qs.values(
-            'tag', 'tag__name',
-        ).annotate(
-            sum=Sum('amount')
-        ).order_by(
-            'sum' if filters['type'] == RatioForm.DEBIT else '-sum'
-        )
+        # Always group result by tags.
+        if filters['type'] in (RatioForm.SINGLE_CREDIT, RatioForm.SINGLE_DEBIT):
+            qs = qs.values('tag', 'tag__name')
+            qs = qs.annotate(sum=Sum('amount'))
 
         if 'sum_min' in filters and 'sum_max' in filters:
             qs = qs.filter(sum__range=(
@@ -179,6 +201,11 @@ class RatioView(BankTransactionAccessMixin, RatioViewMixin, generic.FormView):
             qs = qs.filter(sum__gte=filters['sum_min'])
         elif 'sum_max' in filters:
             qs = qs.filter(sum__lte=filters['sum_max'])
+
+        if filters['type'] in (RatioForm.SINGLE_DEBIT, RatioForm.SUM_DEBIT):
+            qs = qs.order_by('sum')
+        else:
+            qs = qs.order_by('-sum')
 
         return qs
 
