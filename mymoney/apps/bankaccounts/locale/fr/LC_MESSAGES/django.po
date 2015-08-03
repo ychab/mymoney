@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-01 13:51+0000\n"
+"POT-Creation-Date: 2015-08-03 06:52+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -85,9 +85,13 @@ msgstr "Aucun compte bancaire."
 msgid "Update bank account %(object)s"
 msgstr "Mettre à jour le compte bancaire %(object)s"
 
-#: mymoney/apps/bankaccounts/templates/bankaccounts/bankaccount_update_form.html:14
+#: mymoney/apps/bankaccounts/templates/bankaccounts/bankaccount_update_form.html:15
 msgid "Update"
 msgstr "Mettre à jour"
+
+#: mymoney/apps/bankaccounts/templates/bankaccounts/bankaccount_update_form.html:16
+msgid "Delete"
+msgstr "Supprimer"
 
 #: mymoney/apps/bankaccounts/views.py:22
 #, python-format

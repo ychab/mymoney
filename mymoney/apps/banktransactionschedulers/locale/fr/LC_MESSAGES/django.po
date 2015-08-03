@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-25 13:56+0000\n"
+"POT-Creation-Date: 2015-08-03 06:52+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,6 +20,10 @@ msgstr ""
 #: mymoney/apps/banktransactionschedulers/forms.py:25
 msgid "Start it now?"
 msgstr "Commencer maintenant ?"
+
+#: mymoney/apps/banktransactionschedulers/forms.py:26
+msgid "Stay on page?"
+msgstr "Rester sur la page ?"
 
 #: mymoney/apps/banktransactionschedulers/models.py:85
 msgid "Monthly"
@@ -106,9 +110,15 @@ msgstr "Mettre à jour la planification de transaction bancaire"
 msgid "Scheduled a bank transaction"
 msgstr "Planifier une transaction bancaire"
 
-#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/banktransactionscheduler_form.html:23
+#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/banktransactionscheduler_form.html:25
+#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/banktransactionscheduler_form.html:29
 msgid "Save"
 msgstr "Sauvegarder"
+
+#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/banktransactionscheduler_form.html:26
+#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/banktransactionscheduler_list.html:114
+msgid "Delete"
+msgstr "Supprimer"
 
 #: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/banktransactionscheduler_list.html:4
 #: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/banktransactionscheduler_list.html:5
@@ -172,17 +182,13 @@ msgstr "Infinie"
 msgid "Edit"
 msgstr "Éditer"
 
-#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/banktransactionscheduler_list.html:114
-msgid "Delete"
-msgstr "Supprimer"
-
-#: mymoney/apps/banktransactionschedulers/views.py:63
+#: mymoney/apps/banktransactionschedulers/views.py:64
 #, python-format
 msgid "Bank transaction scheduler %(label)s was created successfully."
 msgstr ""
 "La planification de transaction bancaire %(label)s a été crée avec succès"
 
-#: mymoney/apps/banktransactionschedulers/views.py:85
+#: mymoney/apps/banktransactionschedulers/views.py:99
 #, python-format
 msgid "Bank transaction scheduler %(label)s was updated successfully."
 msgstr ""

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-25 13:56+0000\n"
+"POT-Creation-Date: 2015-08-03 06:52+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -56,6 +56,7 @@ msgid "Unreconcile"
 msgstr "Annuler rapprochement"
 
 #: mymoney/apps/banktransactions/forms.py:92
+#: mymoney/apps/banktransactions/templates/banktransactions/banktransaction_form.html:26
 #: mymoney/apps/banktransactions/templates/banktransactions/list/table_result.html:98
 msgid "Delete"
 msgstr "Supprimer"
@@ -83,12 +84,12 @@ msgid "Active"
 msgstr "Actif"
 
 #: mymoney/apps/banktransactions/models.py:56
-msgid "Inactive"
-msgstr "Inactif"
-
-#: mymoney/apps/banktransactions/models.py:57
 msgid "Ignored"
 msgstr "Ignoré"
+
+#: mymoney/apps/banktransactions/models.py:57
+msgid "Inactive"
+msgstr "Inactif"
 
 #: mymoney/apps/banktransactions/models.py:67
 msgid "Credit card"
@@ -132,8 +133,9 @@ msgstr "Statut"
 msgid ""
 "Depending on its value, determine whether it could alter the bank account "
 "balance or being used by statistics."
-msgstr "En fonction de la valeur, indique si cela peut modifier le solde du "
-"compte bancaire ou être pris en compte pour les statistiques."
+msgstr ""
+"En fonction de la valeur, indique si cela peut modifier le solde du compte "
+"bancaire ou être pris en compte pour les statistiques."
 
 #: mymoney/apps/banktransactions/models.py:101
 #: mymoney/apps/banktransactions/templates/banktransactions/list/table_result.html:9
@@ -147,7 +149,6 @@ msgstr ""
 "le solde du compte bancaire doit être modifié."
 
 #: mymoney/apps/banktransactions/models.py:109
-#: mymoney/apps/banktransactions/templates/banktransactions/list/table_result.html:14
 msgid "Payment method"
 msgstr "Méthode de paiement"
 
@@ -178,7 +179,7 @@ msgstr "Confirmer"
 #: mymoney/apps/banktransactions/templates/banktransactions/banktransaction_confirm_delete.html:12
 #: mymoney/apps/banktransactions/templates/banktransactions/banktransaction_confirm_delete_multiple.html:19
 #: mymoney/apps/banktransactions/tests/test_forms.py:267
-#: mymoney/apps/banktransactions/tests/test_views.py:541
+#: mymoney/apps/banktransactions/tests/test_views.py:557
 msgid "Cancel"
 msgstr "Annuler"
 
@@ -202,7 +203,8 @@ msgstr "Mettre à jour la transaction bancaire"
 msgid "Create a new bank transaction"
 msgstr "Créer une nouvelle transaction bancaire"
 
-#: mymoney/apps/banktransactions/templates/banktransactions/banktransaction_form.html:23
+#: mymoney/apps/banktransactions/templates/banktransactions/banktransaction_form.html:25
+#: mymoney/apps/banktransactions/templates/banktransactions/banktransaction_form.html:29
 msgid "Save"
 msgstr "Sauvegarder"
 
@@ -237,14 +239,18 @@ msgid "Apply"
 msgstr "Appliquer"
 
 #: mymoney/apps/banktransactions/templates/banktransactions/list/summary.html:3
+msgid "Initial balance: "
+msgstr "Solde total"
+
+#: mymoney/apps/banktransactions/templates/banktransactions/list/summary.html:4
 msgid "Futur balance: "
 msgstr "Solde futur : "
 
-#: mymoney/apps/banktransactions/templates/banktransactions/list/summary.html:4
+#: mymoney/apps/banktransactions/templates/banktransactions/list/summary.html:5
 msgid "Current balance: "
 msgstr "Solde actuel : "
 
-#: mymoney/apps/banktransactions/templates/banktransactions/list/summary.html:5
+#: mymoney/apps/banktransactions/templates/banktransactions/list/summary.html:6
 msgid "Reconciled balance: "
 msgstr "Solde pointé : "
 
@@ -263,6 +269,10 @@ msgstr "Solde total"
 #: mymoney/apps/banktransactions/templates/banktransactions/list/table_result.html:13
 msgid "Reconciled balance"
 msgstr "Solde pointé"
+
+#: mymoney/apps/banktransactions/templates/banktransactions/list/table_result.html:14
+msgid "Payment with"
+msgstr "Paiement par"
 
 #: mymoney/apps/banktransactions/templates/banktransactions/list/table_result.html:16
 msgid "Scheduled"
@@ -284,12 +294,12 @@ msgstr "Les transactions bancaires ont été pointées."
 msgid "Undo bank transaction reconciled."
 msgstr "Les transactions bancaires pointées ont été annulées."
 
-#: mymoney/apps/banktransactions/views.py:243
+#: mymoney/apps/banktransactions/views.py:251
 #, python-format
 msgid "Bank transaction %(label)s was created successfully."
 msgstr "La transaction bancaire %(label)s a été crée avec succès."
 
-#: mymoney/apps/banktransactions/views.py:274
+#: mymoney/apps/banktransactions/views.py:282
 #, python-format
 msgid "Bank transaction %(label)s was updated successfully."
 msgstr "La transaction bancaire %(label)s a été mis à jour avec succès."

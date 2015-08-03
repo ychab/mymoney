@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-25 13:56+0000\n"
+"POT-Creation-Date: 2015-08-03 06:52+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,72 +17,83 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: mymoney/apps/banktransactionanalytics/forms.py:22
-msgid "Income"
-msgstr "Revenus"
+#: mymoney/apps/banktransactionanalytics/forms.py:24
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/ratio/overview.html:126
+msgid "Sum"
+msgstr "Somme"
 
-#: mymoney/apps/banktransactionanalytics/forms.py:23
+#: mymoney/apps/banktransactionanalytics/forms.py:25
+#: mymoney/apps/banktransactionanalytics/forms.py:29
 msgid "Expenses"
 msgstr "Dépenses"
 
-#: mymoney/apps/banktransactionanalytics/forms.py:31
+#: mymoney/apps/banktransactionanalytics/forms.py:26
+#: mymoney/apps/banktransactionanalytics/forms.py:30
+msgid "Income"
+msgstr "Revenus"
+
+#: mymoney/apps/banktransactionanalytics/forms.py:28
+msgid "Single"
+msgstr "Unique"
+
+#: mymoney/apps/banktransactionanalytics/forms.py:39
 msgid "Doughnut"
 msgstr "Donut"
 
-#: mymoney/apps/banktransactionanalytics/forms.py:32
+#: mymoney/apps/banktransactionanalytics/forms.py:40
 msgid "Pie"
 msgstr "Camembert"
 
-#: mymoney/apps/banktransactionanalytics/forms.py:33
+#: mymoney/apps/banktransactionanalytics/forms.py:41
 msgid "Polar area"
 msgstr "Cible"
 
-#: mymoney/apps/banktransactionanalytics/forms.py:43
+#: mymoney/apps/banktransactionanalytics/forms.py:51
 msgid "Date start"
 msgstr "Date de début"
 
-#: mymoney/apps/banktransactionanalytics/forms.py:48
+#: mymoney/apps/banktransactionanalytics/forms.py:56
 msgid "Date end"
 msgstr "Date de fin"
 
-#: mymoney/apps/banktransactionanalytics/forms.py:65
+#: mymoney/apps/banktransactionanalytics/forms.py:73
 msgid "Minimum sum"
 msgstr "Somme minimale"
 
-#: mymoney/apps/banktransactionanalytics/forms.py:74
+#: mymoney/apps/banktransactionanalytics/forms.py:82
 msgid "Maximum sum"
 msgstr "Somme maximale"
 
-#: mymoney/apps/banktransactionanalytics/forms.py:84
-#: mymoney/apps/banktransactionanalytics/forms.py:137
+#: mymoney/apps/banktransactionanalytics/forms.py:92
+#: mymoney/apps/banktransactionanalytics/forms.py:145
 msgid "Reconciled?"
 msgstr "Pointé ?"
 
-#: mymoney/apps/banktransactionanalytics/forms.py:93
+#: mymoney/apps/banktransactionanalytics/forms.py:101
 msgid "Date start could not be greater than date end."
 msgstr "La date de début ne doit pas être supérieure à la date de fin."
 
-#: mymoney/apps/banktransactionanalytics/forms.py:101
+#: mymoney/apps/banktransactionanalytics/forms.py:109
 msgid "Minimum sum could not be greater than maximum sum."
 msgstr "La somme minimale ne doit pas être supérieure à la somme maximale."
 
-#: mymoney/apps/banktransactionanalytics/forms.py:116
+#: mymoney/apps/banktransactionanalytics/forms.py:124
 msgid "Line"
 msgstr "Ligne"
 
-#: mymoney/apps/banktransactionanalytics/forms.py:117
+#: mymoney/apps/banktransactionanalytics/forms.py:125
 msgid "Bar"
 msgstr "Barre"
 
-#: mymoney/apps/banktransactionanalytics/forms.py:118
+#: mymoney/apps/banktransactionanalytics/forms.py:126
 msgid "Radar"
 msgstr "Radar"
 
-#: mymoney/apps/banktransactionanalytics/forms.py:123
+#: mymoney/apps/banktransactionanalytics/forms.py:131
 msgid "Week"
 msgstr "Semaine"
 
-#: mymoney/apps/banktransactionanalytics/forms.py:124
+#: mymoney/apps/banktransactionanalytics/forms.py:132
 msgid "Month"
 msgstr "Mois"
 
@@ -127,17 +138,13 @@ msgid "Legend"
 msgstr "Légende"
 
 #: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/ratio/overview.html:124
-#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/trendtime/summary/body.html:10
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/trendtime/summary/body.html:9
 msgid "Tag"
 msgstr "Étiquette"
 
 #: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/ratio/overview.html:125
 msgid "Percentage"
 msgstr "Pourcentage"
-
-#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/ratio/overview.html:126
-msgid "Sum"
-msgstr "Somme"
 
 #: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/ratio/overview.html:142
 #: mymoney/apps/banktransactionanalytics/views.py:136
@@ -149,6 +156,8 @@ msgid "Sub-total"
 msgstr "Sous-total"
 
 #: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/ratio/overview.html:164
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/ratio/summary/body.html:26
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/trendtime/summary/body.html:28
 msgid "Total"
 msgstr "Total"
 
@@ -157,29 +166,29 @@ msgid "There is no result to your search."
 msgstr "Il n'y a aucun résultat à votre recherche."
 
 #: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/ratio/summary/body.html:6
-#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/trendtime/overview.html:54
-#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/trendtime/overview.html:101
 #: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/trendtime/summary/body.html:6
-msgid "Date"
-msgstr "Date"
-
-#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/ratio/summary/body.html:7
-#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/trendtime/summary/body.html:7
 msgid "Label"
 msgstr "Libellé"
 
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/ratio/summary/body.html:7
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/trendtime/overview.html:54
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/trendtime/overview.html:101
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/trendtime/summary/body.html:7
+msgid "Date"
+msgstr "Date"
+
 #: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/ratio/summary/body.html:8
 #: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/trendtime/summary/body.html:8
-msgid "Amount"
-msgstr "Montant"
-
-#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/ratio/summary/body.html:9
-#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/trendtime/summary/body.html:9
 msgid "Reconciled"
 msgstr "Pointé"
 
-#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/ratio/summary/body.html:20
-#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/trendtime/summary/body.html:21
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/ratio/summary/body.html:9
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/trendtime/summary/body.html:10
+msgid "Amount"
+msgstr "Montant"
+
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/ratio/summary/body.html:19
+#: mymoney/apps/banktransactionanalytics/templates/banktransactionanalytics/trendtime/summary/body.html:20
 msgid "Yes"
 msgstr "Oui"
 
