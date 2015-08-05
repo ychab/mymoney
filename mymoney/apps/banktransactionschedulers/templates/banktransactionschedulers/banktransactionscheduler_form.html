@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load i18n %}
+{% load i18n core_tags %}
 
 {% block title %}
 {% if object %}
@@ -14,6 +14,14 @@
 {% trans "Update the scheduled bank transaction" %} {{ object }}
 {% else %}
 {% trans "Scheduled a bank transaction" %}
+{% endif %}
+{% endblock %}
+
+{% block breadcrumb %}
+{% if object %}
+{% breadcrumb request object.bankaccount.pk %}
+{% else %}
+{% breadcrumb request %}
 {% endif %}
 {% endblock %}
 

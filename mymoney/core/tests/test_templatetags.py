@@ -9,12 +9,14 @@ from django.utils.safestring import SafeText
 from django_webtest import WebTest
 
 from mymoney.apps.bankaccounts.factories import BankAccountFactory
+from mymoney.apps.banktransactions.factories import BankTransactionFactory
 from mymoney.apps.banktransactions.models import BankTransaction
 
 from ..factories import UserFactory
 from ..templatetags.core_tags import (
-    currency_positive, display_messages, form_errors_exists, localize_positive,
-    localize_positive_color, merge_form_errors, payment_method
+    breadcrumb, currency_positive, display_messages, form_errors_exists,
+    localize_positive, localize_positive_color, merge_form_errors,
+    payment_method,
 )
 
 
@@ -58,6 +60,53 @@ class TemplateTagsTestCase(unittest.TestCase):
 
         context = payment_method(BankTransaction.PAYMENT_METHOD_CHECK)
         self.assertIsNotNone(context)
+
+    def test_breadcrumb(self):
+
+        bankaccount = BankAccountFactory()
+        kwargs = {
+            "bankaccount_pk": bankaccount.pk,
+        }
+
+        request = mock.Mock(path=reverse('banktransactions:create', kwargs=kwargs))
+        context = breadcrumb(request)
+        self.assertListEqual(
+            [reverse('banktransactions:list', kwargs=kwargs)],
+            [link['href'] for link in context['links']]
+        )
+
+        banktransaction = BankTransactionFactory(bankaccount=bankaccount)
+        request = mock.Mock(path=reverse('banktransactions:update', kwargs={
+            'pk': banktransaction.pk,
+        }))
+        context = breadcrumb(request, banktransaction.bankaccount.pk)
+        self.assertListEqual(
+            [reverse('banktransactions:list', kwargs=kwargs)],
+            [link['href'] for link in context['links']]
+        )
+
+        request = mock.Mock(path=reverse('banktransactionschedulers:create', kwargs=kwargs))
+        context = breadcrumb(request)
+        self.assertListEqual(
+            [
+                reverse('banktransactions:list', kwargs=kwargs),
+                reverse('banktransactionschedulers:list', kwargs=kwargs),
+            ],
+            [link['href'] for link in context['links']]
+        )
+
+        banktransaction = BankTransactionFactory(bankaccount=bankaccount)
+        request = mock.Mock(path=reverse('banktransactionschedulers:update', kwargs={
+            'pk': banktransaction.pk,
+        }))
+        context = breadcrumb(request, banktransaction.bankaccount.pk)
+        self.assertListEqual(
+            [
+                reverse('banktransactions:list', kwargs=kwargs),
+                reverse('banktransactionschedulers:list', kwargs=kwargs),
+            ],
+            [link['href'] for link in context['links']]
+        )
 
 
 class TemplateTagsWebTestCase(WebTest):

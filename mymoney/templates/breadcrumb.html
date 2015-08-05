@@ -1,0 +1,9 @@
+{% if links %}
+<ul class="breadcrumb">
+{% for link in links %}
+    <li{% if forloop.last %} class="active"{% endif %}>
+        <a href="{{ link.href }}">{{ link.text }}</a>
+    </li>
+{% endfor %}
+</ul>
+{% endif %}

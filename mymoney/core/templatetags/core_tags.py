@@ -197,6 +197,43 @@ def payment_method(value):
     return maps[value]
 
 
+@register.inclusion_tag('breadcrumb.html')
+def breadcrumb(request, bankaccount_pk=None):
+    links = []
+    resolver = resolve(request.path)
+
+    if bankaccount_pk is None:
+        bankaccount_pk = resolver.kwargs['bankaccount_pk']
+
+    if resolver.view_name in ("banktransactionschedulers:create",
+                              "banktransactionschedulers:update"):
+        links.append({
+            'href': reverse("banktransactions:list", kwargs={
+                "bankaccount_pk": bankaccount_pk,
+            }),
+            'text': _('Bank account'),
+        })
+        links.append({
+            'href': reverse("banktransactionschedulers:list", kwargs={
+                "bankaccount_pk": bankaccount_pk,
+            }),
+            'text': _("Schedulers"),
+        })
+
+    elif resolver.view_name in ("banktransactions:create",  # pragma: no branch
+                                "banktransactions:update"):
+        links.append({
+            'href': reverse("banktransactions:list", kwargs={
+                "bankaccount_pk": bankaccount_pk,
+            }),
+            'text': _('Bank account'),
+        })
+
+    return {
+        "links": links,
+    }
+
+
 @register.filter
 def merge_form_errors(form):
     """

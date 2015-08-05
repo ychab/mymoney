@@ -36,6 +36,7 @@
         <section>
             <h1 class="page-header">{% block content_title %}{{ title | default:"MyMoney" }}{% endblock %}</h1>
 
+            {% block breadcrumb %}{% endblock %}
             {% block menu_tab %}{% endblock %}
             {% block menu_action %}{% endblock %}
             {% block menu_item %}{% endblock %}
