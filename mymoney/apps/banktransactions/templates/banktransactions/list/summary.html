@@ -1,7 +1,25 @@
 {% load i18n core_tags %}
-<div class="balances-summary">
-    <span><strong>{% trans "Initial balance: " %}</strong>{{ bankaccount.balance_initial|currency_positive:bankaccount.currency }}</span>
-    <span><strong>{% trans "Futur balance: " %}</strong>{{ bankaccount.balance|currency_positive:bankaccount.currency }}</span>
-    <span><strong>{% trans "Current balance: " %}</strong>{{ current_balance|currency_positive:bankaccount.currency }}</span>
-    <span><strong>{% trans "Reconciled balance: " %}</strong>{{ reconciled_balance|currency_positive:bankaccount.currency }}</span>
+<div class="panel panel-primary">
+    <table class="table">
+        <tbody>
+            <tr>
+                <td>
+                    <span class="text-primary">{% trans "Initial balance: " %}</span>
+                    <span class="badge">{{ bankaccount.balance_initial|currency_positive:bankaccount.currency }}</span>
+                </td>
+                <td>
+                    <span class="text-primary">{% trans "Futur balance: " %}</span>
+                    <span class="badge">{{ bankaccount.balance|currency_positive:bankaccount.currency }}</span>
+                </td>
+                <td>
+                    <span class="text-primary">{% trans "Current balance: " %}</span>
+                    <span class="badge">{{ current_balance|currency_positive:bankaccount.currency }}</span>
+                </td>
+                <td>
+                    <span class="text-primary">{% trans "Reconciled balance: " %}</span>
+                    <span class="badge">{{ reconciled_balance|currency_positive:bankaccount.currency }}</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
