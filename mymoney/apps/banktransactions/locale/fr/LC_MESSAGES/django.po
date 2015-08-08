@@ -240,7 +240,7 @@ msgstr "Appliquer"
 
 #: mymoney/apps/banktransactions/templates/banktransactions/list/summary.html:3
 msgid "Initial balance: "
-msgstr "Solde total"
+msgstr "Solde initial : "
 
 #: mymoney/apps/banktransactions/templates/banktransactions/list/summary.html:4
 msgid "Futur balance: "
