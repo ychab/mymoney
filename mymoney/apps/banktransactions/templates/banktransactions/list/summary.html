@@ -1,25 +1,27 @@
 {% load i18n core_tags %}
 <div class="panel panel-primary">
-    <table class="table">
-        <tbody>
-            <tr>
-                <td>
-                    <span class="text-primary">{% trans "Initial balance: " %}</span>
-                    <span class="badge">{{ bankaccount.balance_initial|currency_positive:bankaccount.currency }}</span>
-                </td>
-                <td>
-                    <span class="text-primary">{% trans "Futur balance: " %}</span>
-                    <span class="badge">{{ bankaccount.balance|currency_positive:bankaccount.currency }}</span>
-                </td>
-                <td>
-                    <span class="text-primary">{% trans "Current balance: " %}</span>
-                    <span class="badge">{{ current_balance|currency_positive:bankaccount.currency }}</span>
-                </td>
-                <td>
-                    <span class="text-primary">{% trans "Reconciled balance: " %}</span>
-                    <span class="badge">{{ reconciled_balance|currency_positive:bankaccount.currency }}</span>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="table-responsive">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td>
+                        <span class="text-primary">{% trans "Initial balance: " %}</span>
+                        <span class="badge">{{ bankaccount.balance_initial|currency_positive:bankaccount.currency }}</span>
+                    </td>
+                    <td>
+                        <span class="text-primary">{% trans "Futur balance: " %}</span>
+                        <span class="badge">{{ bankaccount.balance|currency_positive:bankaccount.currency }}</span>
+                    </td>
+                    <td>
+                        <span class="text-primary">{% trans "Current balance: " %}</span>
+                        <span class="badge">{{ current_balance|currency_positive:bankaccount.currency }}</span>
+                    </td>
+                    <td>
+                        <span class="text-primary">{% trans "Reconciled balance: " %}</span>
+                        <span class="badge">{{ reconciled_balance|currency_positive:bankaccount.currency }}</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
