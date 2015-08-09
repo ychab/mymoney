@@ -59,6 +59,7 @@ class BankTransactionSchedulerManager(models.Manager):
                 bankaccount=bankaccount,
                 amount__lt=0,
             )
+            .exclude(status=BankTransactionScheduler.STATUS_INACTIVE)
             .values_list('type')
             .annotate(total=Sum('amount'))
         )
@@ -69,6 +70,7 @@ class BankTransactionSchedulerManager(models.Manager):
                 bankaccount=bankaccount,
                 amount__gt=0,
             )
+            .exclude(status=BankTransactionScheduler.STATUS_INACTIVE)
             .values_list('type')
             .annotate(total=Sum('amount'))
         )

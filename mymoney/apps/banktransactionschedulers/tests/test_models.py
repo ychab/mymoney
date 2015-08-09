@@ -307,6 +307,13 @@ class ManagerTestCase(unittest.TestCase):
             bankaccount=self.bankaccount,
             type=BankTransactionScheduler.TYPE_WEEKLY,
         )
+        # Inactive.
+        BankTransactionSchedulerFactory(
+            amount=Decimal('-5'),
+            bankaccount=self.bankaccount,
+            type=BankTransactionScheduler.TYPE_WEEKLY,
+            status=BankTransactionScheduler.STATUS_INACTIVE,
+        )
         # Not a scheduler, don't count it.
         BankTransactionFactory(
             amount=Decimal('-10'),
@@ -343,6 +350,13 @@ class ManagerTestCase(unittest.TestCase):
             amount=Decimal('5'),
             bankaccount=self.bankaccount,
             type=BankTransactionScheduler.TYPE_WEEKLY,
+        )
+        # Inactive.
+        BankTransactionSchedulerFactory(
+            amount=Decimal('5'),
+            bankaccount=self.bankaccount,
+            type=BankTransactionScheduler.TYPE_WEEKLY,
+            status=BankTransactionScheduler.STATUS_INACTIVE,
         )
         # Not a scheduler, don't count it.
         BankTransactionFactory(
