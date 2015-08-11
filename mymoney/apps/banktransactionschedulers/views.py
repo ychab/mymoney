@@ -7,6 +7,8 @@ from django.views import generic
 from mymoney.apps.banktransactions.mixins import (
     BankTransactionAccessMixin, BankTransactionSaveViewMixin
 )
+from mymoney.apps.banktransactions.models import BankTransaction
+from mymoney.core.utils.dates import GRANULARITY_MONTH, GRANULARITY_WEEK
 
 from .forms import (
     BankTransactionSchedulerCreateForm, BankTransactionSchedulerUpdateForm
@@ -17,6 +19,7 @@ from .models import BankTransactionScheduler
 class BankTransactionSchedulerListView(BankTransactionAccessMixin,
                                        generic.ListView):
     model = BankTransactionScheduler
+    template_name = 'banktransactionschedulers/overview/index.html'
     paginate_by = 50
 
     def get_queryset(self):
@@ -28,29 +31,42 @@ class BankTransactionSchedulerListView(BankTransactionAccessMixin,
 
     def get_context_data(self, **kwargs):
         context = super(BankTransactionSchedulerListView, self).get_context_data(**kwargs)
+        context['bankaccount'] = self.bankaccount
 
-        total_debit = (
-            BankTransactionScheduler.objects.get_total_debit(self.bankaccount)
-        )
-        total_credit = (
-            BankTransactionScheduler.objects.get_total_credit(self.bankaccount)
-        )
+        totals, summary = {}, {}
+        manager = BankTransactionScheduler.objects
 
-        summary = {}
         total = 0
+        totals['debit'] = manager.get_total_debit(self.bankaccount)
+        totals['credit'] = manager.get_total_credit(self.bankaccount)
+
         for bts_type in BankTransactionScheduler.TYPES:
             key = bts_type[0]
-            summary[key] = {
-                'type': bts_type[1],
-                'credit': total_credit[key] if key in total_credit else 0,
-                'debit': total_debit[key] if key in total_debit else 0,
-            }
-            summary[key]['total'] = summary[key]['credit'] + summary[key]['debit']
-            total += summary[key]['total']
+            if key in totals['debit'] or key in totals['credit']:
+
+                if key == BankTransactionScheduler.TYPE_WEEKLY:
+                    granularity = GRANULARITY_WEEK
+                else:
+                    granularity = GRANULARITY_MONTH
+
+                total_credit = totals['credit'].get(key, 0)
+                total_debit = totals['debit'].get(key, 0)
+                used = BankTransaction.objects.get_total_unscheduled_period(
+                    self.bankaccount, granularity) or 0
+
+                summary[key] = {
+                    'type': bts_type[1],
+                    'credit': total_credit,
+                    'debit': total_debit,
+                    'used': used,
+                    'remaining': total_credit + total_debit + used,
+                }
+                summary[key]['total'] = total_credit + total_debit
+                total += summary[key]['total']
 
         context['summary'] = summary
         context['total'] = total
-        context['currency'] = self.bankaccount.currency
+
         return context
 
 

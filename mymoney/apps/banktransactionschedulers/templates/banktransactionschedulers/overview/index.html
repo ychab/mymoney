@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load i18n core_tags %}
+
+{% block title %}{% trans "My scheduled bank transactions" %}{% endblock %}
+{% block content_title %}{% trans "My scheduled bank transactions" %}{% endblock %}
+
+{% block menu_tab %}
+{% menu_tab_links request %}
+{% endblock %}
+
+{% block menu_action %}
+{% menu_action_links request %}
+{% endblock %}
+
+{% block content %}
+{% include 'banktransactionschedulers/overview/summary.html' %}
+{% include 'banktransactionschedulers/overview/list.html' %}
+{% endblock %}

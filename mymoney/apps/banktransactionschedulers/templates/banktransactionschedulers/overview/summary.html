@@ -1,0 +1,58 @@
+{% load i18n core_tags %}
+<fieldset class="panel-group" id="accordion" role="tablist">
+    <div  class="panel panel-default">
+
+        <div class="panel-heading" role="tab">
+            <h4 class="panel-title">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#accordion-children">
+                    <span class="collapse-indicator glyphicon glyphicon-collapse-down"></span> {% trans "Summary" %}
+                </a>
+            </h4>
+        </div>
+        <div id="accordion-children" class="panel-collapse collapse">
+            <div class="panel-body">
+
+                <div class="table-responsive">
+                    <table class="table table-condensed table-hover">
+                        <thead>
+                            <tr>
+                                <th>{% trans "Type" %}</th>
+                                <th>{% trans "Credit" %}</th>
+                                <th>{% trans "Debit" %}</th>
+                                <th>{% trans "Allowable living expenses" %}</th>
+                                <th>{% trans "Total" %}</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for type, row in summary.items %}
+                            <tr>
+                                <td>{{ row.type }}</td>
+                                <td>{{ row.credit|currency_positive:bankaccount.currency }}</td>
+                                <td>{{ row.debit|currency_positive:bankaccount.currency }}</td>
+                                <td>{{ row.remaining|currency_positive:bankaccount.currency }} ({{ row.used|currency_positive:bankaccount.currency }})</td>
+                                <td>{{ row.total|currency_positive:bankaccount.currency }}</td>
+                            </tr>
+                            {% if forloop.last and summary|length > 1 %}
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td data-summary-total="{{ total }}">
+                                    <strong>{{ total|currency_positive:bankaccount.currency }}</strong>
+                                </td>
+                            </tr>
+                            {% endif %}
+                            {% empty %}
+                            <tr>
+                                <td>{% trans "No scheduled bank transaction yet." %}</tr>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</fieldset>

@@ -1,12 +1,16 @@
 import datetime
+from decimal import Decimal
+from unittest import mock
 
 from django.core.urlresolvers import reverse
-from django.test import TestCase, modify_settings
+from django.test import TestCase, modify_settings, override_settings
 from django.utils import timezone
 
 from django_webtest import WebTest
 
 from mymoney.apps.bankaccounts.factories import BankAccountFactory
+from mymoney.apps.banktransactions.factories import BankTransactionFactory
+from mymoney.apps.banktransactionschedulers.models import BankTransactionScheduler
 from mymoney.core.factories import UserFactory
 
 from ..factories import BankTransactionSchedulerFactory
@@ -149,13 +153,163 @@ class AccessTestCase(TestCase):
         self.client.logout()
 
 
-class ViewTestCase(WebTest):
+class ViewTestCase(TestCase):
 
     @classmethod
     def setUpTestData(cls):
         cls.owner = UserFactory(username='owner')
         cls.superowner = UserFactory(username='superowner', user_permissions='admin')
-        cls.bankaccount = BankAccountFactory(owners=[cls.owner, cls.superowner])
+
+    def setUp(self):
+        self.bankaccount = BankAccountFactory(owners=[self.owner, self.superowner])
+
+    @mock.patch('mymoney.apps.banktransactions.models.timezone')
+    @mock.patch('mymoney.apps.banktransactionschedulers.models.timezone')
+    def test_summary_queryset(self, mock_bt_timezone, mock_bts_timezone):
+        mock_bt_timezone.now.return_value = datetime.date(2015, 8, 11)
+        mock_bts_timezone.now.return_value = datetime.date(2015, 8, 11)
+
+        url = reverse('banktransactionschedulers:list', kwargs={
+            'bankaccount_pk': self.bankaccount.pk
+        })
+        self.client.login(username=self.owner, password='test')
+
+        # Nothing.
+        response = self.client.get(url)
+        self.assertFalse(response.context[0]['summary'])
+        self.assertEqual(response.context[0]['total'], 0)
+
+        # Only credit.
+        bts1 = BankTransactionSchedulerFactory(
+            bankaccount=self.bankaccount,
+            type=BankTransactionScheduler.TYPE_MONTHLY,
+            amount=Decimal('2000'),
+            date=datetime.date(2015, 8, 10),
+        )
+        response = self.client.get(url)
+        self.assertDictEqual(
+            response.context[0]['summary'],
+            {
+                BankTransactionScheduler.TYPE_MONTHLY: {
+                    'type': BankTransactionScheduler.TYPES[0][1],
+                    'credit': bts1.amount,
+                    'debit': 0,
+                    'used': 0,
+                    'remaining': bts1.amount,
+                    'total': bts1.amount,
+                },
+            },
+        )
+        self.assertEqual(response.context[0]['total'], bts1.amount)
+
+        # Add debit.
+        bts2 = BankTransactionSchedulerFactory(
+            bankaccount=self.bankaccount,
+            type=BankTransactionScheduler.TYPE_MONTHLY,
+            amount=Decimal('-900'),
+            date=datetime.date(2015, 8, 9),
+        )
+        bts3 = BankTransactionSchedulerFactory(
+            bankaccount=self.bankaccount,
+            type=BankTransactionScheduler.TYPE_MONTHLY,
+            amount=Decimal('-100'),
+            date=datetime.date(2015, 8, 25),
+        )
+        response = self.client.get(url)
+        self.assertDictEqual(
+            response.context[0]['summary'],
+            {
+                BankTransactionScheduler.TYPE_MONTHLY: {
+                    'type': BankTransactionScheduler.TYPES[0][1],
+                    'credit': bts1.amount,
+                    'debit': bts2.amount + bts3.amount,  # -1000
+                    'used': 0,
+                    'remaining': bts1.amount + bts2.amount + bts3.amount,  # 1000
+                    'total': bts1.amount + bts2.amount + bts3.amount,  # 1000
+                },
+            },
+        )
+        self.assertEqual(response.context[0]['total'], bts1.amount + bts2.amount + bts3.amount)
+
+        # Add weekly schedulers.
+        bts4 = BankTransactionSchedulerFactory(
+            bankaccount=self.bankaccount,
+            type=BankTransactionScheduler.TYPE_WEEKLY,
+            amount=Decimal('-30'),
+            date=datetime.date(2015, 8, 11),
+        )
+        bts5 = BankTransactionSchedulerFactory(
+            bankaccount=self.bankaccount,
+            type=BankTransactionScheduler.TYPE_WEEKLY,
+            amount=Decimal('-15'),
+            date=datetime.date(2015, 8, 12),
+        )
+        response = self.client.get(url)
+        self.assertDictEqual(
+            response.context[0]['summary'][BankTransactionScheduler.TYPE_MONTHLY],
+            {
+                'type': BankTransactionScheduler.TYPES[0][1],
+                'credit': bts1.amount,  # 2000
+                'debit': bts2.amount + bts3.amount,  # -1000
+                'used': 0,
+                'remaining': bts1.amount + bts2.amount + bts3.amount,  # 1000
+                'total': bts1.amount + bts2.amount + bts3.amount,  # 1000
+            },
+        )
+        self.assertDictEqual(
+            response.context[0]['summary'][BankTransactionScheduler.TYPE_WEEKLY],
+            {
+                'type': BankTransactionScheduler.TYPES[1][1],
+                'credit': 0,
+                'debit': bts4.amount + bts5.amount,  # -45
+                'used': 0,
+                'remaining': bts4.amount + bts5.amount,  # -45
+                'total': bts4.amount + bts5.amount,  # -45
+            },
+        )
+        self.assertEqual(
+            response.context[0]['total'],
+            bts1.amount + bts2.amount + bts3.amount + bts4.amount + bts5.amount
+        )
+
+        # Then add bank transactions.
+        bt1 = BankTransactionFactory(
+            bankaccount=self.bankaccount,
+            date=datetime.date(2015, 8, 10),
+            amount=Decimal('-150'),
+        )
+        bt2 = BankTransactionFactory(
+            bankaccount=self.bankaccount,
+            date=datetime.date(2015, 8, 20),
+            amount=Decimal('-50'),
+        )
+        response = self.client.get(url)
+        self.assertDictEqual(
+            response.context[0]['summary'][BankTransactionScheduler.TYPE_MONTHLY],
+            {
+                'type': BankTransactionScheduler.TYPES[0][1],
+                'credit': bts1.amount,  # 2000
+                'debit': bts2.amount + bts3.amount,  # -1000
+                'used': bt1.amount + bt2.amount,  # -200
+                'remaining': bts1.amount + bts2.amount + bts3.amount + bt1.amount + bt2.amount,  # 800
+                'total': bts1.amount + bts2.amount + bts3.amount,  # 1000
+            },
+        )
+        self.assertDictEqual(
+            response.context[0]['summary'][BankTransactionScheduler.TYPE_WEEKLY],
+            {
+                'type': BankTransactionScheduler.TYPES[1][1],
+                'credit': 0,
+                'debit': bts4.amount + bts5.amount,  # -45
+                'used': bt1.amount,  # -150
+                'remaining': bts4.amount + bts5.amount + bt1.amount,  # -195
+                'total': bts4.amount + bts5.amount,  # -45
+            },
+        )
+        self.assertEqual(
+            response.context[0]['total'],
+            bts1.amount + bts2.amount + bts3.amount + bts4.amount + bts5.amount
+        )
 
     def test_list_queryset(self):
 
@@ -175,13 +329,60 @@ class ViewTestCase(WebTest):
         # Scheduler of another bank account.
         BankTransactionSchedulerFactory()
 
-        response = self.app.get(url, user='owner')
+        self.client.login(username=self.owner, password='test')
+        response = self.client.get(url)
         self.assertQuerysetEqual(
             response.context['object_list'],
             [
                 repr(bts1),
                 repr(bts2),
             ],
+        )
+
+
+class WebViewTestCase(WebTest):
+
+    @classmethod
+    def setUpTestData(cls):
+        cls.owner = UserFactory(username='owner')
+        cls.superowner = UserFactory(username='superowner', user_permissions='admin')
+
+    def setUp(self):
+        self.bankaccount = BankAccountFactory(owners=[self.owner, self.superowner])
+
+    @override_settings(LANGUAGE_CODE='en-us')
+    def test_summary_view(self):
+
+        url = reverse('banktransactionschedulers:list', kwargs={
+            'bankaccount_pk': self.bankaccount.pk
+        })
+
+        # No scheduler yet.
+        response = self.app.get(url, user='owner')
+        self.assertContains(response, "No scheduled bank transaction yet.")
+
+        # Schedulers of only one type (no global total display).
+        bts1 = BankTransactionSchedulerFactory(
+            bankaccount=self.bankaccount,
+            type=BankTransactionScheduler.TYPE_MONTHLY,
+            amount=Decimal('2000'),
+        )
+        response = self.app.get(url, user='owner')
+        self.assertNotContains(
+            response,
+            '<tr data-summary-total="{total}">'.format(total=bts1.amount),
+        )
+
+        # Schedulers of both types, display a global total.
+        bts2 = BankTransactionSchedulerFactory(
+            bankaccount=self.bankaccount,
+            type=BankTransactionScheduler.TYPE_WEEKLY,
+            amount=Decimal('-100'),
+        )
+        response = self.app.get(url, user='owner')
+        self.assertContains(
+            response,
+            '<td data-summary-total="{total:.2f}">'.format(total=bts1.amount + bts2.amount),
         )
 
     def test_list_links_action(self):

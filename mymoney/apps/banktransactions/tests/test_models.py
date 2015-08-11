@@ -6,6 +6,7 @@ from unittest.mock import patch
 from mymoney.apps.bankaccounts.factories import BankAccountFactory
 from mymoney.apps.bankaccounts.models import BankAccount
 from mymoney.apps.banktransactiontags.factories import BankTransactionTagFactory
+from mymoney.core.utils.dates import GRANULARITY_MONTH, GRANULARITY_WEEK
 
 from ..factories import BankTransactionFactory
 from ..models import BankTransaction
@@ -255,6 +256,80 @@ class ManagerTestCase(unittest.TestCase):
             BankTransaction.objects.get_reconciled_balance(bankaccount),
             Decimal(5),
         )
+
+    def test_total_unscheduled_period(self):
+
+        bankaccount = BankAccountFactory(balance=0)
+
+        bt1 = BankTransactionFactory(
+            bankaccount=bankaccount,
+            amount=Decimal('-152.23'),
+            date=datetime.date(2015, 8, 9),
+        )
+        bt2 = BankTransactionFactory(
+            bankaccount=bankaccount,
+            amount=Decimal('2347.78'),
+            date=datetime.date(2015, 8, 13),
+        )
+        bt3 = BankTransactionFactory(
+            bankaccount=bankaccount,
+            amount=Decimal('-561.78'),
+            date=datetime.date(2015, 8, 16),
+        )
+
+        # Out-of-date.
+        bt4 = BankTransactionFactory(  # noqa
+            bankaccount=bankaccount,
+            date=datetime.date(2015, 9, 15),
+            amount=Decimal('-10000'),
+        )
+        # Scheduled.
+        bt5 = BankTransactionFactory(  # noqa
+            bankaccount=bankaccount,
+            scheduled=True,
+            amount=Decimal('-10000'),
+            date=datetime.date(2015, 8, 16),
+        )
+        # Inactive.
+        bt6 = BankTransactionFactory(  # noqa
+            bankaccount=bankaccount,
+            status=BankTransaction.STATUS_INACTIVE,
+            amount=Decimal('-10000'),
+            date=datetime.date(2015, 8, 16),
+        )
+        # An another bank account.
+        bt7 = BankTransactionFactory(  # noqa
+            bankaccount=BankAccountFactory(),
+            amount=Decimal('-10000'),
+            date=datetime.date(2015, 8, 16),
+        )
+
+        with patch('mymoney.apps.banktransactions.models.get_date_ranges', return_value=(
+            datetime.date(2015, 8, 1),
+            datetime.date(2015, 8, 30),
+        )):
+
+            total = BankTransaction.objects.get_total_unscheduled_period(
+                bankaccount,
+                GRANULARITY_MONTH
+            )
+            self.assertEqual(
+                total,
+                bt1.amount + bt2.amount + bt3.amount,
+            )
+
+        with patch('mymoney.apps.banktransactions.models.get_date_ranges', return_value=(
+            datetime.date(2015, 8, 9),
+            datetime.date(2015, 8, 15),
+        )):
+
+            total = BankTransaction.objects.get_total_unscheduled_period(
+                bankaccount, GRANULARITY_WEEK,
+            )
+            self.assertEqual(
+                total,
+                bt1.amount + bt2.amount,
+            )
 
 
 class RelationshipTestCase(unittest.TestCase):

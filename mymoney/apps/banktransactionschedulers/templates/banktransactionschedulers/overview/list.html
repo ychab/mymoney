@@ -1,0 +1,65 @@
+{% load i18n core_tags %}
+<div class="table-responsive">
+    <table class="table table-condensed table-hover">
+        <thead>
+            <tr>
+                <th>{% trans "Last action" %}</th>
+                <th>{% trans "Type" %}</th>
+                <th>{% trans "Remaining" %}</th>
+                <th>{% trans "State" %}</th>
+                <th>{% trans "Label" %}</th>
+                <th>{% trans "Amount" %}</th>
+                <th colspan="2">{% trans "Action" %}</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        {% for banktransactionscheduled in object_list %}
+            <tr>
+                <td>
+                    {% if banktransactionscheduled.last_action %}
+                        {{ banktransactionscheduled.last_action|date:"SHORT_DATE_FORMAT" }}
+                    {% else %}
+                        {% trans "No yet" %}
+                    {% endif %}
+                </td>
+                <td>{{ banktransactionscheduled.get_type_display }}</td>
+                <td>
+                    {% if banktransactionscheduled.recurrence != None %}
+                        {{ banktransactionscheduled.recurrence }}
+                    {% else %}
+                        {% trans "Infinity" %}
+                    {% endif %}
+                </td>
+                <td>{{ banktransactionscheduled.get_state_display }}</td>
+                <td>{{ banktransactionscheduled.label }}</td>
+                <td>{{ banktransactionscheduled.amount|localize_positive }}</td>
+                <td>
+                    {% if perms.banktransactionschedulers.change_banktransactionscheduler %}
+                    <a href="{% url 'banktransactionschedulers:update' banktransactionscheduled.pk %}">
+                    {% trans "Edit" %}
+                    </a>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if perms.banktransactionschedulers.change_banktransactionscheduler %}
+                    <a href="{% url 'banktransactionschedulers:delete' banktransactionscheduled.pk %}">
+                    {% trans "Delete" %}
+                    </a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="7">
+                {% trans "No scheduled bank transaction yet." %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% if is_paginated %}
+{% include 'pager.html' %}
+{% endif %}

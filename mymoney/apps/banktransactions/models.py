@@ -3,10 +3,12 @@ from decimal import Decimal
 
 from django.core.urlresolvers import reverse
 from django.db import models, transaction
+from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 
 from mymoney.apps.bankaccounts.models import BankAccount
 from mymoney.apps.banktransactiontags.models import BankTransactionTag
+from mymoney.core.utils.dates import GRANULARITY_MONTH, get_date_ranges
 
 
 class BankTransactionManager(models.Manager):
@@ -40,6 +42,23 @@ class BankTransactionManager(models.Manager):
         )['amount__sum'] or 0
 
         return Decimal(bankaccount.balance - total_not_reconciled)
+
+    def get_total_unscheduled_period(self, bankaccount,
+                                     granularity=GRANULARITY_MONTH):
+        """
+        Returns the total sum for the current period of bank transactions not
+        scheduled.
+        """
+        return (
+            self
+            .filter(
+                bankaccount=bankaccount,
+                date__range=get_date_ranges(timezone.now(), granularity),
+                scheduled=False,
+            )
+            .exclude(status=BankTransaction.STATUS_INACTIVE)
+            .aggregate(total=models.Sum('amount'))
+        )['total']
 
 
 class AbstractBankTransaction(models.Model):
