@@ -55,7 +55,9 @@ Production
     pip install -r requirements/production.txt
 
 * copy ``mymoney/settings/production.dist`` to
-  ``mymoney/settings/production.py`` and edit it.
+  ``mymoney/settings/production.py`` and edit it::
+
+    cp mymoney/settings/production.dist mymoney/settings/production.py
 
 * collect statics files::
 
@@ -96,13 +98,17 @@ Development
     pip install -r requirements/local.txt
 
 * copy ``mymoney/settings/local.dist`` to ``mymoney/settings/local.py`` and
-  edit it.
+  edit it::
+
+    cp mymoney/settings/local.dist mymoney/settings/local.py
 
 Internationalization
 --------------------
 
 1. copy ``mymoney/settings/l10n.dist`` to ``mymoney/settings/l10n.py`` and
-   edit it.
+   edit it::
+
+     cp mymoney/settings/l10n.dist mymoney/settings/l10n.py
 
 2. edit your final setting file to use the l10n configuration instead::
 
@@ -128,7 +134,9 @@ Tests
 -----
 
 Whichever method is used, you must create a setting file for testing. Copy
-``mymoney/settings/test.dist`` to ``mymoney/settings/test.py`` and edit it.
+``mymoney/settings/test.dist`` to ``mymoney/settings/test.py`` and edit it::
+
+    cp mymoney/settings/test.dist mymoney/settings/test.py
 
 Tox
 ```
