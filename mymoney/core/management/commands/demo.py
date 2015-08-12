@@ -152,6 +152,26 @@ class Command(BaseCommand):
             memo="Love my bike!",
         )
 
+        BankTransactionFactory(
+            bankaccount=bankaccount,
+            label=_("Bad stuff"),
+            amount=Decimal("-79.90"),
+            date=datetime.date(today.year, today.month, 9),
+            reconciled=True,
+            payment_method=BankTransaction.PAYMENT_METHOD_CREDIT_CARD,
+            tag=tag_shopping,
+        )
+
+        BankTransactionFactory(
+            bankaccount=bankaccount,
+            label=_("Refund"),
+            amount=Decimal("49.59"),
+            date=datetime.date(today.year, today.month, 15),
+            reconciled=True,
+            payment_method=BankTransaction.PAYMENT_METHOD_TRANSFER,
+            tag=tag_shopping,
+        )
+
         date_start = today + relativedelta(months=-1, day=15)
         date_end = today + relativedelta(months=1, day=15)
         date = date_start
