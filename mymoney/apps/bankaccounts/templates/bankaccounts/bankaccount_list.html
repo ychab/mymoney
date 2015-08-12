@@ -9,10 +9,11 @@
 {% endblock %}
 
 {% block content %}
-    <div class="list-group">
+    <div class="list-group bankaccount-list">
     {% for bankaccount in object_list %}
         <a href="{% url 'banktransactions:list' bankaccount.pk %}" class="list-group-item">
-            {{ bankaccount }} : {{ bankaccount.balance|currency_positive:bankaccount.currency }}
+            <span class="badge">{{ bankaccount.balance|currency_positive:bankaccount.currency }}</span>
+            {{ bankaccount }}
         </a>
     {% empty %}
         {% trans "No bank account yet." %}

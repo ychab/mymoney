@@ -35,3 +35,7 @@ canvas {
 .required {
     color: red;
 }
+
+.bankaccount-list {
+    max-width: 600px;
+}
