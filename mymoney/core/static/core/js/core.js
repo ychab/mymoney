@@ -20,9 +20,13 @@
         });
 
         // Modal open by click with AJAX content load.
-        $('.modal-summary-link').click(function(e) {
+        $('.modal-summary-link')
+        .hover(function() {
+            $(this).css({'cursor': 'pointer'});
+        })
+        .click(function(e) {
             var $modal = $('#modal-summary')
-            var href = $(this).attr('href');
+            var href = $(this).attr('data-href');
             e.preventDefault();
 
             $.ajax({

@@ -106,10 +106,10 @@
 
                         <tbody>
                             {% for row in rows %}
-                            <tr>
+                            <tr{% if row.delta %} class="modal-summary-link" data-href="{% url 'banktransactionanalytics:trendtimesummary' bankaccount.pk row.date.year row.date.month row.date.day %}"{% endif %}>
                                 <td>
                                     {% if row.delta %}
-                                    <a class="modal-summary-link" href="{% url 'banktransactionanalytics:trendtimesummary' bankaccount.pk row.date.year row.date.month row.date.day %}">
+                                    <a href="{% url 'banktransactionanalytics:trendtimesummary' bankaccount.pk row.date.year row.date.month row.date.day %}">
                                     {{ row.date|date:"SHORT_DATE_FORMAT"  }} ({{ row.count }})
                                     </a>
                                     {% else %}

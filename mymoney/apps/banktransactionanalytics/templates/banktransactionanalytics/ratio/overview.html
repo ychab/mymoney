@@ -128,16 +128,20 @@
                 </thead>
                 <tbody>
                     {% for row in rows %}
-                    <tr>
+                    {% if row.tag_id %}
+                    <tr class="modal-summary-link" data-href="{% url 'banktransactionanalytics:ratiosummary' bankaccount.pk row.tag_id %}">
+                    {% else %}
+                    <tr class="modal-summary-link" data-href="{% url 'banktransactionanalytics:ratiosummary' bankaccount.pk 0 %}">
+                    {% endif %}
                         <td>
                             <div style="background-color:{{ row.color_rgba }};width:25px;height:20px;"></div>
                         </td>
                         <td>
                             {% if row.tag_id %}
-                            <a class="modal-summary-link" href="{% url 'banktransactionanalytics:ratiosummary' bankaccount.pk row.tag_id %}">
+                            <a href="{% url 'banktransactionanalytics:ratiosummary' bankaccount.pk row.tag_id %}">
                             {{ row.tag_name }}
                             {% else %}
-                            <a class="modal-summary-link" href="{% url 'banktransactionanalytics:ratiosummary' bankaccount.pk 0 %}">
+                            <a href="{% url 'banktransactionanalytics:ratiosummary' bankaccount.pk 0 %}">
                             {% trans "no tag" %}
                             {% endif %}
                             ({{ row.count }})
