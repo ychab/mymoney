@@ -23,7 +23,7 @@ framework.
 Goals
 -----
 
-* follow and anticipate your bank account balance anywhere
+* follow and anticipate your bank account balance everywhere
 * tag and analyse your expenses
 * summarize your recurring expenses/wages
 * being as simple as possible
@@ -31,9 +31,9 @@ Goals
 Features
 --------
 
-* manage bank accounts (balance, currency, owners, etc)
+* manage bank accounts (balance, currency, owners, etc.)
 * manage bank transactions (debit/credit, amount, label, date, reconciled or
-  not, payment method, add note, etc)
+  not, payment method, add notes, etc.)
 * tag bank transactions
 * analyse bank transactions with graphs (timeline in weeks/months or statistics
   per tags). Use the `Chart.js`_ library.
