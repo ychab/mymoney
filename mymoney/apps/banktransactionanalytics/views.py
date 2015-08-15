@@ -4,7 +4,7 @@ import random
 
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
-from django.db.models import Max, Min, QuerySet, Sum
+from django.db.models import Count, Max, Min, QuerySet, Sum
 from django.utils import formats
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext as _
@@ -113,6 +113,7 @@ class RatioView(BankTransactionAccessMixin, RatioViewMixin, generic.FormView):
                         'tag_id': data['tag'],
                         'tag_name': data['tag__name'],
                         'sum': data['sum'],
+                        'count': data['count'],
                         'percentage': round(data['sum'] * 100 / total, 2),
                         'color': color,
                         'color_rgba': 'rgba({r}, {g}, {b}, {a})'.format(
@@ -191,6 +192,8 @@ class RatioView(BankTransactionAccessMixin, RatioViewMixin, generic.FormView):
         if filters['type'] in (RatioForm.SINGLE_CREDIT, RatioForm.SINGLE_DEBIT):
             qs = qs.values('tag', 'tag__name')
             qs = qs.annotate(sum=Sum('amount'))
+
+        qs = qs.annotate(count=Count('id'))
 
         if 'sum_min' in filters and 'sum_max' in filters:
             qs = qs.filter(sum__range=(
@@ -385,7 +388,7 @@ class TrendTimeView(BankTransactionAccessMixin, TrendTimeViewMixin,
                     context['balance_initial'] = balance
 
                     items_qs = self.get_queryset_items(date_start, date_end)
-                    items = {item['date']: item['sum'] for item in items_qs}
+                    items = {item['date']: item for item in items_qs}
 
                     # Start and end iterator at first/last bank transaction,
                     # not the range calculated.
@@ -395,16 +398,18 @@ class TrendTimeView(BankTransactionAccessMixin, TrendTimeViewMixin,
                     )
                     rows = []
                     for date_step in iterator:
-                        delta = percentage = 0
+                        delta = percentage = count = 0
 
                         # If no new bank transaction, same as previous.
                         if date_step in items:
-                            delta = items[date_step]
+                            delta = items[date_step]['sum']
                             percentage = (delta * 100 / balance) if balance else 0
-                            balance += items[date_step]
+                            balance += items[date_step]['sum']
+                            count = items[date_step]['count']
 
                         rows.append({
                             'date': date_step,
+                            'count': count,
                             'balance': balance,
                             'delta': delta,
                             'percentage': round(percentage, 2),
@@ -467,7 +472,9 @@ class TrendTimeView(BankTransactionAccessMixin, TrendTimeViewMixin,
             date__range=(date_start, date_end),
         )
 
-        qs = qs.values('date').annotate(sum=Sum('amount')).order_by('date')
+        qs = qs.values('date')
+        qs = qs.annotate(sum=Sum('amount'), count=Count('id'))
+        qs = qs.order_by('date')
 
         return qs
 

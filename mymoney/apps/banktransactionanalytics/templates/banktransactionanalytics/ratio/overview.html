@@ -136,12 +136,12 @@
                             {% if row.tag_id %}
                             <a class="modal-summary-link" href="{% url 'banktransactionanalytics:ratiosummary' bankaccount.pk row.tag_id %}">
                             {{ row.tag_name }}
-                            </a>
                             {% else %}
                             <a class="modal-summary-link" href="{% url 'banktransactionanalytics:ratiosummary' bankaccount.pk 0 %}">
                             {% trans "no tag" %}
-                            </a>
                             {% endif %}
+                            ({{ row.count }})
+                            </a>
                         </td>
                         <td>{{ row.percentage }}%</td>
                         <td>{{ row.sum|localize_positive }}</td>

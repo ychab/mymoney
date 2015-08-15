@@ -110,7 +110,7 @@
                                 <td>
                                     {% if row.delta %}
                                     <a class="modal-summary-link" href="{% url 'banktransactionanalytics:trendtimesummary' bankaccount.pk row.date.year row.date.month row.date.day %}">
-                                    {{ row.date|date:"SHORT_DATE_FORMAT"  }}
+                                    {{ row.date|date:"SHORT_DATE_FORMAT"  }} ({{ row.count }})
                                     </a>
                                     {% else %}
                                     {{ row.date|date:"SHORT_DATE_FORMAT"  }}

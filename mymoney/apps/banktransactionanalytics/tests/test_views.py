@@ -452,22 +452,26 @@ class RatioQuerysetTestCase(WebTest):
         self.assertListEqual(
             [{
                 'tag_id': row['tag_id'],
+                'count': row['count'],
                 'sum': row['sum'],
                 'percentage': row['percentage']
             } for row in response.context['rows']],
             [
                 {
                     "tag_id": self.banktransactiontags[0].pk,
+                    "count": 2,
                     "sum": bt1.amount + bt3.amount,  # Decimal("-669.52")
                     "percentage": Decimal("78.82"),
                 },
                 {
                     "tag_id": self.banktransactiontags[2].pk,
+                    "count": 1,
                     "sum": bt4.amount,  # Decimal("-134.00")
                     "percentage": Decimal("15.78"),
                 },
                 {
                     "tag_id": None,
+                    "count": 1,
                     "sum": bt5.amount,  # Decimal("-45.88")
                     "percentage": Decimal("5.40"),
                 },
@@ -495,17 +499,20 @@ class RatioQuerysetTestCase(WebTest):
         self.assertListEqual(
             [{
                 'tag_id': row['tag_id'],
+                'count': row['count'],
                 'sum': row['sum'],
                 'percentage': row['percentage']
             } for row in response.context['rows']],
             [
                 {
                     "tag_id": None,
+                    "count": 1,
                     "sum": bt8.amount,  # Decimal("865.23")
                     "percentage": Decimal("83.97"),
                 },
                 {
                     "tag_id": self.banktransactiontags[0].pk,
+                    "count": 1,
                     "sum": bt2.amount,  # Decimal("165.23")
                     "percentage": Decimal("16.03"),
                 },
@@ -542,12 +549,14 @@ class RatioQuerysetTestCase(WebTest):
         self.assertListEqual(
             [{
                 'tag_id': row['tag_id'],
+                'count': row['count'],
                 'sum': row['sum'],
                 'percentage': row['percentage']
             } for row in response.context['rows']],
             [
                 {
                     "tag_id": self.banktransactiontags[0].pk,
+                    "count": 1,
                     "sum": bt1.amount,  # Decimal("-15.40")
                     "percentage": Decimal("100.00"),
                 },
@@ -576,17 +585,20 @@ class RatioQuerysetTestCase(WebTest):
         self.assertListEqual(
             [{
                 'tag_id': row['tag_id'],
+                'count': row['count'],
                 'sum': row['sum'],
                 'percentage': row['percentage']
             } for row in response.context['rows']],
             [
                 {
                     "tag_id": None,
+                    "count": 1,
                     "sum": bt5.amount,  # Decimal("-45.88")
                     "percentage": Decimal("74.87"),
                 },
                 {
                     "tag_id": self.banktransactiontags[0].pk,
+                    "count": 1,
                     "sum": bt1.amount,  # Decimal("-15.40")
                     "percentage": Decimal("25.13"),
                 },
@@ -614,17 +626,20 @@ class RatioQuerysetTestCase(WebTest):
         self.assertListEqual(
             [{
                 'tag_id': row['tag_id'],
+                'count': row['count'],
                 'sum': row['sum'],
                 'percentage': row['percentage']
             } for row in response.context['rows']],
             [
                 {
                     "tag_id": self.banktransactiontags[0].pk,
+                    "count": 1,
                     "sum": bt3.amount,  # Decimal("-654.12")
                     "percentage": Decimal("83.00"),
                 },
                 {
                     "tag_id": self.banktransactiontags[2].pk,
+                    "count": 1,
                     "sum": bt4.amount,  # Decimal("-134.00")
                     "percentage": Decimal("17.00"),
                 },
@@ -653,12 +668,14 @@ class RatioQuerysetTestCase(WebTest):
         self.assertListEqual(
             [{
                 'tag_id': row['tag_id'],
+                'count': row['count'],
                 'sum': row['sum'],
                 'percentage': row['percentage']
             } for row in response.context['rows']],
             [
                 {
                     "tag_id": self.banktransactiontags[0].pk,
+                    "count": 2,
                     "sum": bt1.amount + bt3.amount,  # Decimal("-669.52")
                     "percentage": Decimal("78.82"),
                 },
@@ -689,17 +706,20 @@ class RatioQuerysetTestCase(WebTest):
         self.assertListEqual(
             [{
                 'tag_id': row['tag_id'],
+                'count': row['count'],
                 'sum': row['sum'],
                 'percentage': row['percentage']
             } for row in response.context['rows']],
             [
                 {
                     "tag_id": self.banktransactiontags[0].pk,
+                    "count": 2,
                     "sum": bt1.amount + bt3.amount,  # Decimal("-669.52")
                     "percentage": Decimal("78.82"),
                 },
                 {
                     "tag_id": self.banktransactiontags[2].pk,
+                    "count": 1,
                     "sum": bt4.amount,  # Decimal("-134.00")
                     "percentage": Decimal("15.78"),
                 },
@@ -742,17 +762,20 @@ class RatioQuerysetTestCase(WebTest):
         self.assertListEqual(
             [{
                 'tag_id': row['tag_id'],
+                'count': row['count'],
                 'sum': row['sum'],
                 'percentage': row['percentage']
             } for row in response.context['rows']],
             [
                 {
                     "tag_id": self.banktransactiontags[2].pk,
+                    "count": 1,
                     "sum": bt4.amount,  # Decimal("-134.00")
                     "percentage": Decimal("15.78"),
                 },
                 {
                     "tag_id": None,
+                    "count": 1,
                     "sum": bt5.amount,  # Decimal("-45.88")
                     "percentage": Decimal("5.40"),
                 },
@@ -780,17 +803,20 @@ class RatioQuerysetTestCase(WebTest):
         self.assertListEqual(
             [{
                 'tag_id': row['tag_id'],
+                'count': row['count'],
                 'sum': row['sum'],
                 'percentage': row['percentage']
             } for row in response.context['rows']],
             [
                 {
                     "tag_id": self.banktransactiontags[0].pk,
+                    "count": 2,
                     "sum": bt1.amount + bt3.amount,  # Decimal("-669.52")
                     "percentage": Decimal("78.82"),
                 },
                 {
                     "tag_id": self.banktransactiontags[2].pk,
+                    "count": 1,
                     "sum": bt4.amount,  # Decimal("-134.00")
                     "percentage": Decimal("15.78"),
                 },
@@ -819,12 +845,14 @@ class RatioQuerysetTestCase(WebTest):
         self.assertListEqual(
             [{
                 'tag_id': row['tag_id'],
+                'count': row['count'],
                 'sum': row['sum'],
                 'percentage': row['percentage']
             } for row in response.context['rows']],
             [
                 {
                     "tag_id": self.banktransactiontags[2].pk,
+                    "count": 1,
                     "sum": bt4.amount,  # Decimal("-134.00")
                     "percentage": Decimal("15.78"),
                 },
@@ -852,17 +880,20 @@ class RatioQuerysetTestCase(WebTest):
         self.assertListEqual(
             [{
                 'tag_id': row['tag_id'],
+                'count': row['count'],
                 'sum': row['sum'],
                 'percentage': row['percentage']
             } for row in response.context['rows']],
             [
                 {
                     "tag_id": self.banktransactiontags[0].pk,
+                    "count": 3,
                     "sum": bt1.amount + bt2.amount + bt3.amount,  # Decimal("-504.29")
                     "percentage": Decimal("79.01"),
                 },
                 {
                     "tag_id": self.banktransactiontags[2].pk,
+                    "count": 1,
                     "sum": bt4.amount,  # Decimal("-134.00")
                     "percentage": Decimal("20.99"),
                 },
@@ -892,12 +923,14 @@ class RatioQuerysetTestCase(WebTest):
         self.assertListEqual(
             [{
                 'tag_id': row['tag_id'],
+                'count': row['count'],
                 'sum': row['sum'],
                 'percentage': row['percentage']
             } for row in response.context['rows']],
             [
                 {
                     "tag_id": self.banktransactiontags[0].pk,
+                    "count": 2,
                     "sum": bt1.amount + bt2.amount,
                     "percentage": Decimal("100.00"),
                 },
@@ -1519,24 +1552,28 @@ class TrendtimeViewTestCase(WebTest):
             [
                 {
                     'date': datetime.date(2015, 6, 2),
+                    'count': 1,
                     'balance': Decimal('-15.40'),
                     'delta': Decimal('-15.40'),
                     'percentage': 0,
                 },
                 {
                     'date': datetime.date(2015, 6, 3),
+                    'count': 2,
                     'balance': Decimal('89.43'),
                     'delta': Decimal('104.83'),
                     'percentage': Decimal('-680.71'),
                 },
                 {
                     'date': datetime.date(2015, 6, 4),
+                    'count': 0,
                     'balance': Decimal('89.43'),
                     'delta': 0,
                     'percentage': 0,
                 },
                 {
                     'date': datetime.date(2015, 6, 5),
+                    'count': 2,
                     'balance': Decimal('9.64'),
                     'delta': Decimal('-79.79'),
                     'percentage': Decimal('-89.22'),
@@ -1559,24 +1596,28 @@ class TrendtimeViewTestCase(WebTest):
             [
                 {
                     'date': datetime.date(2015, 6, 2),
+                    'count': 1,
                     'balance': Decimal('-15.40'),
                     'delta': Decimal('-15.40'),
                     'percentage': 0,
                 },
                 {
                     'date': datetime.date(2015, 6, 3),
+                    'count': 2,
                     'balance': Decimal('89.43'),
                     'delta': Decimal('104.83'),
                     'percentage': Decimal('-680.71'),
                 },
                 {
                     'date': datetime.date(2015, 6, 4),
+                    'count': 0,
                     'balance': Decimal('89.43'),
                     'delta': 0,
                     'percentage': 0,
                 },
                 {
                     'date': datetime.date(2015, 6, 5),
+                    'count': 1,
                     'balance': Decimal('78.64'),
                     'delta': Decimal('-10.79'),
                     'percentage': Decimal('-12.07'),
@@ -1599,6 +1640,7 @@ class TrendtimeViewTestCase(WebTest):
             [
                 {
                     'date': datetime.date(2015, 6, 5),
+                    'count': 1,
                     'balance': Decimal('-69.00'),
                     'delta': Decimal('-69.00'),
                     'percentage': 0,
@@ -1633,6 +1675,7 @@ class TrendtimeViewTestCase(WebTest):
             response.context['rows'][0],
             {
                 'date': datetime.date(2015, 6, 1),
+                'count': 0,
                 'balance': Decimal('-15.79'),
                 'delta': 0,
                 'percentage': 0,
@@ -1642,6 +1685,7 @@ class TrendtimeViewTestCase(WebTest):
             response.context['rows'][5],
             {
                 'date': datetime.date(2015, 6, 6),
+                'count': 0,
                 'balance': Decimal('-6.15'),
                 'delta': 0,
                 'percentage': 0,
@@ -1651,6 +1695,7 @@ class TrendtimeViewTestCase(WebTest):
             response.context['rows'][6],
             {
                 'date': datetime.date(2015, 6, 7),
+                'count': 0,
                 'balance': Decimal('-6.15'),
                 'delta': 0,
                 'percentage': 0,
