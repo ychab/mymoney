@@ -36,8 +36,8 @@ msgid ""
 "The deployment is the same as any other Django projects. Here is a quick "
 "summary:"
 msgstr ""
-"Le déploiement est similaire à d'autres projets Django. Voici un bref résumé "
-":"
+"Le déploiement est similaire à d'autres projets Django. Voici un bref résumé"
+" :"
 
 #: ../../installation.rst:16
 msgid "install required system packages. For example on Debian::"
@@ -45,8 +45,9 @@ msgstr "installer les paquets systèmes requis. Par exemple sur Debian::"
 
 #: ../../installation.rst:20
 msgid "create a PostgreSQL database in a cluster with role and owner"
-msgstr "créer un cluster de base de données pour PostgreSQL ainsi qu'un rôle "
-"et un propriétaire"
+msgstr ""
+"créer un cluster de base de données pour PostgreSQL ainsi qu'un rôle et un "
+"propriétaire"
 
 #: ../../installation.rst:22
 msgid "create a virtualenv::"
@@ -57,18 +58,16 @@ msgid ""
 "install dependencies with pip (see :ref:`installation-deployment-production`"
 " or :ref:`installation-deployment-development`)"
 msgstr ""
-"installer les dépendances avec pip (voir "
-":ref:`installation-deployment-production` ou "
-":ref:`installation-deployment-development`)"
+"installer les dépendances avec pip (voir :ref:`installation-deployment-"
+"production` ou :ref:`installation-deployment-development`)"
 
 #: ../../installation.rst:29
 msgid ""
 "configure the settings (see :ref:`installation-deployment-production` or "
 ":ref:`installation-deployment-development`)"
 msgstr ""
-"configurer les paramètres ( voir "
-":ref:`installation-deployment-production` ou "
-":ref:`installation-deployment-development`)"
+"configurer les paramètres ( voir :ref:`installation-deployment-production` "
+"ou :ref:`installation-deployment-development`)"
 
 #: ../../installation.rst:32
 msgid ""
@@ -106,87 +105,89 @@ msgstr "Installer les dépendances (dans un virtualenv)::"
 #: ../../installation.rst:57
 msgid ""
 "copy ``mymoney/settings/production.dist`` to "
-"``mymoney/settings/production.py`` and edit it."
+"``mymoney/settings/production.py`` and edit it::"
 msgstr ""
-"copier ``mymoney/settings/production.dist`` à "
-"``mymoney/settings/production.py`` puis l'éditer."
+"copier ``mymoney/settings/production.dist`` en "
+"``mymoney/settings/production.py`` puis l'éditer::"
 
-#: ../../installation.rst:60
+#: ../../installation.rst:62
 msgid "collect statics files::"
 msgstr "grouper les fichiers statiques"
 
-#: ../../installation.rst:64
+#: ../../installation.rst:66
 msgid "execute the Django check command and apply fixes if needed::"
 msgstr ""
 "exécuter la commande de vérification de Django puis appliquer des "
 "corrections si besoin::"
 
-#: ../../installation.rst:68
+#: ../../installation.rst:70
 msgid "Set up cron tasks on server to execute the following commands:"
 msgstr ""
 "Configurer des tâches cron sur le serveur pour exécuter les commandes "
 "suivantes:"
 
-#: ../../installation.rst:70
+#: ../../installation.rst:72
 msgid "cloning recurring bank transactions::"
 msgstr "dupliquer les transactions bancaires récurrentes"
 
-#: ../../installation.rst:74
+#: ../../installation.rst:76
 msgid "cleanup tasks (only usefull with further user accounts)::"
 msgstr ""
-"tâches de nettoyages (utile uniquement avec plusieurs comptes utilisateurs)::"
+"tâches de nettoyages (utile uniquement avec plusieurs comptes "
+"utilisateurs)::"
 
-#: ../../installation.rst:78
+#: ../../installation.rst:80
 msgid ""
-"At the project root directory, the ``scripts`` directory provide bash "
-"scripts wrappers to execute these commands. Thus, you could create cron "
-"rules similar to something like::"
+"At the project root directory, the ``scripts`` directory provides bash "
+"script wrappers to execute these commands. Thus, you could create cron rules"
+" similar to something like::"
 msgstr ""
 "À la racine du projet, le répertoire ``scripts`` fourni des scripts bash "
 "pour exécuter ces commandes. Par conséquent, vous pouvez les utiliser en "
 "créant des règles cron similaire à::"
 
-#: ../../installation.rst:85
+#: ../../installation.rst:87
 msgid ""
 "For example, create a file in ``/etc/cron.d/clonescheduled``, and edit::"
 msgstr ""
-"Par exemple, créez un fichier à ``/etc/cron.d/clonescheduled``, puis éditez::"
+"Par exemple, créez un fichier à ``/etc/cron.d/clonescheduled``, puis "
+"éditez::"
 
-#: ../../installation.rst:92
+#: ../../installation.rst:94
 msgid "Development"
 msgstr "Développement"
 
-#: ../../installation.rst:94
+#: ../../installation.rst:96
 msgid "Install dependencies::"
 msgstr "Installer les dépendances::"
 
-#: ../../installation.rst:98
+#: ../../installation.rst:100
 msgid ""
 "copy ``mymoney/settings/local.dist`` to ``mymoney/settings/local.py`` and "
-"edit it."
+"edit it::"
 msgstr ""
 "copiez ``mymoney/settings/local.dist`` à ``mymoney/settings/local.py`` et "
 "éditez le."
 
-#: ../../installation.rst:102
+#: ../../installation.rst:106
 msgid "Internationalization"
 msgstr "Internationalisation"
 
-#: ../../installation.rst:104
+#: ../../installation.rst:108
 msgid ""
 "copy ``mymoney/settings/l10n.dist`` to ``mymoney/settings/l10n.py`` and edit"
-" it."
+" it::"
 msgstr ""
 "copiez ``mymoney/settings/l10n.dist`` à ``mymoney/settings/l10n.py`` et "
 "éditez le."
 
-#: ../../installation.rst:107
+#: ../../installation.rst:113
 msgid "edit your final setting file to use the l10n configuration instead::"
 msgstr ""
 "éditez votre fichier de configuration finale pour utiliser le fichier de "
 "configuration l10n à la place::"
 
-#: ../../installation.rst:112
+#: ../../installation.rst:118
 msgid ""
 "Only *French* internationalisation/translations are supported for now. But "
 "any contributions are welcome!"
@@ -194,11 +195,11 @@ msgstr ""
 "Les traductions en *français* sont uniquement supportées pour le moment. "
 "Mais toutes contributions sont les bienvenues !"
 
-#: ../../installation.rst:116
+#: ../../installation.rst:122
 msgid "Demo"
 msgstr "Démo"
 
-#: ../../installation.rst:118
+#: ../../installation.rst:124
 msgid ""
 "To have a quick look, you could generate some data with the following "
 "commands::"
@@ -206,59 +207,61 @@ msgstr ""
 "Pour un aperçu rapide, vous pouvez générer des données avec la commande "
 "suivante::"
 
-#: ../../installation.rst:123
+#: ../../installation.rst:129
 msgid "You can also clear any data relatives to the project's models with::"
 msgstr ""
-"Vous pouvez aussi nettoyer les données relatives aux modèles du projet avec::"
+"Vous pouvez aussi nettoyer les données relatives aux modèles du projet "
+"avec::"
 
-#: ../../installation.rst:128
+#: ../../installation.rst:134
 msgid "Tests"
 msgstr "Tests"
 
-#: ../../installation.rst:130
+#: ../../installation.rst:136
 msgid ""
 "Whichever method is used, you must create a setting file for testing. Copy "
-"``mymoney/settings/test.dist`` to ``mymoney/settings/test.py`` and edit it."
+"``mymoney/settings/test.dist`` to ``mymoney/settings/test.py`` and edit it::"
 msgstr ""
-"Qu'importe la méthode utilisée, vous devez créer un fichier de configuration "
-"de test. Copiez ``mymoney/settings/test.dist`` à "
+"Qu'importe la méthode utilisée, vous devez créer un fichier de configuration"
+" de test. Copiez ``mymoney/settings/test.dist`` à "
 "``mymoney/settings/test.py`` et éditez le."
 
-#: ../../installation.rst:134
+#: ../../installation.rst:142
 msgid "Tox"
 msgstr "Tox"
 
-#: ../../installation.rst:136
+#: ../../installation.rst:144
 msgid ""
 "You can use `Tox`_. At the project root directory without virtualenv, just "
 "execute::"
-msgstr "Vous pouvez utiliser `Tox`_. À la racine du projet sans virtualenv, "
-"exécutez juste::"
+msgstr ""
+"Vous pouvez utiliser `Tox`_. À la racine du projet sans virtualenv, exécutez"
+" juste::"
 
-#: ../../installation.rst:143
-msgid "Behind the scene, it runs severals *testenv* for:"
-msgstr "Plusieurs *testenv* sont exécutés:"
+#: ../../installation.rst:151
+msgid "Behind the scenes, it runs several *testenv* for:"
+msgstr "En coulisses, plusieurs *testenv* sont exécutés:"
 
-#: ../../installation.rst:145
+#: ../../installation.rst:153
 msgid "`flake8`_"
 msgstr "`flake8`_"
 
-#: ../../installation.rst:146
+#: ../../installation.rst:154
 msgid "`Sphinx`_"
 msgstr "`Sphinx`_"
 
-#: ../../installation.rst:147
+#: ../../installation.rst:155
 msgid "test suites with coverage and report"
 msgstr "suite de tests avec couverture et rapport"
 
-#: ../../installation.rst:153
+#: ../../installation.rst:161
 msgid "Manually"
 msgstr "Manuellement"
 
-#: ../../installation.rst:155
+#: ../../installation.rst:163
 msgid "install dependencies::"
 msgstr "installer les dépendances::"
 
-#: ../../installation.rst:159
+#: ../../installation.rst:167
 msgid "then execute tests::"
 msgstr "puis exécutez les tests::"

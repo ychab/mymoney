@@ -23,9 +23,9 @@ msgid ""
 "*Add*."
 msgstr ""
 "La première chose que vous devez faire est de créer un compte bancaire. "
-"Après s'être authentifié, vous devriez être sur la page ``/bank-"
-"account/``. Vous pouvez voir les *liens d'actions* en haut à droite. Cliquez "
-"sur *Ajouter*."
+"Après s'être authentifié, vous devriez être sur la page ``/bank-account/``. "
+"Vous pouvez voir les *liens d'actions* en haut à droite. Cliquez sur "
+"*Ajouter*."
 
 #: ../../bankaccounts.rst:8
 msgid ""
@@ -41,7 +41,7 @@ msgid "edit the bank account"
 msgstr "éditer le compte bancaire"
 
 #: ../../bankaccounts.rst:12
-msgid "delete the bank account (throught *action links*)"
+msgid "delete the bank account (through *action links*)"
 msgstr "supprimer le compte bancaire (via les *liens d'actions*)"
 
 #: ../../bankaccounts.rst:13
@@ -53,7 +53,7 @@ msgid "see statistics of this bank account"
 msgstr "voir les statistiques de ce compte bancaire"
 
 #: ../../bankaccounts.rst:15
-msgid "add bank transactions for that bank accounts"
+msgid "add bank transactions for that bank account"
 msgstr "ajouter des transactions bancaires pour ce compte bancaire"
 
 #: ../../bankaccounts.rst:16
@@ -66,10 +66,10 @@ msgstr "appliquer certaines actions sur les transactions bancaires"
 
 #: ../../bankaccounts.rst:19
 msgid ""
-"If you have only **one** bank account, you will be redirect on its page "
-"after being logged in. Otherwise, you will be redirect on the bank accounts "
-"list page at ``/bank-account/``."
+"If you have **only one** bank account, you will be redirected to its page "
+"after being logged in. Otherwise, you will be redirected on the bank "
+"accounts list page at ``/bank-account/``."
 msgstr ""
-"Si vous avez seulement *un* compte bancaire, vous serez redirigé sur sa page "
-"après vous être authentifié. Sinon, vous serez redirigé sur la page qui "
+"Si vous avez seulement *un* compte bancaire, vous serez redirigé sur sa page"
+" après vous être authentifié. Sinon, vous serez redirigé sur la page qui "
 "liste les comptes bancaires à ``/bank-account/``."

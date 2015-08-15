@@ -1,7 +1,7 @@
 Bank transactions
 =================
 
-Once bank accounts, tags, and schedulers are created, you could now begins to
+Once bank accounts, tags, and schedulers are created, you could now begin to
 create other bank transactions. You can manage bank transactions from the
 related bank account page overview:
 
@@ -57,13 +57,13 @@ Indeed, bank transactions could:
 *Ignored* could be used for internal transfer for example. You may need it if
 you want to alter the bank account balance but don't want to pollute your
 statistics with.
-*Inactive* exists just for purpose, I didn't find any use cases for it now.
-Maybe changed/removed in the future.
+*Inactive* exists for purpose only. I didn't find any use cases for it now.
+May be changed/removed in the future.
 
 Reconcile flag
 ``````````````
 
-This is a marker which indicate whether it is synchronous with your real bank
+This is a marker which indicates whether it is synchronous with your real bank
 account. It is usefull to anticipate expenses for example. You can see a quick
 summary of the reconciled balance as well as the total reconciled balance. On
 the contrary, you can also see the balance from a given bank transaction or the

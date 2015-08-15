@@ -5,7 +5,7 @@ Even before trying to insert some bank transaction, a better approach would be
 to create first bank transaction schedulers (for recurring payments for e.g).
 
 On the page of the bank account, click on the link *Schedule* in the menu tab
-links. You are redirect on the scheduler overview page. On this page, you
+links. You are redirected to the scheduler overview page. On this page, you
 could:
 
 * see a summary of periodic debit/credit
@@ -19,11 +19,11 @@ Some fields need more explanations:
 Period
 ``````
 
-For the moment, there is two kinds of periods:
+For the moment, there are two kinds of periods:
 
-* weekly: clone bank transactions every weeks for a given date, depending on
-  localization (i.e first day of week).
-* monthly: clone bank transactions every months for a given date. Don't worry,
+* weekly: clone bank transactions every week for a given date, depending on
+  localization (i.e. first day of the week).
+* monthly: clone bank transactions every month for a given date. Don't worry,
   each month is properly respected : The 2015-01-29 will be 2015-02-28 for the
   next month.
 
@@ -48,7 +48,7 @@ month), even if the current day is 26 for example.
 Start now
 `````````
 
-When you create a scheduler, you may be interesting in running it immediatly.
+When you create a scheduler, you may be interesting in running it immediately.
 However be careful, it would create a new bank transaction for the **next**
 period based on the date/period given. Thus, if you want to create an automatic
 bank transaction for the current month, the date field must be set for the

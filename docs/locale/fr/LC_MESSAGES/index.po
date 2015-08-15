@@ -25,13 +25,13 @@ msgstr ""
 
 #: ../../index.rst:19
 msgid ""
-"Of course, just like this project, this documentation isn't really usefull. "
+"Of course, just like this project, this documentation isn't really useful. "
 "This is mainly a good use case to learn Sphinx and ReadTheDoc :)"
 msgstr ""
 "Bien sûr, tout comme ce projet, cette documentation n'est pas vraiment "
-"utile. C'est surtout une bonne occasion pour apprendre Sphrinx et ReadTheDoc "
-":)"
+"utile. C'est surtout une bonne occasion pour apprendre Sphrinx et ReadTheDoc"
+" :)"
 
 #: ../../index.rst:25
 msgid "Contents"
-msgstr "Contenu"
+msgstr "Contenus"

@@ -18,14 +18,14 @@ in the owner list.
 
 2. connect to the Django backoffice in order to create a user account.
 
-.. warning:: Don't forgot to assign any permissions required (i.e: beginning
+.. warning:: Don't forget to assign any permissions required (i.e: beginning
    with *bank*).
 
 Permissions
 ```````````
 
 Each permissions are derived from the default Django model (add, change,
-delete). However, here is additionals permissions:
+delete). However, here is additional permissions:
 
 * administer owners: allow user to manager owners of a bank account
 
@@ -34,5 +34,5 @@ Anonymous user
 
 Because being authenticated is required, an anonymous user could **only**
 access the ``/login`` url (``LOGIN_URL``) or back-office (``ADMIN_BASE_URL``).
-Any attempt as an anonymous user to access an another url would redirect on the
+Any attempt as an anonymous user to access an another url would redirect to the
 login page.

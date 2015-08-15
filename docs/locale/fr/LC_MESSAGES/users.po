@@ -45,9 +45,14 @@ msgstr ""
 msgid "create the superuser if not already::"
 msgstr "créez un super utilisateur si ca n'est pas déjà fait::"
 
+#: ../../users.rst:19
+msgid "connect to the Django backoffice in order to create a user account."
+msgstr ""
+"connectez-vous au back-office de Django afin de créer un compte utilisateur"
+
 #: ../../users.rst:21
 msgid ""
-"Don't forgot to assign any permissions required (i.e: beginning with "
+"Don't forget to assign any permissions required (i.e: beginning with "
 "*bank*)."
 msgstr ""
 "N'oubliez pas d'assigner les permissions requises (commençant par *bank*)."
@@ -59,7 +64,7 @@ msgstr "Permissions"
 #: ../../users.rst:27
 msgid ""
 "Each permissions are derived from the default Django model (add, change, "
-"delete). However, here is additionals permissions:"
+"delete). However, here is additional permissions:"
 msgstr ""
 "Chaque permissions sont hérités du modèle par défaut de Django (ajouter, "
 "changer, supprimer). Cependant, voici des permissions supplémentaires :"
@@ -74,19 +79,13 @@ msgstr ""
 msgid "Anonymous user"
 msgstr "Utilisateur anonyme"
 
-#: ../../users.rst:19
-msgid "connect to the Django backoffice in order to create a user account."
-msgstr ""
-"connectez-vous au back-office de Django afin de créer un compte utilisateur"
-
 #: ../../users.rst:35
 msgid ""
 "Because being authenticated is required, an anonymous user could **only** "
 "access the ``/login`` url (``LOGIN_URL``) or back-office "
 "(``ADMIN_BASE_URL``). Any attempt as an anonymous user to access an another "
-"url would redirect on the login page."
-msgstr ""
+"url would redirect to the login page."
 "Parce que l'authentification est requise, un utilisateur anonyme peut "
-"**uniquement** accéder aux urls ``/login`` (``LOGIN_URL``) et au back-office "
-"(``ADMIN_BASE_URL``). Toutes tentatives d'accès à d'autres urls en tant "
+"**uniquement** accéder aux urls ``/login`` (``LOGIN_URL``) et au back-office"
+" (``ADMIN_BASE_URL``). Toutes tentatives d'accès à d'autres urls en tant "
 "qu'utilisateur anonyme seront redirigées sur la page de connexion."

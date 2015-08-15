@@ -17,9 +17,9 @@ msgstr "Transactions bancaires"
 
 #: ../../banktransactions.rst:4
 msgid ""
-"Once bank accounts, tags, and schedulers are created, you could now begins "
-"to create other bank transactions. You can manage bank transactions from the"
-" related bank account page overview:"
+"Once bank accounts, tags, and schedulers are created, you could now begin to"
+" create other bank transactions. You can manage bank transactions from the "
+"related bank account page overview:"
 msgstr ""
 "Une fois les comptes bancaires, étiquettes et planificateurs crées, vous "
 "pouvez désormais commencer à créer des transactions bancaires. Vous pouvez "
@@ -58,8 +58,8 @@ msgstr "dépointer les transactions bancaires sélectionnées"
 #: ../../banktransactions.rst:19
 msgid "Bank transactions alter the bank account balance when they are:"
 msgstr ""
-"Les transactions bancaires modifient le solde du compte bancaire quand elles "
-"sont : "
+"Les transactions bancaires modifient le solde du compte bancaire quand elles"
+" sont : "
 
 #: ../../banktransactions.rst:21
 msgid "created"
@@ -143,22 +143,22 @@ msgstr ""
 
 #: ../../banktransactions.rst:54
 msgid "being used for statistics (ratio and trendtime)"
-msgstr "être utilisées pour les statistiques (proportionnelle ou "
-"chronologique)"
+msgstr ""
+"être utilisées pour les statistiques (proportionnelle ou chronologique)"
 
 #: ../../banktransactions.rst:56
 msgid ""
 "*Active* is the default status. *Ignored* could be used for internal "
 "transfer for example. You may need it if you want to alter the bank account "
 "balance but don't want to pollute your statistics with. *Inactive* exists "
-"just for purpose, I didn't find any use cases for it now. Maybe "
+"for purpose only. I didn't find any use cases for it now. May be "
 "changed/removed in the future."
 msgstr ""
 "*Actif* est le statut par défaut. *Ignoré* peut être utilisé pour des "
 "virements internes par exemple. Vous pouvez en avoir besoin si vous voulez "
 "modifier le solde bancaire mais ne voulez pas polluer les statistiques. "
-"*Inactif* existe juste par principe, je n'ai pas trouvé de cas "
-"d'utilisation pour le moment. Cela peut changer à l'avenir (voir supprimer)."
+"*Inactif* existe juste par principe, je n'ai pas trouvé de cas d'utilisation"
+" pour le moment. Cela peut changer à l'avenir (voir supprimer)."
 
 #: ../../banktransactions.rst:64
 msgid "Reconcile flag"
@@ -166,7 +166,7 @@ msgstr "Drapeau pointé"
 
 #: ../../banktransactions.rst:66
 msgid ""
-"This is a marker which indicate whether it is synchronous with your real "
+"This is a marker which indicates whether it is synchronous with your real "
 "bank account. It is usefull to anticipate expenses for example. You can see "
 "a quick summary of the reconciled balance as well as the total reconciled "
 "balance. On the contrary, you can also see the balance from a given bank "

@@ -77,7 +77,7 @@ Production
 
         ./manage.py deleteorphansbankaccounts
 
-At the project root directory, the ``scripts`` directory provide bash scripts
+At the project root directory, the ``scripts`` directory provides bash script
 wrappers to execute these commands.
 Thus, you could create cron rules similar to something like::
 
@@ -148,7 +148,7 @@ execute::
 
 .. _`Tox`: http://tox.readthedocs.org
 
-Behind the scene, it runs severals *testenv* for:
+Behind the scenes, it runs several *testenv* for:
 
 * `flake8`_
 * `Sphinx`_

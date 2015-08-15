@@ -10,6 +10,6 @@ overview page. From this page, you could apply the following actions on tags:
 * delete
 
 .. note:: Owners of the same bank account could also view/use your tags (so
-   even if they are not the owner of the tag). However, user without
-   relationship (i.e: not being owner of your bank accounts) can't view/use
+   even if they are not the owner of the tag). However, a user without
+   relationship (i.e: not being the owner of your bank accounts) can't view/use
    your tags.

@@ -16,7 +16,7 @@ MyMoney's user guide
 This is the documentation of the MyMoney project, a personal finance Web
 application build with the `Django`_ framework.
 
-Of course, just like this project, this documentation isn't really usefull.
+Of course, just like this project, this documentation isn't really useful.
 This is mainly a good use case to learn Sphinx and ReadTheDoc :)
 
 .. _`Django`: https://www.djangoproject.com/

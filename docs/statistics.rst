@@ -8,7 +8,7 @@ You can then switch between two view modes:
 * ratio report: based on tags
 * trendtime report: based on dates
 
-Each reports provide some basic filters and a quick summary. Each summary has
+Each report provides some basic filters and a quick summary. Each summary has
 more details when you click on a targeted item.
 
 Ratio
@@ -28,7 +28,7 @@ For an expense search with *single* mode, **each negative bank transactions**
 are used.
 For an expenses search with *sum* mode, **each negative sum** of tags are used.
 
-For example, imagine you do some shopping for $100. Unfortunetly, you discover
+For example, imagine you do some shopping for $100. Unfortunetely, you discover
 that an item isn't good. You return it and get a refund of $25.
 With *single* type filter, the amount used would be -$100. Whereas with *sum*
 type filter, the amount used would be -100 + 25 = -$75.

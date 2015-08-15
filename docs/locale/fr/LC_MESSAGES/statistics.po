@@ -35,7 +35,7 @@ msgstr "rapport chronologique: basés sur les dates"
 
 #: ../../statistics.rst:11
 msgid ""
-"Each reports provide some basic filters and a quick summary. Each summary "
+"Each report provides some basic filters and a quick summary. Each summary "
 "has more details when you click on a targeted item."
 msgstr ""
 "Chaques rapports fournissent des filtres et un résumé. Chaques résumés ont "
@@ -44,6 +44,10 @@ msgstr ""
 #: ../../statistics.rst:15
 msgid "Ratio"
 msgstr "Proportionnel"
+
+#: ../../statistics.rst:18
+msgid "Filter type: sum or single"
+msgstr "Filtre type: somme ou unitaire"
 
 #: ../../statistics.rst:20
 msgid ""
@@ -76,11 +80,10 @@ msgstr ""
 
 #: ../../statistics.rst:31
 msgid ""
-"For example, imagine you do some shopping for $100. Unfortunetly, you "
+"For example, imagine you do some shopping for $100. Unfortunetely, you "
 "discover that an item isn't good. You return it and get a refund of $25. "
 "With *single* type filter, the amount used would be -$100. Whereas with "
 "*sum* type filter, the amount used would be -100 + 25 = -$75."
-msgstr ""
 "Par exemple, imaginez que vous avez fait du shopping pour 100€. "
 "Malheureusement, vous découvrez qu'un bien n'est pas bon. Vous le retourné "
 "et vous êtes remboursé de 25€. Avec le filtre type *unitaire*, le montant "
@@ -94,7 +97,3 @@ msgid ""
 msgstr ""
 "La plupart du temps, le mode le plus désiré sera *somme*, c'est pourquoi "
 "c'est le mode par défaut."
-
-#: ../../statistics.rst:18
-msgid "Filter type: sum or single"
-msgstr "Filtre type: somme ou unitaire"
