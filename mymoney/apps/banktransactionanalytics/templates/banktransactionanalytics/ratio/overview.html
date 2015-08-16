@@ -187,7 +187,7 @@
 <script src="{% static 'banktransactionanalytics/chartjs/Chart.min.js' %}"></script>
 
 <script type="text/javascript">
-    chart_data = {{ chart_data|safe }};
+    var chart_data = {{ chart_data|safe }};
 </script>
 
 <script src="{% static 'banktransactionanalytics/banktransactionanalytics.js' %}"></script>
