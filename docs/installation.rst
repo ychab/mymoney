@@ -151,10 +151,12 @@ execute::
 Behind the scenes, it runs several *testenv* for:
 
 * `flake8`_
+* `isort`_
 * `Sphinx`_
 * test suites with coverage and report
 
 .. _`flake8`: http://flake8.readthedocs.org
+.. _`isort`: https://github.com/timothycrosley/isort
 .. _`Sphinx`: http://sphinx-doc.org
 
 Manually
