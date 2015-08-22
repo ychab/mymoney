@@ -8,3 +8,4 @@ mymoney/settings/*.py
 .tox
 docs/_build/
 fabfile.py
+ROADMAP.txt
