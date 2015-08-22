@@ -1,14 +1,13 @@
 import datetime
 
 from django.utils import formats
-from django.utils.translation import ugettext as _
-from django.utils.translation import ugettext_lazy
+from django.utils.translation import ugettext as _, ugettext_lazy
 
 import floppyforms as forms
 
 from mymoney.apps.banktransactiontags.models import BankTransactionTag
-from mymoney.core.widgets import Datepicker
 from mymoney.core.utils.dates import GRANULARITY_MONTH, GRANULARITY_WEEK
+from mymoney.core.widgets import Datepicker
 
 
 class RatioForm(forms.Form):

@@ -4,7 +4,7 @@ from datetime import date
 from django.test import override_settings, SimpleTestCase
 
 from ..paginators import (
-    DatePaginator, EmptyPage, InvalidDateRanges, UnknownGranularity
+    DatePaginator, EmptyPage, InvalidDateRanges, UnknownGranularity,
 )
 from ..utils.dates import GRANULARITY_MONTH, GRANULARITY_WEEK
 

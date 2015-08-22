@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.core.checks import Critical, Warning, Tags, register
+from django.core.checks import Critical, register, Tags, Warning
 
 
 @register(Tags.security, deploy=True)

@@ -1,8 +1,8 @@
 import datetime
 
 import factory
-from factory import fuzzy
 from dateutil.relativedelta import relativedelta
+from factory import fuzzy
 
 from mymoney.apps.bankaccounts.factories import BankAccountFactory
 

@@ -3,14 +3,15 @@ import json
 from decimal import Decimal
 
 from django.core.urlresolvers import reverse
-from django.test import TestCase, modify_settings, override_settings
+from django.test import modify_settings, override_settings, TestCase
 
 from django_webtest import WebTest
 
 from mymoney.apps.bankaccounts.factories import BankAccountFactory
 from mymoney.apps.banktransactions.factories import BankTransactionFactory
 from mymoney.apps.banktransactions.models import BankTransaction
-from mymoney.apps.banktransactiontags.factories import BankTransactionTagFactory
+from mymoney.apps.banktransactiontags.factories import \
+    BankTransactionTagFactory
 from mymoney.core.factories import UserFactory
 from mymoney.core.utils.dates import GRANULARITY_MONTH, GRANULARITY_WEEK
 

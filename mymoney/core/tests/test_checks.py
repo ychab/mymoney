@@ -1,5 +1,5 @@
-from django.core.checks import Critical, Warning, run_checks
-from django.test import SimpleTestCase, override_settings
+from django.core.checks import Critical, run_checks, Warning
+from django.test import override_settings, SimpleTestCase
 
 
 class AdminURLCheck(SimpleTestCase):

@@ -3,7 +3,8 @@ from django.utils import timezone
 from dateutil.relativedelta import relativedelta
 from factory import fuzzy
 
-from mymoney.apps.banktransactions.factories import AbstractBankTransactionFactory
+from mymoney.apps.banktransactions.factories import \
+    AbstractBankTransactionFactory
 
 from .models import BankTransactionScheduler
 

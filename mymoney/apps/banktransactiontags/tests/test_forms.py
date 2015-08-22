@@ -5,7 +5,8 @@ from django.utils.translation import ugettext as _
 
 from django_webtest import WebTest
 
-from mymoney.apps.banktransactiontags.factories import BankTransactionTagFactory
+from mymoney.apps.banktransactiontags.factories import \
+    BankTransactionTagFactory
 from mymoney.core.factories import UserFactory
 
 from ..models import BankTransactionTag

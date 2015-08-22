@@ -5,7 +5,8 @@ from unittest.mock import patch
 
 from mymoney.apps.bankaccounts.factories import BankAccountFactory
 from mymoney.apps.bankaccounts.models import BankAccount
-from mymoney.apps.banktransactiontags.factories import BankTransactionTagFactory
+from mymoney.apps.banktransactiontags.factories import \
+    BankTransactionTagFactory
 from mymoney.core.utils.dates import GRANULARITY_MONTH, GRANULARITY_WEEK
 
 from ..factories import BankTransactionFactory

@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.core.urlresolvers import reverse
-from django.test import TestCase, modify_settings
+from django.test import modify_settings, TestCase
 
 from mymoney.apps.bankaccounts.factories import BankAccountFactory
 from mymoney.core.factories import UserFactory

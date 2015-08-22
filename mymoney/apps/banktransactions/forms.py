@@ -1,5 +1,4 @@
-from django.utils.translation import ugettext as _
-from django.utils.translation import ugettext_lazy
+from django.utils.translation import ugettext as _, ugettext_lazy
 
 import floppyforms.__future__ as forms
 

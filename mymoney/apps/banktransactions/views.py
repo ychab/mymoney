@@ -8,13 +8,12 @@ from django.core.urlresolvers import reverse
 from django.db.models import QuerySet
 from django.http import HttpResponseRedirect
 from django.utils.functional import cached_property
-from django.utils.translation import ugettext as _
-from django.utils.translation import ugettext_lazy
+from django.utils.translation import ugettext as _, ugettext_lazy
 from django.views import generic
 
 from .forms import (
     BankTransactionCreateForm, BankTransactionListForm,
-    BankTransactionUpdateForm
+    BankTransactionUpdateForm,
 )
 from .mixins import BankTransactionAccessMixin, BankTransactionSaveViewMixin
 from .models import BankTransaction

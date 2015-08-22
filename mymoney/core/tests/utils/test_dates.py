@@ -4,8 +4,8 @@ import unittest
 from django.test import override_settings, SimpleTestCase
 
 from mymoney.core.utils.dates import (
-    GRANULARITY_MONTH, GRANULARITY_WEEK, get_date_ranges, get_datetime_ranges,
-    get_weekday,
+    get_date_ranges, get_datetime_ranges, get_weekday, GRANULARITY_MONTH,
+    GRANULARITY_WEEK,
 )
 
 

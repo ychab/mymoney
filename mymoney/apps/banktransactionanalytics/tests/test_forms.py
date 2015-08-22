@@ -1,9 +1,11 @@
 from django.core.urlresolvers import reverse
 from django.test import override_settings
+
 from django_webtest import WebTest
 
 from mymoney.apps.bankaccounts.factories import BankAccountFactory
-from mymoney.apps.banktransactiontags.factories import BankTransactionTagFactory
+from mymoney.apps.banktransactiontags.factories import \
+    BankTransactionTagFactory
 from mymoney.core.factories import UserFactory
 
 

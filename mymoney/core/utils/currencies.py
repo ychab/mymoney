@@ -3,8 +3,8 @@ import operator
 from django.utils.formats import get_format
 from django.utils.translation import get_language
 
-from babel.core import Locale
 from babel import numbers
+from babel.core import Locale
 
 
 def get_currencies():

@@ -5,13 +5,13 @@ from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 
 from mymoney.apps.banktransactions.mixins import (
-    BankTransactionAccessMixin, BankTransactionSaveViewMixin
+    BankTransactionAccessMixin, BankTransactionSaveViewMixin,
 )
 from mymoney.apps.banktransactions.models import BankTransaction
 from mymoney.core.utils.dates import GRANULARITY_MONTH, GRANULARITY_WEEK
 
 from .forms import (
-    BankTransactionSchedulerCreateForm, BankTransactionSchedulerUpdateForm
+    BankTransactionSchedulerCreateForm, BankTransactionSchedulerUpdateForm,
 )
 from .models import BankTransactionScheduler
 

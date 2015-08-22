@@ -8,7 +8,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from mymoney.apps.bankaccounts.models import BankAccount
 from mymoney.apps.banktransactiontags.models import BankTransactionTag
-from mymoney.core.utils.dates import GRANULARITY_MONTH, get_date_ranges
+from mymoney.core.utils.dates import get_date_ranges, GRANULARITY_MONTH
 
 
 class BankTransactionManager(models.Manager):

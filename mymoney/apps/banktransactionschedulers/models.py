@@ -10,10 +10,10 @@ from django.utils.translation import ugettext_lazy as _
 from dateutil.relativedelta import relativedelta
 
 from mymoney.apps.banktransactions.models import (
-    AbstractBankTransaction, BankTransaction
+    AbstractBankTransaction, BankTransaction,
 )
 from mymoney.core.utils.dates import (
-    GRANULARITY_MONTH, GRANULARITY_WEEK, get_datetime_ranges
+    get_datetime_ranges, GRANULARITY_MONTH, GRANULARITY_WEEK,
 )
 
 logger = logging.getLogger(__name__)

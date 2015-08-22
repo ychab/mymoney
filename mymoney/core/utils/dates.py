@@ -1,7 +1,7 @@
 import datetime
 
-from django.utils.timezone import make_aware
 from django.utils.formats import get_format
+from django.utils.timezone import make_aware
 
 from dateutil.relativedelta import relativedelta, weekday
 
