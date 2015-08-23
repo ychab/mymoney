@@ -1,0 +1,26 @@
+<span id="cal-slide-tick" style="display: none"></span>
+<div id="cal-slide-content" class="cal-event-list">
+	<ul class="unstyled list-unstyled">
+		<% _.each(events, function(event) { %>
+			<li>
+				<span class="pull-left event <%= event['class'] %>"></span>&nbsp;
+
+				<a href="<%= event.url %>" data-event-id="<%= event.id %>" data-event-class="<%= event['class'] %>" class="event-item">
+					<%= event.title %>
+				</a>
+
+				<% if(event.url_edit) {%>
+				<a href="<%= event.url_edit %>">
+					<span class="glyphicon glyphicon-edit"></span>
+				</a>
+				<% }; %>
+
+				<% if(event.url_delete) {%>
+				<a href="<%= event.url_delete %>">
+					<span class="glyphicon glyphicon-trash"></span>
+				</a>
+				<% }; %>
+			</li>
+		<% }) %>
+	</ul>
+</div>

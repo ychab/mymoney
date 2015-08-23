@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load i18n core_tags %}
 
-{% block title %}{{ bankaccount }}{% endblock %}
+{% block title %}{{ bankaccount }} - {% trans "table view" %}{% endblock %}
 {% block content_title %}{{ bankaccount }}{% endblock %}
 
 {% block menu_tab %}
@@ -10,6 +10,10 @@
 
 {% block menu_action %}
 {% menu_action_links request %}
+{% endblock %}
+
+{% block menu_item %}
+{% menu_item_links request %}
 {% endblock %}
 
 {% block content %}

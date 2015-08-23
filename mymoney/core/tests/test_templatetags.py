@@ -16,7 +16,7 @@ from ..factories import UserFactory
 from ..templatetags.core_tags import (
     breadcrumb, currency_positive, display_messages, form_errors_exists,
     localize_positive, localize_positive_color, merge_form_errors,
-    payment_method,
+    payment_method, trans_file,
 )
 
 
@@ -181,6 +181,34 @@ class TemplateTagsWebTestCase(WebTest):
         with self.assertRaises(IndexError):
             response.click(href=href)
 
+    def test_menu_item_links(self):
+
+        url = reverse('banktransactionanalytics:ratio', kwargs={
+            'bankaccount_pk': self.bankaccount.pk
+        })
+        href = reverse('banktransactionanalytics:trendtime', kwargs={
+            'bankaccount_pk': self.bankaccount.pk
+        })
+        response = self.app.get(url, user='superowner')
+        response.click(href=href)
+        href = reverse('banktransactionanalytics:ratio', kwargs={
+            'bankaccount_pk': self.bankaccount.pk
+        })
+        response.click(href=href, index=1)
+
+        url = reverse('banktransactions:list', kwargs={
+            'bankaccount_pk': self.bankaccount.pk
+        })
+        href = reverse('banktransactions:calendar', kwargs={
+            'bankaccount_pk': self.bankaccount.pk
+        })
+        response = self.app.get(url, user='superowner')
+        response.click(href=href)
+        href = reverse('banktransactions:list', kwargs={
+            'bankaccount_pk': self.bankaccount.pk
+        })
+        response.click(href=href, index=1)
+
 
 class TemplateFiltersWebTestCase(unittest.TestCase):
 
@@ -243,6 +271,21 @@ class TemplateFiltersWebTestCase(unittest.TestCase):
 
 
 class TemplateFiltersTestCase(SimpleTestCase):
+
+    def test_trans_file(self):
+
+        with override_settings(LANGUAGE_CODE='en-us'):
+            self.assertIsNone(trans_file("foo/{lang-LANG}.js"))
+
+        with override_settings(LANGUAGE_CODE='fr-fr'):
+            self.assertEqual(
+                trans_file("foo/{lang}.js", False),
+                "foo/fr.js",
+            )
+            self.assertEqual(
+                trans_file("foo/{lang-LANG}.js", True),
+                "foo/fr-FR.js",
+            )
 
     def test_currency_positive(self):
 

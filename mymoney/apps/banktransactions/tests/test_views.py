@@ -1,4 +1,5 @@
 import datetime
+import time
 from decimal import Decimal
 
 from django.contrib import messages
@@ -221,6 +222,80 @@ class AccessTestCase(TestCase):
         response = self.client.get(url)
         self.assertEqual(200, response.status_code)
         self.client.logout()
+
+    def test_access_calendar_view(self):
+
+        url = reverse('banktransactions:calendar', kwargs={
+            'bankaccount_pk': self.bankaccount.pk
+        })
+
+        # Anonymous denied
+        response = self.client.get(url)
+        self.assertEqual(403, response.status_code)
+
+        # Non owner.
+        self.client.login(username=self.not_owner, password='test')
+        response = self.client.get(url)
+        self.assertEqual(403, response.status_code)
+
+        # Owner.
+        self.client.login(username=self.owner, password='test')
+        response = self.client.get(url)
+        self.assertEqual(200, response.status_code)
+
+        self.client.login(username=self.superowner, password='test')
+        response = self.client.get(url)
+        self.assertEqual(200, response.status_code)
+
+    def test_access_calendar_ajax_events(self):
+
+        url = reverse('banktransactions:calendar_ajax_events', kwargs={
+            'bankaccount_pk': self.bankaccount.pk
+        }) + '?from=0&to=0'
+
+        # Anonymous denied
+        response = self.client.get(url)
+        self.assertEqual(403, response.status_code)
+
+        # Non owner.
+        self.client.login(username=self.not_owner, password='test')
+        response = self.client.get(url)
+        self.assertEqual(403, response.status_code)
+
+        # Owner.
+        self.client.login(username=self.owner, password='test')
+        response = self.client.get(url)
+        self.assertEqual(200, response.status_code)
+
+        self.client.login(username=self.superowner, password='test')
+        response = self.client.get(url)
+        self.assertEqual(200, response.status_code)
+
+    def test_access_calendar_ajax_event(self):
+
+        banktransaction = BankTransactionFactory(bankaccount=self.bankaccount)
+
+        url = reverse('banktransactions:calendar_ajax_event', kwargs={
+            'pk': banktransaction.pk
+        })
+
+        # Anonymous denied
+        response = self.client.get(url)
+        self.assertEqual(403, response.status_code)
+
+        # Non owner.
+        self.client.login(username=self.not_owner, password='test')
+        response = self.client.get(url)
+        self.assertEqual(403, response.status_code)
+
+        # Owner.
+        self.client.login(username=self.owner, password='test')
+        response = self.client.get(url)
+        self.assertEqual(200, response.status_code)
+
+        self.client.login(username=self.superowner, password='test')
+        response = self.client.get(url)
+        self.assertEqual(200, response.status_code)
 
 
 class ListTemplateTestCase(WebTest):
@@ -941,4 +1016,172 @@ class ListViewTestCase(WebTest):
                 Decimal('150') + Decimal('-9.41'),
                 Decimal('150') + Decimal('-2.82'),
             ],
+        )
+
+
+class CalendarViewTestCase(WebTest):
+
+    @classmethod
+    def setUpTestData(cls):
+        cls.owner = UserFactory(username='owner')
+        cls.bankaccount = BankAccountFactory(owners=[cls.owner])
+
+    def test_view(self):
+
+        url = reverse('banktransactions:calendar', kwargs={
+            'bankaccount_pk': self.bankaccount.pk,
+        })
+
+        response = self.app.get(url, user='owner')
+        self.assertEqual(
+            response.context[0]['bankaccount'],
+            self.bankaccount,
+        )
+        self.assertEqual(
+            response.context[0]['calendar_ajax_url'],
+            reverse(
+                'banktransactions:calendar_ajax_events',
+                kwargs={
+                    'bankaccount_pk': self.bankaccount.pk,
+                },
+            )
+        )
+
+
+class CalendarEventsAjaxTestCase(WebTest):
+
+    @classmethod
+    def setUpTestData(cls):
+        cls.owner = UserFactory(username='owner')
+        cls.superowner = UserFactory(username='superowner', user_permissions='admin')
+        cls.bankaccount = BankAccountFactory(owners=[cls.owner, cls.superowner])
+
+    def test_bad_request(self):
+
+        base_url = reverse('banktransactions:calendar_ajax_events', kwargs={
+            'bankaccount_pk': self.bankaccount.pk,
+        })
+
+        timestamp_ms = str(int(time.mktime(datetime.date(2015, 8, 23).timetuple())) * 1000)
+
+        url = base_url + '?from=foo&to=' + timestamp_ms
+        response = self.app.get(url, user='owner', status=400)
+        self.assertEqual(response.status_code, 400)
+
+        url = base_url + '?from=' + timestamp_ms + '&to=1000000000000000'
+        response = self.app.get(url, user='owner', status=400)
+        self.assertEqual(response.status_code, 400)
+
+        url = base_url + '?from=-100000000000000&to=' + timestamp_ms
+        response = self.app.get(url, user='owner', status=400)
+        self.assertEqual(response.status_code, 400)
+
+    def test_ajax_response(self):
+
+        bankaccount = BankAccountFactory(owners=[self.owner, self.superowner])
+
+        base_url = reverse('banktransactions:calendar_ajax_events', kwargs={
+            'bankaccount_pk': bankaccount.pk,
+        })
+
+        start = str(int(time.mktime(datetime.date(2015, 7, 27).timetuple())) * 1000)
+        end = str(int(time.mktime(datetime.date(2015, 8, 31).timetuple())) * 1000)
+
+        url = base_url + '?from={start}&to={end}'.format(start=start, end=end)
+
+        response = self.app.get(url, user='owner')
+        self.assertIn("success", response.json)
+        self.assertEqual(response.json["success"], 1)
+        self.assertFalse(response.json["result"])
+
+        bt1 = BankTransactionFactory(
+            bankaccount=bankaccount,
+            date=datetime.date(2015, 7, 27),
+        )
+
+        bt2 = BankTransactionFactory(
+            bankaccount=bankaccount,
+            date=datetime.date(2015, 7, 31),
+        )
+
+        bt3 = BankTransactionFactory(
+            bankaccount=bankaccount,
+            date=datetime.date(2015, 8, 31),
+        )
+
+        bt4 = BankTransactionFactory(  # noqa
+            bankaccount=bankaccount,
+            date=datetime.date(2015, 9, 10),
+        )
+
+        response = self.app.get(url, user='owner')
+        result = response.json['result']
+        self.assertListEqual(
+            [event['id'] for event in result],
+            [bt1.pk, bt2.pk, bt3.pk],
+        )
+        for row in result:
+            self.assertNotIn('url_edit', row)
+            self.assertNotIn('url_delete', row)
+
+        response = self.app.get(url, user='superowner')
+        for row in response.json['result']:
+            self.assertEqual(
+                row['url_edit'],
+                reverse(
+                    'banktransactions:update',
+                    kwargs={'pk': row['id']},
+                )
+            )
+            self.assertEqual(
+                row['url_delete'],
+                reverse(
+                    'banktransactions:delete',
+                    kwargs={'pk': row['id']},
+                )
+            )
+
+
+class CalendarEventAjaxTestCase(WebTest):
+
+    @classmethod
+    def setUpTestData(cls):
+        cls.owner = UserFactory(username='owner')
+        cls.superowner = UserFactory(username='superowner', user_permissions='admin')
+        cls.bankaccount = BankAccountFactory(owners=[cls.owner, cls.superowner])
+
+    def test_not_found(self):
+
+        url = reverse('banktransactions:calendar_ajax_event', kwargs={'pk': 0})
+        response = self.app.get(url, user='owner', status=404)
+        self.assertEqual(response.status_code, 404)
+
+    def test_context_data(self):
+
+        bankaccount = BankAccountFactory(owners=[self.owner, self.superowner])
+        banktransaction = BankTransactionFactory(bankaccount=bankaccount)
+        url = reverse('banktransactions:calendar_ajax_event', kwargs={
+            'pk': banktransaction.pk,
+        })
+
+        response = self.app.get(url, user='owner')
+        self.assertEqual(
+            response.context['banktransaction'].pk,
+            banktransaction.pk,
+        )
+        self.assertNotIn('edit_url', response.context)
+        self.assertNotIn('delete_url', response.context)
+
+        response = self.app.get(url, user='superowner')
+        self.assertEqual(
+            response.context['banktransaction'].pk,
+            banktransaction.pk,
+        )
+        self.assertEqual(
+            response.context['url_edit'],
+            reverse('banktransactions:update', kwargs={'pk': banktransaction.pk})
+        )
+        self.assertEqual(
+            response.context['url_delete'],
+            reverse('banktransactions:delete', kwargs={'pk': banktransaction.pk})
         )

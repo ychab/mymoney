@@ -5,7 +5,8 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title">{{ title }}</h4>
+                {# Be careful, bootstrap-calendar expect it to be h3 ONLY! #}
+                <h3 class="modal-title">{{ title }}</h3>
             </div>
             <div class="modal-body">{{ body }}</div>
         </div>

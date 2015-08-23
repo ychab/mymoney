@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load i18n staticfiles core_tags %}
+
+{% block extrastyle %}
+<link href="{% static 'bootstrap-calendar/css/calendar.min.css' %}" rel="stylesheet" />
+{% endblock %}
+
+{% block title %}{{ bankaccount }} - {% trans "calendar view" %}{% endblock %}
+{% block content_title %}{{ bankaccount }}{% endblock %}
+
+{% block menu_tab %}
+{% menu_tab_links request %}
+{% endblock %}
+
+{% block menu_action %}
+{% menu_action_links request %}
+{% endblock %}
+
+{% block menu_item %}
+{% menu_item_links request %}
+{% endblock %}
+
+{% block content %}
+<div class="clearfix">
+    <div class="pull-left">
+        <h4 id="calendar-title"></h4>
+    </div>
+    <div class="pull-right">
+    {% include 'banktransactions/calendar/pager.html' %}
+    {% include 'banktransactions/calendar/filters.html' %}
+    </div>
+</div>
+<div id="calendar">
+    <div class="text-center">
+        <img src="{% static 'mymoney/img/ajax-loader.gif' %}" />
+    </div>
+</div>
+{% include 'modal.html' with id="events-modal" title="" body="" %}
+{% endblock content %}
+
+{% block footer %}
+{{ block.super }}
+<script src="{% static 'bootstrap-calendar/components/underscore/underscore-min.js' %}"></script>
+<script src="{% static 'bootstrap-calendar/js/calendar.min.js' %}"></script>
+{% with lang_file="bootstrap-calendar/js/language/{lang-LANG}.js"|trans_file:True %}
+{% if lang_file %}
+<script src="{% static lang_file %}"></script>
+{% endif %}
+
+<script type="text/javascript">
+    var calendar_template_path = "{% static 'banktransactions/bootstrap-calendar-templates/' %}";
+    var calendar_events_url = "{{ calendar_ajax_url }}";
+
+    {% if lang_file %}
+    var language_code = "{{ LANGUAGE_CODE|default:"en-us" }}";
+    {% endif %}
+</script>
+{% endwith %}
+<script src="{% static 'banktransactions/banktransactions.js' %}"></script>
+{% endblock footer %}

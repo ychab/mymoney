@@ -1,0 +1,27 @@
+{% load i18n core_tags %}
+
+<p><strong>{% trans "Label:" %}</strong> {{ banktransaction.label }}</p>
+<p><strong>{% trans "Amount:" %}</strong> {{ banktransaction.amount|currency_positive:banktransaction.currency }}</p>
+<p><strong>{% trans "Status:" %}</strong> {{ banktransaction.get_status_display }}</p>
+<p><strong>{% trans "Payment method:" %}</strong> {{ banktransaction.get_payment_method_display }}</p>
+<p><strong>{% trans "Reconciled:" %}</strong> {{ banktransaction.reconciled|yesno }}</p>
+<p><strong>{% trans "Scheduled:" %}</strong> {{ banktransaction.scheduled|yesno }}</p>
+<p>
+    <strong>{% trans "Tag:" %}</strong>
+    {% if banktransaction.tag %}{{ banktransaction.tag }}{% else %}{% trans "None" %}{% endif %}
+</p>
+{% if banktransaction.memo %}
+<p><strong>{% trans "Memo:" %}</strong>{{ banktransaction.memo }}</p>
+{% endif %}
+
+{% if url_edit or url_delete %}
+<div class="btn-group" role="group">
+{% if url_edit %}
+<a class="btn btn-success" href="{{ url_edit}}">{% trans "Edit" %}</a>
+{% endif %}
+
+{% if url_delete %}
+<a class="btn btn-danger" href="{{ url_delete}}">{% trans "Delete" %}</a>
+{% endif %}
+</div>
+{% endif %}

@@ -4,7 +4,7 @@ from django import template
 from django.core.urlresolvers import resolve, reverse
 from django.templatetags.l10n import localize
 from django.utils.safestring import mark_safe
-from django.utils.translation import ugettext as _
+from django.utils.translation import get_language, ugettext as _
 
 from mymoney.apps.banktransactions.models import BankTransaction
 
@@ -84,9 +84,12 @@ def menu_item_links(request):
     """
     Render hardcoded item links, which are children of tab links.
     """
+    links = []
     resolver = resolve(request.path)
-    return {
-        'links': [
+
+    if resolver.view_name in ('banktransactionanalytics:ratio',
+                              'banktransactionanalytics:trendtime'):
+        links = [
             {
                 'href': reverse('banktransactionanalytics:ratio', kwargs={
                     'bankaccount_pk': resolver.kwargs['bankaccount_pk'],
@@ -105,7 +108,32 @@ def menu_item_links(request):
                     resolver.view_name == 'banktransactionanalytics:trendtime'
                 ),
             },
-        ],
+        ]
+    elif resolver.view_name in ('banktransactions:list',
+                                'banktransactions:calendar'):
+        links = [
+            {
+                'href': reverse('banktransactions:list', kwargs={
+                    'bankaccount_pk': resolver.kwargs['bankaccount_pk'],
+                }),
+                'text': _('Table view'),
+                'is_active': (
+                    resolver.view_name == 'banktransactions:list'
+                ),
+            },
+            {
+                'href': reverse('banktransactions:calendar', kwargs={
+                    'bankaccount_pk': resolver.kwargs['bankaccount_pk'],
+                }),
+                'text': _('Calendar view'),
+                'is_active': (
+                    resolver.view_name == 'banktransactions:calendar'
+                ),
+            },
+        ]
+
+    return {
+        'links': links,
     }
 
 
@@ -232,6 +260,19 @@ def breadcrumb(request, bankaccount_pk=None):
     return {
         "links": links,
     }
+
+
+@register.filter
+def trans_file(string, use_langcode=False):
+    """
+    Replace placeholders with the current language.
+    """
+    lang = get_language()[:2]
+    if lang != 'en':
+        if use_langcode:
+            return string.replace('{lang-LANG}', lang + '-' + lang.upper())
+
+        return string.replace('{lang}', lang)
 
 
 @register.filter

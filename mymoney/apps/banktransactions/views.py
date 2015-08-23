@@ -1,3 +1,5 @@
+import datetime
+import time
 from collections import OrderedDict
 
 from django.contrib import messages
@@ -6,7 +8,10 @@ from django.core.exceptions import PermissionDenied
 from django.core.paginator import InvalidPage, Paginator
 from django.core.urlresolvers import reverse
 from django.db.models import QuerySet
-from django.http import HttpResponseRedirect
+from django.http import (
+    HttpResponseBadRequest, HttpResponseRedirect, JsonResponse,
+)
+from django.shortcuts import get_object_or_404
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext as _, ugettext_lazy
 from django.views import generic
@@ -238,6 +243,117 @@ class BankTransactionListView(BankTransactionAccessMixin, generic.FormView):
                 qs = qs.filter(tag__in=filters['tags'])
 
         return qs
+
+
+class BankTransactionCalendarView(BankTransactionAccessMixin,
+                                  generic.TemplateView):
+
+    template_name = 'banktransactions/calendar/index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(BankTransactionCalendarView, self).get_context_data()
+        context['bankaccount'] = self.bankaccount
+        context['calendar_ajax_url'] = reverse(
+            'banktransactions:calendar_ajax_events',
+            kwargs={'bankaccount_pk': self.bankaccount.pk},
+        )
+        return context
+
+
+class BankTransactionCalendarEventsAjax(BankTransactionAccessMixin, generic.View):
+
+    def get(self, request, *args, **kwargs):
+
+        try:
+            date_start = datetime.date.fromtimestamp(int(request.GET.get('from')) / 1000)
+            date_end = datetime.date.fromtimestamp(int(request.GET.get('to')) / 1000)
+        except Exception:
+            return HttpResponseBadRequest("Parameters 'from' and 'to' must be "
+                                          "valid timestamp in milliseconds.")
+
+        qs = (
+            BankTransaction.objects.filter(
+                bankaccount=self.bankaccount,
+                date__range=(date_start, date_end),
+            )
+            .order_by('date')
+        )
+
+        events = []
+        for banktransaction in qs:
+
+            timestamp_ms = time.mktime(banktransaction.date.timetuple()) * 1000
+
+            event = {
+                "id": banktransaction.id,
+                "url": reverse('banktransactions:calendar_ajax_event', kwargs={
+                    'pk': banktransaction.pk,
+                }),
+                "title": "{label}, {amount}".format(
+                    label=banktransaction.label,
+                    amount=banktransaction.amount,
+                ),
+                "class": "event-important" if banktransaction.amount < 0 else "event-success",
+                "start": timestamp_ms,
+                "end": timestamp_ms,
+                "extra_data": {
+                    "label": banktransaction.label,
+                },
+            }
+
+            if self.request.user.has_perm('banktransactions.change_banktransaction'):
+                event['url_edit'] = reverse(
+                    'banktransactions:update', kwargs={
+                        'pk': banktransaction.pk,
+                    },
+                )
+
+            if self.request.user.has_perm('banktransactions.delete_banktransaction'):
+                event['url_delete'] = reverse(
+                    'banktransactions:delete', kwargs={
+                        'pk': banktransaction.pk,
+                    },
+                )
+
+            events.append(event)
+
+        return JsonResponse({
+            "success": 1,
+            "result": events,
+        })
+
+
+class BankTransactionCalendarEventAjax(generic.TemplateView):
+
+    template_name = 'banktransactions/calendar/modal_content.html'
+    object = None
+
+    def dispatch(self, request, *args, **kwargs):
+
+        self.object = get_object_or_404(BankTransaction, pk=kwargs.get('pk'))
+        if not self.object.bankaccount.owners.filter(pk=request.user.pk).exists():
+            raise PermissionDenied
+
+        return super(BankTransactionCalendarEventAjax, self).dispatch(
+            request, *args, **kwargs
+        )
+
+    def get_context_data(self, **kwargs):
+        context = super(BankTransactionCalendarEventAjax, self).get_context_data()
+
+        context['banktransaction'] = self.object
+
+        if self.request.user.has_perm('banktransactions.change_banktransaction'):
+            context['url_edit'] = reverse(
+                'banktransactions:update', kwargs={'pk': self.object.pk},
+            )
+
+        if self.request.user.has_perm('banktransactions.delete_banktransaction'):
+            context['url_delete'] = reverse(
+                'banktransactions:delete', kwargs={'pk': self.object.pk},
+            )
+
+        return context
 
 
 class BankTransactionCreateView(BankTransactionAccessMixin,
