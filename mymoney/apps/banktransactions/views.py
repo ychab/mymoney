@@ -16,6 +16,8 @@ from django.utils.functional import cached_property
 from django.utils.translation import ugettext as _, ugettext_lazy
 from django.views import generic
 
+from mymoney.core.templatetags.core_tags import currency_positive
+
 from .forms import (
     BankTransactionCreateForm, BankTransactionListForm,
     BankTransactionUpdateForm,
@@ -284,14 +286,17 @@ class BankTransactionCalendarEventsAjax(BankTransactionAccessMixin, generic.View
 
             timestamp_ms = time.mktime(banktransaction.date.timetuple()) * 1000
 
-            event = {
+            events.append({
                 "id": banktransaction.id,
                 "url": reverse('banktransactions:calendar_ajax_event', kwargs={
                     'pk': banktransaction.pk,
                 }),
                 "title": "{label}, {amount}".format(
                     label=banktransaction.label,
-                    amount=banktransaction.amount,
+                    amount=currency_positive(
+                        banktransaction.amount,
+                        banktransaction.currency,
+                    ),
                 ),
                 "class": "event-important" if banktransaction.amount < 0 else "event-success",
                 "start": timestamp_ms,
@@ -299,23 +304,7 @@ class BankTransactionCalendarEventsAjax(BankTransactionAccessMixin, generic.View
                 "extra_data": {
                     "label": banktransaction.label,
                 },
-            }
-
-            if self.request.user.has_perm('banktransactions.change_banktransaction'):
-                event['url_edit'] = reverse(
-                    'banktransactions:update', kwargs={
-                        'pk': banktransaction.pk,
-                    },
-                )
-
-            if self.request.user.has_perm('banktransactions.delete_banktransaction'):
-                event['url_delete'] = reverse(
-                    'banktransactions:delete', kwargs={
-                        'pk': banktransaction.pk,
-                    },
-                )
-
-            events.append(event)
+            })
 
         return JsonResponse({
             "success": 1,

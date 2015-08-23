@@ -1078,7 +1078,7 @@ class CalendarEventsAjaxTestCase(WebTest):
 
     def test_ajax_response(self):
 
-        bankaccount = BankAccountFactory(owners=[self.owner, self.superowner])
+        bankaccount = BankAccountFactory(owners=[self.owner])
 
         base_url = reverse('banktransactions:calendar_ajax_events', kwargs={
             'bankaccount_pk': bankaccount.pk,
@@ -1120,26 +1120,6 @@ class CalendarEventsAjaxTestCase(WebTest):
             [event['id'] for event in result],
             [bt1.pk, bt2.pk, bt3.pk],
         )
-        for row in result:
-            self.assertNotIn('url_edit', row)
-            self.assertNotIn('url_delete', row)
-
-        response = self.app.get(url, user='superowner')
-        for row in response.json['result']:
-            self.assertEqual(
-                row['url_edit'],
-                reverse(
-                    'banktransactions:update',
-                    kwargs={'pk': row['id']},
-                )
-            )
-            self.assertEqual(
-                row['url_delete'],
-                reverse(
-                    'banktransactions:delete',
-                    kwargs={'pk': row['id']},
-                )
-            )
 
 
 class CalendarEventAjaxTestCase(WebTest):
