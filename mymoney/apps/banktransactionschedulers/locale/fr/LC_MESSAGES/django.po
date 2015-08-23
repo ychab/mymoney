@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-03 06:52+0000\n"
+"POT-Creation-Date: 2015-08-23 13:33+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,53 +25,53 @@ msgstr "Commencer maintenant ?"
 msgid "Stay on page?"
 msgstr "Rester sur la page ?"
 
-#: mymoney/apps/banktransactionschedulers/models.py:85
+#: mymoney/apps/banktransactionschedulers/models.py:87
 msgid "Monthly"
 msgstr "Mensuel"
 
-#: mymoney/apps/banktransactionschedulers/models.py:86
+#: mymoney/apps/banktransactionschedulers/models.py:88
 msgid "Weekly"
 msgstr "Hebdomadaire"
 
-#: mymoney/apps/banktransactionschedulers/models.py:93
+#: mymoney/apps/banktransactionschedulers/models.py:95
 msgid "Waiting"
 msgstr "En attente"
 
-#: mymoney/apps/banktransactionschedulers/models.py:94
+#: mymoney/apps/banktransactionschedulers/models.py:96
 msgid "Finished"
 msgstr "Fini"
 
-#: mymoney/apps/banktransactionschedulers/models.py:95
+#: mymoney/apps/banktransactionschedulers/models.py:97
 msgid "Failed"
 msgstr "Échoué"
 
-#: mymoney/apps/banktransactionschedulers/models.py:102
-#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/banktransactionscheduler_list.html:33
-#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/banktransactionscheduler_list.html:74
+#: mymoney/apps/banktransactionschedulers/models.py:104
+#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/overview/list.html:10
+#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/overview/summary.html:9
 msgid "Type"
 msgstr "Type"
 
-#: mymoney/apps/banktransactionschedulers/models.py:103
+#: mymoney/apps/banktransactionschedulers/models.py:105
 msgid "The type of recurrence to be applied."
 msgstr "Le type de récurrence a appliquer."
 
-#: mymoney/apps/banktransactionschedulers/models.py:108
+#: mymoney/apps/banktransactionschedulers/models.py:110
 msgid "Recurrence"
 msgstr "Récurrence"
 
-#: mymoney/apps/banktransactionschedulers/models.py:109
+#: mymoney/apps/banktransactionschedulers/models.py:111
 msgid "How many time the bank transaction should be cloned."
 msgstr "Combien de fois la transaction bancaire doit être dupliquée."
 
-#: mymoney/apps/banktransactionschedulers/models.py:114
+#: mymoney/apps/banktransactionschedulers/models.py:116
 msgid "Last time the scheduled bank transaction has been cloned."
 msgstr "La dernière fois que la transaction bancaire a été dupliquée."
 
-#: mymoney/apps/banktransactionschedulers/models.py:122
+#: mymoney/apps/banktransactionschedulers/models.py:124
 msgid "State of the scheduled bank transaction."
 msgstr "État de la transaction bancaire."
 
-#: mymoney/apps/banktransactionschedulers/models.py:182
+#: mymoney/apps/banktransactionschedulers/models.py:184
 #, python-format
 msgid ""
 "Error occured while trying to clone scheduled bank transaction %(id)d with "
@@ -96,7 +96,7 @@ msgid "Confirm"
 msgstr "Confirmer"
 
 #: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/banktransactionscheduler_confirm_delete.html:12
-#: mymoney/apps/banktransactionschedulers/tests/test_forms.py:183
+#: mymoney/apps/banktransactionschedulers/tests/test_forms.py:184
 msgid "Cancel"
 msgstr "Annuler"
 
@@ -110,85 +110,93 @@ msgstr "Mettre à jour la planification de transaction bancaire"
 msgid "Scheduled a bank transaction"
 msgstr "Planifier une transaction bancaire"
 
-#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/banktransactionscheduler_form.html:25
-#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/banktransactionscheduler_form.html:29
+#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/banktransactionscheduler_form.html:33
+#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/banktransactionscheduler_form.html:37
 msgid "Save"
 msgstr "Sauvegarder"
 
-#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/banktransactionscheduler_form.html:26
-#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/banktransactionscheduler_list.html:114
+#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/banktransactionscheduler_form.html:34
+#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/overview/list.html:50
 msgid "Delete"
 msgstr "Supprimer"
 
-#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/banktransactionscheduler_list.html:4
-#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/banktransactionscheduler_list.html:5
+#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/overview/index.html:4
+#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/overview/index.html:5
 msgid "My scheduled bank transactions"
 msgstr "Mes planifications de transactions bancaires"
 
-#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/banktransactionscheduler_list.html:22
-msgid "Summary"
-msgstr "Résumé"
+#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/overview/list.html:3
+msgid "Schedulers"
+msgstr "Planificateurs"
 
-#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/banktransactionscheduler_list.html:34
-msgid "Credit"
-msgstr "Crédit"
-
-#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/banktransactionscheduler_list.html:35
-msgid "Debit"
-msgstr "Débit"
-
-#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/banktransactionscheduler_list.html:36
-msgid "Total"
-msgstr "Total"
-
-#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/banktransactionscheduler_list.html:58
-#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/banktransactionscheduler_list.html:122
-msgid "No scheduled bank transaction yet."
-msgstr "Aucune planification de transaction bancaire."
-
-#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/banktransactionscheduler_list.html:73
+#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/overview/list.html:9
 msgid "Last action"
 msgstr "Dernière action"
 
-#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/banktransactionscheduler_list.html:75
+#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/overview/list.html:11
 msgid "Remaining"
 msgstr "Restant"
 
-#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/banktransactionscheduler_list.html:76
+#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/overview/list.html:12
 msgid "State"
 msgstr "État"
 
-#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/banktransactionscheduler_list.html:77
+#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/overview/list.html:13
 msgid "Label"
 msgstr "Libellé"
 
-#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/banktransactionscheduler_list.html:78
+#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/overview/list.html:14
 msgid "Amount"
 msgstr "Montant"
 
-#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/banktransactionscheduler_list.html:79
+#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/overview/list.html:15
 msgid "Action"
 msgstr "Action"
 
-#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/banktransactionscheduler_list.html:90
+#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/overview/list.html:26
 msgid "No yet"
 msgstr "Pas encore"
 
-#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/banktransactionscheduler_list.html:98
+#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/overview/list.html:34
 msgid "Infinity"
 msgstr "Infinie"
 
-#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/banktransactionscheduler_list.html:107
+#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/overview/list.html:43
 msgid "Edit"
 msgstr "Éditer"
 
-#: mymoney/apps/banktransactionschedulers/views.py:64
+#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/overview/list.html:58
+#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/overview/summary.html:39
+msgid "No scheduled bank transaction yet."
+msgstr "Aucune planification de transaction bancaire."
+
+#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/overview/summary.html:3
+msgid "Summary"
+msgstr "Résumé"
+
+#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/overview/summary.html:10
+msgid "Credit"
+msgstr "Crédit"
+
+#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/overview/summary.html:11
+msgid "Debit"
+msgstr "Débit"
+
+#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/overview/summary.html:12
+msgid "Allowable living expenses"
+msgstr "Reste à vivre"
+
+#: mymoney/apps/banktransactionschedulers/templates/banktransactionschedulers/overview/summary.html:13
+msgid "Total"
+msgstr "Total"
+
+#: mymoney/apps/banktransactionschedulers/views.py:80
 #, python-format
 msgid "Bank transaction scheduler %(label)s was created successfully."
 msgstr ""
 "La planification de transaction bancaire %(label)s a été crée avec succès"
 
-#: mymoney/apps/banktransactionschedulers/views.py:99
+#: mymoney/apps/banktransactionschedulers/views.py:115
 #, python-format
 msgid "Bank transaction scheduler %(label)s was updated successfully."
 msgstr ""

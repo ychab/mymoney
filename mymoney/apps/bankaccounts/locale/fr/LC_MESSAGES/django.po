@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-03 06:52+0000\n"
+"POT-Creation-Date: 2015-08-23 13:33+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -75,7 +75,7 @@ msgstr "Créer"
 msgid "My bank accounts"
 msgstr "Mes comptes bancaires"
 
-#: mymoney/apps/bankaccounts/templates/bankaccounts/bankaccount_list.html:18
+#: mymoney/apps/bankaccounts/templates/bankaccounts/bankaccount_list.html:19
 msgid "No bank account yet."
 msgstr "Aucun compte bancaire."
 

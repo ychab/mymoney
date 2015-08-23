@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-05 20:12+0000\n"
+"POT-Creation-Date: 2015-08-23 13:33+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,119 +17,139 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: forms.py:15
+#: mymoney/core/forms.py:15
 msgid "Username"
 msgstr "Nom utilisateur"
 
-#: forms.py:19
+#: mymoney/core/forms.py:19
 msgid "Password"
 msgstr "Mot de passe"
 
-#: management/commands/demo.py:73
+#: mymoney/core/management/commands/demo.py:76
 msgid "Current account"
 msgstr "Compte courant"
 
-#: management/commands/demo.py:80 management/commands/demo.py:90
+#: mymoney/core/management/commands/demo.py:83
+#: mymoney/core/management/commands/demo.py:93
 msgid "Rent"
 msgstr "Loyer"
 
-#: management/commands/demo.py:81
+#: mymoney/core/management/commands/demo.py:84
 msgid "Shopping"
 msgstr "Course"
 
-#: management/commands/demo.py:82
+#: mymoney/core/management/commands/demo.py:85
 msgid "Car"
 msgstr "Voiture"
 
-#: management/commands/demo.py:83
+#: mymoney/core/management/commands/demo.py:86
 msgid "Tax"
 msgstr "Impôt"
 
-#: management/commands/demo.py:84
+#: mymoney/core/management/commands/demo.py:87
 msgid "Restaurant"
 msgstr "Restaurant"
 
-#: management/commands/demo.py:101
+#: mymoney/core/management/commands/demo.py:104
 msgid "Council tax"
 msgstr "Taxe d'habitation"
 
-#: management/commands/demo.py:112
+#: mymoney/core/management/commands/demo.py:115
 msgid "Wages"
 msgstr "Salaires"
 
-#: management/commands/demo.py:123 templatetags/core_tags.py:189
+#: mymoney/core/management/commands/demo.py:126
+#: mymoney/core/templatetags/core_tags.py:217
 msgid "Internal transfer"
 msgstr "Virement interne"
 
-#: management/commands/demo.py:135
+#: mymoney/core/management/commands/demo.py:138
 msgid "Scratch ticket"
 msgstr "Jeux à gratter"
 
-#: management/commands/demo.py:146
+#: mymoney/core/management/commands/demo.py:149
 msgid "New tires"
 msgstr "Nouveaux pneus"
 
-#: management/commands/demo.py:168
+#: mymoney/core/management/commands/demo.py:160
+msgid "Bad stuff"
+msgstr "Mauvais truc"
+
+#: mymoney/core/management/commands/demo.py:170
+msgid "Refund"
+msgstr "Remboursement"
+
+#: mymoney/core/management/commands/demo.py:191
 msgid "Something"
 msgstr "Quelque chose"
 
-#: templatetags/core_tags.py:49 templatetags/core_tags.py:55
-#: templatetags/core_tags.py:74
+#: mymoney/core/templatetags/core_tags.py:49
+#: mymoney/core/templatetags/core_tags.py:55
+#: mymoney/core/templatetags/core_tags.py:74
 msgid "Add"
 msgstr "Ajouter"
 
-#: templatetags/core_tags.py:61
+#: mymoney/core/templatetags/core_tags.py:61
 msgid "Add bank transaction"
 msgstr "Ajouter une transaction bancaire"
 
-#: templatetags/core_tags.py:68
+#: mymoney/core/templatetags/core_tags.py:68
 msgid "Delete bank account"
 msgstr "Supprimer le compte bancaire"
 
-#: templatetags/core_tags.py:94
+#: mymoney/core/templatetags/core_tags.py:97
 msgid "Stat report"
 msgstr "Rapport statistique"
 
-#: templatetags/core_tags.py:103
+#: mymoney/core/templatetags/core_tags.py:106
 msgid "Trendtime report"
 msgstr "Rapport chronologique"
 
-#: templatetags/core_tags.py:126
+#: mymoney/core/templatetags/core_tags.py:119
+msgid "Table view"
+msgstr "Vue tableau"
+
+#: mymoney/core/templatetags/core_tags.py:128
+msgid "Calendar view"
+msgstr "Vue calendrier"
+
+#: mymoney/core/templatetags/core_tags.py:154
 msgid "See"
 msgstr "Voir"
 
-#: templatetags/core_tags.py:136
+#: mymoney/core/templatetags/core_tags.py:164
 msgid "Edit"
 msgstr "Modifier"
 
-#: templatetags/core_tags.py:145
+#: mymoney/core/templatetags/core_tags.py:173
 msgid "Scheduler"
 msgstr "Planifier"
 
-#: templatetags/core_tags.py:154
+#: mymoney/core/templatetags/core_tags.py:182
 msgid "Statistics"
 msgstr "Statistiques"
 
-#: templatetags/core_tags.py:177
+#: mymoney/core/templatetags/core_tags.py:205
 msgid "Credit card"
 msgstr "Carte de crédit"
 
-#: templatetags/core_tags.py:181
+#: mymoney/core/templatetags/core_tags.py:209
 msgid "Cash"
 msgstr "Espèce"
 
-#: templatetags/core_tags.py:185
+#: mymoney/core/templatetags/core_tags.py:213
 msgid "Transfer"
 msgstr "Virement"
 
-#: templatetags/core_tags.py:193
+#: mymoney/core/templatetags/core_tags.py:221
 msgid "Check"
 msgstr "Chèque"
 
-#: templatetags/core_tags.py:214 templatetags/core_tags.py:229
+#: mymoney/core/templatetags/core_tags.py:242
+#: mymoney/core/templatetags/core_tags.py:257
 msgid "Bank account"
 msgstr "Compte bancaire"
 
-#: templatetags/core_tags.py:220
+#: mymoney/core/templatetags/core_tags.py:248
 msgid "Schedulers"
 msgstr "Planificateurs"

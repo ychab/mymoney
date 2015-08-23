@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-03 06:52+0000\n"
+"POT-Creation-Date: 2015-08-23 13:33+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,119 +17,120 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: mymoney/apps/banktransactions/forms.py:18
-#: mymoney/apps/banktransactions/models.py:74
+#: mymoney/apps/banktransactions/forms.py:17
+#: mymoney/apps/banktransactions/models.py:93
 #: mymoney/apps/banktransactions/templates/banktransactions/list/table_result.html:8
 msgid "Label"
 msgstr "Libellé"
 
-#: mymoney/apps/banktransactions/forms.py:25
+#: mymoney/apps/banktransactions/forms.py:24
 msgid "Date start"
 msgstr "Date de début"
 
-#: mymoney/apps/banktransactions/forms.py:31
+#: mymoney/apps/banktransactions/forms.py:30
 msgid "Date end"
 msgstr "Date de fin"
 
-#: mymoney/apps/banktransactions/forms.py:41
+#: mymoney/apps/banktransactions/forms.py:40
 msgid "Minimum amount"
 msgstr "Montant minimum"
 
-#: mymoney/apps/banktransactions/forms.py:50
+#: mymoney/apps/banktransactions/forms.py:49
 msgid "Maximum amount"
 msgstr "Montant maximum"
 
-#: mymoney/apps/banktransactions/forms.py:55
+#: mymoney/apps/banktransactions/forms.py:54
 msgid "Status?"
 msgstr "Statut ?"
 
-#: mymoney/apps/banktransactions/forms.py:76
+#: mymoney/apps/banktransactions/forms.py:75
 msgid "Reconciled?"
 msgstr "Pointé ?"
 
-#: mymoney/apps/banktransactions/forms.py:87
+#: mymoney/apps/banktransactions/forms.py:86
 msgid "Reconcile"
 msgstr "Rapprocher"
 
-#: mymoney/apps/banktransactions/forms.py:88
+#: mymoney/apps/banktransactions/forms.py:87
 msgid "Unreconcile"
 msgstr "Annuler rapprochement"
 
-#: mymoney/apps/banktransactions/forms.py:92
-#: mymoney/apps/banktransactions/templates/banktransactions/banktransaction_form.html:26
+#: mymoney/apps/banktransactions/forms.py:91
+#: mymoney/apps/banktransactions/templates/banktransactions/banktransaction_form.html:34
+#: mymoney/apps/banktransactions/templates/banktransactions/calendar/modal_content.html:24
 #: mymoney/apps/banktransactions/templates/banktransactions/list/table_result.html:98
 msgid "Delete"
 msgstr "Supprimer"
 
-#: mymoney/apps/banktransactions/forms.py:107
+#: mymoney/apps/banktransactions/forms.py:106
 msgid "Date start could not be greater than date end."
 msgstr "La date de début ne doit pas être supérieure à la date de fin."
 
-#: mymoney/apps/banktransactions/forms.py:116
+#: mymoney/apps/banktransactions/forms.py:115
 msgid "Minimum amount could not be greater than maximum amount."
 msgstr "Le montant minimum ne doit pas être supérieur au montant maximum."
 
-#: mymoney/apps/banktransactions/forms.py:128
+#: mymoney/apps/banktransactions/forms.py:127
 msgid "To apply operations, you need to select some bank transactions."
 msgstr ""
 "Pour appliquer les opérations, vous devez sélectionner des transactions "
 "bancaires"
 
-#: mymoney/apps/banktransactions/forms.py:154
+#: mymoney/apps/banktransactions/forms.py:153
 msgid "Stay on page?"
 msgstr "Rester sur la page ?"
 
-#: mymoney/apps/banktransactions/models.py:55
+#: mymoney/apps/banktransactions/models.py:74
 msgid "Active"
 msgstr "Actif"
 
-#: mymoney/apps/banktransactions/models.py:56
+#: mymoney/apps/banktransactions/models.py:75
 msgid "Ignored"
 msgstr "Ignoré"
 
-#: mymoney/apps/banktransactions/models.py:57
+#: mymoney/apps/banktransactions/models.py:76
 msgid "Inactive"
 msgstr "Inactif"
 
-#: mymoney/apps/banktransactions/models.py:67
+#: mymoney/apps/banktransactions/models.py:86
 msgid "Credit card"
 msgstr "Carte de crédit"
 
-#: mymoney/apps/banktransactions/models.py:68
+#: mymoney/apps/banktransactions/models.py:87
 msgid "Cash"
 msgstr "Espèce"
 
-#: mymoney/apps/banktransactions/models.py:69
+#: mymoney/apps/banktransactions/models.py:88
 msgid "Transfer"
 msgstr "Virement"
 
-#: mymoney/apps/banktransactions/models.py:70
+#: mymoney/apps/banktransactions/models.py:89
 msgid "Transfer internal"
 msgstr "Virement interne"
 
-#: mymoney/apps/banktransactions/models.py:71
+#: mymoney/apps/banktransactions/models.py:90
 msgid "Check"
 msgstr "Chèque"
 
-#: mymoney/apps/banktransactions/models.py:79
+#: mymoney/apps/banktransactions/models.py:98
 #: mymoney/apps/banktransactions/templates/banktransactions/list/table_result.html:7
 msgid "Date"
 msgstr "Date"
 
-#: mymoney/apps/banktransactions/models.py:83
+#: mymoney/apps/banktransactions/models.py:102
 msgid "Amount"
 msgstr "Montant"
 
-#: mymoney/apps/banktransactions/models.py:87
+#: mymoney/apps/banktransactions/models.py:106
 msgid "Currency"
 msgstr "Devise"
 
-#: mymoney/apps/banktransactions/models.py:94
+#: mymoney/apps/banktransactions/models.py:113
 #: mymoney/apps/banktransactions/templates/banktransactions/list/table_result.html:15
 msgid "Status"
 msgstr "Statut"
 
-#: mymoney/apps/banktransactions/models.py:95
+#: mymoney/apps/banktransactions/models.py:114
 msgid ""
 "Depending on its value, determine whether it could alter the bank account "
 "balance or being used by statistics."
@@ -137,27 +138,27 @@ msgstr ""
 "En fonction de la valeur, indique si cela peut modifier le solde du compte "
 "bancaire ou être pris en compte pour les statistiques."
 
-#: mymoney/apps/banktransactions/models.py:101
+#: mymoney/apps/banktransactions/models.py:120
 #: mymoney/apps/banktransactions/templates/banktransactions/list/table_result.html:9
 msgid "Reconciled"
 msgstr "Pointé"
 
-#: mymoney/apps/banktransactions/models.py:102
+#: mymoney/apps/banktransactions/models.py:121
 msgid "Whether the bank transaction has been applied on the real bank account."
 msgstr ""
 "Le statut de la transaction bancaire peut être utilisé  pour déterminer si "
 "le solde du compte bancaire doit être modifié."
 
-#: mymoney/apps/banktransactions/models.py:109
+#: mymoney/apps/banktransactions/models.py:128
 msgid "Payment method"
 msgstr "Méthode de paiement"
 
-#: mymoney/apps/banktransactions/models.py:111
+#: mymoney/apps/banktransactions/models.py:130
 #: mymoney/apps/banktransactions/templates/banktransactions/list/table_result.html:18
 msgid "Memo"
 msgstr "Mémo"
 
-#: mymoney/apps/banktransactions/models.py:117
+#: mymoney/apps/banktransactions/models.py:136
 msgid "Tag"
 msgstr "Étiquettes"
 
@@ -178,8 +179,8 @@ msgstr "Confirmer"
 
 #: mymoney/apps/banktransactions/templates/banktransactions/banktransaction_confirm_delete.html:12
 #: mymoney/apps/banktransactions/templates/banktransactions/banktransaction_confirm_delete_multiple.html:19
-#: mymoney/apps/banktransactions/tests/test_forms.py:267
-#: mymoney/apps/banktransactions/tests/test_views.py:557
+#: mymoney/apps/banktransactions/tests/test_forms.py:268
+#: mymoney/apps/banktransactions/tests/test_views.py:633
 msgid "Cancel"
 msgstr "Annuler"
 
@@ -203,10 +204,75 @@ msgstr "Mettre à jour la transaction bancaire"
 msgid "Create a new bank transaction"
 msgstr "Créer une nouvelle transaction bancaire"
 
-#: mymoney/apps/banktransactions/templates/banktransactions/banktransaction_form.html:25
-#: mymoney/apps/banktransactions/templates/banktransactions/banktransaction_form.html:29
+#: mymoney/apps/banktransactions/templates/banktransactions/banktransaction_form.html:33
+#: mymoney/apps/banktransactions/templates/banktransactions/banktransaction_form.html:37
 msgid "Save"
 msgstr "Sauvegarder"
+
+#: mymoney/apps/banktransactions/templates/banktransactions/calendar/filters.html:3
+msgid "Month"
+msgstr "Mois"
+
+#: mymoney/apps/banktransactions/templates/banktransactions/calendar/filters.html:4
+msgid "Week"
+msgstr "Semaine"
+
+#: mymoney/apps/banktransactions/templates/banktransactions/calendar/index.html:8
+msgid "calendar view"
+msgstr "vue calendrier"
+
+#: mymoney/apps/banktransactions/templates/banktransactions/calendar/modal_content.html:3
+msgid "Label:"
+msgstr "Libellé :"
+
+#: mymoney/apps/banktransactions/templates/banktransactions/calendar/modal_content.html:4
+msgid "Amount:"
+msgstr "Montant :"
+
+#: mymoney/apps/banktransactions/templates/banktransactions/calendar/modal_content.html:5
+msgid "Status:"
+msgstr "Statut :"
+
+#: mymoney/apps/banktransactions/templates/banktransactions/calendar/modal_content.html:6
+msgid "Payment method:"
+msgstr "Méthode de paiement :"
+
+#: mymoney/apps/banktransactions/templates/banktransactions/calendar/modal_content.html:7
+msgid "Reconciled:"
+msgstr "Pointé :"
+
+#: mymoney/apps/banktransactions/templates/banktransactions/calendar/modal_content.html:8
+msgid "Scheduled:"
+msgstr "Planifié :"
+
+#: mymoney/apps/banktransactions/templates/banktransactions/calendar/modal_content.html:10
+msgid "Tag:"
+msgstr "Étiquette :"
+
+#: mymoney/apps/banktransactions/templates/banktransactions/calendar/modal_content.html:11
+msgid "None"
+msgstr "Aucune"
+
+#: mymoney/apps/banktransactions/templates/banktransactions/calendar/modal_content.html:14
+msgid "Memo:"
+msgstr "Mémo :"
+
+#: mymoney/apps/banktransactions/templates/banktransactions/calendar/modal_content.html:20
+#: mymoney/apps/banktransactions/templates/banktransactions/list/table_result.html:94
+msgid "Edit"
+msgstr "Modifier"
+
+#: mymoney/apps/banktransactions/templates/banktransactions/calendar/pager.html:3
+msgid "Previous"
+msgstr "Précédent"
+
+#: mymoney/apps/banktransactions/templates/banktransactions/calendar/pager.html:4
+msgid "Today"
+msgstr "Aujourd'hui"
+
+#: mymoney/apps/banktransactions/templates/banktransactions/calendar/pager.html:5
+msgid "Next"
+msgstr "Suivant"
 
 #: mymoney/apps/banktransactions/templates/banktransactions/list/filter.html:7
 msgid "Filters"
@@ -225,6 +291,10 @@ msgstr "Filtrer"
 msgid "Reset"
 msgstr "Réinitialiser"
 
+#: mymoney/apps/banktransactions/templates/banktransactions/list/index.html:4
+msgid "table view"
+msgstr "vue tableau"
+
 #: mymoney/apps/banktransactions/templates/banktransactions/list/operation.html:7
 #: mymoney/apps/banktransactions/templates/banktransactions/list/table_result.html:19
 msgid "Actions"
@@ -238,21 +308,21 @@ msgstr "Opérations"
 msgid "Apply"
 msgstr "Appliquer"
 
-#: mymoney/apps/banktransactions/templates/banktransactions/list/summary.html:3
-msgid "Initial balance: "
-msgstr "Solde initial : "
+#: mymoney/apps/banktransactions/templates/banktransactions/list/summary.html:8
+msgid "Reconciled balance: "
+msgstr "Solde pointé : "
 
-#: mymoney/apps/banktransactions/templates/banktransactions/list/summary.html:4
-msgid "Futur balance: "
-msgstr "Solde futur : "
-
-#: mymoney/apps/banktransactions/templates/banktransactions/list/summary.html:5
+#: mymoney/apps/banktransactions/templates/banktransactions/list/summary.html:12
 msgid "Current balance: "
 msgstr "Solde actuel : "
 
-#: mymoney/apps/banktransactions/templates/banktransactions/list/summary.html:6
-msgid "Reconciled balance: "
-msgstr "Solde pointé : "
+#: mymoney/apps/banktransactions/templates/banktransactions/list/summary.html:16
+msgid "Futur balance: "
+msgstr "Solde futur : "
+
+#: mymoney/apps/banktransactions/templates/banktransactions/list/summary.html:20
+msgid "Initial balance: "
+msgstr "Solde initial : "
 
 #: mymoney/apps/banktransactions/templates/banktransactions/list/table_result.html:10
 msgid "Debit"
@@ -278,28 +348,24 @@ msgstr "Paiement par"
 msgid "Scheduled"
 msgstr "Planifié"
 
-#: mymoney/apps/banktransactions/templates/banktransactions/list/table_result.html:94
-msgid "Edit"
-msgstr "Modifier"
-
 #: mymoney/apps/banktransactions/templates/banktransactions/list/table_result.html:109
 msgid "No bank transaction"
 msgstr "Aucune transaction bancaire"
 
-#: mymoney/apps/banktransactions/views.py:113
+#: mymoney/apps/banktransactions/views.py:117
 msgid "Bank transaction have been reconciled."
 msgstr "Les transactions bancaires ont été pointées."
 
-#: mymoney/apps/banktransactions/views.py:122
+#: mymoney/apps/banktransactions/views.py:126
 msgid "Undo bank transaction reconciled."
 msgstr "Les transactions bancaires pointées ont été annulées."
 
-#: mymoney/apps/banktransactions/views.py:251
+#: mymoney/apps/banktransactions/views.py:366
 #, python-format
 msgid "Bank transaction %(label)s was created successfully."
 msgstr "La transaction bancaire %(label)s a été crée avec succès."
 
-#: mymoney/apps/banktransactions/views.py:282
+#: mymoney/apps/banktransactions/views.py:397
 #, python-format
 msgid "Bank transaction %(label)s was updated successfully."
 msgstr "La transaction bancaire %(label)s a été mis à jour avec succès."
