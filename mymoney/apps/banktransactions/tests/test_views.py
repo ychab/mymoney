@@ -1096,16 +1096,21 @@ class CalendarEventsAjaxTestCase(WebTest):
 
         bt1 = BankTransactionFactory(
             bankaccount=bankaccount,
+            amount=Decimal('10'),
             date=datetime.date(2015, 7, 27),
+            reconciled=True,
         )
 
         bt2 = BankTransactionFactory(
             bankaccount=bankaccount,
+            amount=Decimal('10'),
             date=datetime.date(2015, 7, 31),
+            reconciled=True,
         )
 
         bt3 = BankTransactionFactory(
             bankaccount=bankaccount,
+            amount=Decimal('-30'),
             date=datetime.date(2015, 8, 31),
         )
 
@@ -1119,6 +1124,22 @@ class CalendarEventsAjaxTestCase(WebTest):
         self.assertListEqual(
             [event['id'] for event in result],
             [bt1.pk, bt2.pk, bt3.pk],
+        )
+        self.assertListEqual(
+            [Decimal(event['extra_data']['total_balance']) for event in result],
+            [
+                bt1.amount,
+                bt1.amount + bt2.amount,
+                bt1.amount + bt2.amount + bt3.amount,
+            ],
+        )
+        self.assertListEqual(
+            [Decimal(event['extra_data']['reconciled_balance']) for event in result],
+            [
+                bt1.amount,
+                bt1.amount + bt2.amount,
+                bt1.amount + bt2.amount,
+            ],
         )
 
 

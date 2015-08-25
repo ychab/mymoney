@@ -2,12 +2,14 @@ from django.conf import settings
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.contrib.auth.views import login, logout_then_login
+from django.views.i18n import javascript_catalog
 
 from mymoney.core.forms import MyMoneyAuthenticationForm
 from mymoney.core.views import HomePageRedirectView
 
 urlpatterns = [
     url(r'^{0}/'.format(settings.ADMIN_BASE_URL), include(admin.site.urls)),
+    url(r'^jsi18n/(?P<packages>\S+?)/$', javascript_catalog),
     url(r'^bank-account/', include(
         'mymoney.apps.bankaccounts.urls', namespace='bankaccounts'
     )),

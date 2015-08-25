@@ -40,6 +40,7 @@
 
 {% block footer %}
 {{ block.super }}
+<script type="text/javascript" src="{% url 'django.views.i18n.javascript_catalog' 'mymoney.apps.banktransactions' %}"></script>
 <script type="text/javascript" src="{% static 'bootstrap-calendar/components/underscore/underscore-min.js' %}"></script>
 <script type="text/javascript" src="{% static 'bootstrap-calendar/js/calendar.min.js' %}"></script>
 {% with lang_file="bootstrap-calendar/js/language/{lang-LANG}.js"|trans_file:True %}
@@ -48,7 +49,7 @@
 {% endif %}
 
 <script type="text/javascript">
-    var calendar_template_path = "{% static 'bootstrap-calendar/tmpls/' %}";
+    var calendar_template_path = "{% static 'banktransactions/bootstrap-calendar-templates/' %}";
     var calendar_events_url = "{{ calendar_ajax_url }}";
 
     {% if lang_file %}

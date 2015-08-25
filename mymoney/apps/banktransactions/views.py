@@ -16,7 +16,9 @@ from django.utils.functional import cached_property
 from django.utils.translation import ugettext as _, ugettext_lazy
 from django.views import generic
 
-from mymoney.core.templatetags.core_tags import currency_positive
+from mymoney.core.templatetags.core_tags import (
+    currency_positive, localize_positive,
+)
 
 from .forms import (
     BankTransactionCreateForm, BankTransactionListForm,
@@ -159,55 +161,7 @@ class BankTransactionListView(BankTransactionAccessMixin, generic.FormView):
             .order_by('-date', '-id')
         )
 
-        # Unfortunetly, we cannot get it by doing the opposite (i.e :
-        # total balance - SUM(futur bt) because with postgreSQL at least,
-        # the last dated bt would give None : total balance - SUM(NULL).
-        # It could be usefull because most of the time, we are seeing the
-        # latest pages, not the first (past).
-        total_balance_subquery = """
-            SELECT SUM(bt_sub.amount) + {balance_initial}
-            FROM {table} AS bt_sub
-            WHERE
-                bt_sub.bankaccount_id = %s
-                AND (
-                    bt_sub.date < {table}.date
-                    OR (
-                        bt_sub.date = {table}.date
-                        AND
-                        bt_sub.id <= {table}.id
-                    )
-                )
-            """.format(
-            table=BankTransaction._meta.db_table,
-            balance_initial=self.bankaccount.balance_initial,
-        )
-
-        reconciled_balance_subquery = """
-            SELECT SUM(bt_sub_r.amount) + {balance_initial}
-            FROM {table} AS bt_sub_r
-            WHERE
-                bt_sub_r.bankaccount_id = %s
-                AND
-                bt_sub_r.reconciled = \'1\'
-                AND (
-                    bt_sub_r.date < {table}.date
-                    OR (
-                        bt_sub_r.date = {table}.date
-                        AND
-                        bt_sub_r.id <= {table}.id
-                    )
-                )""".format(
-            table=BankTransaction._meta.db_table,
-            balance_initial=self.bankaccount.balance_initial,
-        )
-
-        qs = qs.extra(
-            select=OrderedDict([
-                ('total_balance', total_balance_subquery),
-                ('reconciled_balance', reconciled_balance_subquery),
-            ]),
-            select_params=(self.bankaccount.pk, self.bankaccount.pk)
-        )
+        qs = queryset_extra_balance_fields(qs, self.bankaccount)
 
         if self._session_key in self.request.session:
             filters = self.request.session[self._session_key].get('filters', {})
@@ -278,8 +232,9 @@ class BankTransactionCalendarEventsAjax(BankTransactionAccessMixin, generic.View
                 bankaccount=self.bankaccount,
                 date__range=(date_start, date_end),
             )
-            .order_by('date')
         )
+        qs = queryset_extra_balance_fields(qs, self.bankaccount)
+        qs = qs.order_by('date')
 
         events = []
         for banktransaction in qs:
@@ -303,6 +258,14 @@ class BankTransactionCalendarEventsAjax(BankTransactionAccessMixin, generic.View
                 "end": timestamp_ms,
                 "extra_data": {
                     "label": banktransaction.label,
+                    "total_balance": banktransaction.total_balance,
+                    "total_balance_view": localize_positive(
+                        banktransaction.total_balance
+                    ),
+                    "reconciled_balance": banktransaction.reconciled_balance,
+                    "reconciled_balance_view": localize_positive(
+                        banktransaction.reconciled_balance
+                    ),
                 },
             })
 
@@ -442,3 +405,64 @@ class BankTransactionDeleteMultipleView(BankTransactionAccessMixin,
         context['bankaccount'] = self.bankaccount
         context['banktransactions'] = self.banktransactions
         return context
+
+
+def queryset_extra_balance_fields(qs, bankaccount):
+    """
+    Add extra fields to the queryset provided. Useful if you need to know
+    previous balance of the current row, no matter which filters/orders are
+    applied.
+    Extra fields are:
+    - total_balance
+    - reconciled_balance
+    """
+
+    # Unfortunetly, we cannot get it by doing the opposite (i.e :
+    # total balance - SUM(futur bt) because with postgreSQL at least,
+    # the last dated bt would give None : total balance - SUM(NULL).
+    # It could be usefull because most of the time, we are seeing the
+    # latest pages, not the first (past).
+    total_balance_subquery = """
+        SELECT SUM(bt_sub.amount) + {balance_initial}
+        FROM {table} AS bt_sub
+        WHERE
+            bt_sub.bankaccount_id = %s
+            AND (
+                bt_sub.date < {table}.date
+                OR (
+                    bt_sub.date = {table}.date
+                    AND
+                    bt_sub.id <= {table}.id
+                )
+            )
+        """.format(
+        table=BankTransaction._meta.db_table,
+        balance_initial=bankaccount.balance_initial,
+    )
+
+    reconciled_balance_subquery = """
+        SELECT SUM(bt_sub_r.amount) + {balance_initial}
+        FROM {table} AS bt_sub_r
+        WHERE
+            bt_sub_r.bankaccount_id = %s
+            AND
+            bt_sub_r.reconciled = \'1\'
+            AND (
+                bt_sub_r.date < {table}.date
+                OR (
+                    bt_sub_r.date = {table}.date
+                    AND
+                    bt_sub_r.id <= {table}.id
+                )
+            )""".format(
+        table=BankTransaction._meta.db_table,
+        balance_initial=bankaccount.balance_initial,
+    )
+
+    return qs.extra(
+        select=OrderedDict([
+            ('total_balance', total_balance_subquery),
+            ('reconciled_balance', reconciled_balance_subquery),
+        ]),
+        select_params=(bankaccount.pk, bankaccount.pk)
+    )

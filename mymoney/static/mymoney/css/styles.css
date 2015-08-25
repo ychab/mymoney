@@ -39,3 +39,8 @@ canvas {
 .bankaccount-list {
     max-width: 600px;
 }
+
+.balance-indicator {
+    margin-top: 15px;
+    margin-left: 15px;
+}
