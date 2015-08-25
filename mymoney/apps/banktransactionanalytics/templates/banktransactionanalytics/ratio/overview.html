@@ -184,12 +184,12 @@
 {% block footer %}
 {{ block.super }}
 {% if chart_data %}
-<script src="{% static 'chartjs/Chart.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'chartjs/Chart.min.js' %}"></script>
 
 <script type="text/javascript">
     var chart_data = {{ chart_data|safe }};
 </script>
 
-<script src="{% static 'banktransactionanalytics/banktransactionanalytics.js' %}"></script>
+<script type="text/javascript" src="{% static 'banktransactionanalytics/banktransactionanalytics.js' %}"></script>
 {% endif %}
 {% endblock %}

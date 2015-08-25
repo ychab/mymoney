@@ -40,8 +40,8 @@
 
 {% block footer %}
 {{ block.super }}
-<script src="{% static 'bootstrap-calendar/components/underscore/underscore-min.js' %}"></script>
-<script src="{% static 'bootstrap-calendar/js/calendar.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'bootstrap-calendar/components/underscore/underscore-min.js' %}"></script>
+<script type="text/javascript" src="{% static 'bootstrap-calendar/js/calendar.min.js' %}"></script>
 {% with lang_file="bootstrap-calendar/js/language/{lang-LANG}.js"|trans_file:True %}
 {% if lang_file %}
 <script src="{% static lang_file %}"></script>
@@ -56,5 +56,5 @@
     {% endif %}
 </script>
 {% endwith %}
-<script src="{% static 'banktransactions/banktransactions.js' %}"></script>
+<script type="text/javascript" src="{% static 'banktransactions/banktransactions.js' %}"></script>
 {% endblock footer %}
