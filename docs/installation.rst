@@ -10,6 +10,9 @@ Requirements
 Deployment
 ----------
 
+Backend
+```````
+
 The deployment is the same as any other Django projects. Here is a quick
 summary:
 
@@ -48,7 +51,7 @@ summary:
 .. _installation-deployment-production:
 
 Production
-``````````
+++++++++++
 
 * Install dependencies (in virtualenv)::
 
@@ -59,7 +62,8 @@ Production
 
     cp mymoney/settings/production.dist mymoney/settings/production.py
 
-* collect statics files::
+* install JS libraries **first** with *Bower* (see
+  :ref:`installation-deployment-frontend`) then collect statics files::
 
     ./manage.py collectstatic
 
@@ -91,7 +95,7 @@ For example, create a file in ``/etc/cron.d/clonescheduled``, and edit::
 .. _installation-deployment-development:
 
 Development
-```````````
++++++++++++
 
 * Install dependencies::
 
@@ -101,6 +105,23 @@ Development
   edit it::
 
     cp mymoney/settings/local.dist mymoney/settings/local.py
+
+.. _installation-deployment-frontend:
+
+Frontend
+````````
+
+1. install `Bower`_. One way is to do it with `npm`_ globally::
+
+    npm install -g bower
+
+2. At the project root directory, run the following command to install JS
+   libraries dependencies::
+
+    bower install --production
+
+.. _`Bower`: http://bower.io
+.. _`npm`: https://www.npmjs.com
 
 Internationalization
 --------------------

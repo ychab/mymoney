@@ -31,7 +31,7 @@ msgstr "PostgreSQL **uniquement** (pas de support MySQL ou SQLite)"
 msgid "Deployment"
 msgstr "Déploiement"
 
-#: ../../installation.rst:13
+#: ../../installation.rst:16
 msgid ""
 "The deployment is the same as any other Django projects. Here is a quick "
 "summary:"
@@ -39,21 +39,21 @@ msgstr ""
 "Le déploiement est similaire à d'autres projets Django. Voici un bref résumé"
 " :"
 
-#: ../../installation.rst:16
+#: ../../installation.rst:19
 msgid "install required system packages. For example on Debian::"
 msgstr "installer les paquets systèmes requis. Par exemple sur Debian::"
 
-#: ../../installation.rst:20
+#: ../../installation.rst:23
 msgid "create a PostgreSQL database in a cluster with role and owner"
 msgstr ""
 "créer un cluster de base de données pour PostgreSQL ainsi qu'un rôle et un "
 "propriétaire"
 
-#: ../../installation.rst:22
+#: ../../installation.rst:25
 msgid "create a virtualenv::"
 msgstr "créer un virtualenv::"
 
-#: ../../installation.rst:26
+#: ../../installation.rst:29
 msgid ""
 "install dependencies with pip (see :ref:`installation-deployment-production`"
 " or :ref:`installation-deployment-development`)"
@@ -61,7 +61,7 @@ msgstr ""
 "installer les dépendances avec pip (voir :ref:`installation-deployment-"
 "production` ou :ref:`installation-deployment-development`)"
 
-#: ../../installation.rst:29
+#: ../../installation.rst:32
 msgid ""
 "configure the settings (see :ref:`installation-deployment-production` or "
 ":ref:`installation-deployment-development`)"
@@ -69,7 +69,7 @@ msgstr ""
 "configurer les paramètres ( voir :ref:`installation-deployment-production` "
 "ou :ref:`installation-deployment-development`)"
 
-#: ../../installation.rst:32
+#: ../../installation.rst:35
 msgid ""
 "export the ``DJANGO_SETTINGS_MODULE`` to easily use the ``manage.py`` with "
 "the proper production setting. For example::"
@@ -78,15 +78,15 @@ msgstr ""
 "facilement utiliser ``manage.py`` avec les paramètres de production. Par "
 "exemple::"
 
-#: ../../installation.rst:37
+#: ../../installation.rst:40
 msgid "import the SQL schema::"
 msgstr "importer le schéma SQL::"
 
-#: ../../installation.rst:41
+#: ../../installation.rst:44
 msgid "create a super user::"
 msgstr "créer un super utilisateur::"
 
-#: ../../installation.rst:45
+#: ../../installation.rst:48
 msgid ""
 "WSGI will use the ``production.py`` settings, whereas ``manage.py`` will use"
 " the ``local.py`` by default."
@@ -94,15 +94,15 @@ msgstr ""
 "WSGI utilisera les paramètres ``production.py`` alors que ``manage.py`` "
 "utilisera ``local.py`` par défaut."
 
-#: ../../installation.rst:51
+#: ../../installation.rst:54
 msgid "Production"
 msgstr "Production"
 
-#: ../../installation.rst:53
+#: ../../installation.rst:56
 msgid "Install dependencies (in virtualenv)::"
 msgstr "Installer les dépendances (dans un virtualenv)::"
 
-#: ../../installation.rst:57
+#: ../../installation.rst:60
 msgid ""
 "copy ``mymoney/settings/production.dist`` to "
 "``mymoney/settings/production.py`` and edit it::"
@@ -110,33 +110,29 @@ msgstr ""
 "copier ``mymoney/settings/production.dist`` en "
 "``mymoney/settings/production.py`` puis l'éditer::"
 
-#: ../../installation.rst:62
-msgid "collect statics files::"
-msgstr "grouper les fichiers statiques"
-
-#: ../../installation.rst:66
+#: ../../installation.rst:70
 msgid "execute the Django check command and apply fixes if needed::"
 msgstr ""
 "exécuter la commande de vérification de Django puis appliquer des "
 "corrections si besoin::"
 
-#: ../../installation.rst:70
+#: ../../installation.rst:74
 msgid "Set up cron tasks on server to execute the following commands:"
 msgstr ""
 "Configurer des tâches cron sur le serveur pour exécuter les commandes "
 "suivantes:"
 
-#: ../../installation.rst:72
+#: ../../installation.rst:76
 msgid "cloning recurring bank transactions::"
 msgstr "dupliquer les transactions bancaires récurrentes"
 
-#: ../../installation.rst:76
+#: ../../installation.rst:80
 msgid "cleanup tasks (only usefull with further user accounts)::"
 msgstr ""
 "tâches de nettoyages (utile uniquement avec plusieurs comptes "
 "utilisateurs)::"
 
-#: ../../installation.rst:80
+#: ../../installation.rst:84
 msgid ""
 "At the project root directory, the ``scripts`` directory provides bash "
 "script wrappers to execute these commands. Thus, you could create cron rules"
@@ -146,22 +142,22 @@ msgstr ""
 "pour exécuter ces commandes. Par conséquent, vous pouvez les utiliser en "
 "créant des règles cron similaire à::"
 
-#: ../../installation.rst:87
+#: ../../installation.rst:91
 msgid ""
 "For example, create a file in ``/etc/cron.d/clonescheduled``, and edit::"
 msgstr ""
 "Par exemple, créez un fichier à ``/etc/cron.d/clonescheduled``, puis "
 "éditez::"
 
-#: ../../installation.rst:94
+#: ../../installation.rst:98
 msgid "Development"
 msgstr "Développement"
 
-#: ../../installation.rst:96
+#: ../../installation.rst:100
 msgid "Install dependencies::"
 msgstr "Installer les dépendances::"
 
-#: ../../installation.rst:100
+#: ../../installation.rst:104
 msgid ""
 "copy ``mymoney/settings/local.dist`` to ``mymoney/settings/local.py`` and "
 "edit it::"
@@ -169,11 +165,11 @@ msgstr ""
 "copiez ``mymoney/settings/local.dist`` à ``mymoney/settings/local.py`` et "
 "éditez le."
 
-#: ../../installation.rst:106
+#: ../../installation.rst:127
 msgid "Internationalization"
 msgstr "Internationalisation"
 
-#: ../../installation.rst:108
+#: ../../installation.rst:129
 msgid ""
 "copy ``mymoney/settings/l10n.dist`` to ``mymoney/settings/l10n.py`` and edit"
 " it::"
@@ -181,13 +177,13 @@ msgstr ""
 "copiez ``mymoney/settings/l10n.dist`` à ``mymoney/settings/l10n.py`` et "
 "éditez le."
 
-#: ../../installation.rst:113
+#: ../../installation.rst:134
 msgid "edit your final setting file to use the l10n configuration instead::"
 msgstr ""
 "éditez votre fichier de configuration finale pour utiliser le fichier de "
 "configuration l10n à la place::"
 
-#: ../../installation.rst:118
+#: ../../installation.rst:139
 msgid ""
 "Only *French* internationalisation/translations are supported for now. But "
 "any contributions are welcome!"
@@ -195,11 +191,11 @@ msgstr ""
 "Les traductions en *français* sont uniquement supportées pour le moment. "
 "Mais toutes contributions sont les bienvenues !"
 
-#: ../../installation.rst:122
+#: ../../installation.rst:143
 msgid "Demo"
 msgstr "Démo"
 
-#: ../../installation.rst:124
+#: ../../installation.rst:145
 msgid ""
 "To have a quick look, you could generate some data with the following "
 "commands::"
@@ -207,17 +203,17 @@ msgstr ""
 "Pour un aperçu rapide, vous pouvez générer des données avec la commande "
 "suivante::"
 
-#: ../../installation.rst:129
+#: ../../installation.rst:150
 msgid "You can also clear any data relatives to the project's models with::"
 msgstr ""
 "Vous pouvez aussi nettoyer les données relatives aux modèles du projet "
 "avec::"
 
-#: ../../installation.rst:134
+#: ../../installation.rst:155
 msgid "Tests"
 msgstr "Tests"
 
-#: ../../installation.rst:136
+#: ../../installation.rst:157
 msgid ""
 "Whichever method is used, you must create a setting file for testing. Copy "
 "``mymoney/settings/test.dist`` to ``mymoney/settings/test.py`` and edit it::"
@@ -226,11 +222,11 @@ msgstr ""
 " de test. Copiez ``mymoney/settings/test.dist`` à "
 "``mymoney/settings/test.py`` et éditez le."
 
-#: ../../installation.rst:142
+#: ../../installation.rst:163
 msgid "Tox"
 msgstr "Tox"
 
-#: ../../installation.rst:144
+#: ../../installation.rst:165
 msgid ""
 "You can use `Tox`_. At the project root directory without virtualenv, just "
 "execute::"
@@ -238,30 +234,63 @@ msgstr ""
 "Vous pouvez utiliser `Tox`_. À la racine du projet sans virtualenv, exécutez"
 " juste::"
 
-#: ../../installation.rst:151
+#: ../../installation.rst:172
 msgid "Behind the scenes, it runs several *testenv* for:"
 msgstr "En coulisses, plusieurs *testenv* sont exécutés:"
 
-#: ../../installation.rst:153
+#: ../../installation.rst:174
 msgid "`flake8`_"
 msgstr "`flake8`_"
 
-#: ../../installation.rst:154
+#: ../../installation.rst:176
 msgid "`Sphinx`_"
 msgstr "`Sphinx`_"
 
-#: ../../installation.rst:155
+#: ../../installation.rst:177
 msgid "test suites with coverage and report"
 msgstr "suite de tests avec couverture et rapport"
 
-#: ../../installation.rst:161
+#: ../../installation.rst:184
 msgid "Manually"
 msgstr "Manuellement"
 
-#: ../../installation.rst:163
+#: ../../installation.rst:186
 msgid "install dependencies::"
 msgstr "installer les dépendances::"
 
-#: ../../installation.rst:167
+#: ../../installation.rst:190
 msgid "then execute tests::"
 msgstr "puis exécutez les tests::"
+
+#: ../../installation.rst:14
+msgid "Backend"
+msgstr ""
+
+#: ../../installation.rst:65
+msgid ""
+"install JS libraries **first** with *Bower* (see :ref:`installation-"
+"deployment-frontend`) then collect statics files::"
+msgstr ""
+"installer les librairies JS **avant** avec *Bower* (voir :ref:`installation-"
+"deployment-frontend`) puis collecter les fichiers statiques::"
+
+#: ../../installation.rst:112
+msgid "Frontend"
+msgstr ""
+
+#: ../../installation.rst:114
+msgid "install `Bower`_. One way is to do it with `npm`_ globally::"
+msgstr ""
+"installer `Bower`_. Une des façon de le faire est avec `npm`_ globalement::"
+
+#: ../../installation.rst:118
+msgid ""
+"At the project root directory, run the following command to install JS "
+"libraries dependencies::"
+msgstr ""
+"À la racine du projet, exécutez la commande suivante pour installer les "
+"librairies JS requises::"
+
+#: ../../installation.rst:175
+msgid "`isort`_"
+msgstr ""
