@@ -2,7 +2,7 @@
 {% load i18n staticfiles core_tags %}
 
 {% block extrastyle %}
-<link href="{% static 'bootstrap-calendar/css/calendar.min.css' %}" rel="stylesheet" />
+<link href="{% static 'bower_components/bootstrap-calendar/css/calendar.min.css' %}" rel="stylesheet" />
 {% endblock %}
 
 {% block title %}{{ bankaccount }} - {% trans "calendar view" %}{% endblock %}
@@ -41,9 +41,9 @@
 {% block footer %}
 {{ block.super }}
 <script type="text/javascript" src="{% url 'django.views.i18n.javascript_catalog' 'mymoney.apps.banktransactions' %}"></script>
-<script type="text/javascript" src="{% static 'bootstrap-calendar/components/underscore/underscore-min.js' %}"></script>
-<script type="text/javascript" src="{% static 'bootstrap-calendar/js/calendar.min.js' %}"></script>
-{% with lang_file="bootstrap-calendar/js/language/{lang-LANG}.js"|trans_file:True %}
+<script type="text/javascript" src="{% static 'bower_components/underscore/underscore-min.js' %}"></script>
+<script type="text/javascript" src="{% static 'bower_components/bootstrap-calendar/js/calendar.min.js' %}"></script>
+{% with lang_file="bower_components/bootstrap-calendar/js/language/{lang-LANG}.js"|trans_file:True %}
 {% if lang_file %}
 <script src="{% static lang_file %}"></script>
 {% endif %}

@@ -14,14 +14,14 @@ class Datepicker(forms.TextInput):
     def media(self):
 
         css = {
-            'all': ('bootstrap-datepicker/css/bootstrap-datepicker3.min.css',)
+            'all': ('bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css',)
         }
-        js = ('bootstrap-datepicker/js/bootstrap-datepicker.min.js',)
+        js = ('bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js',)
 
         lang = get_language()[:2]
         if lang != 'en':
             js += (
-                'bootstrap-datepicker/locales/bootstrap-datepicker.{lang}.min.js'.format(
+                'bower_components/bootstrap-datepicker/dist/locales/bootstrap-datepicker.{lang}.min.js'.format(
                     lang=lang,
                 ),
             )

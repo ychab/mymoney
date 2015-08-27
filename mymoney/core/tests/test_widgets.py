@@ -12,14 +12,14 @@ class DatepickerWidgetTestCase(SimpleTestCase):
         with override_settings(LANGUAGE_CODE='en-us'):
             widget = Datepicker()
             self.assertNotIn(
-                'bootstrap-datepicker/locales/bootstrap-datepicker.en.min.js',
+                'bower_components/bootstrap-datepicker/locales/bootstrap-datepicker.en.min.js',
                 widget.media._js
             )
 
         with override_settings(LANGUAGE_CODE='fr-fr'):
             widget = Datepicker()
             self.assertIn(
-                'bootstrap-datepicker/locales/bootstrap-datepicker.fr.min.js',
+                'bower_components/bootstrap-datepicker/locales/bootstrap-datepicker.fr.min.js',
                 widget.media._js
             )
 

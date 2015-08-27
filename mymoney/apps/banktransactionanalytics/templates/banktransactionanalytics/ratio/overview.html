@@ -184,7 +184,7 @@
 {% block footer %}
 {{ block.super }}
 {% if chart_data %}
-<script type="text/javascript" src="{% static 'chartjs/Chart.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'bower_components/chartjs/Chart.min.js' %}"></script>
 
 <script type="text/javascript">
     var chart_data = {{ chart_data|safe }};
