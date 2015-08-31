@@ -4,6 +4,6 @@ django-debug-toolbar
 django-extensions
 
 flake8==2.4.1
-git+https://github.com/timothycrosley/isort.git@ee8a3d537c6989bcb72e0612d1600185fdcfeec2
+isort==4.1.0
 Sphinx==1.3.1
 sphinx-intl==0.9.5
