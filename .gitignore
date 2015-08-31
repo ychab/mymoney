@@ -2,11 +2,12 @@
 __pycache__
 *.pyc
 .coverage
+.tox
+docs/_build/
+fabfile.py
 mymoney/settings/*.py
 !mymoney/settings/__init__.py
 !mymoney/settings/base.py
 mymoney/static/bower_components
-.tox
-docs/_build/
-fabfile.py
+node_modules
 ROADMAP.txt
