@@ -123,6 +123,29 @@ Frontend
 .. _`Bower`: http://bower.io
 .. _`npm`: https://www.npmjs.com
 
+Development
++++++++++++
+
+1. install *npm* globally to use it as a command line tool::
+
+    npm install -g gulp
+
+2. go to the project root directory and install gulp dependencies::
+
+    npm install
+
+3. once *node* packages are installed *locally* in ``./node_modules``, you
+   should be able to execute the following gulp commands implemented in
+   ``gulpfile.js``:
+
+   * *js*: concat and minify js
+   * *css*: concat and minify css
+
+   To execute all commands at once, from the project root directory, just
+   execute::
+
+     gulp
+
 Internationalization
 --------------------
 

@@ -31,6 +31,10 @@ msgstr "PostgreSQL **uniquement** (pas de support MySQL ou SQLite)"
 msgid "Deployment"
 msgstr "Déploiement"
 
+#: ../../installation.rst:14
+msgid "Backend"
+msgstr ""
+
 #: ../../installation.rst:16
 msgid ""
 "The deployment is the same as any other Django projects. Here is a quick "
@@ -110,6 +114,14 @@ msgstr ""
 "copier ``mymoney/settings/production.dist`` en "
 "``mymoney/settings/production.py`` puis l'éditer::"
 
+#: ../../installation.rst:65
+msgid ""
+"install JS libraries **first** with *Bower* (see :ref:`installation-"
+"deployment-frontend`) then collect statics files::"
+msgstr ""
+"installer les librairies JS **avant** avec *Bower* (voir :ref:`installation-"
+"deployment-frontend`) puis collecter les fichiers statiques::"
+
 #: ../../installation.rst:70
 msgid "execute the Django check command and apply fixes if needed::"
 msgstr ""
@@ -149,7 +161,7 @@ msgstr ""
 "Par exemple, créez un fichier à ``/etc/cron.d/clonescheduled``, puis "
 "éditez::"
 
-#: ../../installation.rst:98
+#: ../../installation.rst:98 ../../installation.rst:127
 msgid "Development"
 msgstr "Développement"
 
@@ -164,115 +176,6 @@ msgid ""
 msgstr ""
 "copiez ``mymoney/settings/local.dist`` à ``mymoney/settings/local.py`` et "
 "éditez le."
-
-#: ../../installation.rst:127
-msgid "Internationalization"
-msgstr "Internationalisation"
-
-#: ../../installation.rst:129
-msgid ""
-"copy ``mymoney/settings/l10n.dist`` to ``mymoney/settings/l10n.py`` and edit"
-" it::"
-msgstr ""
-"copiez ``mymoney/settings/l10n.dist`` à ``mymoney/settings/l10n.py`` et "
-"éditez le."
-
-#: ../../installation.rst:134
-msgid "edit your final setting file to use the l10n configuration instead::"
-msgstr ""
-"éditez votre fichier de configuration finale pour utiliser le fichier de "
-"configuration l10n à la place::"
-
-#: ../../installation.rst:139
-msgid ""
-"Only *French* internationalisation/translations are supported for now. But "
-"any contributions are welcome!"
-msgstr ""
-"Les traductions en *français* sont uniquement supportées pour le moment. "
-"Mais toutes contributions sont les bienvenues !"
-
-#: ../../installation.rst:143
-msgid "Demo"
-msgstr "Démo"
-
-#: ../../installation.rst:145
-msgid ""
-"To have a quick look, you could generate some data with the following "
-"commands::"
-msgstr ""
-"Pour un aperçu rapide, vous pouvez générer des données avec la commande "
-"suivante::"
-
-#: ../../installation.rst:150
-msgid "You can also clear any data relatives to the project's models with::"
-msgstr ""
-"Vous pouvez aussi nettoyer les données relatives aux modèles du projet "
-"avec::"
-
-#: ../../installation.rst:155
-msgid "Tests"
-msgstr "Tests"
-
-#: ../../installation.rst:157
-msgid ""
-"Whichever method is used, you must create a setting file for testing. Copy "
-"``mymoney/settings/test.dist`` to ``mymoney/settings/test.py`` and edit it::"
-msgstr ""
-"Qu'importe la méthode utilisée, vous devez créer un fichier de configuration"
-" de test. Copiez ``mymoney/settings/test.dist`` à "
-"``mymoney/settings/test.py`` et éditez le."
-
-#: ../../installation.rst:163
-msgid "Tox"
-msgstr "Tox"
-
-#: ../../installation.rst:165
-msgid ""
-"You can use `Tox`_. At the project root directory without virtualenv, just "
-"execute::"
-msgstr ""
-"Vous pouvez utiliser `Tox`_. À la racine du projet sans virtualenv, exécutez"
-" juste::"
-
-#: ../../installation.rst:172
-msgid "Behind the scenes, it runs several *testenv* for:"
-msgstr "En coulisses, plusieurs *testenv* sont exécutés:"
-
-#: ../../installation.rst:174
-msgid "`flake8`_"
-msgstr "`flake8`_"
-
-#: ../../installation.rst:176
-msgid "`Sphinx`_"
-msgstr "`Sphinx`_"
-
-#: ../../installation.rst:177
-msgid "test suites with coverage and report"
-msgstr "suite de tests avec couverture et rapport"
-
-#: ../../installation.rst:184
-msgid "Manually"
-msgstr "Manuellement"
-
-#: ../../installation.rst:186
-msgid "install dependencies::"
-msgstr "installer les dépendances::"
-
-#: ../../installation.rst:190
-msgid "then execute tests::"
-msgstr "puis exécutez les tests::"
-
-#: ../../installation.rst:14
-msgid "Backend"
-msgstr ""
-
-#: ../../installation.rst:65
-msgid ""
-"install JS libraries **first** with *Bower* (see :ref:`installation-"
-"deployment-frontend`) then collect statics files::"
-msgstr ""
-"installer les librairies JS **avant** avec *Bower* (voir :ref:`installation-"
-"deployment-frontend`) puis collecter les fichiers statiques::"
 
 #: ../../installation.rst:112
 msgid "Frontend"
@@ -291,6 +194,141 @@ msgstr ""
 "À la racine du projet, exécutez la commande suivante pour installer les "
 "librairies JS requises::"
 
-#: ../../installation.rst:175
+#: ../../installation.rst:129
+msgid "install *npm* globally to use it as a command line tool::"
+msgstr ""
+"installer globalement *npm* pour l'utiliser comme outil de ligne de"
+" commande::"
+
+#: ../../installation.rst:133
+msgid "go to the project root directory and install gulp dependencies::"
+msgstr ""
+"aller dans le répertoire racine du projet et installer les dépendances de"
+" gulp::"
+
+#: ../../installation.rst:137
+msgid ""
+"once *node* packages are installed *locally* in ``./node_modules``, you"
+" should be able to execute the following gulp commands implemented in "
+"``gulpfile.js``:"
+msgstr ""
+"une fois les paquets *node* installés *en local* dans ``./node_modules``,"
+" vous devriez pouvoir exécuter les commandes gulp suivantes implémentées dans"
+" ``gulpfile.js``:"
+
+#: ../../installation.rst:141
+msgid "*js*: concat and minify js"
+msgstr "*js*: concatène et minifie le js"
+
+#: ../../installation.rst:142
+msgid "*css*: concat and minify css"
+msgstr "*css*: concatène et minifie la css"
+
+#: ../../installation.rst:144
+msgid ""
+"To execute all commands at once, from the project root directory, just "
+"execute::"
+msgstr ""
+"Pour exécuter toutes les commandes d'un coup, à partir de la racine du"
+" projet, il suffit d'éxecuter::"
+
+#: ../../installation.rst:150
+msgid "Internationalization"
+msgstr "Internationalisation"
+
+#: ../../installation.rst:152
+msgid ""
+"copy ``mymoney/settings/l10n.dist`` to ``mymoney/settings/l10n.py`` and edit"
+" it::"
+msgstr ""
+"copiez ``mymoney/settings/l10n.dist`` à ``mymoney/settings/l10n.py`` et "
+"éditez le."
+
+#: ../../installation.rst:157
+msgid "edit your final setting file to use the l10n configuration instead::"
+msgstr ""
+"éditez votre fichier de configuration finale pour utiliser le fichier de "
+"configuration l10n à la place::"
+
+#: ../../installation.rst:162
+msgid ""
+"Only *French* internationalisation/translations are supported for now. But "
+"any contributions are welcome!"
+msgstr ""
+"Les traductions en *français* sont uniquement supportées pour le moment. "
+"Mais toutes contributions sont les bienvenues !"
+
+#: ../../installation.rst:166
+msgid "Demo"
+msgstr "Démo"
+
+#: ../../installation.rst:168
+msgid ""
+"To have a quick look, you could generate some data with the following "
+"commands::"
+msgstr ""
+"Pour un aperçu rapide, vous pouvez générer des données avec la commande "
+"suivante::"
+
+#: ../../installation.rst:173
+msgid "You can also clear any data relatives to the project's models with::"
+msgstr ""
+"Vous pouvez aussi nettoyer les données relatives aux modèles du projet "
+"avec::"
+
+#: ../../installation.rst:178
+msgid "Tests"
+msgstr "Tests"
+
+#: ../../installation.rst:180
+msgid ""
+"Whichever method is used, you must create a setting file for testing. Copy "
+"``mymoney/settings/test.dist`` to ``mymoney/settings/test.py`` and edit it::"
+msgstr ""
+"Qu'importe la méthode utilisée, vous devez créer un fichier de configuration"
+" de test. Copiez ``mymoney/settings/test.dist`` à "
+"``mymoney/settings/test.py`` et éditez le."
+
+#: ../../installation.rst:186
+msgid "Tox"
+msgstr "Tox"
+
+#: ../../installation.rst:188
+msgid ""
+"You can use `Tox`_. At the project root directory without virtualenv, just "
+"execute::"
+msgstr ""
+"Vous pouvez utiliser `Tox`_. À la racine du projet sans virtualenv, exécutez"
+" juste::"
+
+#: ../../installation.rst:195
+msgid "Behind the scenes, it runs several *testenv* for:"
+msgstr "En coulisses, plusieurs *testenv* sont exécutés:"
+
+#: ../../installation.rst:197
+msgid "`flake8`_"
+msgstr "`flake8`_"
+
+#: ../../installation.rst:198
 msgid "`isort`_"
 msgstr ""
+
+#: ../../installation.rst:199
+msgid "`Sphinx`_"
+msgstr "`Sphinx`_"
+
+#: ../../installation.rst:200
+msgid "test suites with coverage and report"
+msgstr "suite de tests avec couverture et rapport"
+
+#: ../../installation.rst:207
+msgid "Manually"
+msgstr "Manuellement"
+
+#: ../../installation.rst:209
+msgid "install dependencies::"
+msgstr "installer les dépendances::"
+
+#: ../../installation.rst:213
+msgid "then execute tests::"
+msgstr "puis exécutez les tests::"
