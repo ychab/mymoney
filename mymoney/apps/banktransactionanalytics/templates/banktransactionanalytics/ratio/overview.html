@@ -182,14 +182,10 @@
 {% endblock %}
 
 {% block footer %}
-{{ block.super }}
 {% if chart_data %}
-<script type="text/javascript" src="{% static 'bower_components/chartjs/Chart.min.js' %}"></script>
-
 <script type="text/javascript">
     var chart_data = {{ chart_data|safe }};
 </script>
-
-<script type="text/javascript" src="{% static 'banktransactionanalytics/banktransactionanalytics.js' %}"></script>
 {% endif %}
+{{ block.super }}
 {% endblock %}

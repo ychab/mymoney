@@ -16,7 +16,7 @@ class Datepicker(forms.TextInput):
         css = {
             'all': ('bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css',)
         }
-        js = ('bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js',)
+        js = ()
 
         lang = get_language()[:2]
         if lang != 'en':

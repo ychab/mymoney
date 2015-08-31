@@ -1,5 +1,9 @@
 ;(function($){
 
+    if (typeof calendar_template_path === 'undefined') {
+        return;
+    }
+
     $(document).ready(function() {
 
         var options = {
