@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var uglify = require('gulp-uglify');
+var minifyCss = require('gulp-minify-css');
 var concat = require('gulp-concat');
 
 gulp.task('js', function () {
@@ -20,4 +21,13 @@ gulp.task('js', function () {
     .pipe(gulp.dest('./mymoney/static/dist/js/'));
 });
 
-gulp.task('default', ['js']);
+gulp.task('css', function () {
+  return gulp.src([
+        "./mymoney/static/mymoney/css/styles.css",
+    ])
+    .pipe(concat('mymoney.min.css'))
+    .pipe(minifyCss())
+    .pipe(gulp.dest('./mymoney/static/dist/css/'));
+});
+
+gulp.task('default', ['js', 'css']);

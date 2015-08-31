@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}{{ title | default:"MyMoney" }}{% endblock %}</title>
     <link href="{% static 'bower_components/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet" />
-    <link href="{% static 'mymoney/css/styles.css' %}" rel="stylesheet" />
+    <link href="{% static 'dist/css/mymoney.min.css' %}" rel="stylesheet" />
     {% block extrastyle %}{{ form.media.css }}{% endblock %}
     {% block extrahead %}{% endblock %}
     {% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE" />{% endblock %}
