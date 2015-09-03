@@ -1,7 +1,7 @@
 import unittest
 from datetime import date
 
-from django.test import override_settings, SimpleTestCase
+from django.test import SimpleTestCase
 
 from ..paginators import (
     DatePaginator, EmptyPage, InvalidDateRanges, UnknownGranularity,
@@ -123,7 +123,7 @@ class WeeklyDatePageTestCase(SimpleTestCase):
 
     def test_has_next(self):
 
-        with override_settings(LANGUAGE_CODE='fr-fr'):
+        with self.settings(LANGUAGE_CODE='fr-fr'):
             paginator = DatePaginator(
                 date(2015, 7, 27),
                 date(2015, 8, 9),
@@ -133,7 +133,7 @@ class WeeklyDatePageTestCase(SimpleTestCase):
             self.assertTrue(paginator.page(date(2015, 8, 2)).has_next())
             self.assertFalse(paginator.page(date(2015, 8, 3)).has_next())
 
-        with override_settings(LANGUAGE_CODE='en-us'):
+        with self.settings(LANGUAGE_CODE='en-us'):
             paginator = DatePaginator(
                 date(2015, 7, 26),
                 date(2015, 8, 8),
@@ -145,7 +145,7 @@ class WeeklyDatePageTestCase(SimpleTestCase):
 
     def test_has_previous(self):
 
-        with override_settings(LANGUAGE_CODE='fr-fr'):
+        with self.settings(LANGUAGE_CODE='fr-fr'):
             paginator = DatePaginator(
                 date(2015, 7, 27),
                 date(2015, 8, 9),
@@ -155,7 +155,7 @@ class WeeklyDatePageTestCase(SimpleTestCase):
             self.assertTrue(paginator.page(date(2015, 8, 3)).has_previous())
             self.assertFalse(paginator.page(date(2015, 8, 2)).has_previous())
 
-        with override_settings(LANGUAGE_CODE='en-us'):
+        with self.settings(LANGUAGE_CODE='en-us'):
             paginator = DatePaginator(
                 date(2015, 7, 26),
                 date(2015, 8, 8),
@@ -167,7 +167,7 @@ class WeeklyDatePageTestCase(SimpleTestCase):
 
     def test_has_other_pages(self):
 
-        with override_settings(LANGUAGE_CODE='fr-fr'):
+        with self.settings(LANGUAGE_CODE='fr-fr'):
             paginator = DatePaginator(
                 date(2015, 7, 27),
                 date(2015, 8, 16),
@@ -184,7 +184,7 @@ class WeeklyDatePageTestCase(SimpleTestCase):
             )
             self.assertFalse(paginator.page(date(2015, 7, 29)).has_other_pages())
 
-        with override_settings(LANGUAGE_CODE='en-us'):
+        with self.settings(LANGUAGE_CODE='en-us'):
             paginator = DatePaginator(
                 date(2015, 7, 26),
                 date(2015, 8, 15),
@@ -203,7 +203,7 @@ class WeeklyDatePageTestCase(SimpleTestCase):
 
     def test_next(self):
 
-        with override_settings(LANGUAGE_CODE='fr-fr'):
+        with self.settings(LANGUAGE_CODE='fr-fr'):
             paginator = DatePaginator(
                 date(2015, 7, 20),
                 date(2015, 8, 9),
@@ -218,7 +218,7 @@ class WeeklyDatePageTestCase(SimpleTestCase):
                 date(2015, 8, 3)
             )
 
-        with override_settings(LANGUAGE_CODE='en-us'):
+        with self.settings(LANGUAGE_CODE='en-us'):
             paginator = DatePaginator(
                 date(2015, 7, 26),
                 date(2015, 8, 8),
@@ -230,7 +230,7 @@ class WeeklyDatePageTestCase(SimpleTestCase):
 
     def test_previous(self):
 
-        with override_settings(LANGUAGE_CODE='fr-fr'):
+        with self.settings(LANGUAGE_CODE='fr-fr'):
             paginator = DatePaginator(
                 date(2015, 7, 27),
                 date(2015, 8, 9),
@@ -245,7 +245,7 @@ class WeeklyDatePageTestCase(SimpleTestCase):
                 date(2015, 7, 27),
             )
 
-        with override_settings(LANGUAGE_CODE='en-us'):
+        with self.settings(LANGUAGE_CODE='en-us'):
             paginator = DatePaginator(
                 date(2015, 7, 26),
                 date(2015, 8, 8),

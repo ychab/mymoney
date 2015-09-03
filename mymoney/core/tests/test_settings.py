@@ -1,6 +1,6 @@
 from importlib import reload
 
-from django.test import modify_settings, override_settings, TestCase
+from django.test import modify_settings, TestCase
 
 import mymoney
 
@@ -12,7 +12,7 @@ class AdminURLTestCase(TestCase):
 
     def test_change_admin_url(self):
 
-        with override_settings(ROOT_URLCONF='mymoney.urls', ADMIN_BASE_URL='foo'):
+        with self.settings(ROOT_URLCONF='mymoney.urls', ADMIN_BASE_URL='foo'):
             reload(mymoney.urls)
             response = self.client.get('/foo', follow=True)
             self.assertEqual(response.status_code, 200)
@@ -23,7 +23,7 @@ class AdminURLTestCase(TestCase):
             self.assertEqual(response.wsgi_request.path, '/admin')
 
         # MUST be the last (to reset it to /admin).
-        with override_settings(ROOT_URLCONF='mymoney.urls', ADMIN_BASE_URL='admin'):
+        with self.settings(ROOT_URLCONF='mymoney.urls', ADMIN_BASE_URL='admin'):
             reload(mymoney.urls)
             response = self.client.get('/admin', follow=True)
             self.assertEqual(response.status_code, 200)

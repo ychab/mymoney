@@ -3,7 +3,7 @@ from decimal import Decimal
 from unittest import mock
 
 from django.core.urlresolvers import reverse
-from django.test import override_settings, SimpleTestCase
+from django.test import SimpleTestCase
 from django.utils.safestring import SafeText
 
 from django_webtest import WebTest
@@ -274,10 +274,10 @@ class TemplateFiltersTestCase(SimpleTestCase):
 
     def test_trans_file(self):
 
-        with override_settings(LANGUAGE_CODE='en-us'):
+        with self.settings(LANGUAGE_CODE='en-us'):
             self.assertIsNone(trans_file("foo/{lang-LANG}.js"))
 
-        with override_settings(LANGUAGE_CODE='fr-fr'):
+        with self.settings(LANGUAGE_CODE='fr-fr'):
             self.assertEqual(
                 trans_file("foo/{lang}.js", False),
                 "foo/fr.js",
@@ -289,13 +289,13 @@ class TemplateFiltersTestCase(SimpleTestCase):
 
     def test_currency_positive(self):
 
-        with override_settings(LANGUAGE_CODE='en-us'):
+        with self.settings(LANGUAGE_CODE='en-us'):
             self.assertEqual(
                 currency_positive(Decimal('1547.23'), 'USD'),
                 "+$1,547.23",
             )
 
-        with override_settings(LANGUAGE_CODE='fr-fr'):
+        with self.settings(LANGUAGE_CODE='fr-fr'):
             self.assertEqual(
                 currency_positive(Decimal('1547.23'), 'EUR'),
                 '+1\xa0547,23\xa0€',
@@ -303,13 +303,13 @@ class TemplateFiltersTestCase(SimpleTestCase):
 
     def test_localize_positive(self):
 
-        with override_settings(LANGUAGE_CODE='en-us'):
+        with self.settings(LANGUAGE_CODE='en-us'):
             self.assertEqual(
                 localize_positive(Decimal('15.23')),
                 '+15.23',
             )
 
-        with override_settings(LANGUAGE_CODE='fr-fr'):
+        with self.settings(LANGUAGE_CODE='fr-fr'):
             self.assertEqual(
                 localize_positive(Decimal('15.23')),
                 '+15,23',
@@ -317,7 +317,7 @@ class TemplateFiltersTestCase(SimpleTestCase):
 
     def test_localize_positive_color(self):
 
-        with override_settings(LANGUAGE_CODE='en-us'):
+        with self.settings(LANGUAGE_CODE='en-us'):
             s = localize_positive_color(Decimal('15.23'))
             self.assertIsInstance(s, SafeText)
             self.assertEqual(s, '<p class="text-success">+15.23</p>')
@@ -326,7 +326,7 @@ class TemplateFiltersTestCase(SimpleTestCase):
             self.assertIsInstance(s, SafeText)
             self.assertEqual(s, '<p class="text-danger">-15.23</p>')
 
-        with override_settings(LANGUAGE_CODE='fr-fr'):
+        with self.settings(LANGUAGE_CODE='fr-fr'):
             s = localize_positive_color(Decimal('15.23'))
             self.assertIsInstance(s, SafeText)
             self.assertEqual(s, '<p class="text-success">+15,23</p>')
