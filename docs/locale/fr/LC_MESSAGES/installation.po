@@ -59,19 +59,19 @@ msgstr "créer un virtualenv::"
 
 #: ../../installation.rst:29
 msgid ""
-"install dependencies with pip (see :ref:`installation-deployment-production`"
-" or :ref:`installation-deployment-development`)"
+"install dependencies with pip (see :ref:`installation-backend-production` or"
+" :ref:`installation-backend-development`)"
 msgstr ""
-"installer les dépendances avec pip (voir :ref:`installation-deployment-"
-"production` ou :ref:`installation-deployment-development`)"
+"installer les dépendances avec pip (voir :ref:`installation-backend-"
+"production` ou :ref:`installation-backend-development`)"
 
 #: ../../installation.rst:32
 msgid ""
-"configure the settings (see :ref:`installation-deployment-production` or "
-":ref:`installation-deployment-development`)"
+"configure the settings (see :ref:`installation-backend-production` or :ref"
+":`installation-backend-development`)"
 msgstr ""
-"configurer les paramètres ( voir :ref:`installation-deployment-production` "
-"ou :ref:`installation-deployment-development`)"
+"configurer les paramètres ( voir :ref:`installation-backend-production` "
+"ou :ref:`installation-backend-development`)"
 
 #: ../../installation.rst:35
 msgid ""
@@ -161,7 +161,7 @@ msgstr ""
 "Par exemple, créez un fichier à ``/etc/cron.d/clonescheduled``, puis "
 "éditez::"
 
-#: ../../installation.rst:98 ../../installation.rst:127
+#: ../../installation.rst:98 ../../installation.rst:129
 msgid "Development"
 msgstr "Développement"
 
@@ -194,49 +194,49 @@ msgstr ""
 "À la racine du projet, exécutez la commande suivante pour installer les "
 "librairies JS requises::"
 
-#: ../../installation.rst:129
+#: ../../installation.rst:131
 msgid "install *npm* globally to use it as a command line tool::"
 msgstr ""
-"installer globalement *npm* pour l'utiliser comme outil de ligne de"
-" commande::"
+"installer globalement *npm* pour l'utiliser comme outil de ligne de "
+"commande::"
 
-#: ../../installation.rst:133
+#: ../../installation.rst:135
 msgid "go to the project root directory and install gulp dependencies::"
 msgstr ""
-"aller dans le répertoire racine du projet et installer les dépendances de"
-" gulp::"
+"aller dans le répertoire racine du projet et installer les dépendances de "
+"gulp::"
 
-#: ../../installation.rst:137
+#: ../../installation.rst:139
 msgid ""
-"once *node* packages are installed *locally* in ``./node_modules``, you"
-" should be able to execute the following gulp commands implemented in "
+"once *node* packages are installed *locally* in ``./node_modules``, you "
+"should be able to execute the following gulp commands implemented in "
 "``gulpfile.js``:"
 msgstr ""
-"une fois les paquets *node* installés *en local* dans ``./node_modules``,"
-" vous devriez pouvoir exécuter les commandes gulp suivantes implémentées dans"
+"une fois les paquets *node* installés *en local* dans ``./node_modules``, "
+"vous devriez pouvoir exécuter les commandes gulp suivantes implémentées dans"
 " ``gulpfile.js``:"
 
-#: ../../installation.rst:141
+#: ../../installation.rst:143
 msgid "*js*: concat and minify js"
 msgstr "*js*: concatène et minifie le js"
 
-#: ../../installation.rst:142
+#: ../../installation.rst:144
 msgid "*css*: concat and minify css"
 msgstr "*css*: concatène et minifie la css"
 
-#: ../../installation.rst:144
+#: ../../installation.rst:146
 msgid ""
 "To execute all commands at once, from the project root directory, just "
 "execute::"
 msgstr ""
-"Pour exécuter toutes les commandes d'un coup, à partir de la racine du"
-" projet, il suffit d'éxecuter::"
+"Pour exécuter toutes les commandes d'un coup, à partir de la racine du "
+"projet, il suffit d'éxecuter::"
 
-#: ../../installation.rst:150
+#: ../../installation.rst:152
 msgid "Internationalization"
 msgstr "Internationalisation"
 
-#: ../../installation.rst:152
+#: ../../installation.rst:154
 msgid ""
 "copy ``mymoney/settings/l10n.dist`` to ``mymoney/settings/l10n.py`` and edit"
 " it::"
@@ -244,13 +244,113 @@ msgstr ""
 "copiez ``mymoney/settings/l10n.dist`` à ``mymoney/settings/l10n.py`` et "
 "éditez le."
 
-#: ../../installation.rst:157
+#: ../../installation.rst:159
+msgid "Further notes about some additional settings:"
+msgstr "Plusieurs remarques sur les paramètres supplémentaires:"
+
+#: ../../installation.rst:161
+msgid ""
+"``USE_L10N_DIST``: Whether to use the minify file including translations. It"
+" imply that the translated file is generated with *gulp* "
+"(``mymoney.min.<LANGCODE>.js``). If false (default), additionnal JS "
+"translations files would be loaded."
+msgstr ""
+"``USE_L10N_DIST``: Faut-il ou non utiliser le fichier minifié qui inclut les"
+" traductions. Cela implique que le fichier minifié avec traductions a été"
+" généré avec *gulp* (``mymoney.min.<LANGCODE>.js``). Si c'est faux (par"
+" défaut), les fichiers JS de traductions seront chargés en plus."
+
+#: ../../installation.rst:165
+msgid ""
+"``BOOTSTRAP_CALENDAR_LANGCODE``: If ``USE_L10N_DIST`` is false, the language"
+" code to use to load the translation file at: "
+"``mymoney/static/bower_components/bootstrap-"
+"calendar/js/language/<LANGCODE>.js``"
+msgstr ""
+"``BOOTSTRAP_CALENDAR_LANGCODE``: Si ``USE_L10N_DIST`` est faux, le code"
+" langue à utiliser pour charger le fichier de traduction à: "
+"``mymoney/static/bower_components/bootstrap"
+"-calendar/js/language/<LANGCODE>.js``"
+
+#: ../../installation.rst:168
+msgid ""
+"``BOOTSTRAP_DATEPICKER_LANGCODE``: If ``USE_L10N_DIST`` is false, the "
+"language code to use to load the translation file at: "
+"``mymoney/static/bower_components/bootstrap-datepicker/js/locales/bootstrap-"
+"datepicker.<LANGCODE>.js``"
+msgstr ""
+"``BOOTSTRAP_DATEPICKER_LANGCODE``: Si ``USE_L10N_DIST`` est faux, le code "
+"langue à utiliser pour charger le fichier de traduction à: "
+"``mymoney/static/bower_components/bootstrap-datepicker/js/locales/bootstrap-"
+"datepicker.<LANGCODE>.js``"
+
+#: ../../installation.rst:172
 msgid "edit your final setting file to use the l10n configuration instead::"
 msgstr ""
 "éditez votre fichier de configuration finale pour utiliser le fichier de "
 "configuration l10n à la place::"
 
-#: ../../installation.rst:162
+#: ../../installation.rst:177
+msgid ""
+"optionally build the minified JS distribution for your language. To achieve "
+"it, you first need to have *gulp* installed. See section :ref:`installation-"
+"frontend-development` for more details about *gulp*. The ``gulp js`` accept "
+"optional parameters:"
+msgstr ""
+"optionnellement, construisez le fichier JS minifié de la distribution pour"
+" votre langue. Pour y parvenir, vous devez d'abord avoir *gulp* d'installé."
+" Voir la section :ref:`installation-frontend-development` pour plus de"
+" détails à propos de *gulp*. La commande ``gulp js`` a des paramètres"
+" optionnels:"
+
+#: ../../installation.rst:182
+msgid ""
+"``--lang``: the IETF language code of the form : *xx-XX*. **Must** be the "
+"same as the Django ``LANGUAGE_CODE`` setting."
+msgstr ""
+"``--lang``: le code langue IETF de la forme : *xx-XX*. **Doit** être le même"
+" que le paramètre Django ``LANGUAGE_CODE``."
+
+#: ../../installation.rst:184
+msgid ""
+"``--lang_bt_cal``: the Bootstrap calendar language code to use. To see the "
+"list of available code supported, take a look at : "
+"``mymoney/static/bower_components/bootstrap-"
+"calendar/js/language/<LANGCODE>.js``"
+msgstr ""
+"``--lang_bt_cal``: La langue de Bootstrap calendar à utiliser. Pour connaître"
+" la liste des codes disponibles, jetez un oeil à : "
+"``mymoney/static/bower_components/bootstrap-"
+"calendar/js/language/<LANGCODE>.js``"
+
+#: ../../installation.rst:187
+msgid ""
+"``--lang_bt_dp``: the Bootstrap datepicker language code to use. Be careful,"
+" currently the language code must be of the form *xx* and not *xx-XX*. To "
+"see the list of available language codes, take a look at : "
+"``mymoney/static/bower_components/bootstrap-datepicker/js/locales/bootstrap-"
+"datepicker.<LANGCODE>.js``"
+msgstr ""
+"``--lang_bt_dp``: le code langue de Bootstrap datepicker à utiliser."
+" Attention actuellement, le code langue est de la forme *xx* et non *xx-XX*."
+" Pour connaître la liste des codes langues disponibles, regardez à : "
+"``mymoney/static/bower_components/bootstrap-datepicker/js/locales/bootstrap-"
+"datepicker.<LANGCODE>.js``"
+
+#: ../../installation.rst:192
+msgid "For example, for a French minify JS file, you should execute::"
+msgstr ""
+"Par exemple pour un fichier JS minifié français, vous devriez exécuter::"
+
+#: ../../installation.rst:196
+msgid ""
+"Seems too much verbose to specify 3 arguments for languages but "
+"unfortunetly, none of them used the same..."
+msgstr ""
+"Il semble trop verbeux d'avoir 3 arguments pour la langue mais"
+" malheureusement, aucun d'entre eux n'utilisent les mêmes..."
+
+#: ../../installation.rst:199
 msgid ""
 "Only *French* internationalisation/translations are supported for now. But "
 "any contributions are welcome!"
@@ -258,11 +358,11 @@ msgstr ""
 "Les traductions en *français* sont uniquement supportées pour le moment. "
 "Mais toutes contributions sont les bienvenues !"
 
-#: ../../installation.rst:166
+#: ../../installation.rst:203
 msgid "Demo"
 msgstr "Démo"
 
-#: ../../installation.rst:168
+#: ../../installation.rst:205
 msgid ""
 "To have a quick look, you could generate some data with the following "
 "commands::"
@@ -270,17 +370,17 @@ msgstr ""
 "Pour un aperçu rapide, vous pouvez générer des données avec la commande "
 "suivante::"
 
-#: ../../installation.rst:173
+#: ../../installation.rst:210
 msgid "You can also clear any data relatives to the project's models with::"
 msgstr ""
 "Vous pouvez aussi nettoyer les données relatives aux modèles du projet "
 "avec::"
 
-#: ../../installation.rst:178
+#: ../../installation.rst:215
 msgid "Tests"
 msgstr "Tests"
 
-#: ../../installation.rst:180
+#: ../../installation.rst:217
 msgid ""
 "Whichever method is used, you must create a setting file for testing. Copy "
 "``mymoney/settings/test.dist`` to ``mymoney/settings/test.py`` and edit it::"
@@ -289,11 +389,11 @@ msgstr ""
 " de test. Copiez ``mymoney/settings/test.dist`` à "
 "``mymoney/settings/test.py`` et éditez le."
 
-#: ../../installation.rst:186
+#: ../../installation.rst:223
 msgid "Tox"
 msgstr "Tox"
 
-#: ../../installation.rst:188
+#: ../../installation.rst:225
 msgid ""
 "You can use `Tox`_. At the project root directory without virtualenv, just "
 "execute::"
@@ -301,34 +401,34 @@ msgstr ""
 "Vous pouvez utiliser `Tox`_. À la racine du projet sans virtualenv, exécutez"
 " juste::"
 
-#: ../../installation.rst:195
+#: ../../installation.rst:232
 msgid "Behind the scenes, it runs several *testenv* for:"
 msgstr "En coulisses, plusieurs *testenv* sont exécutés:"
 
-#: ../../installation.rst:197
+#: ../../installation.rst:234
 msgid "`flake8`_"
 msgstr "`flake8`_"
 
-#: ../../installation.rst:198
+#: ../../installation.rst:235
 msgid "`isort`_"
 msgstr ""
 
-#: ../../installation.rst:199
+#: ../../installation.rst:236
 msgid "`Sphinx`_"
 msgstr "`Sphinx`_"
 
-#: ../../installation.rst:200
+#: ../../installation.rst:237
 msgid "test suites with coverage and report"
 msgstr "suite de tests avec couverture et rapport"
 
-#: ../../installation.rst:207
+#: ../../installation.rst:244
 msgid "Manually"
 msgstr "Manuellement"
 
-#: ../../installation.rst:209
+#: ../../installation.rst:246
 msgid "install dependencies::"
 msgstr "installer les dépendances::"
 
-#: ../../installation.rst:213
+#: ../../installation.rst:250
 msgid "then execute tests::"
 msgstr "puis exécutez les tests::"

@@ -26,11 +26,11 @@ summary:
 
     virtualenv <NAME> -p python3
 
-4. install dependencies with pip (see :ref:`installation-deployment-production`
-   or :ref:`installation-deployment-development`)
+4. install dependencies with pip (see :ref:`installation-backend-production`
+   or :ref:`installation-backend-development`)
 
-5. configure the settings (see :ref:`installation-deployment-production` or
-   :ref:`installation-deployment-development`)
+5. configure the settings (see :ref:`installation-backend-production` or
+   :ref:`installation-backend-development`)
 
 6. export the ``DJANGO_SETTINGS_MODULE`` to easily use the ``manage.py`` with
    the proper production setting. For example::
@@ -48,7 +48,7 @@ summary:
 .. note:: WSGI will use the ``production.py`` settings, whereas ``manage.py``
    will use the ``local.py`` by default.
 
-.. _installation-deployment-production:
+.. _installation-backend-production:
 
 Production
 ++++++++++
@@ -92,7 +92,7 @@ For example, create a file in ``/etc/cron.d/clonescheduled``, and edit::
 
    0 2 * * * <USER> /ABSOLUTE_PATH/scripts/clonescheduled.sh <ABSOLUTE_PATH_TO_V_ENV>
 
-.. _installation-deployment-development:
+.. _installation-backend-development:
 
 Development
 +++++++++++
@@ -122,6 +122,8 @@ Frontend
 
 .. _`Bower`: http://bower.io
 .. _`npm`: https://www.npmjs.com
+
+.. _installation-frontend-development:
 
 Development
 +++++++++++
@@ -154,10 +156,45 @@ Internationalization
 
      cp mymoney/settings/l10n.dist mymoney/settings/l10n.py
 
+   Further notes about some additional settings:
+
+   * ``USE_L10N_DIST``: Whether to use the minify file including translations.
+     It imply that the translated file is generated with *gulp*
+     (``mymoney.min.<LANGCODE>.js``). If false (default), additionnal JS
+     translations files would be loaded.
+   * ``BOOTSTRAP_CALENDAR_LANGCODE``: If ``USE_L10N_DIST`` is false, the
+     language code to use to load the translation file at:
+     ``mymoney/static/bower_components/bootstrap-calendar/js/language/<LANGCODE>.js``
+   * ``BOOTSTRAP_DATEPICKER_LANGCODE``: If ``USE_L10N_DIST`` is false, the
+     language code to use to load the translation file at:
+     ``mymoney/static/bower_components/bootstrap-datepicker/js/locales/bootstrap-datepicker.<LANGCODE>.js``
+
 2. edit your final setting file to use the l10n configuration instead::
 
     # from .base import *
     from .l10n import *
+
+3. optionally build the minified JS distribution for your language. To achieve
+   it, you first need to have *gulp* installed. See section
+   :ref:`installation-frontend-development` for more details about *gulp*.
+   The ``gulp js`` accept optional parameters:
+
+   * ``--lang``: the IETF language code of the form : *xx-XX*. **Must** be the
+     same as the Django ``LANGUAGE_CODE`` setting.
+   * ``--lang_bt_cal``: the Bootstrap calendar language code to use. To see the
+     list of available code supported, take a look at :
+     ``mymoney/static/bower_components/bootstrap-calendar/js/language/<LANGCODE>.js``
+   * ``--lang_bt_dp``: the Bootstrap datepicker language code to use. Be
+     careful, currently the language code must be of the form *xx* and not
+     *xx-XX*. To see the list of available language codes, take a look at :
+     ``mymoney/static/bower_components/bootstrap-datepicker/js/locales/bootstrap-datepicker.<LANGCODE>.js``
+
+   For example, for a French minify JS file, you should execute::
+
+     gulp js --lang=fr-FR --lang_bt_cal=fr-FR --lang_bt_dp=fr
+
+   .. note:: Seems too much verbose to specify 3 arguments for languages but
+       unfortunetly, none of them used the same...
 
 .. note:: Only *French* internationalisation/translations are supported for
    now. But any contributions are welcome!
