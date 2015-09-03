@@ -4,7 +4,7 @@ from django import template
 from django.core.urlresolvers import resolve, reverse
 from django.templatetags.l10n import localize
 from django.utils.safestring import mark_safe
-from django.utils.translation import get_language, to_locale, ugettext as _
+from django.utils.translation import ugettext as _
 
 from mymoney.apps.banktransactions.models import BankTransaction
 from mymoney.core.utils.l10n import get_language_upper

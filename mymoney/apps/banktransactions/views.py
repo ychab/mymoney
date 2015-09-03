@@ -1,8 +1,8 @@
 import datetime
 import time
 from collections import OrderedDict
-from django.conf import settings
 
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.exceptions import PermissionDenied
@@ -215,8 +215,10 @@ class BankTransactionCalendarView(BankTransactionAccessMixin,
             kwargs={'bankaccount_pk': self.bankaccount.pk},
         )
         if not settings.USE_L10N_DIST and settings.BOOTSTRAP_CALENDAR_LANGCODE:
-            context['bootstrap_calendar_langcode'] = 'bower_components/bootstrap-calendar/js/language/{lang}.js'.format(
-                lang=settings.BOOTSTRAP_CALENDAR_LANGCODE,
+            context['bootstrap_calendar_langcode'] = (
+                'bower_components/bootstrap-calendar/js/language/{lang}.js'.format(
+                    lang=settings.BOOTSTRAP_CALENDAR_LANGCODE,
+                )
             )
         return context
 
