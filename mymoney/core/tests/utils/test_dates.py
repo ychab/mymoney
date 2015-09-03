@@ -3,8 +3,8 @@ import datetime
 from django.test import SimpleTestCase
 
 from mymoney.core.utils.dates import (
-    get_date_ranges, get_datetime_ranges, get_weekday, GRANULARITY_MONTH,
-    GRANULARITY_WEEK,
+    GRANULARITY_MONTH, GRANULARITY_WEEK, get_date_ranges, get_datetime_ranges,
+    get_weekday,
 )
 
 

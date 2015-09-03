@@ -1,7 +1,7 @@
 from dateutil.relativedelta import relativedelta, weekday
 
 from mymoney.core.utils.dates import (
-    get_weekday, GRANULARITY_MONTH, GRANULARITY_WEEK,
+    GRANULARITY_MONTH, GRANULARITY_WEEK, get_weekday,
 )
 
 

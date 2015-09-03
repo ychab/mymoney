@@ -13,7 +13,7 @@ from mymoney.apps.banktransactions.models import (
     AbstractBankTransaction, BankTransaction,
 )
 from mymoney.core.utils.dates import (
-    get_datetime_ranges, GRANULARITY_MONTH, GRANULARITY_WEEK,
+    GRANULARITY_MONTH, GRANULARITY_WEEK, get_datetime_ranges,
 )
 
 logger = logging.getLogger(__name__)

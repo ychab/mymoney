@@ -1,6 +1,6 @@
 from importlib import reload
 
-from django.test import modify_settings, TestCase
+from django.test import TestCase, modify_settings
 
 import mymoney
 

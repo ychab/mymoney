@@ -4,7 +4,7 @@ from decimal import Decimal
 
 from django.contrib import messages
 from django.core.urlresolvers import reverse
-from django.test import modify_settings, override_settings, TestCase
+from django.test import TestCase, modify_settings, override_settings
 from django.utils.translation import ugettext as _
 
 from django_webtest import WebTest
