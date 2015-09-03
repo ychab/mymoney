@@ -15,8 +15,8 @@ from mymoney.apps.banktransactions.models import BankTransaction
 from ..factories import UserFactory
 from ..templatetags.core_tags import (
     breadcrumb, currency_positive, display_messages, form_errors_exists,
-    localize_positive, localize_positive_color, merge_form_errors,
-    payment_method, trans_file,
+    language_to_upper, localize_positive, localize_positive_color,
+    merge_form_errors, payment_method,
 )
 
 
@@ -272,20 +272,10 @@ class TemplateFiltersWebTestCase(unittest.TestCase):
 
 class TemplateFiltersTestCase(SimpleTestCase):
 
-    def test_trans_file(self):
-
-        with self.settings(LANGUAGE_CODE='en-us'):
-            self.assertIsNone(trans_file("foo/{lang-LANG}.js"))
-
-        with self.settings(LANGUAGE_CODE='fr-fr'):
-            self.assertEqual(
-                trans_file("foo/{lang}.js", False),
-                "foo/fr.js",
-            )
-            self.assertEqual(
-                trans_file("foo/{lang-LANG}.js", True),
-                "foo/fr-FR.js",
-            )
+    def test_language_to_upper(self):
+        self.assertEqual(language_to_upper('en-us'), 'en-US')
+        self.assertEqual(language_to_upper('fr-fr'), 'fr-FR')
+        self.assertEqual(language_to_upper('fr'), 'fr')
 
     def test_currency_positive(self):
 

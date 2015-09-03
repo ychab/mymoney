@@ -40,18 +40,13 @@
 
 {% block footer %}
 <script type="text/javascript" src="{% url 'django.views.i18n.javascript_catalog' 'mymoney.apps.banktransactions' %}"></script>
-{% with lang_file="bower_components/bootstrap-calendar/js/language/{lang-LANG}.js"|trans_file:True %}
 <script type="text/javascript">
     var calendar_template_path = "{% static 'banktransactions/bootstrap-calendar-templates/' %}";
     var calendar_events_url = "{{ calendar_ajax_url }}";
-
-    {% if lang_file %}
-    var language_code = "{{ LANGUAGE_CODE|default:"en-us" }}";
-    {% endif %}
+    var language_code = "{{ LANGUAGE_CODE|default:"en-us"|language_to_upper }}";
 </script>
 {{ block.super }}
-{% if lang_file %}
-<script src="{% static lang_file %}"></script>
+{% if bootstrap_calendar_langcode %}
+<script src="{% static bootstrap_calendar_langcode %}"></script>
 {% endif %}
-{% endwith %}
 {% endblock footer %}

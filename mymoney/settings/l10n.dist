@@ -5,3 +5,12 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
+
+# Be sure to set it to True only if you have an available minify file generated
+# with gulp at : mymoney/static/dist/<TYPE>/mymoney.min.<LANGUAGE_CODE>.<TYPE>
+USE_L10N_DIST = False
+# You should see the list of available languages for each libraries.
+# mymoney/static/bower_components/bootstrap-calendar/js/language/<LANGCODE>.js
+BOOTSTRAP_CALENDAR_LANGCODE = '<LANGUAGE_CODE>'
+# mymoney/static/bower_components/bootstrap-datepicker/js/locales/bootstrap-datepicker.<LANGCODE>.js
+BOOTSTRAP_DATEPICKER_LANGCODE = '<LANGUAGE_CODE>'

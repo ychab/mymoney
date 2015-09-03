@@ -96,4 +96,13 @@ LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_URL = 'logout'
 
+###########
+# MyMoney #
+###########
+
 ADMIN_BASE_URL = 'admin'
+
+# Just to force default values. See l10n.dist for more details.
+USE_L10N_DIST = False
+BOOTSTRAP_CALENDAR_LANGCODE = ''
+BOOTSTRAP_DATEPICKER_LANGCODE = ''

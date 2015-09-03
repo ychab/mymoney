@@ -4,9 +4,10 @@ from django import template
 from django.core.urlresolvers import resolve, reverse
 from django.templatetags.l10n import localize
 from django.utils.safestring import mark_safe
-from django.utils.translation import get_language, ugettext as _
+from django.utils.translation import get_language, to_locale, ugettext as _
 
 from mymoney.apps.banktransactions.models import BankTransaction
+from mymoney.core.utils.l10n import get_language_upper
 
 from ..utils.currencies import format_currency
 
@@ -263,16 +264,11 @@ def breadcrumb(request, bankaccount_pk=None):
 
 
 @register.filter
-def trans_file(string, use_langcode=False):
+def language_to_upper(lang):
     """
-    Replace placeholders with the current language.
+    Force language given to be uppercase.
     """
-    lang = get_language()[:2]
-    if lang != 'en':
-        if use_langcode:
-            return string.replace('{lang-LANG}', lang + '-' + lang.upper())
-
-        return string.replace('{lang}', lang)
+    return get_language_upper(lang)
 
 
 @register.filter

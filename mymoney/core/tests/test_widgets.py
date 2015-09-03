@@ -9,17 +9,25 @@ class DatepickerWidgetTestCase(SimpleTestCase):
 
     def test_locale_media(self):
 
-        with self.settings(LANGUAGE_CODE='en-us'):
+        with self.settings(USE_L10N_DIST=True):
             widget = Datepicker()
-            self.assertNotIn(
-                'bower_components/bootstrap-datepicker/dist/locales/bootstrap-datepicker.en.min.js',
-                widget.media._js
-            )
+            self.assertFalse(widget.media._js)
 
-        with self.settings(LANGUAGE_CODE='fr-fr'):
+        with self.settings(USE_L10N_DIST=False, BOOTSTRAP_DATEPICKER_LANGCODE=''):
+            widget = Datepicker()
+            self.assertFalse(widget.media._js)
+
+        with self.settings(USE_L10N_DIST=False, BOOTSTRAP_DATEPICKER_LANGCODE='fr'):
             widget = Datepicker()
             self.assertIn(
                 'bower_components/bootstrap-datepicker/dist/locales/bootstrap-datepicker.fr.min.js',
+                widget.media._js
+            )
+
+        with self.settings(USE_L10N_DIST=False, BOOTSTRAP_DATEPICKER_LANGCODE='fr-CH'):
+            widget = Datepicker()
+            self.assertIn(
+                'bower_components/bootstrap-datepicker/dist/locales/bootstrap-datepicker.fr-CH.min.js',
                 widget.media._js
             )
 
@@ -29,13 +37,11 @@ class DatepickerWidgetTestCase(SimpleTestCase):
             widget = Datepicker()
             attrs = widget.build_attrs()
             self.assertEqual(attrs['data-date-language'], 'it')
-            self.assertEqual(attrs['data-date-format'], 'mm/dd/yyyy')
 
-        with self.settings(LANGUAGE_CODE='fr-fr', DATE_INPUT_FORMAT_JS='dd/mm/yyyy'):
+        with self.settings(LANGUAGE_CODE='fr-ch'):
             widget = Datepicker()
             attrs = widget.build_attrs()
-            self.assertEqual(attrs['data-date-language'], 'fr')
-            self.assertEqual(attrs['data-date-format'], 'dd/mm/yyyy')
+            self.assertEqual(attrs['data-date-language'], 'fr-CH')
 
         widget = Datepicker()
         attrs = widget.build_attrs(extra_attrs={

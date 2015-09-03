@@ -1026,6 +1026,27 @@ class CalendarViewTestCase(WebTest):
         cls.owner = UserFactory(username='owner')
         cls.bankaccount = BankAccountFactory(owners=[cls.owner])
 
+    def test_context_data(self):
+
+        url = reverse('banktransactions:calendar', kwargs={
+            'bankaccount_pk': self.bankaccount.pk,
+        })
+
+        with self.settings(USE_L10N_DIST=True):
+            response = self.app.get(url, user='owner')
+            self.assertNotIn('bootstrap_calendar_langcode', response.context[0])
+
+        with self.settings(USE_L10N_DIST=False, BOOTSTRAP_CALENDAR_LANGCODE=''):
+            response = self.app.get(url, user='owner')
+            self.assertNotIn('bootstrap_calendar_langcode', response.context[0])
+
+        with self.settings(USE_L10N_DIST=False, BOOTSTRAP_CALENDAR_LANGCODE='fr-FR'):
+            response = self.app.get(url, user='owner')
+            self.assertIn('bootstrap_calendar_langcode', response.context[0])
+            self.assertTrue(
+                response.context[0]['bootstrap_calendar_langcode'].endswith('fr-FR.js')
+            )
+
     def test_view(self):
 
         url = reverse('banktransactions:calendar', kwargs={

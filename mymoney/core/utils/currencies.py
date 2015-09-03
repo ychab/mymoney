@@ -1,7 +1,7 @@
 import operator
 
 from django.utils.formats import get_format
-from django.utils.translation import get_language
+from django.utils.translation import get_language, to_locale
 
 from babel import numbers
 from babel.core import Locale
@@ -25,8 +25,7 @@ def format_currency(amount, currency):
         format = get_format('CURRENCY_PATTERN_FORMAT')
     except AttributeError:
         format = None
-    lang = get_language()
-    locale = lang[:2] + ('_' + lang[3:].upper() if len(lang) > 2 else '')
+    locale = to_locale(get_language())
 
     return numbers.format_currency(
         amount, currency, format=format, locale=locale

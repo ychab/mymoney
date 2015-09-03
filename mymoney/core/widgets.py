@@ -1,8 +1,10 @@
+from django.conf import settings
 from django.utils import formats
 from django.utils.formats import get_format
-from django.utils.translation import get_language
 
 import floppyforms as forms
+
+from mymoney.core.utils.l10n import get_language_upper
 
 
 class Datepicker(forms.TextInput):
@@ -18,11 +20,10 @@ class Datepicker(forms.TextInput):
         }
         js = ()
 
-        lang = get_language()[:2]
-        if lang != 'en':
+        if not settings.USE_L10N_DIST and settings.BOOTSTRAP_DATEPICKER_LANGCODE:
             js += (
                 'bower_components/bootstrap-datepicker/dist/locales/bootstrap-datepicker.{lang}.min.js'.format(
-                    lang=lang,
+                    lang=settings.BOOTSTRAP_DATEPICKER_LANGCODE,
                 ),
             )
 
@@ -48,7 +49,7 @@ class Datepicker(forms.TextInput):
             'size': 10,
             'data-provide': 'datepicker',
             'data-date-format': date_input_format_js,
-            'data-date-language': get_language()[:2],
+            'data-date-language': get_language_upper(),
             'data-date-orientation': 'top auto',
             'data-date-autoclose': 1,
         }
