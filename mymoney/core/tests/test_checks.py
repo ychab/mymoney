@@ -4,7 +4,7 @@ from django.test import SimpleTestCase, override_settings
 
 class AdminURLCheck(SimpleTestCase):
 
-    @override_settings(ADMIN_BASE_URL='')
+    @override_settings(MYMONEY={"ADMIN_BASE_URL": ''})
     def test_deploy_critical(self):
         errors = self.get_filtered_msgs(
             run_checks(app_configs=['core'], include_deployment_checks=True)
@@ -12,7 +12,7 @@ class AdminURLCheck(SimpleTestCase):
         self.assertEqual(len(errors), 1)
         self.assertIsInstance(errors.pop(), Critical)
 
-    @override_settings(ADMIN_BASE_URL='admin')
+    @override_settings(MYMONEY={"ADMIN_BASE_URL": 'admin'})
     def test_deploy_warning(self):
         errors = self.get_filtered_msgs(
             run_checks(app_configs=['core'], include_deployment_checks=True)
@@ -20,14 +20,14 @@ class AdminURLCheck(SimpleTestCase):
         self.assertEqual(len(errors), 1)
         self.assertIsInstance(errors.pop(), Warning)
 
-    @override_settings(ADMIN_BASE_URL='foo')
+    @override_settings(MYMONEY={"ADMIN_BASE_URL": 'foo'})
     def test_deploy_ok(self):
         errors = self.get_filtered_msgs(
             run_checks(app_configs=['core'], include_deployment_checks=True)
         )
         self.assertFalse(errors)
 
-    @override_settings(ADMIN_BASE_URL='')
+    @override_settings(MYMONEY={"ADMIN_BASE_URL": ''})
     def test_no_deploy(self):
         errors = self.get_filtered_msgs(
             run_checks(app_configs=['core'], include_deployment_checks=False)

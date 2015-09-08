@@ -20,10 +20,10 @@ class Datepicker(forms.TextInput):
         }
         js = ()
 
-        if not settings.USE_L10N_DIST and settings.BOOTSTRAP_DATEPICKER_LANGCODE:
+        if not settings.MYMONEY['USE_L10N_DIST'] and settings.MYMONEY['BOOTSTRAP_DATEPICKER_LANGCODE']:
             js += (
                 'bower_components/bootstrap-datepicker/dist/locales/bootstrap-datepicker.{lang}.min.js'.format(
-                    lang=settings.BOOTSTRAP_DATEPICKER_LANGCODE,
+                    lang=settings.MYMONEY['BOOTSTRAP_DATEPICKER_LANGCODE'],
                 ),
             )
 

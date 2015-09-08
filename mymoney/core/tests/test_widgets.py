@@ -9,22 +9,22 @@ class DatepickerWidgetTestCase(SimpleTestCase):
 
     def test_locale_media(self):
 
-        with self.settings(USE_L10N_DIST=True):
+        with self.settings(MYMONEY={'USE_L10N_DIST': True}):
             widget = Datepicker()
             self.assertFalse(widget.media._js)
 
-        with self.settings(USE_L10N_DIST=False, BOOTSTRAP_DATEPICKER_LANGCODE=''):
+        with self.settings(MYMONEY={'USE_L10N_DIST': False, "BOOTSTRAP_DATEPICKER_LANGCODE": ''}):
             widget = Datepicker()
             self.assertFalse(widget.media._js)
 
-        with self.settings(USE_L10N_DIST=False, BOOTSTRAP_DATEPICKER_LANGCODE='fr'):
+        with self.settings(MYMONEY={'USE_L10N_DIST': False, "BOOTSTRAP_DATEPICKER_LANGCODE": 'fr'}):
             widget = Datepicker()
             self.assertIn(
                 'bower_components/bootstrap-datepicker/dist/locales/bootstrap-datepicker.fr.min.js',
                 widget.media._js
             )
 
-        with self.settings(USE_L10N_DIST=False, BOOTSTRAP_DATEPICKER_LANGCODE='fr-CH'):
+        with self.settings(MYMONEY={'USE_L10N_DIST': False, "BOOTSTRAP_DATEPICKER_LANGCODE": 'fr-CH'}):
             widget = Datepicker()
             self.assertIn(
                 'bower_components/bootstrap-datepicker/dist/locales/bootstrap-datepicker.fr-CH.min.js',

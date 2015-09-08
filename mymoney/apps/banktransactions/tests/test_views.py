@@ -1032,15 +1032,15 @@ class CalendarViewTestCase(WebTest):
             'bankaccount_pk': self.bankaccount.pk,
         })
 
-        with self.settings(USE_L10N_DIST=True):
+        with self.settings(MYMONEY={"USE_L10N_DIST": True}):
             response = self.app.get(url, user='owner')
             self.assertNotIn('bootstrap_calendar_langcode', response.context[0])
 
-        with self.settings(USE_L10N_DIST=False, BOOTSTRAP_CALENDAR_LANGCODE=''):
+        with self.settings(MYMONEY={"USE_L10N_DIST": False, "BOOTSTRAP_CALENDAR_LANGCODE": ""}):
             response = self.app.get(url, user='owner')
             self.assertNotIn('bootstrap_calendar_langcode', response.context[0])
 
-        with self.settings(USE_L10N_DIST=False, BOOTSTRAP_CALENDAR_LANGCODE='fr-FR'):
+        with self.settings(MYMONEY={"USE_L10N_DIST": False, "BOOTSTRAP_CALENDAR_LANGCODE": "fr-FR"}):
             response = self.app.get(url, user='owner')
             self.assertIn('bootstrap_calendar_langcode', response.context[0])
             self.assertTrue(

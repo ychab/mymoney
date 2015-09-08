@@ -214,12 +214,15 @@ class BankTransactionCalendarView(BankTransactionAccessMixin,
             'banktransactions:calendar_ajax_events',
             kwargs={'bankaccount_pk': self.bankaccount.pk},
         )
-        if not settings.USE_L10N_DIST and settings.BOOTSTRAP_CALENDAR_LANGCODE:
+
+        if (not settings.MYMONEY['USE_L10N_DIST'] and
+                settings.MYMONEY['BOOTSTRAP_CALENDAR_LANGCODE']):
             context['bootstrap_calendar_langcode'] = (
                 'bower_components/bootstrap-calendar/js/language/{lang}.js'.format(
-                    lang=settings.BOOTSTRAP_CALENDAR_LANGCODE,
+                    lang=settings.MYMONEY['BOOTSTRAP_CALENDAR_LANGCODE'],
                 )
             )
+
         return context
 
 

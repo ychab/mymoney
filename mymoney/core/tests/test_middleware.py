@@ -20,7 +20,7 @@ class AnonymousRedirectMiddlewareTestCase(TestCase):
             'bankaccount_pk': self.bankaccount.pk,
         })
         login_url = resolve_url(settings.LOGIN_URL)
-        admin_base_url = get_script_prefix() + settings.ADMIN_BASE_URL
+        admin_base_url = get_script_prefix() + settings.MYMONEY['ADMIN_BASE_URL']
 
         # Anonymous should be redirect to login url.
         response = self.client.get(url, follow=True)

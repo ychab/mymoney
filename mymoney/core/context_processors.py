@@ -16,7 +16,7 @@ def extra(request):
             request.user
         )
 
-    if settings.USE_L10N_DIST:
+    if settings.MYMONEY['USE_L10N_DIST']:
         data['dist_js_src'] = "dist/js/mymoney.min.{lang}.js".format(lang=get_language_upper())
     else:
         data['dist_js_src'] = 'dist/js/mymoney.min.js'

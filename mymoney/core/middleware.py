@@ -15,7 +15,7 @@ class AnonymousRedirectMiddleware(object):
             # /login, /login?next=foo or /admin must skip redirect.
             whitelist = (
                 resolved_login_url,
-                get_script_prefix() + settings.ADMIN_BASE_URL,
+                get_script_prefix() + settings.MYMONEY['ADMIN_BASE_URL'],
             )
             if path.startswith(whitelist):
                 return

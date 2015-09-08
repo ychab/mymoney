@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.test import TestCase
 
@@ -26,14 +27,20 @@ class ContextProcessorsTestCase(TestCase):
 
         self.client.login(username='superowner', password='test')
 
-        with self.settings(USE_L10N_DIST=False, LANGUAGE_CODE='en-us'):
+        mymoney_settings = settings.MYMONEY.copy()
+        mymoney_settings['USE_L10N_DIST'] = False
+        with self.settings(MYMONEY=mymoney_settings, LANGUAGE_CODE='en-us'):
             response = self.client.get(reverse('home'), follow=True)
             self.assertNotIn('.min.en-US.js', response.context[0]['dist_js_src'])
 
-        with self.settings(USE_L10N_DIST=True, LANGUAGE_CODE='en-us'):
+        mymoney_settings = settings.MYMONEY.copy()
+        mymoney_settings['USE_L10N_DIST'] = True
+        with self.settings(MYMONEY=mymoney_settings, LANGUAGE_CODE='en-us'):
             response = self.client.get(reverse('home'), follow=True)
             self.assertIn('.min.en-US.js', response.context[0]['dist_js_src'])
 
-        with self.settings(USE_L10N_DIST=True, LANGUAGE_CODE='fr-fr'):
+        mymoney_settings = settings.MYMONEY.copy()
+        mymoney_settings['USE_L10N_DIST'] = True
+        with self.settings(MYMONEY=mymoney_settings, LANGUAGE_CODE='fr-fr'):
             response = self.client.get(reverse('home'), follow=True)
             self.assertIn('.min.fr-FR.js', response.context[0]['dist_js_src'])
