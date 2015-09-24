@@ -1,11 +1,14 @@
 sudo: false
 language: python
 python:
-    - "3.4"
+    - "3.5"
 addons:
-    postgresql: "9.3"
+    postgresql: "9.4"
 env:
     - TOXENV=py34
+    - TOXENV=py34_reverse
+    - TOXENV=py35
+    - TOXENV=py35_reverse
     - TOXENV=flake8
     - TOXENV=isort
     - TOXENV=docs
