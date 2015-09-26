@@ -1,14 +1,14 @@
 {
   "name": "MyMoney",
   "dependencies": {
-    "jquery": "1.11.2",
+    "jquery": "1.11.3",
     "bootstrap": "3.3.5",
-    "bootstrap-datepicker": "1.4.0",
+    "bootstrap-datepicker": "1.4.1",
     "bootstrap-calendar": "0.2.4",
     "chartjs": "1.0.2"
   },
   "resolutions": {
-    "jquery": "1.11.2",
+    "jquery": "1.11.3",
     "bootstrap": "3.3.5"
   }
 }
