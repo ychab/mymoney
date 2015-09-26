@@ -128,7 +128,7 @@ Frontend
 Development
 +++++++++++
 
-1. install *npm* globally to use it as a command line tool::
+1. install *gulp* globally to use it as a command line tool::
 
     npm install -g gulp
 
