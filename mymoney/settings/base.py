@@ -79,6 +79,8 @@ WSGI_APPLICATION = 'mymoney.wsgi.application'
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
+TIME_ZONE = 'UTC'
+USE_TZ = True
 
 FORMAT_MODULE_PATH = [
     'mymoney.formats',
