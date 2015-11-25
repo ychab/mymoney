@@ -1,10 +1,10 @@
 from django.conf import settings
 from django.utils import formats
-from django.utils.formats import get_format
 
 import floppyforms as forms
 
-from mymoney.core.utils.l10n import get_language_upper
+from .utils.formats import get_format
+from .utils.l10n import get_language_upper
 
 
 class Datepicker(forms.TextInput):
@@ -40,9 +40,8 @@ class Datepicker(forms.TextInput):
         Use this method instead of the classic __init__ in order to be
         executed at runtime due to locale switch.
         """
-        try:
-            date_input_format_js = get_format('DATE_INPUT_FORMAT_JS')
-        except AttributeError:
+        date_input_format_js = get_format('DATE_INPUT_FORMAT_JS')
+        if date_input_format_js is None:
             date_input_format_js = 'mm/dd/yyyy'
 
         attrs = {

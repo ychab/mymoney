@@ -1,10 +1,11 @@
 import operator
 
-from django.utils.formats import get_format
 from django.utils.translation import get_language, to_locale
 
 from babel import numbers
 from babel.core import Locale
+
+from .formats import get_format
 
 
 def get_currencies():
@@ -21,11 +22,9 @@ def format_currency(amount, currency):
     """
     Format an amount with the currency given for the current active language.
     """
-    try:
-        format = get_format('CURRENCY_PATTERN_FORMAT')
-    except AttributeError:
-        format = None
-    locale = to_locale(get_language())
+    lang = get_language()
+    format = get_format('CURRENCY_PATTERN_FORMAT', lang)
+    locale = to_locale(lang)
 
     return numbers.format_currency(
         amount, currency, format=format, locale=locale
