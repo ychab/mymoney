@@ -1,9 +1,9 @@
 from django.conf import settings
 from django.utils import formats
+from django.utils.formats import get_format
 
 import floppyforms as forms
 
-from .utils.formats import get_format
 from .utils.l10n import get_language_upper
 
 
@@ -41,7 +41,7 @@ class Datepicker(forms.TextInput):
         executed at runtime due to locale switch.
         """
         date_input_format_js = get_format('DATE_INPUT_FORMAT_JS')
-        if date_input_format_js is None:
+        if date_input_format_js == 'DATE_INPUT_FORMAT_JS':
             date_input_format_js = 'mm/dd/yyyy'
 
         attrs = {
