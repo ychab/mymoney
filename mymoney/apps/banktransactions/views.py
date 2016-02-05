@@ -86,8 +86,9 @@ class BankTransactionListView(BankTransactionAccessMixin, generic.FormView):
             for key, value in form.cleaned_data.items():
                 value = list(value) if isinstance(value, QuerySet) else value
 
-                if (key.startswith('banktransaction_') or key == 'operation'
-                        or value in form.fields[key].empty_values):
+                if (key.startswith('banktransaction_') or
+                        key == 'operation' or
+                        value in form.fields[key].empty_values):
                     continue
 
                 if key == 'tags':

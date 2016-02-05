@@ -17,8 +17,7 @@ class BankTransactionTagManager(models.Manager):
         return (
             self
             .filter(
-                models.Q(owner=user.pk)
-                |
+                models.Q(owner=user.pk) |
                 models.Q(
                     owner__in=user_model.objects.raw(
                         raw_query="""

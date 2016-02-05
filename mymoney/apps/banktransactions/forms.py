@@ -109,8 +109,10 @@ class BankTransactionListForm(forms.Form):
 
             amount_min = cleaned_data.get('amount_min', None)
             amount_max = cleaned_data.get('amount_max', None)
-            if (amount_min is not None and amount_max is not None
-                    and amount_min > amount_max):
+            if (amount_min is not None and
+                    amount_max is not None and
+                    amount_min > amount_max):
+
                 raise forms.ValidationError(
                     _("Minimum amount could not be greater than maximum "
                       "amount."),

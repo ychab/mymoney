@@ -243,7 +243,7 @@ class RatioViewTestCase(WebTest):
     @override_settings(
         LANGUAGE_CODE='fr-fr',
         DATETIME_INPUT_FORMATS=('%d/%m/%Y',),
-        DECIMAL_SEPARATOR = ',',
+        DECIMAL_SEPARATOR=',',
     )
     def test_default_value_localize(self):
 
