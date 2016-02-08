@@ -55,7 +55,7 @@ def menu_action_links(request):
                 'href': reverse('banktransactiontags:create'),
                 'text': _('Add'),
             })
-    elif resolver.view_name == 'banktransactions:list':
+    elif resolver.view_name in ['banktransactions:list', 'banktransactions:calendar']:
         if request.user.has_perm('banktransactions.add_banktransaction'):
             links.append({
                 'href': reverse('banktransactions:create', kwargs=resolver.kwargs),

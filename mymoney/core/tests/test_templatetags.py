@@ -155,6 +155,26 @@ class TemplateTagsWebTestCase(WebTest):
         with self.assertRaises(IndexError):
             response.click(href=href)
 
+        url = reverse('banktransactions:calendar', kwargs={
+            'bankaccount_pk': self.bankaccount.pk
+        })
+        href = reverse('banktransactions:create', kwargs={
+            'bankaccount_pk': self.bankaccount.pk
+        })
+        response = self.app.get(url, user='superowner')
+        response.click(href=href)
+        response = self.app.get(url, user='owner')
+        with self.assertRaises(IndexError):
+            response.click(href=href)
+        href = reverse('bankaccounts:delete', kwargs={
+            'pk': self.bankaccount.pk
+        })
+        response = self.app.get(url, user='superowner')
+        response.click(href=href)
+        response = self.app.get(url, user='owner')
+        with self.assertRaises(IndexError):
+            response.click(href=href)
+
         url = reverse('banktransactionschedulers:list', kwargs={
             'bankaccount_pk': self.bankaccount.pk
         })
