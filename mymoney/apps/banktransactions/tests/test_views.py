@@ -84,7 +84,7 @@ class AccessTestCase(TestCase):
         })
         self.client.login(username=self.superowner, password='test')
         response = self.client.get(url)
-        self.assertEqual(403, response.status_code)
+        self.assertEqual(404, response.status_code)
         self.client.logout()
 
     def test_access_update(self):

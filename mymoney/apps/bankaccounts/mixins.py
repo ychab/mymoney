@@ -1,28 +1,16 @@
-from django.core.exceptions import PermissionDenied
+from django.contrib.auth.mixins import UserPassesTestMixin
 
 import floppyforms.__future__.models as model_forms
 
 
-class BankAccountAccessMixin(object):
+class BankAccountAccessMixin(UserPassesTestMixin):
+    raise_exception = True
 
-    permissions = ()
-
-    def dispatch(self, request, *args, **kwargs):
+    def test_func(self):
         """
-        Allow access only if current user has permission and is owner of the
-        bank account.
+        Allow access only if current user is owner of the bank account.
         """
-
-        # No need to continue if permission is required and user hasn't it.
-        if self.permissions and not request.user.has_perms(self.permissions):
-            raise PermissionDenied
-
-        # Only owner have access.
-        if not self.get_object().owners.filter(pk=request.user.pk).exists():
-            raise PermissionDenied
-
-        return super(BankAccountAccessMixin, self).dispatch(
-            request, *args, **kwargs)
+        return self.get_object().owners.filter(pk=self.request.user.pk).exists()
 
 
 class BankAccountSaveFormMixin(object):

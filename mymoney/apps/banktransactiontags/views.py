@@ -1,3 +1,6 @@
+from django.contrib.auth.mixins import (
+    LoginRequiredMixin, PermissionRequiredMixin,
+)
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.http import HttpResponseRedirect
@@ -9,7 +12,7 @@ from .mixins import BankTransactionTagAccessMixin
 from .models import BankTransactionTag
 
 
-class BankTransactionTagListView(generic.ListView):
+class BankTransactionTagListView(LoginRequiredMixin, generic.ListView):
     model = BankTransactionTag
     paginate_by = 50
     ordering = ['name']
@@ -22,9 +25,14 @@ class BankTransactionTagListView(generic.ListView):
         )
 
 
-class BankTransactionTagCreateView(SuccessMessageMixin, generic.CreateView):
+class BankTransactionTagCreateView(PermissionRequiredMixin,
+                                   SuccessMessageMixin, generic.CreateView):
     model = BankTransactionTag
     form_class = BankTransactionTagCreateForm
+
+    permission_required = ('banktransactiontags.add_banktransactiontag',)
+    raise_exception = True
+
     success_message = _(
         "Bank transaction tag %(name)s was created successfully."
     )

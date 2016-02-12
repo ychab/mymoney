@@ -1,44 +1,28 @@
-from django.core.exceptions import PermissionDenied
+from django.contrib.auth.mixins import UserPassesTestMixin
+from django.shortcuts import get_object_or_404
 
 from mymoney.apps.bankaccounts.models import BankAccount
 
 from .models import BankTransaction
 
 
-class BankTransactionAccessMixin(object):
+class BankTransactionAccessMixin(UserPassesTestMixin):
     """
-    Mixin class to allow access if :
-    - current user is superuser
-    OR
-    - owner of the bank account AND have permissions (if any)
+    Allow access if current user is owner of the bank account
     """
+    raise_exception = True
 
     bankaccount = None
-    permissions = ()
 
-    def dispatch(self, request, *args, **kwargs):
+    def test_func(self):
 
-        # No need to continue if permission is required and user hasn't it.
-        if not request.user.has_perms(self.permissions):
-            raise PermissionDenied
-
-        if 'bankaccount_pk' in kwargs:
-            try:
-                self.bankaccount = BankAccount.objects.get(
-                    pk=kwargs['bankaccount_pk']
-                )
-            except BankAccount.DoesNotExist:
-                raise PermissionDenied
+        if 'bankaccount_pk' in self.kwargs:
+            self.bankaccount = get_object_or_404(BankAccount, pk=self.kwargs['bankaccount_pk'])
         else:
             # Implicit get_object_or_404().
             self.bankaccount = self.get_object().bankaccount
 
-        # Only owners of the related bank account have access.
-        if not self.bankaccount.owners.filter(pk=request.user.pk).exists():
-            raise PermissionDenied
-
-        return super(BankTransactionAccessMixin, self).dispatch(
-            request, *args, **kwargs)
+        return self.bankaccount.owners.filter(pk=self.request.user.pk).exists()
 
 
 class BankTransactionSaveViewMixin(object):

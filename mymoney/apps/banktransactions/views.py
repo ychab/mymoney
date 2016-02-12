@@ -4,6 +4,7 @@ from collections import OrderedDict
 
 from django.conf import settings
 from django.contrib import messages
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.exceptions import PermissionDenied
 from django.core.paginator import InvalidPage, Paginator
@@ -227,7 +228,8 @@ class BankTransactionCalendarView(BankTransactionAccessMixin,
         return context
 
 
-class BankTransactionCalendarEventsAjax(BankTransactionAccessMixin, generic.View):
+class BankTransactionCalendarEventsAjax(BankTransactionAccessMixin,
+                                        generic.View):
 
     def get(self, request, *args, **kwargs):
 
@@ -319,16 +321,20 @@ class BankTransactionCalendarEventAjax(generic.TemplateView):
         return context
 
 
-class BankTransactionCreateView(BankTransactionAccessMixin,
+class BankTransactionCreateView(PermissionRequiredMixin,
+                                BankTransactionAccessMixin,
                                 BankTransactionSaveViewMixin,
                                 SuccessMessageMixin,
                                 generic.CreateView):
 
     form_class = BankTransactionCreateForm
+
+    permission_required = ('banktransactions.add_banktransaction',)
+    raise_exception = True
+
     success_message = ugettext_lazy(
         "Bank transaction %(label)s was created successfully."
     )
-    permissions = ('banktransactions.add_banktransaction',)
 
     def get_initial(self):
 
@@ -350,23 +356,30 @@ class BankTransactionCreateView(BankTransactionAccessMixin,
         return response
 
 
-class BankTransactionUpdateView(BankTransactionAccessMixin,
+class BankTransactionUpdateView(PermissionRequiredMixin,
+                                BankTransactionAccessMixin,
                                 BankTransactionSaveViewMixin,
                                 SuccessMessageMixin,
                                 generic.UpdateView):
 
     form_class = BankTransactionUpdateForm
+
+    permission_required = ('banktransactions.change_banktransaction',)
+    raise_exception = True
+
     success_message = ugettext_lazy(
         "Bank transaction %(label)s was updated successfully."
     )
-    permissions = ('banktransactions.change_banktransaction',)
 
 
-class BankTransactionDeleteView(BankTransactionAccessMixin,
+class BankTransactionDeleteView(PermissionRequiredMixin,
+                                BankTransactionAccessMixin,
                                 generic.DeleteView):
 
     model = BankTransaction
-    permissions = ('banktransactions.delete_banktransaction',)
+
+    permission_required = ('banktransactions.delete_banktransaction',)
+    raise_exception = True
 
     def get_success_url(self):
         """
@@ -378,11 +391,15 @@ class BankTransactionDeleteView(BankTransactionAccessMixin,
         return super(BankTransactionDeleteView, self).get_success_url()
 
 
-class BankTransactionDeleteMultipleView(BankTransactionAccessMixin,
+class BankTransactionDeleteMultipleView(PermissionRequiredMixin,
+                                        BankTransactionAccessMixin,
                                         generic.TemplateView):
 
     template_name = 'banktransactions/banktransaction_confirm_delete_multiple.html'
-    permissions = ('banktransactions.delete_banktransaction',)
+
+    permission_required = ('banktransactions.delete_banktransaction',)
+    raise_exception = True
+
     banktransactions = None
 
     def dispatch(self, request, *args, **kwargs):

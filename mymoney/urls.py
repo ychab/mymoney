@@ -10,7 +10,7 @@ from mymoney.core.views import HomePageRedirectView
 urlpatterns = [
     url(r'^{0}/'.format(settings.MYMONEY['ADMIN_BASE_URL']),
         include(admin.site.urls)),
-    url(r'^jsi18n/(?P<packages>\S+?)/$', javascript_catalog),
+    url(r'^jsi18n/(?P<packages>\S+?)/$', javascript_catalog, name='javascript-catalog'),
     url(r'^bank-account/', include(
         'mymoney.apps.bankaccounts.urls', namespace='bankaccounts'
     )),

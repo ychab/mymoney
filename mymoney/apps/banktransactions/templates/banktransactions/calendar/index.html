@@ -39,7 +39,7 @@
 {% endblock content %}
 
 {% block footer %}
-<script type="text/javascript" src="{% url 'django.views.i18n.javascript_catalog' 'mymoney.apps.banktransactions' %}"></script>
+<script type="text/javascript" src="{% url 'javascript-catalog' 'mymoney.apps.banktransactions' %}"></script>
 <script type="text/javascript">
     var calendar_template_path = "{% static 'banktransactions/bootstrap-calendar-templates/' %}";
     var calendar_events_url = "{{ calendar_ajax_url }}";

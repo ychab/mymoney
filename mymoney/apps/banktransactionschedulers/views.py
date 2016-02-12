@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
@@ -70,16 +71,17 @@ class BankTransactionSchedulerListView(BankTransactionAccessMixin,
         return context
 
 
-class BankTransactionSchedulerCreateView(BankTransactionAccessMixin,
+class BankTransactionSchedulerCreateView(PermissionRequiredMixin,
+                                         BankTransactionAccessMixin,
                                          BankTransactionSaveViewMixin,
                                          SuccessMessageMixin,
                                          generic.CreateView):
     model = BankTransactionScheduler
     form_class = BankTransactionSchedulerCreateForm
+    permission_required = ('banktransactionschedulers.add_banktransactionscheduler',)
     success_message = _(
         "Bank transaction scheduler %(label)s was created successfully."
     )
-    permissions = ('banktransactionschedulers.add_banktransactionscheduler',)
 
     def get_initial(self):
 
@@ -105,22 +107,24 @@ class BankTransactionSchedulerCreateView(BankTransactionAccessMixin,
         return response
 
 
-class BankTransactionSchedulerUpdateView(BankTransactionAccessMixin,
+class BankTransactionSchedulerUpdateView(PermissionRequiredMixin,
+                                         BankTransactionAccessMixin,
                                          BankTransactionSaveViewMixin,
                                          SuccessMessageMixin,
                                          generic.UpdateView):
     model = BankTransactionScheduler
     form_class = BankTransactionSchedulerUpdateForm
+    permission_required = ('banktransactionschedulers.change_banktransactionscheduler',)
     success_message = _(
         "Bank transaction scheduler %(label)s was updated successfully."
     )
-    permissions = ('banktransactionschedulers.change_banktransactionscheduler',)
 
 
-class BankTransactionSchedulerDeleteView(BankTransactionAccessMixin,
+class BankTransactionSchedulerDeleteView(PermissionRequiredMixin,
+                                         BankTransactionAccessMixin,
                                          generic.DeleteView):
     model = BankTransactionScheduler
-    permissions = ('banktransactionschedulers.delete_banktransactionscheduler',)
+    permission_required = ('banktransactionschedulers.delete_banktransactionscheduler',)
 
     def get_success_url(self):
 

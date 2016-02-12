@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.views.generic import RedirectView
 
@@ -19,7 +18,7 @@ class HomePageRedirectView(RedirectView):
         user = self.request.user
 
         if user.is_anonymous():
-            return settings.LOGIN_URL
+            return reverse('login')
 
         bankaccounts = BankAccount.objects.get_user_bankaccounts(user)
         if len(bankaccounts) == 1:
