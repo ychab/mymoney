@@ -39,7 +39,7 @@ class AnonymousRedirectMiddlewareTestCase(TestCase):
         self.assertEqual(response.request['PATH_INFO'], admin_base_url + '/login/')
 
         # Authentificated user are not redirected.
-        self.client.login(username=self.owner, password='test')
+        self.client.force_login(self.owner)
         response = self.client.get(url, follow=True)
         self.assertEqual(response.request['PATH_INFO'], url)
 

@@ -43,12 +43,12 @@ class AccessTestCase(TestCase):
         self.assertEqual(403, response.status_code)
 
         # Non owner.
-        self.client.login(username=self.not_owner, password='test')
+        self.client.force_login(self.not_owner)
         response = self.client.get(url)
         self.assertEqual(403, response.status_code)
 
         # Owner.
-        self.client.login(username=self.owner, password='test')
+        self.client.force_login(self.owner)
         response = self.client.get(url)
         self.assertEqual(200, response.status_code)
 
@@ -64,12 +64,12 @@ class AccessTestCase(TestCase):
         self.assertEqual(403, response.status_code)
 
         # Owner without session filter.
-        self.client.login(username=self.owner, password='test')
+        self.client.force_login(self.owner)
         response = self.client.get(url)
         self.assertEqual(403, response.status_code)
 
         # Non owner with session filter.
-        self.client.login(username=self.not_owner, password='test')
+        self.client.force_login(self.not_owner)
         session = self.client.session
         session['banktransactionanalyticratioform'] = {
             'filters': {
@@ -83,7 +83,7 @@ class AccessTestCase(TestCase):
         self.assertEqual(403, response.status_code)
 
         # Owner with session filter but wrong tag ID.
-        self.client.login(username=self.owner, password='test')
+        self.client.force_login(self.owner)
         session = self.client.session
         session['banktransactionanalyticratioform'] = {
             'filters': {
@@ -124,12 +124,12 @@ class AccessTestCase(TestCase):
         self.assertEqual(403, response.status_code)
 
         # Non owner.
-        self.client.login(username=self.not_owner, password='test')
+        self.client.force_login(self.not_owner)
         response = self.client.get(url)
         self.assertEqual(403, response.status_code)
 
         # Owner.
-        self.client.login(username=self.owner, password='test')
+        self.client.force_login(self.owner)
         response = self.client.get(url)
         self.assertEqual(200, response.status_code)
 
@@ -146,12 +146,12 @@ class AccessTestCase(TestCase):
         self.assertEqual(403, response.status_code)
 
         # Non owner.
-        self.client.login(username=self.not_owner, password='test')
+        self.client.force_login(self.not_owner)
         response = self.client.get(url)
         self.assertEqual(403, response.status_code)
 
         # Owner.
-        self.client.login(username=self.owner, password='test')
+        self.client.force_login(self.owner)
         response = self.client.get(url)
         self.assertEqual(200, response.status_code)
 

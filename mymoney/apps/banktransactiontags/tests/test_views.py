@@ -35,7 +35,7 @@ class AccessTestCase(TestCase):
                              reverse(settings.LOGIN_URL) + '?next=' + url)
 
         # Authenticated.
-        self.client.login(username=self.owner, password='test')
+        self.client.force_login(self.owner)
         response = self.client.get(url)
         self.assertEqual(200, response.status_code)
 
@@ -43,13 +43,13 @@ class AccessTestCase(TestCase):
         url = reverse('banktransactiontags:create')
 
         # Missing permission.
-        self.client.login(username=self.owner, password='test')
+        self.client.force_login(self.owner)
         response = self.client.get(url)
         self.assertEqual(403, response.status_code)
         self.client.logout()
 
         # With permission.
-        self.client.login(username=self.superowner, password='test')
+        self.client.force_login(self.superowner)
         response = self.client.get(url)
         self.assertEqual(200, response.status_code)
         self.client.logout()
@@ -64,19 +64,19 @@ class AccessTestCase(TestCase):
         self.assertEqual(403, response.status_code)
 
         # Non-owner at all with permissions.
-        self.client.login(username=self.not_owner, password='test')
+        self.client.force_login(self.not_owner)
         response = self.client.get(url)
         self.assertEqual(403, response.status_code)
         self.client.logout()
 
         # Not strict owner with permissions.
-        self.client.login(username=self.not_strict_owner, password='test')
+        self.client.force_login(self.not_strict_owner)
         response = self.client.get(url)
         self.assertEqual(403, response.status_code)
         self.client.logout()
 
         # Owner with permissions
-        self.client.login(username=self.superowner, password='test')
+        self.client.force_login(self.superowner)
         response = self.client.get(url)
         self.assertEqual(200, response.status_code)
         self.client.logout()
@@ -85,7 +85,7 @@ class AccessTestCase(TestCase):
         url = reverse('banktransactiontags:update', kwargs={
             'pk': 20140923
         })
-        self.client.login(username=self.superowner, password='test')
+        self.client.force_login(self.superowner)
         response = self.client.get(url)
         self.assertEqual(404, response.status_code)
         self.client.logout()
@@ -100,19 +100,19 @@ class AccessTestCase(TestCase):
         self.assertEqual(403, response.status_code)
 
         # Non-owner with permissions.
-        self.client.login(username=self.not_owner, password='test')
+        self.client.force_login(self.not_owner)
         response = self.client.get(url)
         self.assertEqual(403, response.status_code)
         self.client.logout()
 
         # Not strict owner with permissions.
-        self.client.login(username=self.not_strict_owner, password='test')
+        self.client.force_login(self.not_strict_owner)
         response = self.client.get(url)
         self.assertEqual(403, response.status_code)
         self.client.logout()
 
         # Owner with permissions
-        self.client.login(username=self.superowner, password='test')
+        self.client.force_login(self.superowner)
         response = self.client.get(url)
         self.assertEqual(200, response.status_code)
         self.client.logout()
@@ -137,7 +137,7 @@ class ViewTestCase(TestCase):
 
     def test_list_view(self):
 
-        self.client.login(username=self.owner, password='test')
+        self.client.force_login(self.owner)
         response = self.client.get(reverse('banktransactiontags:list'))
         ids = sorted(list((response.context_data['banktransactiontag_list']
                            .values_list('pk', flat=True))))

@@ -27,7 +27,7 @@ class AccessTestCase(TestCase):
         self.assertRedirects(response,
                              reverse(settings.LOGIN_URL) + '?next=' + url)
         # Any authenticated user.
-        self.client.login(username=self.owner, password='test')
+        self.client.force_login(self.owner)
         response = self.client.get(url)
         self.assertEqual(200, response.status_code)
 
@@ -35,13 +35,13 @@ class AccessTestCase(TestCase):
         url = reverse('bankaccounts:create')
 
         # Missing permission.
-        self.client.login(username=self.owner, password='test')
+        self.client.force_login(self.owner)
         response = self.client.get(url)
         self.assertEqual(403, response.status_code)
         self.client.logout()
 
         # Having permission.
-        self.client.login(username=self.superowner, password='test')
+        self.client.force_login(self.superowner)
         response = self.client.get(url)
         self.assertEqual(200, response.status_code)
         self.client.logout()
@@ -54,26 +54,26 @@ class AccessTestCase(TestCase):
         self.assertEqual(403, response.status_code)
 
         # Non-owner with permissions.
-        self.client.login(username=self.not_owner, password='test')
+        self.client.force_login(self.not_owner)
         response = self.client.get(url)
         self.assertEqual(403, response.status_code)
         self.client.logout()
 
         # Owner without perm.
-        self.client.login(username=self.owner, password='test')
+        self.client.force_login(self.owner)
         response = self.client.get(url)
         self.assertEqual(403, response.status_code)
         self.client.logout()
 
         # Owner with permissions
-        self.client.login(username=self.superowner, password='test')
+        self.client.force_login(self.superowner)
         response = self.client.get(url)
         self.assertEqual(200, response.status_code)
         self.client.logout()
 
         # Fake bank account.
         url = reverse('bankaccounts:update', kwargs={'pk': 20140923})
-        self.client.login(username=self.superowner, password='test')
+        self.client.force_login(self.superowner)
         response = self.client.get(url)
         self.assertEqual(404, response.status_code)
         self.client.logout()
@@ -86,19 +86,19 @@ class AccessTestCase(TestCase):
         self.assertEqual(403, response.status_code)
 
         # Non-owner with permissions.
-        self.client.login(username=self.not_owner, password='test')
+        self.client.force_login(self.not_owner)
         response = self.client.get(url)
         self.assertEqual(403, response.status_code)
         self.client.logout()
 
         # Owner without perm.
-        self.client.login(username=self.owner, password='test')
+        self.client.force_login(self.owner)
         response = self.client.get(url)
         self.assertEqual(403, response.status_code)
         self.client.logout()
 
         # Owner with permissions
-        self.client.login(username=self.superowner, password='test')
+        self.client.force_login(self.superowner)
         response = self.client.get(url)
         self.assertEqual(200, response.status_code)
         self.client.logout()
@@ -115,7 +115,7 @@ class ViewTestCase(TestCase):
 
     def test_list_view(self):
 
-        self.client.login(username=self.not_owner, password='test')
+        self.client.force_login(self.not_owner)
         response = self.client.get(reverse('bankaccounts:list'))
         ids = list((response.context_data['bankaccount_list']
                     .values_list('pk', flat=True)))
@@ -125,13 +125,13 @@ class ViewTestCase(TestCase):
             owners=(self.not_owner, self.owner),
         )
 
-        self.client.login(username=self.not_owner, password='test')
+        self.client.force_login(self.not_owner)
         response = self.client.get(reverse('bankaccounts:list'))
         ids = list((response.context_data['bankaccount_list']
                     .values_list('pk', flat=True)))
         self.assertListEqual([bankaccount.pk], ids)
 
-        self.client.login(username=self.owner, password='test')
+        self.client.force_login(self.owner)
         response = self.client.get(reverse('bankaccounts:list'))
         ids = list((response.context_data['bankaccount_list']
                     .values_list('pk', flat=True)))

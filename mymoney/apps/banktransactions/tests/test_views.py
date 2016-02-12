@@ -42,16 +42,16 @@ class AccessTestCase(TestCase):
         self.assertEqual(403, response.status_code)
 
         # Non owner.
-        self.client.login(username=self.not_owner, password='test')
+        self.client.force_login(self.not_owner)
         response = self.client.get(url)
         self.assertEqual(403, response.status_code)
 
         # Owner.
-        self.client.login(username=self.owner, password='test')
+        self.client.force_login(self.owner)
         response = self.client.get(url)
         self.assertEqual(200, response.status_code)
 
-        self.client.login(username=self.superowner, password='test')
+        self.client.force_login(self.superowner)
         response = self.client.get(url)
         self.assertEqual(200, response.status_code)
 
@@ -61,19 +61,19 @@ class AccessTestCase(TestCase):
         })
 
         # Missing permission.
-        self.client.login(username=self.owner, password='test')
+        self.client.force_login(self.owner)
         response = self.client.get(url)
         self.assertEqual(403, response.status_code)
         self.client.logout()
 
         # Having permission but not owner.
-        self.client.login(username=self.not_owner, password='test')
+        self.client.force_login(self.not_owner)
         response = self.client.get(url)
         self.assertEqual(403, response.status_code)
         self.client.logout()
 
         # Owner with permission.
-        self.client.login(username=self.superowner, password='test')
+        self.client.force_login(self.superowner)
         response = self.client.get(url)
         self.assertEqual(200, response.status_code)
         self.client.logout()
@@ -82,7 +82,7 @@ class AccessTestCase(TestCase):
         url = reverse('banktransactions:create', kwargs={
             'bankaccount_pk': 20120918,
         })
-        self.client.login(username=self.superowner, password='test')
+        self.client.force_login(self.superowner)
         response = self.client.get(url)
         self.assertEqual(404, response.status_code)
         self.client.logout()
@@ -97,24 +97,24 @@ class AccessTestCase(TestCase):
         self.assertEqual(403, response.status_code)
 
         # Non-owner with permissions.
-        self.client.login(username=self.not_owner, password='test')
+        self.client.force_login(self.not_owner)
         response = self.client.get(url)
         self.assertEqual(403, response.status_code)
         self.client.logout()
 
         # Owner without perm.
-        self.client.login(username=self.owner, password='test')
+        self.client.force_login(self.owner)
         response = self.client.get(url)
         self.assertEqual(403, response.status_code)
         self.client.logout()
 
         # Owner with permissions
-        self.client.login(username=self.superowner, password='test')
+        self.client.force_login(self.superowner)
         response = self.client.get(url)
         self.assertEqual(200, response.status_code)
         self.client.logout()
 
-        self.client.login(username=self.superowner, password='test')
+        self.client.force_login(self.superowner)
         response = self.client.get(url)
         self.assertEqual(200, response.status_code)
         self.client.logout()
@@ -123,7 +123,7 @@ class AccessTestCase(TestCase):
         url = reverse('banktransactions:update', kwargs={
             'pk': 20140923
         })
-        self.client.login(username=self.superowner, password='test')
+        self.client.force_login(self.superowner)
         response = self.client.get(url)
         self.assertEqual(404, response.status_code)
         self.client.logout()
@@ -138,24 +138,24 @@ class AccessTestCase(TestCase):
         self.assertEqual(403, response.status_code)
 
         # Non-owner with permissions.
-        self.client.login(username=self.not_owner, password='test')
+        self.client.force_login(self.not_owner)
         response = self.client.get(url)
         self.assertEqual(403, response.status_code)
         self.client.logout()
 
         # Owner without perm.
-        self.client.login(username=self.owner, password='test')
+        self.client.force_login(self.owner)
         response = self.client.get(url)
         self.assertEqual(403, response.status_code)
         self.client.logout()
 
         # Owner with permissions
-        self.client.login(username=self.superowner, password='test')
+        self.client.force_login(self.superowner)
         response = self.client.get(url)
         self.assertEqual(200, response.status_code)
         self.client.logout()
 
-        self.client.login(username=self.superowner, password='test')
+        self.client.force_login(self.superowner)
         response = self.client.get(url)
         self.assertEqual(200, response.status_code)
         self.client.logout()
@@ -174,7 +174,7 @@ class AccessTestCase(TestCase):
         self.assertEqual(403, response.status_code)
 
         # Non-owner with permissions.
-        self.client.login(username=self.not_owner, password='test')
+        self.client.force_login(self.not_owner)
         session = self.client.session
         session['banktransactionlistdelete'] = (self.banktransaction.pk,)
         session.save()
@@ -183,7 +183,7 @@ class AccessTestCase(TestCase):
         self.client.logout()
 
         # Owner without perm.
-        self.client.login(username=self.owner, password='test')
+        self.client.force_login(self.owner)
         session = self.client.session
         session['banktransactionlistdelete'] = (self.banktransaction.pk,)
         session.save()
@@ -192,13 +192,13 @@ class AccessTestCase(TestCase):
         self.client.logout()
 
         # Owner with permissions but without session value.
-        self.client.login(username=self.superowner, password='test')
+        self.client.force_login(self.superowner)
         response = self.client.get(url)
         self.assertEqual(403, response.status_code)
         self.client.logout()
 
         # Owner with permission and an old bank transactions.
-        self.client.login(username=self.superowner, password='test')
+        self.client.force_login(self.superowner)
         session = self.client.session
         session['banktransactionlistdelete'] = (-15614,)
         session.save()
@@ -207,7 +207,7 @@ class AccessTestCase(TestCase):
         self.client.logout()
 
         # Owner with permissions and session value.
-        self.client.login(username=self.superowner, password='test')
+        self.client.force_login(self.superowner)
         session = self.client.session
         session['banktransactionlistdelete'] = (self.banktransaction.pk,)
         session.save()
@@ -215,7 +215,7 @@ class AccessTestCase(TestCase):
         self.assertEqual(200, response.status_code)
         self.client.logout()
 
-        self.client.login(username=self.superowner, password='test')
+        self.client.force_login(self.superowner)
         session = self.client.session
         session['banktransactionlistdelete'] = (self.banktransaction.pk,)
         session.save()
@@ -234,16 +234,16 @@ class AccessTestCase(TestCase):
         self.assertEqual(403, response.status_code)
 
         # Non owner.
-        self.client.login(username=self.not_owner, password='test')
+        self.client.force_login(self.not_owner)
         response = self.client.get(url)
         self.assertEqual(403, response.status_code)
 
         # Owner.
-        self.client.login(username=self.owner, password='test')
+        self.client.force_login(self.owner)
         response = self.client.get(url)
         self.assertEqual(200, response.status_code)
 
-        self.client.login(username=self.superowner, password='test')
+        self.client.force_login(self.superowner)
         response = self.client.get(url)
         self.assertEqual(200, response.status_code)
 
@@ -258,16 +258,16 @@ class AccessTestCase(TestCase):
         self.assertEqual(403, response.status_code)
 
         # Non owner.
-        self.client.login(username=self.not_owner, password='test')
+        self.client.force_login(self.not_owner)
         response = self.client.get(url)
         self.assertEqual(403, response.status_code)
 
         # Owner.
-        self.client.login(username=self.owner, password='test')
+        self.client.force_login(self.owner)
         response = self.client.get(url)
         self.assertEqual(200, response.status_code)
 
-        self.client.login(username=self.superowner, password='test')
+        self.client.force_login(self.superowner)
         response = self.client.get(url)
         self.assertEqual(200, response.status_code)
 
@@ -284,16 +284,16 @@ class AccessTestCase(TestCase):
         self.assertEqual(403, response.status_code)
 
         # Non owner.
-        self.client.login(username=self.not_owner, password='test')
+        self.client.force_login(self.not_owner)
         response = self.client.get(url)
         self.assertEqual(403, response.status_code)
 
         # Owner.
-        self.client.login(username=self.owner, password='test')
+        self.client.force_login(self.owner)
         response = self.client.get(url)
         self.assertEqual(200, response.status_code)
 
-        self.client.login(username=self.superowner, password='test')
+        self.client.force_login(self.superowner)
         response = self.client.get(url)
         self.assertEqual(200, response.status_code)
 

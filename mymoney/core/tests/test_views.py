@@ -22,10 +22,10 @@ class HomeRedirectViewTestCase(TestCase):
 
     def test_redirect_authenticated_one_bankaccount(self):
 
-        user = UserFactory(username='test')
+        user = UserFactory()
         bankaccount = BankAccountFactory(owners=[user])
 
-        self.client.login(username='test', password='test')
+        self.client.force_login(user)
         response = self.client.get(self.url, follow=True)
 
         self.assertEqual(response.resolver_match.view_name, 'banktransactions:list')
@@ -35,10 +35,10 @@ class HomeRedirectViewTestCase(TestCase):
 
     def test_redirect_authenticated_multiple_bankaccounts(self):
 
-        user = UserFactory(username='test')
+        user = UserFactory()
         BankAccountFactory(owners=[user])
         BankAccountFactory(owners=[user])
 
-        self.client.login(username='test', password='test')
+        self.client.force_login(user)
         response = self.client.get(self.url, follow=True)
         self.assertEqual(response.resolver_match.view_name, 'bankaccounts:list')
