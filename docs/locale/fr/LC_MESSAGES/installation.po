@@ -1,15 +1,20 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2015, Yannick Chabbert
+# This file is distributed under the same license as the MyMoney package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2016.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: MyMoney 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-28 21:33+0200\n"
+"POT-Creation-Date: 2016-02-29 09:20+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.2.0\n"
 
 #: ../../installation.rst:2
 msgid "Installation"
@@ -40,8 +45,8 @@ msgid ""
 "The deployment is the same as any other Django projects. Here is a quick "
 "summary:"
 msgstr ""
-"Le déploiement est similaire à d'autres projets Django. Voici un bref résumé"
-" :"
+"Le déploiement est similaire à d'autres projets Django. Voici un bref "
+"résumé :"
 
 #: ../../installation.rst:19
 msgid "install required system packages. For example on Debian::"
@@ -50,8 +55,8 @@ msgstr "installer les paquets systèmes requis. Par exemple sur Debian::"
 #: ../../installation.rst:23
 msgid "create a PostgreSQL database in a cluster with role and owner"
 msgstr ""
-"créer un cluster de base de données pour PostgreSQL ainsi qu'un rôle et un "
-"propriétaire"
+"créer un cluster de base de données pour PostgreSQL ainsi qu'un rôle et "
+"un propriétaire"
 
 #: ../../installation.rst:25
 msgid "create a virtualenv::"
@@ -59,24 +64,24 @@ msgstr "créer un virtualenv::"
 
 #: ../../installation.rst:29
 msgid ""
-"install dependencies with pip (see :ref:`installation-backend-production` or"
-" :ref:`installation-backend-development`)"
+"install dependencies with pip (see :ref:`installation-backend-production`"
+" or :ref:`installation-backend-development`)"
 msgstr ""
 "installer les dépendances avec pip (voir :ref:`installation-backend-"
 "production` ou :ref:`installation-backend-development`)"
 
 #: ../../installation.rst:32
 msgid ""
-"configure the settings (see :ref:`installation-backend-production` or :ref"
-":`installation-backend-development`)"
-msgstr ""
-"configurer les paramètres ( voir :ref:`installation-backend-production` ou "
+"configure the settings (see :ref:`installation-backend-production` or "
 ":ref:`installation-backend-development`)"
+msgstr ""
+"configurer les paramètres ( voir :ref:`installation-backend-production` "
+"ou :ref:`installation-backend-development`)"
 
 #: ../../installation.rst:35
 msgid ""
-"export the ``DJANGO_SETTINGS_MODULE`` to easily use the ``manage.py`` with "
-"the proper production setting. For example::"
+"export the ``DJANGO_SETTINGS_MODULE`` to easily use the ``manage.py`` "
+"with the proper production setting. For example::"
 msgstr ""
 "exporter la variable d'environnement ``DJANGO_SETTINGS_MODULE`` pour "
 "facilement utiliser ``manage.py`` avec les paramètres de production. Par "
@@ -92,8 +97,8 @@ msgstr "créer un super utilisateur::"
 
 #: ../../installation.rst:48
 msgid ""
-"WSGI will use the ``production.py`` settings, whereas ``manage.py`` will use"
-" the ``local.py`` by default."
+"WSGI will use the ``production.py`` settings, whereas ``manage.py`` will "
+"use the ``local.py`` by default."
 msgstr ""
 "WSGI utilisera les paramètres ``production.py`` alors que ``manage.py`` "
 "utilisera ``local.py`` par défaut."
@@ -119,8 +124,9 @@ msgid ""
 "install JS libraries **first** with *Bower* (see :ref:`installation-"
 "deployment-frontend`) then collect statics files::"
 msgstr ""
-"installer les librairies JS **avant** avec *Bower* (voir :ref:`installation-"
-"deployment-frontend`) puis collecter les fichiers statiques::"
+"installer les librairies JS **avant** avec *Bower* (voir :ref"
+":`installation-deployment-frontend`) puis collecter les fichiers "
+"statiques::"
 
 #: ../../installation.rst:70
 msgid "execute the Django check command and apply fixes if needed::"
@@ -147,16 +153,15 @@ msgstr ""
 #: ../../installation.rst:84
 msgid ""
 "At the project root directory, the ``scripts`` directory provides bash "
-"script wrappers to execute these commands. Thus, you could create cron rules"
-" similar to something like::"
+"script wrappers to execute these commands. Thus, you could create cron "
+"rules similar to something like::"
 msgstr ""
 "À la racine du projet, le répertoire ``scripts`` fourni des scripts bash "
 "pour exécuter ces commandes. Par conséquent, vous pouvez les utiliser en "
 "créant des règles cron similaire à::"
 
 #: ../../installation.rst:91
-msgid ""
-"For example, create a file in ``/etc/cron.d/clonescheduled``, and edit::"
+msgid "For example, create a file in ``/etc/cron.d/clonescheduled``, and edit::"
 msgstr ""
 "Par exemple, créez un fichier à ``/etc/cron.d/clonescheduled``, puis "
 "éditez::"
@@ -171,11 +176,11 @@ msgstr "Installer les dépendances::"
 
 #: ../../installation.rst:104
 msgid ""
-"copy ``mymoney/settings/local.dist`` to ``mymoney/settings/local.py`` and "
-"edit it::"
+"copy ``mymoney/settings/local.dist`` to ``mymoney/settings/local.py`` and"
+" edit it::"
 msgstr ""
-"copiez ``mymoney/settings/local.dist`` à ``mymoney/settings/local.py`` et "
-"éditez le."
+"copiez ``mymoney/settings/local.dist`` à ``mymoney/settings/local.py`` et"
+" éditez le."
 
 #: ../../installation.rst:112
 msgid "Frontend"
@@ -184,7 +189,8 @@ msgstr ""
 #: ../../installation.rst:114
 msgid "install `Bower`_. One way is to do it with `npm`_ globally::"
 msgstr ""
-"installer `Bower`_. Une des façon de le faire est avec `npm`_ globalement::"
+"installer `Bower`_. Une des façon de le faire est avec `npm`_ "
+"globalement::"
 
 #: ../../installation.rst:118
 msgid ""
@@ -195,6 +201,7 @@ msgstr ""
 "librairies JS requises::"
 
 #: ../../installation.rst:131
+#, fuzzy
 msgid "install *gulp* globally to use it as a command line tool::"
 msgstr ""
 "installer globalement *gulp* pour l'utiliser comme outil de ligne de "
@@ -203,8 +210,8 @@ msgstr ""
 #: ../../installation.rst:135
 msgid "go to the project root directory and install gulp dependencies::"
 msgstr ""
-"aller dans le répertoire racine du projet et installer les dépendances de "
-"gulp::"
+"aller dans le répertoire racine du projet et installer les dépendances de"
+" gulp::"
 
 #: ../../installation.rst:139
 msgid ""
@@ -212,9 +219,9 @@ msgid ""
 "should be able to execute the following gulp commands implemented in "
 "``gulpfile.js``:"
 msgstr ""
-"une fois les paquets *node* installés *en local* dans ``./node_modules``, "
-"vous devriez pouvoir exécuter les commandes gulp suivantes implémentées dans"
-" ``gulpfile.js``:"
+"une fois les paquets *node* installés *en local* dans ``./node_modules``,"
+" vous devriez pouvoir exécuter les commandes gulp suivantes implémentées "
+"dans ``gulpfile.js``:"
 
 #: ../../installation.rst:143
 msgid "*js*: concat and minify js"
@@ -238,8 +245,8 @@ msgstr "Internationalisation"
 
 #: ../../installation.rst:154
 msgid ""
-"copy ``mymoney/settings/l10n.dist`` to ``mymoney/settings/l10n.py`` and edit"
-" it::"
+"copy ``mymoney/settings/l10n.dist`` to ``mymoney/settings/l10n.py`` and "
+"edit it::"
 msgstr ""
 "copiez ``mymoney/settings/l10n.dist`` à ``mymoney/settings/l10n.py`` et "
 "éditez le."
@@ -250,20 +257,20 @@ msgstr "Plusieurs remarques sur les paramètres supplémentaires:"
 
 #: ../../installation.rst:161
 msgid ""
-"``USE_L10N_DIST``: Whether to use the minify file including translations. It"
-" imply that the translated file is generated with *gulp* "
+"``USE_L10N_DIST``: Whether to use the minify file including translations."
+" It imply that the translated file is generated with *gulp* "
 "(``mymoney.min.<LANGCODE>.js``). If false (default), additionnal JS "
 "translations files would be loaded."
 msgstr ""
-"``USE_L10N_DIST``: Faut-il ou non utiliser le fichier minifié qui inclut les"
-" traductions. Cela implique que le fichier minifié avec traductions a été "
-"généré avec *gulp* (``mymoney.min.<LANGCODE>.js``). Si c'est faux (par "
-"défaut), les fichiers JS de traductions seront chargés en plus."
+"``USE_L10N_DIST``: Faut-il ou non utiliser le fichier minifié qui inclut "
+"les traductions. Cela implique que le fichier minifié avec traductions a "
+"été généré avec *gulp* (``mymoney.min.<LANGCODE>.js``). Si c'est faux "
+"(par défaut), les fichiers JS de traductions seront chargés en plus."
 
 #: ../../installation.rst:165
 msgid ""
-"``BOOTSTRAP_CALENDAR_LANGCODE``: If ``USE_L10N_DIST`` is false, the language"
-" code to use to load the translation file at: "
+"``BOOTSTRAP_CALENDAR_LANGCODE``: If ``USE_L10N_DIST`` is false, the "
+"language code to use to load the translation file at: "
 "``mymoney/static/bower_components/bootstrap-"
 "calendar/js/language/<LANGCODE>.js``"
 msgstr ""
@@ -276,13 +283,13 @@ msgstr ""
 msgid ""
 "``BOOTSTRAP_DATEPICKER_LANGCODE``: If ``USE_L10N_DIST`` is false, the "
 "language code to use to load the translation file at: "
-"``mymoney/static/bower_components/bootstrap-datepicker/js/locales/bootstrap-"
-"datepicker.<LANGCODE>.js``"
+"``mymoney/static/bower_components/bootstrap-datepicker/js/locales"
+"/bootstrap-datepicker.<LANGCODE>.js``"
 msgstr ""
-"``BOOTSTRAP_DATEPICKER_LANGCODE``: Si ``USE_L10N_DIST`` est faux, le code "
-"langue à utiliser pour charger le fichier de traduction à: "
-"``mymoney/static/bower_components/bootstrap-datepicker/js/locales/bootstrap-"
-"datepicker.<LANGCODE>.js``"
+"``BOOTSTRAP_DATEPICKER_LANGCODE``: Si ``USE_L10N_DIST`` est faux, le code"
+" langue à utiliser pour charger le fichier de traduction à: "
+"``mymoney/static/bower_components/bootstrap-datepicker/js/locales"
+"/bootstrap-datepicker.<LANGCODE>.js``"
 
 #: ../../installation.rst:172
 msgid "edit your final setting file to use the l10n configuration instead::"
@@ -292,29 +299,29 @@ msgstr ""
 
 #: ../../installation.rst:177
 msgid ""
-"optionally build the minified JS distribution for your language. To achieve "
-"it, you first need to have *gulp* installed. See section :ref:`installation-"
-"frontend-development` for more details about *gulp*. The ``gulp js`` accept "
-"optional parameters:"
+"optionally build the minified JS distribution for your language. To "
+"achieve it, you first need to have *gulp* installed. See section :ref"
+":`installation-frontend-development` for more details about *gulp*. The "
+"``gulp js`` accept optional parameters:"
 msgstr ""
-"optionnellement, construisez le fichier JS minifié de la distribution pour "
-"votre langue. Pour y parvenir, vous devez d'abord avoir *gulp* d'installé. "
-"Voir la section :ref:`installation-frontend-development` pour plus de "
-"détails à propos de *gulp*. La commande ``gulp js`` a des paramètres "
-"optionnels:"
+"optionnellement, construisez le fichier JS minifié de la distribution "
+"pour votre langue. Pour y parvenir, vous devez d'abord avoir *gulp* "
+"d'installé. Voir la section :ref:`installation-frontend-development` pour"
+" plus de détails à propos de *gulp*. La commande ``gulp js`` a des "
+"paramètres optionnels:"
 
 #: ../../installation.rst:182
 msgid ""
-"``--lang``: the IETF language code of the form : *xx-XX*. **Must** be the "
-"same as the Django ``LANGUAGE_CODE`` setting."
+"``--lang``: the IETF language code of the form : *xx-XX*. **Must** be the"
+" same as the Django ``LANGUAGE_CODE`` setting."
 msgstr ""
-"``--lang``: le code langue IETF de la forme : *xx-XX*. **Doit** être le même"
-" que le paramètre Django ``LANGUAGE_CODE``."
+"``--lang``: le code langue IETF de la forme : *xx-XX*. **Doit** être le "
+"même que le paramètre Django ``LANGUAGE_CODE``."
 
 #: ../../installation.rst:184
 msgid ""
-"``--lang_bt_cal``: the Bootstrap calendar language code to use. To see the "
-"list of available code supported, take a look at : "
+"``--lang_bt_cal``: the Bootstrap calendar language code to use. To see "
+"the list of available code supported, take a look at : "
 "``mymoney/static/bower_components/bootstrap-"
 "calendar/js/language/<LANGCODE>.js``"
 msgstr ""
@@ -325,22 +332,21 @@ msgstr ""
 
 #: ../../installation.rst:187
 msgid ""
-"``--lang_bt_dp``: the Bootstrap datepicker language code to use. Be careful,"
-" currently the language code must be of the form *xx* and not *xx-XX*. To "
-"see the list of available language codes, take a look at : "
-"``mymoney/static/bower_components/bootstrap-datepicker/js/locales/bootstrap-"
-"datepicker.<LANGCODE>.js``"
+"``--lang_bt_dp``: the Bootstrap datepicker language code to use. Be "
+"careful, currently the language code must be of the form *xx* and not "
+"*xx-XX*. To see the list of available language codes, take a look at : "
+"``mymoney/static/bower_components/bootstrap-datepicker/js/locales"
+"/bootstrap-datepicker.<LANGCODE>.js``"
 msgstr ""
 "``--lang_bt_dp``: le code langue de Bootstrap datepicker à utiliser. "
-"Attention actuellement, le code langue est de la forme *xx* et non *xx-XX*. "
-"Pour connaître la liste des codes langues disponibles, regardez à : "
-"``mymoney/static/bower_components/bootstrap-datepicker/js/locales/bootstrap-"
-"datepicker.<LANGCODE>.js``"
+"Attention actuellement, le code langue est de la forme *xx* et non *xx-"
+"XX*. Pour connaître la liste des codes langues disponibles, regardez à : "
+"``mymoney/static/bower_components/bootstrap-datepicker/js/locales"
+"/bootstrap-datepicker.<LANGCODE>.js``"
 
 #: ../../installation.rst:192
 msgid "For example, for a French minify JS file, you should execute::"
-msgstr ""
-"Par exemple pour un fichier JS minifié français, vous devriez exécuter::"
+msgstr "Par exemple pour un fichier JS minifié français, vous devriez exécuter::"
 
 #: ../../installation.rst:196
 msgid ""
@@ -352,8 +358,8 @@ msgstr ""
 
 #: ../../installation.rst:199
 msgid ""
-"Only *French* internationalisation/translations are supported for now. But "
-"any contributions are welcome!"
+"Only *French* internationalisation/translations are supported for now. "
+"But any contributions are welcome!"
 msgstr ""
 "Les traductions en *français* sont uniquement supportées pour le moment. "
 "Mais toutes contributions sont les bienvenues !"
@@ -382,11 +388,12 @@ msgstr "Tests"
 
 #: ../../installation.rst:217
 msgid ""
-"Whichever method is used, you must create a setting file for testing. Copy "
-"``mymoney/settings/test.dist`` to ``mymoney/settings/test.py`` and edit it::"
+"Whichever method is used, you must create a setting file for testing. "
+"Copy ``mymoney/settings/test.dist`` to ``mymoney/settings/test.py`` and "
+"edit it::"
 msgstr ""
-"Qu'importe la méthode utilisée, vous devez créer un fichier de configuration"
-" de test. Copiez ``mymoney/settings/test.dist`` à "
+"Qu'importe la méthode utilisée, vous devez créer un fichier de "
+"configuration de test. Copiez ``mymoney/settings/test.dist`` à "
 "``mymoney/settings/test.py`` et éditez le."
 
 #: ../../installation.rst:223
@@ -395,23 +402,23 @@ msgstr "Tox"
 
 #: ../../installation.rst:225
 msgid ""
-"You can use `Tox`_. At the project root directory without virtualenv, just "
-"execute::"
+"You can use `Tox`_. At the project root directory without virtualenv, "
+"just execute::"
 msgstr ""
-"Vous pouvez utiliser `Tox`_. À la racine du projet sans virtualenv, exécutez"
-" juste::"
+"Vous pouvez utiliser `Tox`_. À la racine du projet sans virtualenv, "
+"exécutez juste::"
 
 #: ../../installation.rst:232
 msgid "Behind the scenes, it runs several *testenv* for:"
 msgstr "En coulisses, plusieurs *testenv* sont exécutés:"
 
 #: ../../installation.rst:234
-msgid "`flake8`_"
-msgstr "`flake8`_"
+msgid "`pylama`_"
+msgstr "`pylama`_"
 
 #: ../../installation.rst:235
 msgid "`isort`_"
-msgstr ""
+msgstr "`isort`_"
 
 #: ../../installation.rst:236
 msgid "`Sphinx`_"

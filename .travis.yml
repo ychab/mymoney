@@ -9,7 +9,7 @@ env:
     - TOXENV=py34_reverse
     - TOXENV=py35
     - TOXENV=py35_reverse
-    - TOXENV=flake8
+    - TOXENV=pylama
     - TOXENV=isort
     - TOXENV=docs
 install:
