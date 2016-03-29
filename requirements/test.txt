@@ -1,6 +1,6 @@
 -r production.txt
 
-tblib==1.2.0
+tblib==1.3.0
 
 factory-boy==2.6.1
 git+https://github.com/Pylons/webtest.git@57b672e8320d488b054bfe5719f16c3d5cba3363

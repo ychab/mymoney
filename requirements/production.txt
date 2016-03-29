@@ -1,5 +1,5 @@
 psycopg2==2.6.1
-python-dateutil==2.5.0
+python-dateutil==2.5.2
 Babel==2.2.0
 Django==1.9.4
 django-floppyforms==1.6.1
