@@ -1,0 +1,17 @@
+build:
+  image: python:3.5
+  commands:
+    - pip install tox
+    - cp mymoney/settings/l10n.dist mymoney/settings/l10n.py
+    - sed -i 's/<LANGUAGE_CODE>/en-us/g' mymoney/settings/l10n.py
+    - cp mymoney/settings/test.dist mymoney/settings/test.py
+    - sed -i 's/<DB_NAME>/mymoney/g' mymoney/settings/test.py
+    - sed -i 's/<DB_USER>/mymoney/g' mymoney/settings/test.py
+    - tox -e ALL
+
+compose:
+  database:
+    image: postgres:9.4
+    environment:
+      - POSTGRES_USER=mymoney
+      - POSTGRES_PASSWORD=mymoney
