@@ -1,9 +1,6 @@
 .. image:: https://travis-ci.org/ychab/mymoney.svg
     :target: https://travis-ci.org/ychab/mymoney
 
-.. image:: https://drone.io/github.com/ychab/mymoney/status.png
-    :target: https://drone.io/github.com/ychab/mymoney/latest
-
 .. image:: https://coveralls.io/repos/ychab/mymoney/badge.svg?branch=master&service=github
   :target: https://coveralls.io/github/ychab/mymoney?branch=master
 
