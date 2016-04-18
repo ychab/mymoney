@@ -79,8 +79,8 @@ class FormTestCase(WebTest):
 
         # Check available options.
         self.assertListEqual(
-            sorted([option[0] for option in form['tag'].options]),
-            ['', str(tag1.pk), str(tag2.pk), str(tag3.pk)]
+            [''] + sorted([int(option[0]) for option in form['tag'].options[1:]]),
+            ['', tag1.pk, tag2.pk, tag3.pk]
         )
 
         # Test with a fake tag.

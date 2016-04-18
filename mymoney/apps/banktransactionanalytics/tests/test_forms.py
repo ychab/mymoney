@@ -29,8 +29,8 @@ class RatioFormTestCase(WebTest):
 
         form = self.app.get(url, user='owner').form
         self.assertListEqual(
-            sorted([option[0] for option in form['tags'].options]),
-            [str(obj.pk) for obj in self.banktransactiontags]
+            sorted([int(option[0]) for option in form['tags'].options]),
+            [obj.pk for obj in self.banktransactiontags],
         )
 
     @override_settings(LANGUAGE_CODE='en-us')
