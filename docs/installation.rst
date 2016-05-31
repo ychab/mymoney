@@ -111,17 +111,19 @@ Development
 Frontend
 ````````
 
-1. install `Bower`_. One way is to do it with `npm`_ globally::
+1. first intall `npm`_ (embed with nodejs)
 
-    npm install -g bower
+2. install `Bower`_ with *npm*::
 
-2. At the project root directory, run the following command to install JS
+    npm install --production
+
+3. At the project root directory, run the following command to install JS
    libraries dependencies::
 
-    bower install --production
+    ./node_modules/bower/bin/bower install --production
 
-.. _`Bower`: http://bower.io
 .. _`npm`: https://www.npmjs.com
+.. _`Bower`: http://bower.io
 
 .. _installation-frontend-development:
 
