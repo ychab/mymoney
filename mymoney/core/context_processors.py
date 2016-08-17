@@ -11,7 +11,7 @@ def extra(request):
     """
     data = {}
 
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         data['user_bankaccounts'] = BankAccount.objects.get_user_bankaccounts(
             request.user
         )

@@ -9,7 +9,7 @@ class AnonymousRedirectMiddleware(MiddlewareMixin):
 
     def process_view(self, request, view_func, view_args, view_kwargs):
 
-        if request.user.is_anonymous():
+        if request.user.is_anonymous:
             path = request.get_full_path()
             resolved_login_url = resolve_url(settings.LOGIN_URL)
 

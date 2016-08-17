@@ -17,7 +17,7 @@ class HomePageRedirectView(RedirectView):
 
         user = self.request.user
 
-        if user.is_anonymous():
+        if user.is_anonymous:
             return reverse('login')
 
         bankaccounts = BankAccount.objects.get_user_bankaccounts(user)
