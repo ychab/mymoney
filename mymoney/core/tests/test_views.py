@@ -6,7 +6,7 @@ from mymoney.apps.bankaccounts.factories import BankAccountFactory
 from ..factories import UserFactory
 
 
-@modify_settings(MIDDLEWARE_CLASSES={
+@modify_settings(MIDDLEWARE={
     'remove': ['mymoney.core.middleware.AnonymousRedirectMiddleware'],
 })
 class HomeRedirectViewTestCase(TestCase):

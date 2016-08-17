@@ -5,7 +5,7 @@ from django.urls import get_script_prefix
 from django.utils.deprecation import MiddlewareMixin
 
 
-class AnonymousRedirectMiddleware(object):
+class AnonymousRedirectMiddleware(MiddlewareMixin):
 
     def process_view(self, request, view_func, view_args, view_kwargs):
 

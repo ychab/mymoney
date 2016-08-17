@@ -17,7 +17,7 @@ from mymoney.core.factories import UserFactory
 from ..factories import BankTransactionSchedulerFactory
 
 
-@modify_settings(MIDDLEWARE_CLASSES={
+@modify_settings(MIDDLEWARE={
     'remove': ['mymoney.core.middleware.AnonymousRedirectMiddleware'],
 })
 class AccessTestCase(TestCase):

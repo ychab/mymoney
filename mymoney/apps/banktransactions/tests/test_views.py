@@ -19,7 +19,7 @@ from ..models import BankTransaction
 from ..views import BankTransactionListView
 
 
-@modify_settings(MIDDLEWARE_CLASSES={
+@modify_settings(MIDDLEWARE={
     'remove': ['mymoney.core.middleware.AnonymousRedirectMiddleware'],
 })
 class AccessTestCase(TestCase):

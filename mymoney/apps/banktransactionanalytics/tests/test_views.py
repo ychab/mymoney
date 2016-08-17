@@ -18,7 +18,7 @@ from mymoney.core.utils.dates import GRANULARITY_MONTH, GRANULARITY_WEEK
 from ..forms import RatioForm, TrendtimeForm
 
 
-@modify_settings(MIDDLEWARE_CLASSES={
+@modify_settings(MIDDLEWARE={
     'remove': ['mymoney.core.middleware.AnonymousRedirectMiddleware'],
 })
 class AccessTestCase(TestCase):
