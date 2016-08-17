@@ -17,4 +17,4 @@ class BankAccountFactory(factory.DjangoModelFactory):
     def owners(self, create, extracted, **kwargs):
 
         if create and extracted:
-            self.owners = extracted
+            self.owners.set(extracted)

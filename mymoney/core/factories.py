@@ -21,9 +21,9 @@ class UserFactory(factory.DjangoModelFactory):
             qs = UserFactory.get_permissions()
 
             if extracted == 'admin':
-                self.user_permissions = qs
+                self.user_permissions.set(qs)
             elif extracted == 'staff':  # pragma: no branch
-                self.user_permissions = qs.exclude(codename='administer_owners')
+                self.user_permissions.set(qs.exclude(codename='administer_owners'))
 
     @classmethod
     def get_permissions(cls):
