@@ -3,7 +3,7 @@ import json
 import random
 
 from django.core.exceptions import PermissionDenied
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.db.models import Count, Max, Min, QuerySet, Sum
 from django.utils import formats
 from django.utils.functional import cached_property

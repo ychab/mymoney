@@ -8,7 +8,7 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.exceptions import PermissionDenied
 from django.core.paginator import InvalidPage, Paginator
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.db.models import QuerySet
 from django.http import (
     HttpResponseBadRequest, HttpResponseRedirect, JsonResponse,

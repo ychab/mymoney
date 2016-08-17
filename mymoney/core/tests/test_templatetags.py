@@ -2,7 +2,7 @@ import unittest
 from decimal import Decimal
 from unittest import mock
 
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.test import SimpleTestCase
 from django.utils.safestring import SafeText
 

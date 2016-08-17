@@ -2,7 +2,7 @@ import datetime
 from decimal import Decimal
 from unittest import mock
 
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.test import TestCase, modify_settings, override_settings
 from django.utils import timezone
 

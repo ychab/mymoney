@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import (
     LoginRequiredMixin, PermissionRequiredMixin,
 )
 from django.contrib.messages.views import SuccessMessageMixin
-from django.core.urlresolvers import reverse, reverse_lazy
+from django.urls import reverse, reverse_lazy
 from django.http import HttpResponseRedirect
 from django.utils.translation import ugettext_lazy as _
 from django.views import generic

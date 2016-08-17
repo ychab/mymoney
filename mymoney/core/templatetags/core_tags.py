@@ -1,7 +1,7 @@
 from decimal import Decimal
 
 from django import template
-from django.core.urlresolvers import resolve, reverse
+from django.urls import resolve, reverse
 from django.templatetags.l10n import localize
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _

@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.core.urlresolvers import get_script_prefix, reverse
+from django.urls import get_script_prefix, reverse
 from django.shortcuts import resolve_url
 from django.test import TestCase
 from django.utils.http import urlunquote

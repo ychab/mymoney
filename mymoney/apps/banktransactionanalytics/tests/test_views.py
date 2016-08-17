@@ -2,7 +2,7 @@ import datetime
 import json
 from decimal import Decimal
 
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.test import TestCase, modify_settings, override_settings
 
 from django_webtest import WebTest

@@ -1,7 +1,8 @@
 from django.conf import settings
 from django.contrib.auth.views import redirect_to_login
-from django.core.urlresolvers import get_script_prefix
 from django.shortcuts import resolve_url
+from django.urls import get_script_prefix
+from django.utils.deprecation import MiddlewareMixin
 
 
 class AnonymousRedirectMiddleware(object):

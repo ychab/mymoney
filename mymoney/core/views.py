@@ -1,4 +1,4 @@
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.views.generic import RedirectView
 
 from mymoney.apps.bankaccounts.models import BankAccount
