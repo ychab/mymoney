@@ -30,7 +30,7 @@ class Migration(migrations.Migration):
                 ('recurrence', models.PositiveSmallIntegerField(null=True, verbose_name='Recurrence', blank=True, help_text='How many time the bank transaction should be cloned.')),
                 ('last_action', models.DateTimeField(null=True, editable=False, help_text='Last time the scheduled bank transaction has been cloned.')),
                 ('state', models.CharField(editable=False, choices=[('waiting', 'Waiting'), ('finished', 'Finished'), ('failed', 'Failed')], help_text='State of the scheduled bank transaction.', default='waiting', max_length=32)),
-                ('bankaccount', models.ForeignKey(to='bankaccounts.BankAccount', related_name='banktransactionschedulers')),
+                ('bankaccount', models.ForeignKey(to='bankaccounts.BankAccount', related_name='banktransactionschedulers', on_delete=models.CASCADE)),
                 ('tag', models.ForeignKey(to='banktransactiontags.BankTransactionTag', null=True, blank=True, verbose_name='Tag', on_delete=django.db.models.deletion.SET_NULL, related_name='banktransactionschedulers')),
             ],
             options={

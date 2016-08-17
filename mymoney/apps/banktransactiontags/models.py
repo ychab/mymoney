@@ -45,6 +45,7 @@ class BankTransactionTag(models.Model):
     owner = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         related_name='tags',
+        on_delete=models.CASCADE,
     )
 
     objects = BankTransactionTagManager()

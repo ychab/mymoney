@@ -94,6 +94,7 @@ class AbstractBankTransaction(models.Model):
     bankaccount = models.ForeignKey(
         BankAccount,
         related_name='%(class)ss',
+        on_delete=models.CASCADE,
     )
     date = models.DateField(default=date.today, verbose_name=_('Date'))
     amount = models.DecimalField(

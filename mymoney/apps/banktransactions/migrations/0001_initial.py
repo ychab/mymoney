@@ -27,7 +27,7 @@ class Migration(migrations.Migration):
                 ('payment_method', models.CharField(max_length=32, default='credit_card', verbose_name='Payment method', choices=[('credit_card', 'Credit card'), ('cash', 'Cash'), ('transfer', 'Transfer'), ('transfer_internal', 'Transfer internal'), ('check', 'Check')])),
                 ('memo', models.TextField(blank=True, verbose_name='Memo')),
                 ('scheduled', models.BooleanField(editable=False, default=False)),
-                ('bankaccount', models.ForeignKey(to='bankaccounts.BankAccount', related_name='banktransactions')),
+                ('bankaccount', models.ForeignKey(to='bankaccounts.BankAccount', related_name='banktransactions', on_delete=models.CASCADE)),
                 ('tag', models.ForeignKey(related_name='banktransactions', on_delete=django.db.models.deletion.SET_NULL, verbose_name='Tag', to='banktransactiontags.BankTransactionTag', blank=True, null=True)),
             ],
             options={

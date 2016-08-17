@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(primary_key=True, verbose_name='ID', serialize=False, auto_created=True)),
                 ('name', models.CharField(verbose_name='Name', max_length=255)),
-                ('owner', models.ForeignKey(related_name='tags', to=settings.AUTH_USER_MODEL)),
+                ('owner', models.ForeignKey(related_name='tags', to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)),
             ],
             options={
                 'db_table': 'banktransactiontags',
