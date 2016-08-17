@@ -2,8 +2,8 @@ import unittest
 from decimal import Decimal
 from unittest import mock
 
-from django.urls import reverse
 from django.test import SimpleTestCase
+from django.urls import reverse
 from django.utils.safestring import SafeText
 
 from django_webtest import WebTest

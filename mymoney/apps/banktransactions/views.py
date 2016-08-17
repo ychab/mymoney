@@ -8,12 +8,12 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.exceptions import PermissionDenied
 from django.core.paginator import InvalidPage, Paginator
-from django.urls import reverse
 from django.db.models import QuerySet
 from django.http import (
     HttpResponseBadRequest, HttpResponseRedirect, JsonResponse,
 )
 from django.shortcuts import get_object_or_404
+from django.urls import reverse
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext as _, ugettext_lazy
 from django.views import generic

@@ -1,6 +1,6 @@
 from django.contrib import messages
-from django.urls import reverse
 from django.test import override_settings
+from django.urls import reverse
 from django.utils.translation import ugettext as _
 
 from django_webtest import WebTest

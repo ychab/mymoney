@@ -1,6 +1,6 @@
 from django.conf import settings
-from django.urls import reverse
 from django.db import models
+from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 
 from mymoney.core.utils.currencies import get_currencies
