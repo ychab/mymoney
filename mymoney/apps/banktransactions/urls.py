@@ -2,6 +2,7 @@ from django.conf.urls import url
 
 from . import views
 
+app_name = 'banktransactions'
 urlpatterns = [
     url(
         r'^list/(?P<bankaccount_pk>\d+)/$',
