@@ -5,13 +5,13 @@ python:
 addons:
     postgresql: "9.4"
 env:
-    - TOXENV=py34
-    - TOXENV=py34-reverse
-    - TOXENV=py35-coverage
-    - TOXENV=py35-reverse
     - TOXENV=pylama
     - TOXENV=isort
     - TOXENV=docs
+    - TOXENV=py35-coverage
+    - TOXENV=py34
+    - TOXENV=py34-reverse
+    - TOXENV=py35-reverse
 install:
     - pip install coveralls tox
 before_script:
