@@ -8,10 +8,10 @@ env:
     - TOXENV=pylama
     - TOXENV=isort
     - TOXENV=docs
-    - TOXENV=py35-coverage
-    - TOXENV=py34
+    - TOXENV=py35
     - TOXENV=py34-reverse
     - TOXENV=py35-reverse
+    - TOXENV=py34-coverage
 install:
     - pip install coveralls tox
 before_script:
