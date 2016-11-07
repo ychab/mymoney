@@ -9,4 +9,5 @@ class BankTransactionTagAdmin(admin.ModelAdmin):
     ordering = ['name', 'owner']
     search_fields = ['name']
 
+
 admin.site.register(BankTransactionTag, BankTransactionTagAdmin)

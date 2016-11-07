@@ -13,4 +13,5 @@ class BankTransactionSchedulerAdmin(admin.ModelAdmin):
     date_hierarchy = 'last_action'
     search_fields = ['label']
 
+
 admin.site.register(BankTransactionScheduler, BankTransactionSchedulerAdmin)

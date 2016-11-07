@@ -12,4 +12,5 @@ class BankTransactionAdmin(admin.ModelAdmin):
     date_hierarchy = 'date'
     search_fields = ['label']
 
+
 admin.site.register(BankTransaction, BankTransactionAdmin)
