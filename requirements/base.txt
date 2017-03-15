@@ -1,4 +1,4 @@
-psycopg2==2.7
+psycopg2==2.7.1
 python-dateutil==2.6.0
 Babel==2.3.4
 Django==1.10.6
