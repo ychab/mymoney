@@ -35,4 +35,13 @@ urlpatterns = [
     url(r'^$', HomePageRedirectView.as_view(), name='home'),
 ]
 
+try:
+    import debug_toolbar
+except ImportError:  # pragma: no cover
+    pass
+else:
+    urlpatterns = [
+        url(r'^__debug__/', include(debug_toolbar.urls)),
+    ] + urlpatterns
+
 admin.site.site_header = 'MyMoney'
