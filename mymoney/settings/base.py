@@ -31,7 +31,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'floppyforms',
+
     'mymoney.core',
     'mymoney.apps.bankaccounts',
     'mymoney.apps.banktransactiontags',
@@ -49,6 +51,7 @@ MIDDLEWARE = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+
     'mymoney.core.middleware.AnonymousRedirectMiddleware',
 )
 
@@ -66,6 +69,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.i18n',
+
                 'mymoney.core.context_processors.extra',
             ],
         },
