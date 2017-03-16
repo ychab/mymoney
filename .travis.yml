@@ -1,16 +1,18 @@
 sudo: false
 language: python
 python:
-    - "3.5"
+    - "3.6"
 addons:
     postgresql: "9.4"
 env:
     - TOXENV=pylama
     - TOXENV=isort
     - TOXENV=docs
-    - TOXENV=py35
+    - TOXENV=py35-std
+    - TOXENV=py36-std
     - TOXENV=py34-reverse
     - TOXENV=py35-reverse
+    - TOXENV=py36-reverse
     - TOXENV=py34-coverage
 install:
     - pip install coveralls tox
