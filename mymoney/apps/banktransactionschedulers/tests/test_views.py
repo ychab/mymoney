@@ -10,8 +10,9 @@ from django_webtest import WebTest
 
 from mymoney.apps.bankaccounts.factories import BankAccountFactory
 from mymoney.apps.banktransactions.factories import BankTransactionFactory
-from mymoney.apps.banktransactionschedulers.models import \
-    BankTransactionScheduler
+from mymoney.apps.banktransactionschedulers.models import (
+    BankTransactionScheduler,
+)
 from mymoney.core.factories import UserFactory
 
 from ..factories import BankTransactionSchedulerFactory

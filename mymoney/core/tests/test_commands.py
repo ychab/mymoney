@@ -8,12 +8,15 @@ from mymoney.apps.bankaccounts.factories import BankAccountFactory
 from mymoney.apps.bankaccounts.models import BankAccount
 from mymoney.apps.banktransactions.factories import BankTransactionFactory
 from mymoney.apps.banktransactions.models import BankTransaction
-from mymoney.apps.banktransactionschedulers.factories import \
-    BankTransactionSchedulerFactory
-from mymoney.apps.banktransactionschedulers.models import \
-    BankTransactionScheduler
-from mymoney.apps.banktransactiontags.factories import \
-    BankTransactionTagFactory
+from mymoney.apps.banktransactionschedulers.factories import (
+    BankTransactionSchedulerFactory,
+)
+from mymoney.apps.banktransactionschedulers.models import (
+    BankTransactionScheduler,
+)
+from mymoney.apps.banktransactiontags.factories import (
+    BankTransactionTagFactory,
+)
 from mymoney.apps.banktransactiontags.models import BankTransactionTag
 
 from ..factories import UserFactory
