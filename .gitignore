@@ -12,6 +12,7 @@ __pycache__
 docs/_build/
 fabfile.py
 node_modules
+package-lock.json
 
 mymoney/settings/*.py
 !mymoney/settings/__init__.py

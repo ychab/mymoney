@@ -3,8 +3,8 @@
 django-debug-toolbar
 django-extensions
 
-pylama==7.3.3
+pylama==7.4.3
 isort==4.2.15
-Sphinx==1.6.2
-sphinx-intl==0.9.9
+Sphinx==1.6.6
+sphinx-intl==0.9.10
 sphinx_rtd_theme==0.2.4
