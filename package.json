@@ -1,7 +1,7 @@
 {
   "name": "MyMoney",
   "dependencies": {
-    "bower": "1.7.9"
+    "bower": "1.8.4"
   },
   "devDependencies": {
     "gulp": "^3.9.0",
